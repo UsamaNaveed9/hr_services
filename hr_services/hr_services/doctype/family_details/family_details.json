@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-10-17 13:41:09.655165",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "coming_place",
+  "nationality",
+  "visa_period",
+  "column_break_j9san",
+  "gender",
+  "relation",
+  "passport_no"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name"
+  },
+  {
+   "columns": 2,
+   "fieldname": "coming_place",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Coming Place",
+   "options": "Airports"
+  },
+  {
+   "columns": 1,
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Gender",
+   "options": "Male\nFemale"
+  },
+  {
+   "columns": 1,
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Nationality ",
+   "options": "Country"
+  },
+  {
+   "columns": 1,
+   "fieldname": "relation",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Relation",
+   "options": "Wife\nSon\nDaughter"
+  },
+  {
+   "columns": 1,
+   "fieldname": "visa_period",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Visa Period"
+  },
+  {
+   "columns": 1,
+   "fieldname": "passport_no",
+   "fieldtype": "Data",
+   "label": "Passport No"
+  },
+  {
+   "fieldname": "column_break_j9san",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-10-22 09:14:43.589565",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Family Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

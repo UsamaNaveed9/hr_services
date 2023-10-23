@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"6rvvdc7Fxp\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"Jzyx7dj8Lh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"4J3EX7SVpC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Allocation\",\"col\":3}},{\"id\":\"ZPX1UOu1Kq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"w2wxSk0l0u\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"s68He45Enz\",\"type\":\"card\",\"data\":{\"card_name\":\"Documents Requests\",\"col\":4}},{\"id\":\"IlKDhmuZTk\",\"type\":\"card\",\"data\":{\"card_name\":\"Allocation\",\"col\":4}},{\"id\":\"JG973532Mh\",\"type\":\"card\",\"data\":{\"card_name\":\"Application\",\"col\":4}},{\"id\":\"Hg3oyWHJqU\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"6rvvdc7Fxp\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"Jzyx7dj8Lh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"4J3EX7SVpC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Allocation\",\"col\":3}},{\"id\":\"ZPX1UOu1Kq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"w2wxSk0l0u\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"s68He45Enz\",\"type\":\"card\",\"data\":{\"card_name\":\"Documents Requests\",\"col\":4}},{\"id\":\"IlKDhmuZTk\",\"type\":\"card\",\"data\":{\"card_name\":\"Allocation\",\"col\":4}},{\"id\":\"JG973532Mh\",\"type\":\"card\",\"data\":{\"card_name\":\"Application\",\"col\":4}}]",
  "creation": "2023-10-03 13:28:10.750578",
  "custom_blocks": [],
  "docstatus": 0,
@@ -83,57 +83,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Reports",
-   "link_count": 3,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Employee Leave Balance",
-   "link_count": 0,
-   "link_to": "Employee Leave Balance",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Employee Leave Balance Summary",
-   "link_count": 0,
-   "link_to": "Employee Leave Balance Summary",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Employees working on a holiday",
-   "link_count": 0,
-   "link_to": "Employees working on a holiday",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Documents Requests",
-   "link_count": 5,
-   "link_type": "DocType",
+   "link_count": 16,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Holiday List",
+   "label": "Assets Request",
    "link_count": 0,
-   "link_to": "Holiday List",
+   "link_to": "Assets Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -141,9 +101,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Type",
+   "label": "Annual Ticket Request",
    "link_count": 0,
-   "link_to": "Leave Type",
+   "link_to": "Annual Ticket Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -151,9 +111,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Period",
+   "label": "Business Travel Request",
    "link_count": 0,
-   "link_to": "Leave Period",
+   "link_to": "Business Travel Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -161,9 +121,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Policy",
+   "label": "Contract Termination Request",
    "link_count": 0,
-   "link_to": "Leave Policy",
+   "link_to": "Contract Termination Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -171,15 +131,125 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Block List",
+   "label": "Exit ReEntry Request",
    "link_count": 0,
-   "link_to": "Leave Block List",
+   "link_to": "Exit ReEntry Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Final Exit Request",
+   "link_count": 0,
+   "link_to": "Final Exit Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Family Visa Request",
+   "link_count": 0,
+   "link_to": "Family Visa Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Housing Advance Request",
+   "link_count": 0,
+   "link_to": "Housing Advance Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Insurance Request",
+   "link_count": 0,
+   "link_to": "Insurance Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Letters Request",
+   "link_count": 0,
+   "link_to": "Letters Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Leave Deduction Request",
+   "link_count": 0,
+   "link_to": "Leave deduction Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Overtime and Shift Request",
+   "link_count": 0,
+   "link_to": "Overtime and Shift Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Overtime Sheet Request",
+   "link_count": 0,
+   "link_to": "Overtime Sheet Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transfer of Iqama Request",
+   "link_count": 0,
+   "link_to": "Transfer of Iqama Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Urgent Request",
+   "link_count": 0,
+   "link_to": "Urgent Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Warning Letter",
+   "link_count": 0,
+   "link_to": "Warning Letter",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-10-04 15:38:10.250752",
+ "modified": "2023-10-19 08:53:20.317199",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR Services",

@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-10-17 11:49:13.008719",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "name_in_arabic",
+  "column_break_siqpi",
+  "request_date",
+  "reason",
+  "letter_details_section",
+  "request_for",
+  "column_break_jt7vx",
+  "department",
+  "job_type",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "LR-.YY.-"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.name_in_arabic",
+   "fieldname": "name_in_arabic",
+   "fieldtype": "Data",
+   "label": "Name in Arabic"
+  },
+  {
+   "fieldname": "column_break_siqpi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "label": "Request Date"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Letters Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "request_for",
+   "fieldtype": "Link",
+   "label": "Request For ",
+   "options": "Request For"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Link",
+   "label": "Job Type",
+   "options": "Employment Type"
+  },
+  {
+   "fieldname": "column_break_jt7vx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "letter_details_section",
+   "fieldtype": "Section Break",
+   "label": "Letter Details"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-22 09:19:02.608586",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Letters Request",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
