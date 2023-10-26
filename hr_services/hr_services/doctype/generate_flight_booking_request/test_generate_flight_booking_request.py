@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestInsuranceRequest(FrappeTestCase):
+class TestGenerateFlightBookingRequest(FrappeTestCase):
 	pass

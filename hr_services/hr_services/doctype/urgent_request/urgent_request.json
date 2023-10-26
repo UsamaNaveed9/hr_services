@@ -14,6 +14,8 @@
   "name_in_arabic",
   "column_break_siqpi",
   "request_date",
+  "project",
+  "project_name",
   "reason",
   "urgent_request_details_section",
   "amended_from"
@@ -81,12 +83,26 @@
    "options": "Urgent Request",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-17 11:53:24.108630",
+ "modified": "2023-10-24 08:46:16.234464",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Urgent Request",

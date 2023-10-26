@@ -15,6 +15,8 @@
   "date_of_joining",
   "column_break_ds3oi",
   "date",
+  "project",
+  "project_name",
   "iqama_no",
   "passport_no",
   "family_details",
@@ -95,12 +97,26 @@
    "fieldname": "passport_no",
    "fieldtype": "Data",
    "label": "Passport No"
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-22 09:11:22.449282",
+ "modified": "2023-10-24 08:55:36.064687",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Family Visa Request",

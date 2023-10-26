@@ -1,0 +1,278 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-10-25 11:38:40.460472",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee_details_section",
+  "employee",
+  "employee_name",
+  "nationality",
+  "date_of_joining",
+  "column_break_ds3oi",
+  "request_date",
+  "project",
+  "project_name",
+  "iqama_no",
+  "passport_no",
+  "reason",
+  "itinerary_section",
+  "on_way_trip",
+  "departure_date",
+  "d_from_airport",
+  "column_break_ipktk",
+  "d_class",
+  "d_to_airport",
+  "section_break3",
+  "round_trip",
+  "r_departure_date",
+  "r_from_airport",
+  "column_break_13wh0",
+  "r_class",
+  "r_to_ariport",
+  "section_break_hh45h",
+  "arrival_date",
+  "a_from_airport",
+  "column_break_wowye",
+  "a_class",
+  "a_to_airport",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "GFBR-.YY.-"
+  },
+  {
+   "fieldname": "employee_details_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining"
+  },
+  {
+   "fieldname": "column_break_ds3oi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "label": "Request Date"
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.iqama_national_id",
+   "fieldname": "iqama_no",
+   "fieldtype": "Data",
+   "label": "Iqama No"
+  },
+  {
+   "fieldname": "passport_no",
+   "fieldtype": "Data",
+   "label": "Passport No"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Generate Flight Booking Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "itinerary_section",
+   "fieldtype": "Section Break",
+   "label": "Itinerary"
+  },
+  {
+   "depends_on": "on_way_trip",
+   "fieldname": "departure_date",
+   "fieldtype": "Date",
+   "label": "Departure Date"
+  },
+  {
+   "fieldname": "column_break_ipktk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "on_way_trip",
+   "fieldtype": "Check",
+   "label": "On Way Trip"
+  },
+  {
+   "default": "0",
+   "fieldname": "round_trip",
+   "fieldtype": "Check",
+   "label": "Round Trip"
+  },
+  {
+   "fieldname": "section_break3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "on_way_trip",
+   "fieldname": "d_from_airport",
+   "fieldtype": "Link",
+   "label": "From Airport",
+   "options": "Airports"
+  },
+  {
+   "depends_on": "on_way_trip",
+   "fieldname": "d_class",
+   "fieldtype": "Select",
+   "label": "Class",
+   "options": "Economy\nBusiness\nFirst Class"
+  },
+  {
+   "depends_on": "on_way_trip",
+   "fieldname": "d_to_airport",
+   "fieldtype": "Link",
+   "label": "To Airport",
+   "options": "Airports"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "arrival_date",
+   "fieldtype": "Date",
+   "label": "Arrival Date"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "a_from_airport",
+   "fieldtype": "Link",
+   "label": "From Airport",
+   "options": "Airports"
+  },
+  {
+   "fieldname": "column_break_wowye",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "a_class",
+   "fieldtype": "Select",
+   "label": "Class",
+   "options": "Economy\nBusiness\nFirst Class"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "a_to_airport",
+   "fieldtype": "Link",
+   "label": "To Airport",
+   "options": "Airports"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "r_departure_date",
+   "fieldtype": "Date",
+   "label": "Departure Date"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "r_from_airport",
+   "fieldtype": "Link",
+   "label": "From Airport",
+   "options": "Airports"
+  },
+  {
+   "fieldname": "column_break_13wh0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "r_class",
+   "fieldtype": "Select",
+   "label": "Class"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "r_to_ariport",
+   "fieldtype": "Link",
+   "label": "To Airport",
+   "options": "Airports"
+  },
+  {
+   "fieldname": "section_break_hh45h",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-25 15:39:19.759834",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Generate Flight Booking Request",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

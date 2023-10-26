@@ -84,7 +84,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Documents Requests",
-   "link_count": 16,
+   "link_count": 17,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -161,6 +161,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Generate Flight Booking Request",
+   "link_count": 0,
+   "link_to": "Generate Flight Booking Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Housing Advance Request",
    "link_count": 0,
    "link_to": "Housing Advance Request",
@@ -171,9 +181,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Insurance Request",
+   "label": "Insurance Upgrade Request",
    "link_count": 0,
-   "link_to": "Insurance Request",
+   "link_to": "Insurance Upgrade Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -201,9 +211,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Overtime and Shift Request",
+   "label": "Overtime Request",
    "link_count": 0,
-   "link_to": "Overtime and Shift Request",
+   "link_to": "Overtime Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -249,7 +259,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-10-19 08:53:20.317199",
+ "modified": "2023-10-25 11:59:58.533321",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR Services",

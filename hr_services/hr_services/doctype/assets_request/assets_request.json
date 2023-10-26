@@ -15,6 +15,8 @@
   "joining_date",
   "column_break_siqpi",
   "request_date",
+  "project",
+  "project_name",
   "reason",
   "required_assets_details_section",
   "items",
@@ -95,12 +97,26 @@
    "fieldtype": "Table",
    "label": "Items",
    "options": "Assets Items"
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-17 13:13:47.815610",
+ "modified": "2023-10-24 09:03:19.288430",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Assets Request",

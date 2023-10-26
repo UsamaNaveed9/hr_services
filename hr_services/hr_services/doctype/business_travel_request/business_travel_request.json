@@ -15,6 +15,8 @@
   "column_break_ds3oi",
   "date",
   "iqama_no",
+  "project",
+  "project_name",
   "business_travel_details_section",
   "travel_date_from",
   "travel_date_to",
@@ -118,12 +120,26 @@
    "fieldname": "total_estimated_expense",
    "fieldtype": "Currency",
    "label": "Total Estimated Expense"
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-22 09:09:01.448105",
+ "modified": "2023-10-24 09:00:41.077601",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Business Travel Request",

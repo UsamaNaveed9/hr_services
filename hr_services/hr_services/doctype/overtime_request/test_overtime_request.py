@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestOvertimeandShiftRequest(FrappeTestCase):
+class TestOvertimeRequest(FrappeTestCase):
 	pass

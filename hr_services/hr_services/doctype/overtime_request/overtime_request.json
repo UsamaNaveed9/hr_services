@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2023-10-19 08:43:30.809059",
+ "creation": "2023-10-19 08:39:55.051699",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -14,8 +14,10 @@
   "name_in_arabic",
   "column_break_siqpi",
   "request_date",
+  "project",
+  "project_name",
   "reason",
-  "insurance_details_section",
+  "overtime_shift_details_section",
   "request_for",
   "column_break_jt7vx",
   "department",
@@ -27,7 +29,7 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
-   "options": "IR-.YY.-"
+   "options": "OTSR-.YY.-"
   },
   {
    "fieldname": "employee",
@@ -64,9 +66,9 @@
    "label": "Reason"
   },
   {
-   "fieldname": "insurance_details_section",
+   "fieldname": "overtime_shift_details_section",
    "fieldtype": "Section Break",
-   "label": "Insurance Details"
+   "label": "Overtime & Shift Details"
   },
   {
    "fieldname": "request_for",
@@ -82,12 +84,12 @@
   {
    "fieldname": "department",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Department"
   },
   {
    "fieldname": "job_type",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Job Type",
    "options": "Employment Type"
   },
@@ -96,27 +98,32 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Insurance Request",
+   "options": "Overtime and Shift Request",
    "print_hide": 1,
    "read_only": 1
   },
   {
-   "fieldname": "amended_from",
+   "fetch_from": "employee.project",
+   "fieldname": "project",
    "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Insurance Request",
-   "print_hide": 1,
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-22 09:16:13.161917",
+ "modified": "2023-10-24 08:41:46.183052",
  "modified_by": "Administrator",
  "module": "HR Services",
- "name": "Insurance Request",
+ "name": "Overtime Request",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

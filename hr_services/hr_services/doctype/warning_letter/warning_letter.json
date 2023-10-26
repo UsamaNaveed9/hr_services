@@ -14,10 +14,14 @@
   "name_in_arabic",
   "column_break_siqpi",
   "warning_date",
+  "project",
+  "project_name",
   "reason",
   "warning_details_section",
-  "request_for",
+  "number_of_warnings",
   "column_break_jt7vx",
+  "action_to_be_taken",
+  "request_for",
   "department",
   "job_type",
   "amended_from"
@@ -60,6 +64,7 @@
   {
    "fieldname": "request_for",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Request For ",
    "options": "Job Offer Letter\nContract Letter\nExperience Letter",
    "translatable": 1
@@ -77,6 +82,7 @@
   {
    "fieldname": "job_type",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Job Type",
    "options": "Employment Type"
   },
@@ -99,12 +105,37 @@
    "fieldname": "warning_details_section",
    "fieldtype": "Section Break",
    "label": "Warning Details"
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "number_of_warnings",
+   "fieldtype": "Select",
+   "label": "Number of Warnings",
+   "options": "1\n2\n3"
+  },
+  {
+   "fieldname": "action_to_be_taken",
+   "fieldtype": "Small Text",
+   "label": "Action to be Taken"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-22 09:22:36.788577",
+ "modified": "2023-10-24 09:27:51.951529",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Warning Letter",
