@@ -24,7 +24,7 @@
   "fare_amount",
   "column_break_jt7vx",
   "departure",
-  "designation",
+  "destination",
   "amended_from"
  ],
  "fields": [
@@ -38,7 +38,7 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee"
   },
   {
@@ -66,7 +66,7 @@
   {
    "fieldname": "job_type",
    "fieldtype": "Link",
-   "label": "Job Type",
+   "label": "Type of Contract",
    "options": "Employment Type"
   },
   {
@@ -82,8 +82,8 @@
   {
    "fieldname": "request_for",
    "fieldtype": "Select",
-   "label": "Request For ",
-   "options": "Approval\nTicket Fare"
+   "label": "Request For",
+   "options": "Approval\nTicket Encashment"
   },
   {
    "fieldname": "fare_amount",
@@ -98,12 +98,6 @@
    "fieldname": "departure",
    "fieldtype": "Link",
    "label": "Departure",
-   "options": "Country"
-  },
-  {
-   "fieldname": "designation",
-   "fieldtype": "Link",
-   "label": "Designation",
    "options": "Country"
   },
   {
@@ -133,12 +127,18 @@
    "fieldtype": "Data",
    "label": "Project Name",
    "read_only": 1
+  },
+  {
+   "fieldname": "destination",
+   "fieldtype": "Link",
+   "label": "Destination",
+   "options": "Country"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-24 09:01:36.138315",
+ "modified": "2023-11-23 09:53:41.172986",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Annual Ticket Request",

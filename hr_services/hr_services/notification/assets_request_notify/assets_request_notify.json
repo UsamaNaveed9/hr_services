@@ -1,0 +1,35 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "",
+ "creation": "2023-11-09 11:34:38.983231",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Assets Request",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Take Action on this {{ doc.name }} Request",
+ "modified": "2023-11-09 11:34:38.983231",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Assets Request Notify",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "condition": "doc.workflow_state == \"Pending for Approval\"",
+   "receiver_by_document_field": "",
+   "receiver_by_role": "HR Req Approver"
+  },
+  {
+   "condition": "doc.workflow_state == \"Approved by HR MGR\"",
+   "receiver_by_role": "CEO"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "{{ doc.name }} is pending for your approval",
+ "value_changed": "workflow_state"
+}

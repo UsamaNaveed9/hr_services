@@ -33,7 +33,7 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee"
   },
   {
@@ -95,7 +95,7 @@
   {
    "fieldname": "items",
    "fieldtype": "Table",
-   "label": "Items",
+   "label": "Type of Items",
    "options": "Assets Items"
   },
   {
@@ -116,7 +116,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-24 09:03:19.288430",
+ "modified": "2023-11-23 08:25:49.698211",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Assets Request",

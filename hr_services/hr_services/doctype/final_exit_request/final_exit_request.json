@@ -13,13 +13,14 @@
   "employee_name",
   "nationality",
   "date_of_joining",
-  "column_break_ds3oi",
-  "date",
   "project",
   "project_name",
+  "column_break_ds3oi",
+  "date",
   "iqama_no",
   "iqama_issued_place",
   "leaving_work_date",
+  "exit_date",
   "amended_from"
  ],
  "fields": [
@@ -34,7 +35,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee",
    "reqd": 1
   },
@@ -48,7 +49,7 @@
    "default": "Now",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Request Date"
   },
   {
    "fetch_from": "employee.nationality",
@@ -103,12 +104,17 @@
    "fieldname": "project_name",
    "fieldtype": "Data",
    "label": "Project Name"
+  },
+  {
+   "fieldname": "exit_date",
+   "fieldtype": "Date",
+   "label": "Exit Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-24 08:56:40.595106",
+ "modified": "2023-11-23 09:08:59.923685",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Final Exit Request",

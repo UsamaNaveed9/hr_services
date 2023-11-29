@@ -35,7 +35,7 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee"
   },
   {
@@ -90,7 +90,7 @@
   {
    "fieldname": "job_type",
    "fieldtype": "Link",
-   "label": "Job Type",
+   "label": "Type of Contract",
    "options": "Employment Type"
   },
   {
@@ -98,7 +98,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Leave deduction Request",
+   "options": "Leave Deduction Request",
    "print_hide": 1,
    "read_only": 1
   },
@@ -120,10 +120,10 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-24 08:51:16.826195",
+ "modified": "2023-11-23 09:28:02.153579",
  "modified_by": "Administrator",
  "module": "HR Services",
- "name": "Leave deduction Request",
+ "name": "Leave Deduction Request",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

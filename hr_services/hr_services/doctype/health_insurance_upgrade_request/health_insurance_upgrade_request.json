@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-10-19 08:43:30.809059",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "name_in_arabic",
+  "column_break_siqpi",
+  "request_date",
+  "project",
+  "project_name",
+  "reason",
+  "insurance_details_section",
+  "from_category",
+  "column_break_jt7vx",
+  "to_category",
+  "request_for",
+  "department",
+  "job_type",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "IR-.YY.-"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Employee No",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.name_in_arabic",
+   "fieldname": "name_in_arabic",
+   "fieldtype": "Data",
+   "label": "Name in Arabic"
+  },
+  {
+   "fieldname": "column_break_siqpi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "label": "Request Date"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "insurance_details_section",
+   "fieldtype": "Section Break",
+   "label": "Insurance Details"
+  },
+  {
+   "fieldname": "request_for",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Request For ",
+   "options": "Job Offer Letter\nContract Letter\nExperience Letter"
+  },
+  {
+   "fieldname": "column_break_jt7vx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Department"
+  },
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Job Type",
+   "options": "Employment Type"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Health Insurance Upgrade Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Health Insurance Upgrade Request",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "from_category",
+   "fieldtype": "Link",
+   "label": "From Category",
+   "options": "Insurance Category"
+  },
+  {
+   "fieldname": "to_category",
+   "fieldtype": "Link",
+   "label": "To Category",
+   "options": "Insurance Category"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-11-23 09:25:07.345011",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Health Insurance Upgrade Request",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

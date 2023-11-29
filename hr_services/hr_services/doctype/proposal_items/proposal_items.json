@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-06 13:55:27.438269",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "outsourcing_description",
+  "price_includes_erc_fees_and_without_vat",
+  "uom"
+ ],
+ "fields": [
+  {
+   "columns": 4,
+   "fieldname": "outsourcing_description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Outsourcing Description"
+  },
+  {
+   "columns": 5,
+   "fieldname": "price_includes_erc_fees_and_without_vat",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Price includes ERC fees and without VAT"
+  },
+  {
+   "columns": 1,
+   "fieldname": "uom",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "UOM",
+   "options": "Yearly"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-11-06 13:58:20.219013",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Proposal Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

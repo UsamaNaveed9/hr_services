@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestLeavedeductionRequest(FrappeTestCase):
+class TestLeaveDeductionRequest(FrappeTestCase):
 	pass

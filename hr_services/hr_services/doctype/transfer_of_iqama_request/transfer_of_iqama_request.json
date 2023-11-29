@@ -13,14 +13,19 @@
   "employee_name",
   "name_in_arabic",
   "job_type",
+  "date_of_birth",
   "department",
+  "nationality",
   "column_break_siqpi",
   "request_date",
   "project",
   "project_name",
+  "iqama_no",
+  "contract_term",
   "reason",
   "iqama_transfer_details_section",
   "from_company",
+  "column_break_1kns6",
   "to_company",
   "amended_from"
  ],
@@ -35,7 +40,7 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee"
   },
   {
@@ -63,7 +68,7 @@
   {
    "fieldname": "job_type",
    "fieldtype": "Link",
-   "label": "Job Type",
+   "label": "Type of Contract",
    "options": "Employment Type"
   },
   {
@@ -79,7 +84,7 @@
   {
    "fieldname": "from_company",
    "fieldtype": "Data",
-   "label": "From Company "
+   "label": "From Company"
   },
   {
    "fieldname": "to_company",
@@ -113,12 +118,39 @@
    "fieldtype": "Data",
    "label": "Project Name",
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.iqama_national_id",
+   "fieldname": "iqama_no",
+   "fieldtype": "Data",
+   "label": "Iqama No"
+  },
+  {
+   "fetch_from": "employee.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
+  },
+  {
+   "fetch_from": "employee.date_of_birth",
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "contract_term",
+   "fieldtype": "Data",
+   "label": "Contract Term"
+  },
+  {
+   "fieldname": "column_break_1kns6",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-24 08:44:51.400247",
+ "modified": "2023-11-23 09:44:09.562313",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Transfer of Iqama Request",

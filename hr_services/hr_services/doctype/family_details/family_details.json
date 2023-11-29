@@ -44,7 +44,7 @@
    "fieldname": "nationality",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Nationality ",
+   "label": "Nationality",
    "options": "Country"
   },
   {
@@ -76,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-22 09:14:43.589565",
+ "modified": "2023-11-23 09:06:26.168623",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Family Details",

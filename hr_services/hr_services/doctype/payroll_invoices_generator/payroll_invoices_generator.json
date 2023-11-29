@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-11-28 14:48:54.739721",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "ms_date",
+  "project",
+  "get_employees",
+  "column_break_wuh7p",
+  "me_date",
+  "due_date",
+  "column_break_yqh5q",
+  "project_name",
+  "customer",
+  "customer_name",
+  "section_break_ocum7",
+  "employees",
+  "section_break_wwoim",
+  "hidden",
+  "column_break_63w5e",
+  "if_data_is_ok_you_can_click_here",
+  "generate_invoices",
+  "column_break_0n7ll",
+  "hidden1",
+  "invoice_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "column_break_yqh5q",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Invoice Due Date"
+  },
+  {
+   "fetch_from": "project.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "get_employees",
+   "fieldtype": "Button",
+   "label": "Get Employees"
+  },
+  {
+   "fieldname": "section_break_ocum7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employees",
+   "fieldtype": "Table",
+   "label": "Employees",
+   "options": "Employees Payroll IG"
+  },
+  {
+   "fieldname": "column_break_wuh7p",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_wwoim",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "generate_invoices",
+   "fieldtype": "Button",
+   "label": "Generate Invoices"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "label": "Hidden",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_63w5e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_0n7ll",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden1",
+   "fieldtype": "Data",
+   "label": "Hidden1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "if_data_is_ok_you_can_click_here",
+   "fieldtype": "Heading",
+   "label": "If data is ok, You can Click here"
+  },
+  {
+   "fieldname": "ms_date",
+   "fieldtype": "Date",
+   "label": "Month Start Date"
+  },
+  {
+   "fieldname": "me_date",
+   "fieldtype": "Date",
+   "label": "Month End Date"
+  },
+  {
+   "fetch_from": "project.invoice_type",
+   "fieldname": "invoice_type",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Invoice Type"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-11-29 11:35:22.840817",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Payroll Invoices Generator",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

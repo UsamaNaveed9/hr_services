@@ -33,7 +33,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee",
    "reqd": 1
   },
@@ -63,7 +63,7 @@
    "default": "Now",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Request Date"
   },
   {
    "fetch_from": "employee.iqama_national_id",
@@ -103,7 +103,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-24 08:54:37.039941",
+ "modified": "2023-11-23 09:22:03.180049",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Housing Advance Request",

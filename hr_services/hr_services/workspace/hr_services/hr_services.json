@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"6rvvdc7Fxp\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"Jzyx7dj8Lh\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Application\",\"col\":3}},{\"id\":\"4J3EX7SVpC\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leave Allocation\",\"col\":3}},{\"id\":\"ZPX1UOu1Kq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"w2wxSk0l0u\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"s68He45Enz\",\"type\":\"card\",\"data\":{\"card_name\":\"Documents Requests\",\"col\":4}},{\"id\":\"IlKDhmuZTk\",\"type\":\"card\",\"data\":{\"card_name\":\"Allocation\",\"col\":4}},{\"id\":\"JG973532Mh\",\"type\":\"card\",\"data\":{\"card_name\":\"Application\",\"col\":4}}]",
+ "content": "[{\"id\":\"w2wxSk0l0u\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters</b></span>\",\"col\":12}},{\"id\":\"s68He45Enz\",\"type\":\"card\",\"data\":{\"card_name\":\"Request Documents\",\"col\":4}},{\"id\":\"0vfqw5u-2V\",\"type\":\"card\",\"data\":{\"card_name\":\"View Documents\",\"col\":4}},{\"id\":\"0mf-hdSJA4\",\"type\":\"card\",\"data\":{\"card_name\":\"Application\",\"col\":4}}]",
  "creation": "2023-10-03 13:28:10.750578",
  "custom_blocks": [],
  "docstatus": 0,
@@ -15,38 +15,17 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Allocation",
-   "link_count": 3,
-   "link_type": "DocType",
+   "label": "View Documents",
+   "link_count": 1,
    "onboard": 0,
    "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Leave Allocation",
+   "label": "Salary Slip",
    "link_count": 0,
-   "link_to": "Leave Allocation",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Policy Assignment",
-   "link_count": 0,
-   "link_to": "Leave Policy Assignment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Leave Encashment",
-   "link_count": 0,
-   "link_to": "Leave Encashment",
+   "link_to": "Salary Slip",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -55,8 +34,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Application",
-   "link_count": 2,
-   "link_type": "DocType",
+   "link_count": 1,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -73,20 +51,20 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Compensatory Leave Request",
-   "link_count": 0,
-   "link_to": "Compensatory Leave Request",
-   "link_type": "DocType",
+   "label": "Request Documents",
+   "link_count": 21,
    "onboard": 0,
-   "type": "Link"
+   "type": "Card Break"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Documents Requests",
-   "link_count": 17,
+   "label": "Accommodation Request",
+   "link_count": 0,
+   "link_to": "Accommodation Request",
+   "link_type": "DocType",
    "onboard": 0,
-   "type": "Card Break"
+   "type": "Link"
   },
   {
    "hidden": 0,
@@ -151,9 +129,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Family Visa Request",
+   "label": "Family Visit Visa Request",
    "link_count": 0,
-   "link_to": "Family Visa Request",
+   "link_to": "Family Visit Visa Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -161,9 +139,19 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Generate Flight Booking Request",
+   "label": "Generate Visa Request",
    "link_count": 0,
-   "link_to": "Generate Flight Booking Request",
+   "link_to": "Generate Visa Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Generate Flight Ticket Booking Request",
+   "link_count": 0,
+   "link_to": "Generate Flight Ticket Booking Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -181,9 +169,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Insurance Upgrade Request",
+   "label": "Health Insurance Upgrade Request",
    "link_count": 0,
-   "link_to": "Insurance Upgrade Request",
+   "link_to": "Health Insurance Upgrade Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -203,7 +191,7 @@
    "is_query_report": 0,
    "label": "Leave Deduction Request",
    "link_count": 0,
-   "link_to": "Leave deduction Request",
+   "link_to": "Leave Deduction Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -224,6 +212,26 @@
    "label": "Overtime Sheet Request",
    "link_count": 0,
    "link_to": "Overtime Sheet Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Request for Profession Change",
+   "link_count": 0,
+   "link_to": "Request for Profession Change",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Request For Payment",
+   "link_count": 0,
+   "link_to": "Request For Payment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -259,34 +267,17 @@
    "type": "Link"
   }
  ],
- "modified": "2023-10-25 11:59:58.533321",
+ "modified": "2023-11-23 09:24:06.189379",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR Services",
  "number_cards": [],
  "owner": "Administrator",
- "parent_page": "HR",
+ "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 12.1,
- "shortcuts": [
-  {
-   "color": "Orange",
-   "doc_view": "List",
-   "format": "{} Open",
-   "label": "Leave Application",
-   "link_to": "Leave Application",
-   "stats_filter": "{\"status\":[\"=\",\"Open\"]}",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Leave Allocation",
-   "link_to": "Leave Allocation",
-   "type": "DocType"
-  }
- ],
+ "sequence_id": 13.0,
+ "shortcuts": [],
  "title": "HR Services"
 }

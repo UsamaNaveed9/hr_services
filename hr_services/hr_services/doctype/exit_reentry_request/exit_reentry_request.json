@@ -16,7 +16,15 @@
   "column_break_ds3oi",
   "date",
   "iqama_no",
+  "project",
+  "project_name",
   "reentry_details_section",
+  "type_of_visa",
+  "visa_term",
+  "travel_date",
+  "return_date",
+  "approve_of_project_manager",
+  "attach_approved_request",
   "amended_from"
  ],
  "fields": [
@@ -31,7 +39,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Employee",
+   "label": "Employee No",
    "options": "Employee",
    "reqd": 1
   },
@@ -61,7 +69,7 @@
    "default": "Now",
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Request Date"
   },
   {
    "fetch_from": "employee.iqama_national_id",
@@ -72,7 +80,7 @@
   {
    "fieldname": "reentry_details_section",
    "fieldtype": "Section Break",
-   "label": "ReEntry Details"
+   "label": "Exit ReEntry Details"
   },
   {
    "fieldname": "amended_from",
@@ -82,12 +90,56 @@
    "options": "Exit ReEntry Request",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "type_of_visa",
+   "fieldtype": "Data",
+   "label": "Type of Visa"
+  },
+  {
+   "fieldname": "visa_term",
+   "fieldtype": "Data",
+   "label": "Visa Term"
+  },
+  {
+   "fieldname": "approve_of_project_manager",
+   "fieldtype": "Select",
+   "label": "Approve of Project Manager",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "attach_approved_request",
+   "fieldtype": "Attach",
+   "label": "Attach Approved Request"
+  },
+  {
+   "fieldname": "travel_date",
+   "fieldtype": "Date",
+   "label": "Travel Date"
+  },
+  {
+   "fieldname": "return_date",
+   "fieldtype": "Date",
+   "label": "Return Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-17 12:02:02.237761",
+ "modified": "2023-11-23 08:52:44.271104",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Exit ReEntry Request",
