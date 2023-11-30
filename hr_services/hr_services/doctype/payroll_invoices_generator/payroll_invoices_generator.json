@@ -7,12 +7,12 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "ms_date",
+  "month_name",
   "project",
   "get_employees",
   "column_break_wuh7p",
+  "ms_date",
   "me_date",
-  "due_date",
   "column_break_yqh5q",
   "project_name",
   "customer",
@@ -21,6 +21,7 @@
   "employees",
   "section_break_wwoim",
   "hidden",
+  "due_date",
   "column_break_63w5e",
   "if_data_is_ok_you_can_click_here",
   "generate_invoices",
@@ -39,7 +40,8 @@
    "fetch_from": "project.project_name",
    "fieldname": "project_name",
    "fieldtype": "Data",
-   "label": "Project Name"
+   "label": "Project Name",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_yqh5q",
@@ -55,13 +57,15 @@
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
-   "options": "Customer"
+   "options": "Customer",
+   "read_only": 1
   },
   {
    "fetch_from": "customer.customer_name",
    "fieldname": "customer_name",
    "fieldtype": "Data",
-   "label": "Customer Name"
+   "label": "Customer Name",
+   "read_only": 1
   },
   {
    "fieldname": "get_employees",
@@ -76,7 +80,8 @@
    "fieldname": "employees",
    "fieldtype": "Table",
    "label": "Employees",
-   "options": "Employees Payroll IG"
+   "options": "Employees Payroll IG",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_wuh7p",
@@ -119,12 +124,14 @@
   {
    "fieldname": "ms_date",
    "fieldtype": "Date",
-   "label": "Month Start Date"
+   "label": "Month Start Date",
+   "read_only": 1
   },
   {
    "fieldname": "me_date",
    "fieldtype": "Date",
-   "label": "Month End Date"
+   "label": "Month End Date",
+   "read_only": 1
   },
   {
    "fetch_from": "project.invoice_type",
@@ -132,13 +139,19 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Invoice Type"
+  },
+  {
+   "fieldname": "month_name",
+   "fieldtype": "Select",
+   "label": "Month Name",
+   "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-29 11:35:22.840817",
+ "modified": "2023-11-30 14:39:23.304417",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Payroll Invoices Generator",

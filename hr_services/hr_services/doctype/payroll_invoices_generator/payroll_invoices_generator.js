@@ -7,6 +7,28 @@ frappe.ui.form.on('Payroll Invoices Generator', {
         frm.fields_dict['if_data_is_ok_you_can_click_here'].$wrapper.css('text-align', 'center');
         frm.fields_dict['generate_invoices'].$wrapper.css('text-align', 'center');
     },
+    month_name: function(frm){
+        var monthName = frm.doc.month_name;
+        var currentYear = frappe.datetime.get_today().split('-')[0];
+        
+        // Convert month name to a numeric value
+        const monthIndex = new Date(`${monthName} 1, ${currentYear}`).getMonth();
+
+        // Calculate the start date of the month
+        const startDate = new Date(currentYear, monthIndex, 1);
+
+        // Calculate the end date of the month
+        const endDate = new Date(currentYear, monthIndex + 1, 0);
+
+        // Return the formatted dates
+        let start = startDate.toISOString().split('T')[0];
+        let end = endDate.toISOString().split('T')[0];
+        let final_start_date = frappe.datetime.add_days(start, 1)
+        let final_end_date = frappe.datetime.add_days(end, 1)
+
+        frm.set_value("ms_date", final_start_date);
+        frm.set_value("me_date", final_end_date);
+    },
     get_employees: function(frm){
         var project = frm.doc.project;
         if (project && frm.doc.ms_date && frm.doc.me_date){
@@ -34,9 +56,9 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     }
                     else if(res.message.length == 0){
                         frappe.msgprint({
-                            title: __('Notification'),
-                            indicator: 'green',
-                            message: __('All Employees Invoice Created')
+                            title: __('Error'),
+                            indicator: 'red',
+                            message: __('Invoices already Created!')
                         });
                     }
                 }

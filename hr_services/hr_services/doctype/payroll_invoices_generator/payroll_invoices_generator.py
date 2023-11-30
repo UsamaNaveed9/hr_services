@@ -16,7 +16,7 @@ def get_employees(project,start_date,end_date):
 	for employee in employees:
 		salary_slip = frappe.get_value(
 			"Salary Slip",
-			filters={"employee": employee["name"], "invoice_created": 0,"start_date": start_date, "end_date": end_date},
+			filters={"employee": employee["name"], "invoice_created": 0,"start_date": start_date, "end_date": end_date, "docstatus": 1},
 			fieldname="name",
 		)
 		if salary_slip:
@@ -41,7 +41,16 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_item = frappe.new_doc("Sales Invoice Item")
 			si_item.item_code = 34
 			si_item.qty = 1
-			si_item.rate = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
+			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
+			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+			if nationality == "Saudi Arabia" and added_to_gosi == 1:
+				basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
+				housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
+				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
+				si_item.rate = net_pay + ((basic + housing) * 0.0975)
+			else:
+				si_item.rate = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
+				
 			si_item.employee_id = emp["employee"]
 			si_item.employee_name = emp["employee_name"]
 			si.append("items", si_item)
