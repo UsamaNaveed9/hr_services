@@ -3,6 +3,8 @@
 
 frappe.ui.form.on('Payroll Invoices Generator', {
 	refresh: function(frm) {
+        // Hide the Save button
+        frm.disable_save();
         // Center-align the button with class 'your-button-class'
         frm.fields_dict['if_data_is_ok_you_can_click_here'].$wrapper.css('text-align', 'center');
         frm.fields_dict['generate_invoices'].$wrapper.css('text-align', 'center');
@@ -45,6 +47,7 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     //console.log(res.message);
                     if (res.message.length > 0){
                         let emp = res.message;
+                        frm.set_value("no_of_employees", res.message.length);
                         cur_frm.clear_table("employees");
                         for (let i=0;i < emp.length; i++){
                             let emp_list = frm.add_child("employees");
@@ -55,6 +58,9 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                         frm.refresh_field("employees");
                     }
                     else if(res.message.length == 0){
+                        frm.set_value("no_of_employees", res.message.length);
+                        cur_frm.clear_table("employees");
+                        frm.refresh_field("employees");
                         frappe.msgprint({
                             title: __('Error'),
                             indicator: 'red',
@@ -106,7 +112,7 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     if (res.message){
                         //console.log(res.message);
                         cur_frm.clear_table("employees");
-                        frm.save()
+                        frm.refresh_field("employees");
                         frappe.msgprint({
                             title: __('Invoice Created Successfully'),
                             indicator: 'green'

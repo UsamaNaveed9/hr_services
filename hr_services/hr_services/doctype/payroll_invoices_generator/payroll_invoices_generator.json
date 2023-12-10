@@ -13,6 +13,7 @@
   "column_break_wuh7p",
   "ms_date",
   "me_date",
+  "no_of_employees",
   "column_break_yqh5q",
   "project_name",
   "customer",
@@ -145,13 +146,19 @@
    "fieldtype": "Select",
    "label": "Month Name",
    "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "fieldname": "no_of_employees",
+   "fieldtype": "Int",
+   "label": "No of Employees",
+   "read_only": 1
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-11-30 14:39:23.304417",
+ "modified": "2023-12-10 09:51:09.799100",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Payroll Invoices Generator",
