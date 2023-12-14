@@ -21,6 +21,8 @@
   "project",
   "project_name",
   "iqama_no",
+  "academic_qualification",
+  "iban_bank_number",
   "contract_term",
   "reason",
   "iqama_transfer_details_section",
@@ -145,12 +147,22 @@
   {
    "fieldname": "column_break_1kns6",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_qualification",
+   "fieldtype": "Data",
+   "label": "Academic Qualification"
+  },
+  {
+   "fieldname": "iban_bank_number",
+   "fieldtype": "Data",
+   "label": "IBAN Bank Number"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 09:44:09.562313",
+ "modified": "2023-12-11 10:33:04.680630",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Transfer of Iqama Request",

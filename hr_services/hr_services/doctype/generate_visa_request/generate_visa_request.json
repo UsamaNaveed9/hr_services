@@ -34,6 +34,7 @@
   "host_company_name",
   "column_break_bokcu",
   "expected_travel_dates",
+  "suitable_time",
   "amended_from"
  ],
  "fields": [
@@ -187,12 +188,18 @@
    "fieldname": "host_company_name",
    "fieldtype": "Data",
    "label": "Host Company Name"
+  },
+  {
+   "fieldname": "suitable_time",
+   "fieldtype": "Select",
+   "label": "Suitable Time",
+   "options": "Morning\nEvening"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 09:20:49.510059",
+ "modified": "2023-12-11 10:23:01.961025",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Generate Visa Request",

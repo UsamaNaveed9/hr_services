@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-14 09:11:00.177061",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "customer_name",
+  "column_break_wuh7p",
+  "due_date",
+  "section_break_ocum7",
+  "sales_invoices",
+  "section_break_wwoim",
+  "hidden",
+  "column_break_63w5e",
+  "if_data_is_ok_you_can_click_here",
+  "merge_invoices",
+  "column_break_0n7ll",
+  "hidden1"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_wuh7p",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "project.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ocum7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_wwoim",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "label": "Hidden",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Invoice Due Date"
+  },
+  {
+   "fieldname": "column_break_63w5e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "if_data_is_ok_you_can_click_here",
+   "fieldtype": "Heading",
+   "label": "If data is ok, You can Click here"
+  },
+  {
+   "fieldname": "column_break_0n7ll",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden1",
+   "fieldtype": "Data",
+   "label": "Hidden1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_invoices",
+   "fieldtype": "Table",
+   "label": "Sales Invoices",
+   "options": "Sales Invoices for Merge"
+  },
+  {
+   "fieldname": "merge_invoices",
+   "fieldtype": "Button",
+   "label": "Merge Invoices"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-12-14 09:47:34.771023",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Merge Invoices Tool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Finance User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -23,6 +23,7 @@
   "visa_term",
   "travel_date",
   "return_date",
+  "column_break_1h3yr",
   "approve_of_project_manager",
   "attach_approved_request",
   "amended_from"
@@ -106,8 +107,9 @@
   },
   {
    "fieldname": "type_of_visa",
-   "fieldtype": "Data",
-   "label": "Type of Visa"
+   "fieldtype": "Select",
+   "label": "Type of Visa",
+   "options": "Single Visa\nMultiple Visa"
   },
   {
    "fieldname": "visa_term",
@@ -134,12 +136,16 @@
    "fieldname": "return_date",
    "fieldtype": "Date",
    "label": "Return Date"
+  },
+  {
+   "fieldname": "column_break_1h3yr",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 08:52:44.271104",
+ "modified": "2023-12-11 08:48:09.531612",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Exit ReEntry Request",

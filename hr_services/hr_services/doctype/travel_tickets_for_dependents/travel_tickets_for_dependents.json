@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-11 10:00:34.351323",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "relation",
+  "passport_no",
+  "column_break_dwyiq",
+  "departure_date",
+  "class",
+  "from_airport",
+  "to_airport"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name"
+  },
+  {
+   "columns": 1,
+   "fieldname": "relation",
+   "fieldtype": "Data",
+   "label": "Relation"
+  },
+  {
+   "columns": 1,
+   "fieldname": "passport_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Passport No"
+  },
+  {
+   "columns": 2,
+   "fieldname": "departure_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Departure Date"
+  },
+  {
+   "columns": 1,
+   "fieldname": "class",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Class",
+   "options": "Economy\nBusiness\nFirst Class"
+  },
+  {
+   "columns": 1,
+   "fieldname": "from_airport",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "From Airport",
+   "options": "Airports"
+  },
+  {
+   "columns": 1,
+   "fieldname": "to_airport",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "To Airport",
+   "options": "Airports"
+  },
+  {
+   "fieldname": "column_break_dwyiq",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-12-11 10:09:41.159108",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Travel Tickets for Dependents",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

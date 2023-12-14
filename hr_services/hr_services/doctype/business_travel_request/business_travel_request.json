@@ -17,11 +17,13 @@
   "iqama_no",
   "project",
   "project_name",
+  "passport_no",
   "business_travel_details_section",
   "travel_date_from",
   "travel_date_to",
   "departure_from",
   "destination",
+  "suitable_time",
   "column_break_vai6t",
   "total_estimated_expense",
   "purpose_of_travel",
@@ -134,12 +136,24 @@
    "fieldtype": "Data",
    "label": "Project Name",
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.passport_number",
+   "fieldname": "passport_no",
+   "fieldtype": "Data",
+   "label": "Passport No"
+  },
+  {
+   "fieldname": "suitable_time",
+   "fieldtype": "Select",
+   "label": "Suitable Time",
+   "options": "Morning\nEvening"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 08:27:59.077740",
+ "modified": "2023-12-11 08:42:21.173062",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Business Travel Request",

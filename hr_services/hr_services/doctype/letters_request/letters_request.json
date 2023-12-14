@@ -12,6 +12,10 @@
   "employee",
   "employee_name",
   "name_in_arabic",
+  "date_of_joining",
+  "position",
+  "iqama_no",
+  "nationality",
   "column_break_siqpi",
   "request_date",
   "project",
@@ -119,12 +123,36 @@
    "fieldname": "job_title",
    "fieldtype": "Data",
    "label": "Job Title"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "position",
+   "fieldtype": "Data",
+   "label": "Position"
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining"
+  },
+  {
+   "fetch_from": "employee.iqama_national_id",
+   "fieldname": "iqama_no",
+   "fieldtype": "Data",
+   "label": "Iqama No"
+  },
+  {
+   "fetch_from": "employee.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 09:29:58.926536",
+ "modified": "2023-12-11 14:17:07.541095",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Letters Request",

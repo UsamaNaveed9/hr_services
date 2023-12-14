@@ -14,33 +14,37 @@
   "employee_name",
   "nationality",
   "date_of_joining",
+  "passport_no",
   "column_break_ds3oi",
   "request_date",
   "project",
   "project_name",
   "iqama_no",
-  "passport_no",
   "reason",
   "itinerary_section",
   "on_way_trip",
   "departure_date",
-  "d_from_airport",
+  "d_suitable_time",
   "column_break_ipktk",
   "d_class",
+  "d_from_airport",
   "d_to_airport",
   "section_break3",
   "round_trip",
   "r_departure_date",
-  "r_from_airport",
+  "r_suitable_time",
   "column_break_13wh0",
   "r_class",
+  "r_from_airport",
   "r_to_ariport",
   "section_break_hh45h",
   "arrival_date",
-  "a_from_airport",
-  "column_break_wowye",
   "a_class",
+  "column_break_wowye",
+  "a_from_airport",
   "a_to_airport",
+  "travel_tickets_for_dependents_section",
+  "dependents",
   "amended_from"
  ],
  "fields": [
@@ -113,6 +117,7 @@
    "label": "Iqama No"
   },
   {
+   "fetch_from": "employee.passport_number",
    "fieldname": "passport_no",
    "fieldtype": "Data",
    "label": "Passport No"
@@ -230,7 +235,8 @@
    "depends_on": "round_trip",
    "fieldname": "r_class",
    "fieldtype": "Select",
-   "label": "Class"
+   "label": "Class",
+   "options": "Economy\nBusiness\nFirst Class"
   },
   {
    "depends_on": "round_trip",
@@ -247,12 +253,37 @@
    "fieldname": "reason",
    "fieldtype": "Small Text",
    "label": "Reason"
+  },
+  {
+   "depends_on": "on_way_trip",
+   "fieldname": "d_suitable_time",
+   "fieldtype": "Select",
+   "label": "Suitable Time",
+   "options": "Morning\nEvening"
+  },
+  {
+   "depends_on": "round_trip",
+   "fieldname": "r_suitable_time",
+   "fieldtype": "Select",
+   "label": "Suitable Time",
+   "options": "Morning\nEvening"
+  },
+  {
+   "fieldname": "travel_tickets_for_dependents_section",
+   "fieldtype": "Section Break",
+   "label": "Travel Tickets for Dependents"
+  },
+  {
+   "fieldname": "dependents",
+   "fieldtype": "Table",
+   "label": "Dependents",
+   "options": "Travel Tickets for Dependents"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 09:15:16.113707",
+ "modified": "2023-12-11 10:03:27.543881",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Generate Flight Ticket Booking Request",

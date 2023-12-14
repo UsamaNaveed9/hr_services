@@ -107,7 +107,7 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     employees: frm.doc.employees
                 },
                 freeze: true,
-                freeze_message: "Invoice Creation in progress",
+                freeze_message: "Invoice Creation in progress......",
                 callback: function(res){
                     if (res.message){
                         //console.log(res.message);
