@@ -14,7 +14,8 @@ frappe.ui.form.on('Merge Invoices Tool', {
 			return {
 				filters: [
 					['Sales Invoice', 'customer', 'in', frm.doc.customer],
-					['Sales Invoice', 'status', 'in', 'Draft']
+					['Sales Invoice', 'status', 'in', 'Draft'],
+                    ['Sales Invoice', 'is_merged', '=', 0 ],
 				]
 			}
         }
@@ -33,12 +34,12 @@ frappe.ui.form.on('Merge Invoices Tool', {
                 callback: function(res){
                     if (res.message){
                         //console.log(res.message);
-                        // cur_frm.clear_table("employees");
-                        // frm.refresh_field("employees");
-                        // frappe.msgprint({
-                        //     title: __('Invoice Created Successfully'),
-                        //     indicator: 'green'
-                        // });
+                        cur_frm.clear_table("sales_invoices");
+                        frm.refresh_field("sales_invoices");
+                        frappe.msgprint({
+                            title: __('Invoice Created Successfully'),
+                            indicator: 'green'
+                        });
                     }
                 }
             })
