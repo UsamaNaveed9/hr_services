@@ -52,7 +52,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Request Documents",
-   "link_count": 21,
+   "link_count": 20,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -229,16 +229,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Request For Payment",
-   "link_count": 0,
-   "link_to": "Request For Payment",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Transfer of Iqama Request",
    "link_count": 0,
    "link_to": "Transfer of Iqama Request",
@@ -267,7 +257,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-23 09:24:06.189379",
+ "modified": "2023-12-18 15:07:36.807700",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR Services",

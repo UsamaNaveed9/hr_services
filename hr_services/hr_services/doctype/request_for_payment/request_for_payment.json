@@ -8,16 +8,19 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "company",
   "naming_series",
+  "expense_type",
+  "column_break_0mrxq",
   "date",
   "project",
   "project_name",
-  "requested_by",
-  "requestor",
-  "column_break_0mrxq",
-  "reason",
-  "description",
-  "amount",
+  "section_break_cezld",
+  "items",
+  "section_break_4lnuh",
+  "hidden",
+  "column_break_cbe9a",
+  "total_amount",
   "amended_from"
  ],
  "fields": [
@@ -36,9 +39,11 @@
   {
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Project",
-   "options": "Project"
+   "options": "Project",
+   "reqd": 1
   },
   {
    "fetch_from": "project.project_name",
@@ -46,35 +51,6 @@
    "fieldtype": "Data",
    "in_standard_filter": 1,
    "label": "Project Name",
-   "read_only": 1
-  },
-  {
-   "fieldname": "reason",
-   "fieldtype": "Select",
-   "label": "Reason",
-   "options": "Reimbursement\nTravel Agent\nRecruitment Expenses\nHealth Insurance"
-  },
-  {
-   "fieldname": "description",
-   "fieldtype": "Small Text",
-   "label": "Description"
-  },
-  {
-   "fieldname": "amount",
-   "fieldtype": "Currency",
-   "label": "Amount"
-  },
-  {
-   "fieldname": "requested_by",
-   "fieldtype": "Link",
-   "label": "Requested By",
-   "options": "Employee"
-  },
-  {
-   "fetch_from": "requested_by.employee_name",
-   "fieldname": "requestor",
-   "fieldtype": "Data",
-   "label": "Requestor Name",
    "read_only": 1
   },
   {
@@ -89,12 +65,55 @@
   {
    "fieldname": "column_break_0mrxq",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_cezld",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Request for Payment Details",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_4lnuh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden"
+  },
+  {
+   "fieldname": "column_break_cbe9a",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expense_type",
+   "fieldtype": "Select",
+   "label": "Expense Type",
+   "options": "Operational Expense\nRecruitment Expense"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Company",
+   "options": "Company"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-11-23 09:33:59.904238",
+ "modified": "2023-12-19 11:15:32.865650",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",
@@ -102,6 +121,8 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -110,7 +131,9 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
