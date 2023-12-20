@@ -15,8 +15,10 @@
   "date",
   "project",
   "project_name",
+  "supplier",
   "section_break_cezld",
   "items",
+  "invoices",
   "section_break_4lnuh",
   "hidden",
   "column_break_cbe9a",
@@ -37,13 +39,14 @@
    "label": "Request Date"
   },
   {
+   "depends_on": "eval:doc.expense_type != 'Supplier Payment'",
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Project",
-   "options": "Project",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.expense_type != 'Supplier Payment'",
+   "options": "Project"
   },
   {
    "fetch_from": "project.project_name",
@@ -71,11 +74,12 @@
    "fieldtype": "Section Break"
   },
   {
+   "depends_on": "eval:doc.expense_type != 'Supplier Payment'",
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Request for Payment Details",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.expense_type != 'Supplier Payment'",
+   "options": "Request for Payment Details"
   },
   {
    "fieldname": "section_break_4lnuh",
@@ -95,7 +99,7 @@
    "fieldname": "expense_type",
    "fieldtype": "Select",
    "label": "Expense Type",
-   "options": "Operational Expense\nRecruitment Expense"
+   "options": "Operational Expense\nRecruitment Expense\nSupplier Payment"
   },
   {
    "fieldname": "total_amount",
@@ -108,12 +112,28 @@
    "hidden": 1,
    "label": "Company",
    "options": "Company"
+  },
+  {
+   "depends_on": "eval:doc.expense_type == 'Supplier Payment'",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "mandatory_depends_on": "eval:doc.expense_type == 'Supplier Payment'",
+   "options": "Supplier"
+  },
+  {
+   "depends_on": "eval:doc.expense_type == 'Supplier Payment'",
+   "fieldname": "invoices",
+   "fieldtype": "Table",
+   "label": "Invoices",
+   "mandatory_depends_on": "eval:doc.expense_type == 'Supplier Payment'",
+   "options": "RFP Supplier Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-19 11:15:32.865650",
+ "modified": "2023-12-20 09:42:44.758161",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

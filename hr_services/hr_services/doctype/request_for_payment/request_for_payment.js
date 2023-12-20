@@ -18,6 +18,16 @@ frappe.ui.form.on('Request For Payment', {
 				]
 			}
         }
+
+		frm.fields_dict['invoices'].grid.get_field("purchase_invoice").get_query = function(doc, cdt, cdn) {
+			return {
+				filters: [
+					['Purchase Invoice', 'supplier', 'in',frm.doc.supplier],
+					['Purchase Invoice', 'outstanding_amount', '>', 0 ],
+					['Purchase Invoice', 'docstatus', '=', 1]
+				]
+			}
+        }
 		
 	}
 });
@@ -57,6 +67,46 @@ frappe.ui.form.on("Request for Payment Details", {
 		for(let i in frm.doc.items){
 				total += frm.doc.items[i].amount;
 			}
+		frm.set_value("total_amount", total);
+		frm.refresh();
+	}
+});
+
+frappe.ui.form.on("RFP Supplier Details", {
+	purchase_invoice:function(frm, cdt, cdn){
+		let row = locals[cdt][cdn];
+		if(row.purchase_invoice){
+			frappe.call({
+                method: "frappe.client.get",
+                args: {
+                    doctype: "Purchase Invoice",
+                    name: row.purchase_invoice,
+                },
+                callback(r) {
+                    if(r.message) {
+                        var d = r.message;
+						row.supplier = d.supplier
+						row.grand_total = d.grand_total
+						row.outstanding_amount = d.outstanding_amount
+						row.project = d.project
+						row.project_name = d.project_name
+
+						let total = 0;
+						for(let i in frm.doc.invoices){
+							total += frm.doc.invoices[i].outstanding_amount;
+						}
+						frm.set_value("total_amount", total);
+						frm.refresh();
+                    }
+                }
+            });
+		}
+	},
+	invoices_remove(frm,cdt,cdn){
+		let total = 0;
+		for(let i in frm.doc.invoices){
+			total += frm.doc.invoices[i].outstanding_amount;
+		}
 		frm.set_value("total_amount", total);
 		frm.refresh();
 	}
