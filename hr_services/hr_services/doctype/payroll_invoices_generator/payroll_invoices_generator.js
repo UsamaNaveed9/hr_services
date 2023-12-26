@@ -33,13 +33,51 @@ frappe.ui.form.on('Payroll Invoices Generator', {
     },
     get_employees: function(frm){
         var project = frm.doc.project;
-        if (project && frm.doc.ms_date && frm.doc.me_date){
+        if (project != "PROJ-0001" && frm.doc.ms_date && frm.doc.me_date){
             frappe.call({
                 method: "hr_services.hr_services.doctype.payroll_invoices_generator.payroll_invoices_generator.get_employees",
                 args: {
                     project: project,
                     start_date: frm.doc.ms_date,
                     end_date: frm.doc.me_date
+                },
+                freeze: true,
+                freeze_message: "Getting Employees",
+                callback: function(res){
+                    //console.log(res.message);
+                    if (res.message.length > 0){
+                        let emp = res.message;
+                        frm.set_value("no_of_employees", res.message.length);
+                        cur_frm.clear_table("employees");
+                        for (let i=0;i < emp.length; i++){
+                            let emp_list = frm.add_child("employees");
+                            emp_list.employee = emp[i].name;
+                            emp_list.employee_name = emp[i].employee_name;
+                            emp_list.salary_slip = emp[i].salary_slip;
+                        }
+                        frm.refresh_field("employees");
+                    }
+                    else if(res.message.length == 0){
+                        frm.set_value("no_of_employees", res.message.length);
+                        cur_frm.clear_table("employees");
+                        frm.refresh_field("employees");
+                        frappe.msgprint({
+                            title: __('Error'),
+                            indicator: 'red',
+                            message: __('Invoices already Created!')
+                        });
+                    }
+                }
+            })
+        }
+        else if (project == "PROJ-0001" && frm.doc.ms_date && frm.doc.me_date && frm.doc.employment_type){
+            frappe.call({
+                method: "hr_services.hr_services.doctype.payroll_invoices_generator.payroll_invoices_generator.get_employees_misk",
+                args: {
+                    project: project,
+                    start_date: frm.doc.ms_date,
+                    end_date: frm.doc.me_date,
+                    type: frm.doc.employment_type
                 },
                 freeze: true,
                 freeze_message: "Getting Employees",
@@ -90,6 +128,13 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     title: __('Error'),
                     indicator: 'red',
                     message: __('Month End Date is missing')
+                });
+            }
+            else if(!frm.doc.employment_type){
+                frappe.msgprint({
+                    title: __('Error'),
+                    indicator: 'red',
+                    message: __('Employment Type is missing')
                 });
             }
             

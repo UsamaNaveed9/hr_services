@@ -1,0 +1,178 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-12-24 09:38:37.794439",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee_no",
+  "employee_name",
+  "employment_type",
+  "project_no",
+  "project_name",
+  "column_break_d19yz",
+  "status",
+  "po_no",
+  "po_amount",
+  "po_units",
+  "column_break_xm3z0",
+  "invoicing_rate",
+  "margin",
+  "po_amount_wm",
+  "used_units",
+  "remaining_units",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "PO-MG-.YY.-"
+  },
+  {
+   "fieldname": "employee_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee No",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee_no.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee_no.project",
+   "fieldname": "project_no",
+   "fieldtype": "Link",
+   "label": "Project No",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project_no.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "po_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "PO No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "po_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "PO Amount",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "po_units",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "PO Units",
+   "reqd": 1
+  },
+  {
+   "fieldname": "invoicing_rate",
+   "fieldtype": "Currency",
+   "label": "Invoicing Rate"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "used_units",
+   "fieldtype": "Int",
+   "label": "Used Units",
+   "read_only_depends_on": "eval:doc.docstatus == 1"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "remaining_units",
+   "fieldtype": "Int",
+   "label": "Remaining Units",
+   "read_only": 1
+  },
+  {
+   "fieldname": "margin",
+   "fieldtype": "Currency",
+   "label": "Margin 8%"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nCompleted"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "PO Management",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_d19yz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_xm3z0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee_no.employment_type",
+   "fieldname": "employment_type",
+   "fieldtype": "Data",
+   "label": "Employment Type"
+  },
+  {
+   "fieldname": "po_amount_wm",
+   "fieldtype": "Currency",
+   "label": "PO Amount without Margin"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-12-26 14:51:03.031790",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "PO Management",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "po_no"
+}

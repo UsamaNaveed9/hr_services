@@ -26,6 +26,24 @@ def get_employees(project,start_date,end_date):
 	return filtered_employees
 
 @frappe.whitelist()
+def get_employees_misk(project,start_date,end_date,type):
+	employees = frappe.get_all('Employee', filters={'status': 'Active', 'project':project,'employment_type': type}, fields=['name','employee_name'])
+
+	filtered_employees = []
+	for employee in employees:
+		salary_slip = frappe.get_value(
+			"Salary Slip",
+			filters={"employee": employee["name"], "invoice_created": 0,"start_date": start_date, "end_date": end_date, "docstatus": 1},
+			fieldname="name",
+		)
+		if salary_slip:
+			employee["salary_slip"] = salary_slip
+			filtered_employees.append(employee)
+			
+	return filtered_employees
+
+
+@frappe.whitelist()
 def generate_invoices(project,due_date,customer,invoice_type,employees):
 	emps = json.loads(employees)
 	if invoice_type == "One Invoice with all employees details":
@@ -660,4 +678,113 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					sal_slip.save(ignore_permissions=True)
 				status = True
 
+	if project == "PROJ-0001":
+		for emp in emps:
+			po_mgt_list = frappe.db.get_list('PO Management',
+							filters={
+								'status': 'Active',
+								'docstatus': 1,
+								'employee_no': emp["employee"],
+								'project_no': 'PROJ-0001'
+							},
+							fields=['name'],
+							order_by='creation asc'
+						)
+
+			r_wd = emp["working_days"]
+			for po_mgt in po_mgt_list:
+				po_mdoc = frappe.get_doc("PO Management", po_mgt.name)
+				invoicing_rate = po_mdoc.invoicing_rate
+				used_units = po_mdoc.used_units
+				remaining_units = po_mdoc.remaining_units
+
+				if remaining_units >= r_wd and r_wd != 0:
+					rate = r_wd * invoicing_rate
+					diff_units = remaining_units - r_wd
+					used_units = used_units + r_wd
+					r_wd = 0
+
+					si = frappe.new_doc("Sales Invoice")
+					si.customer = customer
+					si.set_posting_time = 1
+					si.posting_date = due_date
+					si.due_date = due_date
+					si.issue_date = due_date
+					si.project = project
+					si.po_no = po_mdoc.po_no
+
+					si_item = frappe.new_doc("Sales Invoice Item")
+					si_item.item_code = 34
+					si_item.qty = 1
+					si_item.rate = rate
+					si_item.employee_id = emp["employee"]
+					si_item.employee_name = emp["employee_name"]
+					si.append("items", si_item)
+
+					si_tax = frappe.new_doc("Sales Taxes and Charges")
+					si_tax.charge_type = "On Net Total"
+					si_tax.account_head = "VAT 15% - ERC"
+					si_tax.description = "VAT 15%"
+					si_tax.rate = 15
+					si.append("taxes", si_tax)
+
+					si.save(ignore_permissions=True)
+
+					if si.name:
+						sal_slip = frappe.get_doc("Salary Slip", emp["salary_slip"])
+						sal_slip.invoice_created = 1
+						sal_slip.save(ignore_permissions=True)
+
+					po_mdoc.used_units = used_units
+					po_mdoc.remaining_units = diff_units
+					po_mdoc.save(ignore_permissions=True)
+					if po_mdoc.remaining_units == 0:
+						po_mdoc.status = "Completed"
+						po_mdoc.save(ignore_permissions=True)
+					status = True	
+
+				elif r_wd > remaining_units:
+					rate = remaining_units * invoicing_rate
+					r_wd = r_wd - remaining_units
+					used_units = used_units + remaining_units
+					remaining_units = 0
+
+					si = frappe.new_doc("Sales Invoice")
+					si.customer = customer
+					si.set_posting_time = 1
+					si.posting_date = due_date
+					si.due_date = due_date
+					si.issue_date = due_date
+					si.project = project
+					si.po_no = po_mdoc.po_no
+
+					si_item = frappe.new_doc("Sales Invoice Item")
+					si_item.item_code = 34
+					si_item.qty = 1
+					si_item.rate = rate
+					si_item.employee_id = emp["employee"]
+					si_item.employee_name = emp["employee_name"]
+					si.append("items", si_item)
+
+					si_tax = frappe.new_doc("Sales Taxes and Charges")
+					si_tax.charge_type = "On Net Total"
+					si_tax.account_head = "VAT 15% - ERC"
+					si_tax.description = "VAT 15%"
+					si_tax.rate = 15
+					si.append("taxes", si_tax)
+
+					si.save(ignore_permissions=True)
+
+					if si.name:
+						sal_slip = frappe.get_doc("Salary Slip", emp["salary_slip"])
+						sal_slip.invoice_created = 1
+						sal_slip.save(ignore_permissions=True)
+
+					po_mdoc.used_units = used_units
+					po_mdoc.remaining_units = remaining_units
+					po_mdoc.save(ignore_permissions=True)
+					if po_mdoc.remaining_units == 0:
+						po_mdoc.status = "Completed"
+						po_mdoc.save(ignore_permissions=True)
+					status = True
 	return status

@@ -9,13 +9,14 @@
  "field_order": [
   "month_name",
   "project",
+  "project_name",
+  "employment_type",
   "get_employees",
   "column_break_wuh7p",
   "ms_date",
   "me_date",
   "no_of_employees",
   "column_break_yqh5q",
-  "project_name",
   "customer",
   "customer_name",
   "section_break_ocum7",
@@ -81,8 +82,7 @@
    "fieldname": "employees",
    "fieldtype": "Table",
    "label": "Employees",
-   "options": "Employees Payroll IG",
-   "read_only": 1
+   "options": "Employees Payroll IG"
   },
   {
    "fieldname": "column_break_wuh7p",
@@ -152,13 +152,21 @@
    "fieldtype": "Int",
    "label": "No of Employees",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.project == 'PROJ-0001'",
+   "fieldname": "employment_type",
+   "fieldtype": "Select",
+   "label": "Employment Type",
+   "mandatory_depends_on": "eval:doc.project == 'PROJ-0001'",
+   "options": "\nFull-time\nPart-time"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-12-12 10:29:07.988745",
+ "modified": "2023-12-24 14:44:40.680396",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Payroll Invoices Generator",
