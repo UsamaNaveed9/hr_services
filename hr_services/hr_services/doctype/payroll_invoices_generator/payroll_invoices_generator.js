@@ -92,6 +92,7 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                             emp_list.employee = emp[i].name;
                             emp_list.employee_name = emp[i].employee_name;
                             emp_list.salary_slip = emp[i].salary_slip;
+                            emp_list.total_remaining_units = emp[i].remaining_units;
                         }
                         frm.refresh_field("employees");
                     }

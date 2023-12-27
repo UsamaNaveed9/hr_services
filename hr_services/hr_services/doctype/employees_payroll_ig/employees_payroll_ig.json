@@ -9,7 +9,8 @@
   "employee",
   "employee_name",
   "salary_slip",
-  "working_days"
+  "working_days",
+  "total_remaining_units"
  ],
  "fields": [
   {
@@ -36,12 +37,17 @@
    "fieldname": "working_days",
    "fieldtype": "Float",
    "label": "Working Days"
+  },
+  {
+   "fieldname": "total_remaining_units",
+   "fieldtype": "Int",
+   "label": "Total Remaining Units"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-24 14:07:45.054067",
+ "modified": "2023-12-27 14:45:18.989841",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Employees Payroll IG",

@@ -39,7 +39,26 @@ def get_employees_misk(project,start_date,end_date,type):
 		if salary_slip:
 			employee["salary_slip"] = salary_slip
 			filtered_employees.append(employee)
-			
+
+	for emp in filtered_employees:
+		po_mgt_list = frappe.db.get_list('PO Management',
+							filters={
+								'status': 'Active',
+								'docstatus': 1,
+								'employee_no': emp["name"],
+								'project_no': 'PROJ-0001'
+							},
+							fields=['name'],
+							order_by='creation asc'
+						)
+		rem_units = 0
+		for po_mgt in po_mgt_list:
+			po_mdoc = frappe.get_doc("PO Management", po_mgt.name)
+			rem_units = rem_units + po_mdoc.remaining_units
+		
+		if rem_units > 0:
+			emp["remaining_units"] = rem_units
+
 	return filtered_employees
 
 
