@@ -1,5 +1,15 @@
 
 frappe.ui.form.on('Employee', {
+    setup(frm) {
+		frm.set_query("print_customer_for_invoice", function(){
+		    return {
+		        filters: [
+		            ["Customer","project_id","in", frm.doc.project],
+                    ["Customer","is_standard_invoice_customer","=",0]
+		        ]
+		    }
+		});
+	},
 	basic_salary(frm) {
 		calculate_ctc(frm);
 	},
