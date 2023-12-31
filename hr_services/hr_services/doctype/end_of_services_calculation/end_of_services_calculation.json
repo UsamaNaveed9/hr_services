@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-31 10:24:21.740286",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "salary",
+  "column_break_z9ucj",
+  "date_of_joining",
+  "relieving_date",
+  "end_of_service_reason",
+  "calculate",
+  "column_break_qm9kk",
+  "years",
+  "months",
+  "days",
+  "section_break_ufgro",
+  "diff_in_years",
+  "column_break_xbwx8",
+  "end_of_service_amount",
+  "column_break_dpvlg",
+  "hidden1"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.ctc",
+   "fieldname": "salary",
+   "fieldtype": "Currency",
+   "label": "Salary"
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "label": "Date of Joining"
+  },
+  {
+   "fetch_from": "employee.relieving_date",
+   "fieldname": "relieving_date",
+   "fieldtype": "Date",
+   "label": "Relieving Date"
+  },
+  {
+   "fieldname": "years",
+   "fieldtype": "Int",
+   "label": "Years",
+   "read_only": 1
+  },
+  {
+   "fieldname": "months",
+   "fieldtype": "Int",
+   "label": "Months",
+   "read_only": 1
+  },
+  {
+   "fieldname": "days",
+   "fieldtype": "Int",
+   "label": "Days",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_z9ucj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_qm9kk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ufgro",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_xbwx8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_of_service_amount",
+   "fieldtype": "Currency",
+   "label": "End of Service Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dpvlg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden1"
+  },
+  {
+   "fieldname": "diff_in_years",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Diff In Years"
+  },
+  {
+   "fieldname": "calculate",
+   "fieldtype": "Button",
+   "label": "Calculate"
+  },
+  {
+   "fieldname": "end_of_service_reason",
+   "fieldtype": "Select",
+   "label": "End of Service Reason",
+   "options": "Termination\nResignation"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-12-31 16:15:53.207279",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "End of Services Calculation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
