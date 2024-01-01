@@ -122,14 +122,14 @@
    "fieldname": "end_of_service_reason",
    "fieldtype": "Select",
    "label": "End of Service Reason",
-   "options": "Termination\nResignation"
+   "options": "Termination\nResignation\nResignation at Contract Completion"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-12-31 16:15:53.207279",
+ "modified": "2024-01-01 12:06:37.047708",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "End of Services Calculation",

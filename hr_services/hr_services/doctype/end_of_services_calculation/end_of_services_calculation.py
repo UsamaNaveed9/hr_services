@@ -19,31 +19,51 @@ def get_diff(startdate,lastdate):
 	delta = relativedelta(end_date, start_date)
 	years = delta.years
 	months = delta.months
-	days = delta.days + 1
+	days = delta.days
+	if days > 29:
+		months = months + 1
+		days = 0
+	if months > 11:
+		years = years + 1
+		months = 0
 
-	difference_in_years = -((start_date - end_date).days / 365.25)  # Using 365.25 to account for leap years
 
-	# Round the value to 2 decimal places
-	rounded_diff_year = round(difference_in_years, 2)
+	difference_in_years = years + (months / 12) + (days / 360)
+
 	result.append(years)
 	result.append(months)
 	result.append(days)
-	result.append(rounded_diff_year)
+	result.append(difference_in_years)
 
 	return result
 
 @frappe.whitelist()
-def calculate_eos(reason,salary,years):
-	if reason == "Termination":
+def calculate_eos(reason,salary,diff_yrs):
+	if reason == "Termination" or reason == "Resignation at Contract Completion":
 		eos_amt = 0
-		yrs = float(years)
+		yrs = float(diff_yrs)
 		sl = float(salary)
 		if yrs > 5:
 			eos_amt = (sl / 2) * 5
 			rm_years = yrs - 5
 			eos_amt = eos_amt + (sl * rm_years)
 		else:
-			eos_amt = (sl / 2) * yrs	
+			eos_amt = (sl / 2) * yrs
+	elif reason == "Resignation":
+		eos_amt = 0
+		yrs = float(diff_yrs)
+		sl = float(salary)
+		if yrs < 2:
+			eos_amt = 0
+		elif yrs > 2 and yrs < 5:
+			eos_amt = (sl / 2) * 1/3 * yrs
+		elif yrs > 5 and yrs < 10:
+			eos_amt = (sl / 2) * 2/3 * 5
+			rm_yrs = yrs - 5
+			eos_amt = eos_amt + (sl * 2/3 * rm_yrs)
+		elif yrs > 10:
+			eos_amt = (sl / 2) * 5
+			rm_yrs = yrs - 5
+			eos_amt = eos_amt + (sl * rm_yrs)
 
-	return eos_amt	
-
+	return eos_amt

@@ -69,7 +69,7 @@ frappe.ui.form.on('End of Services Calculation', {
 				args: {
 					reason: frm.doc.end_of_service_reason,
 					salary: frm.doc.salary,
-					years: frm.doc.diff_in_years
+					diff_yrs: frm.doc.diff_in_years
 				},
 				freeze: true,
 				freeze_message: "Calculating End of Services",
