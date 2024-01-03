@@ -308,6 +308,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si.po_no = po
 			qty = 0
 			for emp in emps:
+				si.print_customer = frappe.db.get_value("Employee", {"name":emp["employee"]}, "print_customer_for_invoice")
 				if po == frappe.db.get_value("Employee", {"name":emp["employee"]}, "po_no"):
 					qty += 1
 					si_item = frappe.new_doc("Sales Invoice Item")
@@ -730,6 +731,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					si.due_date = due_date
 					si.issue_date = due_date
 					si.project = project
+					si.print_customer = frappe.db.get_value("Employee", {"name":emp["employee"]}, "print_customer_for_invoice")
 					si.po_no = po_mdoc.po_no
 
 					si_item = frappe.new_doc("Sales Invoice Item")
@@ -775,6 +777,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					si.due_date = due_date
 					si.issue_date = due_date
 					si.project = project
+					si.print_customer = frappe.db.get_value("Employee", {"name":emp["employee"]}, "print_customer_for_invoice")
 					si.po_no = po_mdoc.po_no
 
 					si_item = frappe.new_doc("Sales Invoice Item")

@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "month_name",
+  "edit_dates",
   "project",
   "project_name",
   "employment_type",
@@ -126,13 +127,13 @@
    "fieldname": "ms_date",
    "fieldtype": "Date",
    "label": "Month Start Date",
-   "read_only": 1
+   "read_only_depends_on": "eval:doc.edit_dates == 0"
   },
   {
    "fieldname": "me_date",
    "fieldtype": "Date",
    "label": "Month End Date",
-   "read_only": 1
+   "read_only_depends_on": "eval:doc.edit_dates == 0"
   },
   {
    "fetch_from": "project.invoice_type",
@@ -160,13 +161,19 @@
    "label": "Employment Type",
    "mandatory_depends_on": "eval:doc.project == 'PROJ-0001'",
    "options": "\nFull-time\nPart-time"
+  },
+  {
+   "default": "0",
+   "fieldname": "edit_dates",
+   "fieldtype": "Check",
+   "label": "Edit Dates"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-12-24 14:44:40.680396",
+ "modified": "2024-01-03 11:16:11.890559",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Payroll Invoices Generator",
