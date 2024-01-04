@@ -1,0 +1,23 @@
+{
+ "content": null,
+ "creation": "2024-01-04 08:30:44.600386",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": "fa fa-play",
+ "idx": 0,
+ "modified": "2024-01-04 08:30:44.600386",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "tracker",
+ "owner": "Administrator",
+ "page_name": "tracker",
+ "roles": [
+  {
+   "role": "All"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0
+}

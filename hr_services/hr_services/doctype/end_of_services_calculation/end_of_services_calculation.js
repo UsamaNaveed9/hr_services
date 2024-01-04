@@ -12,7 +12,8 @@ frappe.ui.form.on('End of Services Calculation', {
             'height': '50px',     // Set the desired height
             'background-color': '#3498db',  // Set the desired background color
             'color': '#ffffff',     // Set the desired text color
-			'font-size': '20px'
+			'font-size': '20px',
+			'font-weight': 'bold'
         });
 		frm.fields_dict['end_of_service_amount'].$wrapper.css('text-align', 'center');
 		frm.fields_dict['end_of_service_amount'].$wrapper.css('font-size', '20px');
