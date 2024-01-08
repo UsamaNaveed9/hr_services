@@ -3,7 +3,10 @@ import frappe
 @frappe.whitelist()
 def get_outstanding_customers():
 	# Your logic to fetch customers and outstanding balances
-	customers = frappe.get_all('Customer', filters={'disabled': 0, 'is_standard_invoice_customer':1}, fields=['name', 'customer_name','project_name'])
+	customers = frappe.get_all('Customer', 
+							filters={'disabled': 0, 'is_standard_invoice_customer':1}, 
+							fields=['name', 'customer_name','project_name'],
+							order_by='project_id')
 	
 	# Example: Fetch submitted outstanding amounts
 	paid_outstanding_amounts = frappe.get_all('Sales Invoice',
