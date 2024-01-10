@@ -173,7 +173,7 @@ def get_invoices_amt(customers):
 	po_uploaded_with_client = frappe.db.sql("""
 								SELECT 
 									customer, 
-									SUM(grand_total) as grand_total
+									SUM(outstanding_amount) as outstanding_amount
 								FROM 
 									`tabSales Invoice`
 								WHERE 
@@ -203,7 +203,7 @@ def get_invoices_amt(customers):
 		customer['uploaded_on_client'] = 0		
 		for up_on in po_uploaded_with_client:
 			if customer['name'] == up_on['customer']:
-				customer['uploaded_on_client'] = up_on['grand_total']		
+				customer['uploaded_on_client'] = up_on['outstanding_amount']		
 
 		customers.append(customer)
 
