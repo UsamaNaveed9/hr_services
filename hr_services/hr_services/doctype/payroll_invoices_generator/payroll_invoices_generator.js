@@ -42,7 +42,7 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     end_date: frm.doc.me_date
                 },
                 freeze: true,
-                freeze_message: "Getting Employees",
+                freeze_message: "Getting Employees...",
                 callback: function(res){
                     //console.log(res.message);
                     if (res.message.length > 0){

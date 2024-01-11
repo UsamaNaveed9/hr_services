@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-01-11 09:06:49.084283",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_id",
+  "employee_name",
+  "date_of_joining",
+  "project_id",
+  "project_name",
+  "basic",
+  "column_break_2vwwh",
+  "housing",
+  "transport",
+  "allowances",
+  "total_salary",
+  "balance_of_vacation",
+  "accrued_vacation_salary"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee ID",
+   "options": "Employee"
+  },
+  {
+   "columns": 2,
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name"
+  },
+  {
+   "columns": 1,
+   "fieldname": "date_of_joining",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Joining"
+  },
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project"
+  },
+  {
+   "columns": 1,
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "basic",
+   "fieldtype": "Currency",
+   "label": "Basic"
+  },
+  {
+   "fieldname": "housing",
+   "fieldtype": "Currency",
+   "label": "Housing"
+  },
+  {
+   "fieldname": "transport",
+   "fieldtype": "Currency",
+   "label": "Transport"
+  },
+  {
+   "fieldname": "allowances",
+   "fieldtype": "Currency",
+   "label": "Allowances"
+  },
+  {
+   "columns": 1,
+   "fieldname": "balance_of_vacation",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Balance of Vacation"
+  },
+  {
+   "columns": 2,
+   "fieldname": "accrued_vacation_salary",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Accrued Vacation Salary"
+  },
+  {
+   "columns": 1,
+   "fieldname": "total_salary",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Salary"
+  },
+  {
+   "fieldname": "column_break_2vwwh",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-01-11 09:24:13.416813",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Accrued Vacation Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,160 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:AV-{accrued_salary_for}-{month_name}-{YYYY}",
+ "creation": "2024-01-11 08:42:00.922001",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "month_name",
+  "accrued_salary_for",
+  "calculate_accrued_salary",
+  "column_break_opzby",
+  "ms_date",
+  "column_break_wto9s",
+  "me_date",
+  "section_break_fffla",
+  "accrued",
+  "amended_from",
+  "section_break_ow4g4",
+  "hidden",
+  "column_break_tmpyg",
+  "hidden1",
+  "column_break_5uaqd",
+  "total_accrued"
+ ],
+ "fields": [
+  {
+   "fieldname": "month_name",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Month Name",
+   "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Accrued Vacation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_opzby",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wto9s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "calculate_accrued_salary",
+   "fieldtype": "Button",
+   "label": "Calculate Accrued Salary"
+  },
+  {
+   "fieldname": "section_break_fffla",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "accrued",
+   "fieldtype": "Table",
+   "label": "Accrued",
+   "options": "Accrued Vacation Details"
+  },
+  {
+   "fieldname": "section_break_ow4g4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_accrued",
+   "fieldtype": "Currency",
+   "label": "Total Accrued Vacation Salary"
+  },
+  {
+   "fieldname": "column_break_tmpyg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden"
+  },
+  {
+   "fieldname": "hidden1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden1"
+  },
+  {
+   "fieldname": "column_break_5uaqd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ms_date",
+   "fieldtype": "Date",
+   "label": "Month Start Date"
+  },
+  {
+   "fieldname": "me_date",
+   "fieldtype": "Date",
+   "label": "Month End Date"
+  },
+  {
+   "fieldname": "accrued_salary_for",
+   "fieldtype": "Select",
+   "label": "Accrued Salary For",
+   "options": "Clients-Emp\nElite-HQ-Emp"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-01-11 16:59:27.433916",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Accrued Vacation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
