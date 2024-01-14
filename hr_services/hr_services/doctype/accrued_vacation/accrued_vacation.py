@@ -3,9 +3,73 @@
 
 import frappe
 from frappe.model.document import Document
+from datetime import datetime
+from erpnext.accounts.utils import get_balance_on
+from frappe import _
 
 class AccruedVacation(Document):
-	pass
+	def before_submit(self):
+		if self.accrued_salary_for == "Clients-Emp":
+			acc_name = "2230108-01 - Accrued Vacation - Operations - ERC"
+			acc_bal = get_balance_on(account=acc_name, date=self.me_date)
+			if acc_bal < 0:
+				acc_bal = -1 * acc_bal
+
+			if self.total_accrued > acc_bal:
+				jv = frappe.new_doc("Journal Entry")
+				jv.voucher_type = "Journal Entry"
+				jv.company = "Elite Resources Center"
+				jv.posting_date = self.me_date
+				
+				jv_row1 = frappe.new_doc("Journal Entry Account")
+				jv_row1.account = "51-0115-01 - OPE-ME-VE- Salary - ERC"
+				jv_row1.debit_in_account_currency = self.total_accrued - acc_bal
+				jv_row1.credit_in_account_currency = 0
+				jv.append("accounts", jv_row1)
+
+				jv_row2 = frappe.new_doc("Journal Entry Account")
+				jv_row2.account = "2230108-01 - Accrued Vacation - Operations - ERC"
+				jv_row2.debit_in_account_currency = 0
+				jv_row2.credit_in_account_currency = self.total_accrued - acc_bal
+				jv.append("accounts", jv_row2)
+
+				jv.user_remark = f"Accrued Vacation Salary of {self.month_name} for Clients"
+				jv.accrued_vacation = self.name
+				jv.save()
+				jv.submit()
+			else:
+				frappe.throw(_(f"Account {acc_name}Balance is Greater than Total Accrued Vacation Salary"))
+
+		elif self.accrued_salary_for == "Elite-HQ-Emp":
+			acc_name = "2230108-02 - Accrued Vacation - G&A - ERC"
+			acc_bal = get_balance_on(account=acc_name, date=self.me_date)
+			if acc_bal < 0:
+				acc_bal = -1 * acc_bal
+
+			if self.total_accrued > acc_bal:
+				jv = frappe.new_doc("Journal Entry")
+				jv.voucher_type = "Journal Entry"
+				jv.company = "Elite Resources Center"
+				jv.posting_date = self.me_date
+				
+				jv_row1 = frappe.new_doc("Journal Entry Account")
+				jv_row1.account = "52-0115-01 - G&A-ME-VE- Salary - ERC"
+				jv_row1.debit_in_account_currency = self.total_accrued - acc_bal
+				jv_row1.credit_in_account_currency = 0
+				jv.append("accounts", jv_row1)
+
+				jv_row2 = frappe.new_doc("Journal Entry Account")
+				jv_row2.account = "2230108-02 - Accrued Vacation - G&A - ERC"
+				jv_row2.debit_in_account_currency = 0
+				jv_row2.credit_in_account_currency = self.total_accrued - acc_bal
+				jv.append("accounts", jv_row2)
+
+				jv.user_remark = f"Accrued Vacation Salary of {self.month_name} for Elite HQ"
+				jv.accrued_vacation = self.name
+				jv.save()
+				jv.submit()
+			else:
+				frappe.throw(_(f"Account: {acc_name} Balance is Greater than Total Accrued Vacation Salary"))	
 
 @frappe.whitelist()
 def calculate_accrued_salary(end_date,emp_of):
@@ -33,22 +97,34 @@ def calculate_accrued_salary(end_date,emp_of):
 	for emp in employees:
 		allocation = get_leave_allocation(emp.name,end_date)
 		leave_balance = 0
+		leaves_till_now = 0
+		allocated_leaves = 0
+		taken_leaves = 0
+		till_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+		diff_days = (till_date - emp.date_of_joining).days
+		#frappe.errprint(diff_days)
+		#frappe.errprint(allocation.total_leaves_allocated)
 		if allocation:
+			allocated_leaves = allocation.total_leaves_allocated
 			taken_leaves = get_taken_leaves(emp.name,end_date,allocation.leave_type)
+			leaves_till_now = round((allocation.total_leaves_allocated / 365 ) * diff_days)
 			leave_balance = (
-				allocation.total_leaves_allocated
-				- allocation.carry_forwarded_leaves_count
-				- taken_leaves
+				leaves_till_now - allocation.carry_forwarded_leaves_count - taken_leaves
 			)
 		
-		emp['leave_balance'] = leave_balance
+		emp['diff_days'] = diff_days
+		emp['allocated_leaves'] = allocated_leaves
+		emp['leaves_till_now'] = leaves_till_now
+		emp['taken_leaves'] = taken_leaves
+		emp['leave_balance'] = round(leave_balance)
+
 		#check if project is Arabian center (id PROJ-0017) then calculate on basic salary
 		if emp.project == "PROJ-0017":
 			emp['accrued_vacation_salary'] = (emp.basic_salary / 30 ) * leave_balance
 		else:
 			emp['accrued_vacation_salary'] = (emp.ctc / 30 ) * leave_balance
-
-	frappe.errprint(employees)
+	
+	return employees
 
 @frappe.whitelist()
 def get_leave_allocation(emp,end_date):

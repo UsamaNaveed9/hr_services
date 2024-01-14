@@ -8,6 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "is_previous_year_entry",
+  "enter_year",
   "month_name",
   "accrued_salary_for",
   "calculate_accrued_salary",
@@ -109,13 +111,32 @@
    "fieldtype": "Select",
    "label": "Accrued Salary For",
    "options": "Clients-Emp\nElite-HQ-Emp"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_previous_year_entry",
+   "fieldtype": "Check",
+   "label": "Is Previous Year Entry"
+  },
+  {
+   "depends_on": "eval:doc.is_previous_year_entry == 1",
+   "description": "Format: YYYY",
+   "fieldname": "enter_year",
+   "fieldtype": "Data",
+   "label": "Enter Year",
+   "mandatory_depends_on": "eval:doc.is_previous_year_entry == 1"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2024-01-11 16:59:27.433916",
+ "links": [
+  {
+   "link_doctype": "Journal Entry",
+   "link_fieldname": "accrued_vacation"
+  }
+ ],
+ "modified": "2024-01-14 13:58:43.676991",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Accrued Vacation",

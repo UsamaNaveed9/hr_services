@@ -12,13 +12,17 @@
   "project_id",
   "project_name",
   "basic",
-  "column_break_2vwwh",
   "housing",
   "transport",
+  "column_break_2vwwh",
   "allowances",
   "total_salary",
-  "balance_of_vacation",
-  "accrued_vacation_salary"
+  "accrued_vacation_salary",
+  "diff_in_days",
+  "allocated_leaves",
+  "leaves_till_now",
+  "taken_leaves",
+  "balance_of_vacation"
  ],
  "fields": [
   {
@@ -100,12 +104,32 @@
   {
    "fieldname": "column_break_2vwwh",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "diff_in_days",
+   "fieldtype": "Int",
+   "label": "Diff in Days"
+  },
+  {
+   "fieldname": "leaves_till_now",
+   "fieldtype": "Int",
+   "label": "Leaves Till Now"
+  },
+  {
+   "fieldname": "taken_leaves",
+   "fieldtype": "Int",
+   "label": "Taken Leaves"
+  },
+  {
+   "fieldname": "allocated_leaves",
+   "fieldtype": "Int",
+   "label": "Allocated Leaves"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-11 09:24:13.416813",
+ "modified": "2024-01-14 11:15:02.095781",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Accrued Vacation Details",
