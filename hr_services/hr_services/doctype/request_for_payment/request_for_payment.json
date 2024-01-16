@@ -99,7 +99,7 @@
    "fieldname": "expense_type",
    "fieldtype": "Select",
    "label": "Expense Type",
-   "options": "Operational Expense\nRecruitment Expense\nSupplier Payment"
+   "options": "Operational Expense\nRecruitment Expense\nReimbursement Expense\nSupplier Payment"
   },
   {
    "fieldname": "total_amount",
@@ -133,13 +133,26 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-12-20 09:42:44.758161",
+ "modified": "2024-01-16 16:39:13.451733",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Req Initiator",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
   {
    "amend": 1,
    "cancel": 1,
