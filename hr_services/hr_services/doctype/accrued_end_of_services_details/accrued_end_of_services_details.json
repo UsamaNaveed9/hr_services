@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2024-01-11 09:06:49.084283",
+ "creation": "2024-01-17 17:51:29.246565",
+ "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -16,8 +17,8 @@
   "transport",
   "column_break_2vwwh",
   "allowances",
-  "total_salary",
   "balance_of_vacation",
+  "total_salary",
   "accrued_vacation_salary",
   "diff_in_days",
   "allocated_leaves",
@@ -76,6 +77,10 @@
    "label": "Transport"
   },
   {
+   "fieldname": "column_break_2vwwh",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "allowances",
    "fieldtype": "Currency",
    "label": "Allowances"
@@ -88,13 +93,6 @@
    "label": "Balance of Vacation"
   },
   {
-   "columns": 2,
-   "fieldname": "accrued_vacation_salary",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Accrued Vacation Salary"
-  },
-  {
    "columns": 1,
    "fieldname": "total_salary",
    "fieldtype": "Currency",
@@ -102,13 +100,21 @@
    "label": "Total Salary"
   },
   {
-   "fieldname": "column_break_2vwwh",
-   "fieldtype": "Column Break"
+   "columns": 2,
+   "fieldname": "accrued_vacation_salary",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Accrued End of Services"
   },
   {
    "fieldname": "diff_in_days",
    "fieldtype": "Int",
-   "label": "Days till Now"
+   "label": "Days till now"
+  },
+  {
+   "fieldname": "allocated_leaves",
+   "fieldtype": "Int",
+   "label": "Allocated Leaves"
   },
   {
    "fieldname": "leaves_till_now",
@@ -119,20 +125,15 @@
    "fieldname": "taken_leaves",
    "fieldtype": "Int",
    "label": "Taken Leaves"
-  },
-  {
-   "fieldname": "allocated_leaves",
-   "fieldtype": "Int",
-   "label": "Allocated Leaves"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-17 17:55:49.270690",
+ "modified": "2024-01-17 17:53:07.075403",
  "modified_by": "Administrator",
  "module": "HR Services",
- "name": "Accrued Vacation Details",
+ "name": "Accrued End of Services Details",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
