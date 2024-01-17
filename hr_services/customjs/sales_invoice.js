@@ -3,6 +3,13 @@
 
 frappe.ui.form.on('Sales Invoice', {
 	setup(frm) {
+		frm.set_query("customer", function(){
+		    return {
+		        filters: [
+                    ["Customer","is_standard_invoice_customer","=",1]
+		        ]
+		    }
+		});
 		frm.set_query("print_customer", function(){
 		    return {
 		        filters: [
