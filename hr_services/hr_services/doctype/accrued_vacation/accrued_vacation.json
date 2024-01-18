@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:AV-{accrued_salary_for}-{month_name}-{YYYY}",
+ "autoname": "format:AV-{accrued_salary_for}-{month_name}-{year}",
  "creation": "2024-01-11 08:42:00.922001",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,7 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "is_previous_year_entry",
-  "enter_year",
+  "year",
   "month_name",
   "accrued_salary_for",
   "calculate_accrued_salary",
@@ -55,7 +55,7 @@
   {
    "fieldname": "calculate_accrued_salary",
    "fieldtype": "Button",
-   "label": "Calculate Accrued Salary"
+   "label": "Calculate Accrued Vacation Salary"
   },
   {
    "fieldname": "section_break_fffla",
@@ -109,7 +109,7 @@
   {
    "fieldname": "accrued_salary_for",
    "fieldtype": "Select",
-   "label": "Accrued Salary For",
+   "label": "Accrued Vacation Salary For",
    "options": "Clients-Emp\nElite-HQ-Emp"
   },
   {
@@ -119,12 +119,12 @@
    "label": "Is Previous Year Entry"
   },
   {
-   "depends_on": "eval:doc.is_previous_year_entry == 1",
    "description": "Format: YYYY",
-   "fieldname": "enter_year",
+   "fieldname": "year",
    "fieldtype": "Data",
-   "label": "Enter Year",
-   "mandatory_depends_on": "eval:doc.is_previous_year_entry == 1"
+   "label": "Year",
+   "mandatory_depends_on": "eval:doc.is_previous_year_entry == 1",
+   "read_only_depends_on": "eval:doc.is_previous_year_entry == 0"
   }
  ],
  "hide_toolbar": 1,
@@ -136,7 +136,7 @@
    "link_fieldname": "accrued_vacation"
   }
  ],
- "modified": "2024-01-14 13:58:43.676991",
+ "modified": "2024-01-18 13:23:29.071919",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Accrued Vacation",

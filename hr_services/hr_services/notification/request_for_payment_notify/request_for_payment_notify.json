@@ -12,18 +12,18 @@
  "idx": 0,
  "is_standard": 1,
  "message": "Take Action on this {{ doc.name }} Request",
- "modified": "2024-01-16 17:15:09.584001",
+ "modified": "2024-01-18 12:05:02.486932",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request for Payment notify",
  "owner": "Administrator",
  "recipients": [
   {
-   "condition": "doc.expense_type != \"Recruitment Expense\"",
+   "condition": "doc.expense_type != \"Recruitment Expense\" and doc.workflow_state == \"Pending for HRM Approval\"",
    "receiver_by_role": "OPE EXP Approver"
   },
   {
-   "condition": "doc.expense_type == \"Recruitment Expense\"",
+   "condition": "doc.expense_type == \"Recruitment Expense\" and doc.workflow_state == \"Pending for HRM Approval\"",
    "receiver_by_role": "REC EXP Approver"
   },
   {
@@ -38,6 +38,6 @@
  ],
  "send_system_notification": 0,
  "send_to_all_assignees": 0,
- "subject": "{{ doc.name }} is pending for your approval",
+ "subject": "Request For Payment: {{ doc.name }} is pending for your approval",
  "value_changed": "workflow_state"
 }

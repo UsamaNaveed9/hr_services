@@ -4,6 +4,7 @@
 frappe.ui.form.on('Accrued Vacation', {
 	refresh: function(frm){
 		let dates = get_dates(frm);
+		frm.set_value("year", dates.year)
 		frm.set_value("ms_date", dates.ms_date);
 		frm.set_value("me_date", dates.me_date);
 	},
@@ -12,7 +13,7 @@ frappe.ui.form.on('Accrued Vacation', {
 		frm.set_value("ms_date", dates.ms_date);
 		frm.set_value("me_date", dates.me_date);
     },
-	enter_year: function(frm){
+	year: function(frm){
 		let dates = get_dates(frm);
 		frm.set_value("ms_date", dates.ms_date);
 		frm.set_value("me_date", dates.me_date);
@@ -41,10 +42,10 @@ frappe.ui.form.on('Accrued Vacation', {
 						add_emp.project_id = emps[i].project;
 						add_emp.project_name = emps[i].project_name;
 						add_emp.basic = emps[i].basic_salary;
-						add_emp.housing = emps[i].housing_allowance
-						add_emp.transport = emps[i].transport_allowance
-						add_emp.allowances = emps[i].food_allowance + emps[i].mobile_allowance;
-						add_emp.total_salary = emps[i].ctc;
+						add_emp.housing = emps[i].housing_allowance;
+						add_emp.transport = emps[i].transport_allowance;
+						add_emp.allowances = emps[i].food_allowance;
+						add_emp.total_salary = emps[i].ctc - emps[i].mobile_allowance;
 						add_emp.balance_of_vacation = emps[i].leave_balance;
 						add_emp.accrued_vacation_salary = emps[i].accrued_vacation_salary;
 						add_emp.diff_in_days = emps[i].diff_days;
@@ -80,7 +81,7 @@ frappe.ui.form.on('Accrued Vacation', {
 function get_dates(frm){
 	var monthName = frm.doc.month_name;
 	if(frm.doc.is_previous_year_entry == 1){
-		var currentYear = frm.doc.enter_year;
+		var currentYear = frm.doc.year;
 	}
 	else{
 		var currentYear = frappe.datetime.get_today().split('-')[0];
@@ -101,5 +102,5 @@ function get_dates(frm){
     let final_start_date = frappe.datetime.add_days(start, 1)
     let final_end_date = frappe.datetime.add_days(end, 1)
 
-	return {ms_date: final_start_date, me_date: final_end_date}
+	return {year: currentYear,ms_date: final_start_date, me_date: final_end_date}
 }

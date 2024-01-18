@@ -73,7 +73,7 @@ frappe.ui.form.on('End of Services Calculation', {
 					diff_yrs: frm.doc.diff_in_years
 				},
 				freeze: true,
-				freeze_message: "Calculating End of Services",
+				freeze_message: "Calculating End of Services...",
 				callback: function(res){
 					//console.log(res.message);
 					frm.set_value("end_of_service_amount", res.message);

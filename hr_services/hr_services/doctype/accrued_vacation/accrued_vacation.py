@@ -103,13 +103,13 @@ def calculate_accrued_salary(end_date,emp_of):
 		till_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 		diff_days = (till_date - emp.date_of_joining).days
 		#frappe.errprint(diff_days)
-		#frappe.errprint(allocation.total_leaves_allocated)
+		#frappe.errprint(allocation.new_leaves_allocated)
 		if allocation:
-			allocated_leaves = allocation.total_leaves_allocated
+			allocated_leaves = allocation.new_leaves_allocated
 			taken_leaves = get_taken_leaves(emp.name,end_date,allocation.leave_type)
-			leaves_till_now = round((allocation.total_leaves_allocated / 365 ) * diff_days)
+			leaves_till_now = round((allocation.new_leaves_allocated / 365 ) * diff_days)
 			leave_balance = (
-				leaves_till_now - allocation.carry_forwarded_leaves_count - taken_leaves
+				leaves_till_now - taken_leaves
 			)
 		
 		emp['diff_days'] = diff_days
@@ -122,7 +122,9 @@ def calculate_accrued_salary(end_date,emp_of):
 		if emp.project == "PROJ-0017":
 			emp['accrued_vacation_salary'] = (emp.basic_salary / 30 ) * leave_balance
 		else:
-			emp['accrued_vacation_salary'] = (emp.ctc / 30 ) * leave_balance
+			#total salary without mobile allowance(mb_allwn)
+			ctc_without_mb_allwn = emp.basic_salary + emp.housing_allowance + emp.transport_allowance + emp.food_allowance
+			emp['accrued_vacation_salary'] = (ctc_without_mb_allwn / 30 ) * leave_balance
 	
 	return employees
 
@@ -138,12 +140,10 @@ def get_leave_allocation(emp,end_date):
 				LeaveAllocation.from_date,
 				LeaveAllocation.leave_type,
 				LeaveAllocation.to_date,
-				LeaveAllocation.total_leaves_allocated,
-				LeaveAllocation.carry_forwarded_leaves_count,
+				LeaveAllocation.new_leaves_allocated,
 			)
 			.where(
-				((LeaveAllocation.from_date <= date) & (date <= LeaveAllocation.to_date))
-				& (LeaveAllocation.docstatus == 1)
+				(LeaveAllocation.docstatus == 1)
 				& (LeaveAllocation.leave_type == 'Annual Leave')
 				& (LeaveAllocation.employee == emp)
 			)

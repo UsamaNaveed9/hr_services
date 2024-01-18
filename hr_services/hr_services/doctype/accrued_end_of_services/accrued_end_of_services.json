@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:AV-{accrued_salary_for}-{month_name}-{YYYY}",
+ "autoname": "format:AV-{accrued_end_of_services_for}-{month_name}-{year}",
  "creation": "2024-01-17 17:48:16.201457",
  "default_view": "List",
  "doctype": "DocType",
@@ -9,10 +9,10 @@
  "engine": "InnoDB",
  "field_order": [
   "is_previous_year_entry",
-  "enter_year",
+  "year",
   "month_name",
-  "accrued_salary_for",
-  "calculate_accrued_salary",
+  "accrued_end_of_services_for",
+  "calculate_accrued_end_of_services",
   "column_break_opzby",
   "ms_date",
   "column_break_wto9s",
@@ -35,30 +35,11 @@
    "label": "Is Previous Year Entry"
   },
   {
-   "depends_on": "eval:doc.is_previous_year_entry == 1",
-   "description": "Format: YYYY",
-   "fieldname": "enter_year",
-   "fieldtype": "Data",
-   "label": "Enter Year",
-   "mandatory_depends_on": "eval:doc.is_previous_year_entry == 1"
-  },
-  {
    "fieldname": "month_name",
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Month Name",
    "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
-  },
-  {
-   "fieldname": "accrued_salary_for",
-   "fieldtype": "Select",
-   "label": "Accrued Salary For",
-   "options": "Clients-Emp\nElite-HQ-Emp"
-  },
-  {
-   "fieldname": "calculate_accrued_salary",
-   "fieldtype": "Button",
-   "label": "Calculate Accrued Salary"
   },
   {
    "fieldname": "column_break_opzby",
@@ -125,7 +106,7 @@
   {
    "fieldname": "total_accrued",
    "fieldtype": "Currency",
-   "label": "Total Accrued Vacation Salary"
+   "label": "Total Accrued End of Services"
   },
   {
    "fieldname": "amended_from",
@@ -136,6 +117,25 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "description": "Format: YYYY",
+   "fieldname": "year",
+   "fieldtype": "Data",
+   "label": "Year",
+   "mandatory_depends_on": "eval:doc.is_previous_year_entry == 1",
+   "read_only_depends_on": "eval:doc.is_previous_year_entry == 0"
+  },
+  {
+   "fieldname": "accrued_end_of_services_for",
+   "fieldtype": "Select",
+   "label": "Accrued End of Services For",
+   "options": "Clients-Emp\nElite-HQ-Emp"
+  },
+  {
+   "fieldname": "calculate_accrued_end_of_services",
+   "fieldtype": "Button",
+   "label": "Calculate Accrued End of Services"
   }
  ],
  "hide_toolbar": 1,
@@ -144,10 +144,10 @@
  "links": [
   {
    "link_doctype": "Journal Entry",
-   "link_fieldname": "accrued_vacation"
+   "link_fieldname": "custom_accrued_end_of_services"
   }
  ],
- "modified": "2024-01-17 17:51:54.139836",
+ "modified": "2024-01-18 17:54:12.411767",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Accrued End of Services",
