@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span style=\\\"font-size: 18px;\\\">Documents</span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}}]",
+ "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Documents</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}}]",
  "creation": "2024-01-21 14:40:27.949807",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Elite",
  "links": [],
- "modified": "2024-01-21 14:42:15.136102",
+ "modified": "2024-01-21 15:41:15.413527",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite",
