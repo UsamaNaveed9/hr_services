@@ -136,6 +136,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
+		si.remarks = "Payroll Invoce"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -201,6 +202,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
+		si.remarks = "Payroll Invoce"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -259,6 +261,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
+		si.remarks = "Payroll Invoce"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -297,6 +300,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
+		si.remarks = "Payroll Invoce"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -383,6 +387,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.remarks = "Payroll Invoce"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -459,6 +464,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.remarks = "Payroll Invoce"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -529,6 +535,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.remarks = "Payroll Invoce"
 			si.save(ignore_permissions=True)
 
 		for po_neom in po_for_neom_list:
@@ -560,6 +567,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.remarks = "Payroll Invoce"
 			si.save(ignore_permissions=True)
 		
 		for po in po_list:
@@ -649,6 +657,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.remarks = "Payroll Invoce"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -717,6 +726,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.remarks = "Payroll Invoce"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -777,6 +787,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
+					si.remarks = "Payroll Invoce"
 					si.save(ignore_permissions=True)
 
 					if si.name:
@@ -823,6 +834,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
+					si.remarks = "Payroll Invoce"
 					si.save(ignore_permissions=True)
 
 					if si.name:

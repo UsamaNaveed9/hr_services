@@ -12,28 +12,20 @@
  "idx": 0,
  "is_standard": 1,
  "message": "Take Action on this {{ doc.name }} Request",
- "modified": "2024-01-18 12:05:02.486932",
+ "modified": "2024-01-22 10:30:24.236754",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request for Payment notify",
  "owner": "Administrator",
  "recipients": [
   {
-   "condition": "doc.expense_type != \"Recruitment Expense\" and doc.workflow_state == \"Pending for HRM Approval\"",
+   "condition": "doc.workflow_state == \"Pending for HRM Approval\"",
    "receiver_by_role": "OPE EXP Approver"
-  },
-  {
-   "condition": "doc.expense_type == \"Recruitment Expense\" and doc.workflow_state == \"Pending for HRM Approval\"",
-   "receiver_by_role": "REC EXP Approver"
   },
   {
    "condition": "doc.workflow_state == \"Pending for FM Approval\"",
    "receiver_by_document_field": "",
    "receiver_by_role": "FM Req Approver"
-  },
-  {
-   "condition": "doc.workflow_state == \"Pending for CEO Approval\"",
-   "receiver_by_role": "CEO"
   }
  ],
  "send_system_notification": 0,

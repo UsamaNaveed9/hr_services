@@ -20,7 +20,9 @@ class RequestForPayment(Document):
 			row = new_doc.append("accounts",{})
 			row.account = frappe.db.get_value("Company",{"name":self.company},"default_bank_account")
 			row.credit_in_account_currency = self.total_amount
-					
+
+			new_doc.custom_request_for_payment = self.name
+			new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
 			new_doc.save()
 			new_doc.submit()
 
@@ -49,6 +51,8 @@ class RequestForPayment(Document):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
+			si.custom_request_for_payment = self.name
+			si.remarks = f"{self.expense_type} from Request for Payment"
 			si.save(ignore_permissions=True)
 
 		elif self.expense_type == "Supplier Payment":
@@ -74,7 +78,9 @@ class RequestForPayment(Document):
 				row.allocated_amount = inv.outstanding_amount
 
 			new_doc.reference_no = self.name
-			new_doc.reference_date = self.date	
+			new_doc.reference_date = self.date
+			new_doc.custom_request_for_payment = self.name
+			new_doc.remarks = f"{self.expense_type} approved by Request For Payment"
 			new_doc.save()
 			new_doc.submit()
 
@@ -105,5 +111,8 @@ class RequestForPayment(Document):
 				si_tax.description = "VAT 15%"
 				si_tax.rate = 15
 				si.append("taxes", si_tax)
+
+				si.custom_request_for_payment = self.name
+				si.remarks = f"{self.expense_type} from Request for Payment"
 				si.save(ignore_permissions=True)
 

@@ -16,15 +16,39 @@ frappe.ui.form.on('PO Management', {
 			calculate(frm);
 		}
 		if(frm.doc.used_units){
-			frm.set_value("remaining_units", frm.doc.po_units - frm.doc.used_units );
+			if(frm.doc.po_units >= frm.doc.used_units){
+				frm.set_value("remaining_units", frm.doc.po_units - frm.doc.used_units );
+			}
+			else{
+				frappe.msgprint({
+					title: __('Error'),
+					indicator: 'red',
+					message: __('Used Units must be less then or equals to PO Units')
+				});
+			}
 		}
 		else{
 			frm.set_value("remaining_units", frm.doc.po_units );
 		}
+
+		if(frm.doc.remaining_units == 0){
+			frm.set_value("status", "Completed");
+		}
 	},
 	used_units(frm) {
-		if(frm.doc.po_units){
+		if(frm.doc.po_units >= frm.doc.used_units){
 			frm.set_value("remaining_units", frm.doc.po_units - frm.doc.used_units );
+		}
+		else{
+			frappe.msgprint({
+				title: __('Error'),
+				indicator: 'red',
+				message: __('Used Units must be less then or equals to PO Units')
+			});
+		}
+
+		if(frm.doc.remaining_units == 0){
+			frm.set_value("status", "Completed");
 		}
 	},
 	po_amount(frm) {
