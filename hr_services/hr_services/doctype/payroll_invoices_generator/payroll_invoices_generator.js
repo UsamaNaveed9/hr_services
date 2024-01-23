@@ -160,8 +160,9 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                         cur_frm.clear_table("employees");
                         frm.refresh_field("employees");
                         frappe.msgprint({
-                            title: __('Invoice Created Successfully'),
-                            indicator: 'green'
+                            title: __('Success'),
+                            indicator: 'green',
+                            message: __('Invoice Created Successfully :)')
                         });
                     }
                 }
