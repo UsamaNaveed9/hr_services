@@ -5,7 +5,7 @@
  "doctype": "Page",
  "icon": "fa fa-play",
  "idx": 0,
- "modified": "2024-01-04 08:30:44.600386",
+ "modified": "2024-01-23 08:48:32.479916",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "tracker",
@@ -13,7 +13,10 @@
  "page_name": "tracker",
  "roles": [
   {
-   "role": "All"
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Finance User"
   }
  ],
  "script": null,

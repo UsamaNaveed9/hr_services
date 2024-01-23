@@ -2,14 +2,25 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Sales Invoice', {
+	// refresh: function(frm) {
+	// 	// Add a custom query to filter customers
+	// 	frm.fields_dict['customer'].get_query = function(doc, cdt, cdn) {
+	// 		return {
+	// 			filters: {
+	// 				'is_standard_invoice_customer': 1
+	// 			}
+	// 		};
+	// 	};
+	// },
 	setup(frm) {
 		frm.set_query("customer", function(){
-		    return {
-		        filters: [
-                    ["Customer","is_standard_invoice_customer","=",1]
-		        ]
-		    }
-		});
+            return{
+                filters: [
+                    ["Customer","is_standard_invoice_customer","=", 1],
+                ]
+            }
+        });
+
 		frm.set_query("print_customer", function(){
 		    return {
 		        filters: [

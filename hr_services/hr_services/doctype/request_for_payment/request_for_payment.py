@@ -23,8 +23,8 @@ class RequestForPayment(Document):
 
 			new_doc.custom_request_for_payment = self.name
 			new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
-			new_doc.save()
-			new_doc.submit()
+			new_doc.save(ignore_permissions=True)
+			#new_doc.submit()
 
 			#creating sales invoice on the approval of request of payment and skip for project PROJ-0018 (Elite HQ)
 			if self.project != "PROJ-0018":
@@ -82,7 +82,7 @@ class RequestForPayment(Document):
 			new_doc.reference_date = self.date
 			new_doc.custom_request_for_payment = self.name
 			new_doc.remarks = f"{self.expense_type} approved by Request For Payment"
-			new_doc.save()
+			new_doc.save(ignore_permissions=True)
 			new_doc.submit()
 
 			#creating sales invoices on the list of invoices after the approval of request of payment

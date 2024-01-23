@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "letterhead",
- "modified": "2024-01-04 14:12:23.224057",
+ "modified": "2024-01-23 08:48:13.555016",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Invoices Detail",
@@ -24,7 +24,7 @@
    "role": "Accounts Manager"
   },
   {
-   "role": "Accounts User"
+   "role": "Finance User"
   }
  ]
 }

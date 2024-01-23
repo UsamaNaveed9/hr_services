@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "letterhead",
- "modified": "2024-01-08 10:58:19.289394",
+ "modified": "2024-01-23 08:48:03.225308",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Invoicing Report",
@@ -21,13 +21,7 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "Accounts User"
-  },
-  {
    "role": "Accounts Manager"
-  },
-  {
-   "role": "Employee Self Service"
   },
   {
    "role": "Finance User"

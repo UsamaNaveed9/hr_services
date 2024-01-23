@@ -121,13 +121,16 @@ doctype_js = {"Employee" : "customjs/employee.js",
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	# "*": {
+	# 	"on_update": "method",
+	# 	"on_cancel": "method",
+	# 	"on_trash": "method"
+	# }
+    "Employee": {
+        "on_update": "hr_services.custompy.employee.update_salary"
+    }
+}
 
 # Scheduled Tasks
 # ---------------

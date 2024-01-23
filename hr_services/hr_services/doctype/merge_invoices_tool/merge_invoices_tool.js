@@ -10,6 +10,14 @@ frappe.ui.form.on('Merge Invoices Tool', {
         frm.fields_dict['merge_invoices'].$wrapper.css('text-align', 'center');
     },
 	setup(frm) {
+        frm.set_query("customer", function(){
+            return{
+                filters:[
+                    ["Customer","is_standard_invoice_customer","=", 1]
+                ]
+            }
+        });
+        
 		frm.fields_dict['sales_invoices'].grid.get_field("sales_invoice").get_query = function(doc, cdt, cdn) {
 			return {
 				filters: [

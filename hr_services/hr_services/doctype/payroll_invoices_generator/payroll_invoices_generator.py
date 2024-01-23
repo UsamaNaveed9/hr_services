@@ -285,7 +285,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 			loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
 			total_mp = total_mp + net_pay + loan_repay
-			total_mp = total_mp + frappe.db.get_value("Project", {"name":project}, "erc_fee")
+			total_mp = total_mp + frappe.db.get_value("Employee", {"name":emp["employee"]}, "custom_elite_monthly_fee")
 
 		si_item = frappe.new_doc("Sales Invoice Item")
 		si_item.item_code = 34
