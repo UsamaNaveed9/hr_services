@@ -59,13 +59,22 @@ frappe.ui.form.on('PO Management', {
 });
 
 function calculate(frm){
+	//inv_rate for invoicing rate, amount_wm for PO Amount without Margin, margin for Margin 8%, emp_rate for Employee Rate
 	let inv_rate = 0;
 	let amount_wm = 0;
 	let margin = 0;
+	let emp_rate = 0;
 	inv_rate = frm.doc.po_amount / frm.doc.po_units;
 	amount_wm = frm.doc.po_amount / 1.08;
 	margin = amount_wm * 0.08;
+	emp_rate = amount_wm / frm.doc.po_units
 	frm.set_value("invoicing_rate",inv_rate);
 	frm.set_value("margin",margin);
 	frm.set_value("po_amount_wm",amount_wm);
+	if(frm.doc.employment_type == "Part-time"){
+		frm.set_value("employee_rate",emp_rate);
+	}
+	else{
+		frm.set_value("employee_rate", 0);
+	}
 };

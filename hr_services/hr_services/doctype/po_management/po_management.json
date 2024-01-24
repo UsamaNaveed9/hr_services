@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2023-12-24 09:38:37.794439",
@@ -19,11 +20,12 @@
   "po_no",
   "po_amount",
   "po_units",
+  "used_units",
   "column_break_xm3z0",
+  "employee_rate",
   "invoicing_rate",
   "margin",
   "po_amount_wm",
-  "used_units",
   "remaining_units",
   "amended_from"
  ],
@@ -63,6 +65,7 @@
    "label": "Project Name"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "po_no",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -71,6 +74,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "po_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -95,7 +99,7 @@
    "fieldname": "used_units",
    "fieldtype": "Int",
    "label": "Used Units",
-   "read_only_depends_on": "eval:doc.docstatus == 1"
+   "read_only_depends_on": "//eval:doc.docstatus == 1"
   },
   {
    "allow_on_submit": 1,
@@ -143,12 +147,17 @@
    "fieldname": "po_amount_wm",
    "fieldtype": "Currency",
    "label": "PO Amount without Margin"
+  },
+  {
+   "fieldname": "employee_rate",
+   "fieldtype": "Currency",
+   "label": "Employee Rate"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-23 08:55:21.874309",
+ "modified": "2024-01-24 15:25:52.440472",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "PO Management",
@@ -172,6 +181,7 @@
    "write": 1
   }
  ],
+ "search_fields": "remaining_units",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

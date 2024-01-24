@@ -28,7 +28,46 @@ frappe.ui.form.on('Request For Payment', {
 				]
 			}
         }
-		
+
+		frm.fields_dict['employees'].grid.get_field("employee_no").get_query = function(doc, cdt, cdn) {
+			return {
+				filters: [
+					['Employee', 'project', 'in',frm.doc.project],
+					['Employee', 'employment_type', 'in','Part-time']
+				]
+			}
+        }
+
+		frm.fields_dict['employees'].grid.get_field("po_mgt").get_query = function(doc, cdt, cdn) {
+			let row = locals[cdt][cdn];
+			return {
+				filters: [
+					['PO Management', 'employee_no', '=',row.employee_no],
+					['PO Management', 'status', 'in','Active']
+				]
+			}
+        }
+	},
+	expense_type(frm){
+		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense'){
+			cur_frm.clear_table("items");
+			frm.refresh_field("items");
+			frm.set_value("project","");
+			frm.set_value("total_amount",0);
+		}
+		if(frm.doc.expense_type == 'Supplier Payment'){
+			cur_frm.clear_table("invoices");
+			frm.refresh_field("invoices");
+			frm.set_value("project","");
+			frm.set_value("supplier","");
+			frm.set_value("total_amount",0);
+		}
+		if(frm.doc.expense_type == 'Payment For Part Timer'){
+			frm.set_value("project","PROJ-0001");
+			cur_frm.clear_table("employees");
+			frm.refresh_field("employees");
+			frm.set_value("total_amount",0);
+		}
 	}
 });
 
@@ -106,6 +145,76 @@ frappe.ui.form.on("RFP Supplier Details", {
 		let total = 0;
 		for(let i in frm.doc.invoices){
 			total += frm.doc.invoices[i].outstanding_amount;
+		}
+		frm.set_value("total_amount", total);
+		frm.refresh();
+	}
+});
+
+frappe.ui.form.on("RFP Part Timer Details", {
+	po_mgt:function(frm, cdt, cdn){
+		let row = locals[cdt][cdn];
+		if(row.po_mgt){
+			frappe.call({
+                method: "frappe.client.get",
+                args: {
+                    doctype: "PO Management",
+                    name: row.po_mgt
+                },
+                callback(r) {
+                    if(r.message) {
+                        var d = r.message;
+						row.po_no = d.po_no;
+						row.remaining_units = d.remaining_units;
+						row.emp_rate = d.employee_rate;
+						row.working_days = 0;
+						row.amount = 0;
+
+						let total = 0;
+						for(let i in frm.doc.employees){
+							total += frm.doc.employees[i].amount;
+						}
+						frm.set_value("total_amount", total);
+						frm.refresh();
+                    }
+                }
+            });
+		}
+	},
+	working_days:function(frm,cdt,cdn){
+		let row = locals[cdt][cdn];
+		if(row.emp_rate && row.working_days <= row.remaining_units){
+			let amt = row.emp_rate * row.working_days;
+			row.amount = amt
+			
+			let total = 0;
+			for(let i in frm.doc.employees){
+				total += frm.doc.employees[i].amount;
+			}
+			frm.set_value("total_amount", total);
+			frm.refresh();
+		}
+		else if(row.working_days > row.remaining_units){
+			row.working_days = 0;
+			frappe.msgprint({
+				title: __('Error'),
+				indicator: 'red',
+				message: __('Working Days not greater than Remaining Units')
+			});
+		}
+		else{
+			row.working_days = 0;
+			frappe.msgprint({
+				title: __('Error'),
+				indicator: 'red',
+				message: __('Please select PO first')
+			});
+		}
+	},
+	employees_remove(frm,cdt,cdn){
+		let total = 0;
+		for(let i in frm.doc.employees){
+			total += frm.doc.employees[i].amount;
 		}
 		frm.set_value("total_amount", total);
 		frm.refresh();
