@@ -515,18 +515,20 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 						si_item = frappe.new_doc("Sales Invoice Item")
 						si_item.item_code = 912
 						si_item.qty = 1
-						si_item.rate = frappe.db.get_value("Salary Detail", {"parent":emp["salary_slip"], "salary_component": sc_for_rotation}, "amount")
+						si_item.rate = float(frappe.db.get_value("Salary Detail", {"parent":emp["salary_slip"], "salary_component": sc_for_rotation}, "amount"))
 						si_item.employee_id = emp["employee"]
 						si_item.employee_name = emp["employee_name"]
-						si.append("items", si_item)
+						if si_item.rate > 0.0:
+							si.append("items", si_item)
 
 						si_item = frappe.new_doc("Sales Invoice Item")
 						si_item.item_code = 915
 						si_item.qty = 1
-						si_item.rate = frappe.db.get_value("Salary Detail", {"parent":emp["salary_slip"], "salary_component": sc_for_rotation}, "amount") * 0.1
+						si_item.rate = float(frappe.db.get_value("Salary Detail", {"parent":emp["salary_slip"], "salary_component": sc_for_rotation}, "amount")) * 0.1
 						si_item.employee_id = emp["employee"]
 						si_item.employee_name = emp["employee_name"]
-						si.append("items", si_item)
+						if si_item.rate > 0.0:
+							si.append("items", si_item)
 
 			si_tax = frappe.new_doc("Sales Taxes and Charges")
 			si_tax.charge_type = "On Net Total"
@@ -536,7 +538,8 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si.append("taxes", si_tax)
 
 			si.remarks = "Payroll Invoce"
-			si.save(ignore_permissions=True)
+			if len(si.items) > 0:
+				si.save(ignore_permissions=True)
 
 		for po_neom in po_for_neom_list:
 			si = frappe.new_doc("Sales Invoice")
@@ -558,7 +561,8 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 						si_item.rate = frappe.db.get_value("Salary Detail", {"parent":emp["salary_slip"], "salary_component": sc_for_neom}, "amount")
 						si_item.employee_id = emp["employee"]
 						si_item.employee_name = emp["employee_name"]
-						si.append("items", si_item)
+						if si_item.rate > 0.0:
+							si.append("items", si_item)
 
 			si_tax = frappe.new_doc("Sales Taxes and Charges")
 			si_tax.charge_type = "On Net Total"
@@ -568,7 +572,8 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			si.append("taxes", si_tax)
 
 			si.remarks = "Payroll Invoce"
-			si.save(ignore_permissions=True)
+			if len(si.items) > 0:
+				si.save(ignore_permissions=True)
 		
 		for po in po_list:
 			si = frappe.new_doc("Sales Invoice")
@@ -593,11 +598,11 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 						basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 						housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
-						loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
+						loan_repay = float(frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment"))
 						manpower = manpower + net_pay + loan_repay + ((basic + housing) * 0.0975)
 					else:
 						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
-						loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
+						loan_repay = float(frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment"))
 						manpower = manpower + net_pay + loan_repay
 
 					po_for_re = frappe.db.get_value("Employee", {"name":emp["employee"]}, "po_for_rotation_expense")
