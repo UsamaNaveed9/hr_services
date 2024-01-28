@@ -38,6 +38,14 @@ frappe.ui.form.on('Request For Payment', {
 			}
         }
 
+		frm.fields_dict['advances'].grid.get_field("employee_no").get_query = function(doc, cdt, cdn) {
+			return {
+				filters: [
+					['Employee', 'project', 'in',frm.doc.project]
+				]
+			}
+        }
+
 		frm.fields_dict['employees'].grid.get_field("po_mgt").get_query = function(doc, cdt, cdn) {
 			let row = locals[cdt][cdn];
 			return {
@@ -215,6 +223,45 @@ frappe.ui.form.on("RFP Part Timer Details", {
 		let total = 0;
 		for(let i in frm.doc.employees){
 			total += frm.doc.employees[i].amount;
+		}
+		frm.set_value("total_amount", total);
+		frm.refresh();
+	}
+});
+
+frappe.ui.form.on("RFP Employee Advances", {
+	monthly_repay_amount:function(frm,cdt,cdn){
+		let row = locals[cdt][cdn]
+		if(row.advance_amount && row.monthly_repay_amount > row.advance_amount){
+			row.monthly_repay_amount = 0;
+			frappe.msgprint({
+				title: __('Error'),
+				indicator: 'red',
+				message: __('Monthly Repay Amount cannot be greater than Advance amount')
+			});
+		}
+	},
+	advance_amount:function(frm,cdt,cdn){
+		let row = locals[cdt][cdn]
+		if(row.monthly_repay_amount && row.monthly_repay_amount > row.advance_amount){
+			row.monthly_repay_amount = 0;
+			frappe.msgprint({
+				title: __('Error'),
+				indicator: 'red',
+				message: __('Monthly Repay Amount cannot be greater than Advance amount')
+			});
+		}
+		let total = 0;
+		for(let i in frm.doc.advances){
+			total += frm.doc.advances[i].advance_amount;
+		}
+		frm.set_value("total_amount", total);
+		frm.refresh();
+	},
+	advances_remove(frm,cdt,cdn){
+		let total = 0;
+		for(let i in frm.doc.advances){
+			total += frm.doc.advances[i].advance_amount;
 		}
 		frm.set_value("total_amount", total);
 		frm.refresh();

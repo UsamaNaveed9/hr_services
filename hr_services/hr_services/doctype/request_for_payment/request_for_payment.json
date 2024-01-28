@@ -20,6 +20,7 @@
   "items",
   "invoices",
   "employees",
+  "advances",
   "section_break_4lnuh",
   "hidden",
   "column_break_cbe9a",
@@ -101,7 +102,7 @@
    "fieldname": "expense_type",
    "fieldtype": "Select",
    "label": "Expense Type",
-   "options": "\nOperational Expense\nRecruitment Expense\nReimbursement Expense\nSupplier Payment\nPayment For Part Timer",
+   "options": "\nOperational Expense\nRecruitment Expense\nReimbursement Expense\nSupplier Payment\nPayment For Part Timer\nEmployee Advance",
    "reqd": 1
   },
   {
@@ -140,6 +141,14 @@
    "label": "Employees",
    "mandatory_depends_on": "eval:doc.expense_type == 'Payment For Part Timer'",
    "options": "RFP Part Timer Details"
+  },
+  {
+   "depends_on": "eval:doc.expense_type == 'Employee Advance'",
+   "fieldname": "advances",
+   "fieldtype": "Table",
+   "label": "Advances",
+   "mandatory_depends_on": "eval:doc.expense_type == 'Employee Advance'",
+   "options": "RFP Employee Advances"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -158,7 +167,7 @@
    "link_fieldname": "custom_request_for_payment"
   }
  ],
- "modified": "2024-01-24 14:33:00.832940",
+ "modified": "2024-01-28 17:05:30.593060",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",
