@@ -29,5 +29,13 @@ frappe.ui.form.on('Sales Invoice', {
 		        ]
 		    }
 		});
+
+		frm.fields_dict['items'].grid.get_field("employee_id").get_query = function(doc, cdt, cdn) {
+			return {
+				filters: [
+					['Employee', 'project', 'in',frm.doc.project],
+				]
+			}
+        }
 	},
 });
