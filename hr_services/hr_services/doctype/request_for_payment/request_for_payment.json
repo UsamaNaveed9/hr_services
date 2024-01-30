@@ -165,9 +165,13 @@
   {
    "link_doctype": "Payment Entry",
    "link_fieldname": "custom_request_for_payment"
+  },
+  {
+   "link_doctype": "Loan",
+   "link_fieldname": "custom_request_for_payment"
   }
  ],
- "modified": "2024-01-28 17:05:30.593060",
+ "modified": "2024-01-30 15:05:34.938015",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

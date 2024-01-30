@@ -174,4 +174,62 @@ class RequestForPayment(Document):
 						if po_mdoc.remaining_units == 0:
 							po_mdoc.status = "Completed"
 							po_mdoc.save(ignore_permissions=True)
+		elif self.expense_type == "Employee Advance":
+			#creating loan on each employee
+			#Sales Invoice agains employees that have advance type == "Housing Advance"
+			si = frappe.new_doc("Sales Invoice")
+			si.customer = frappe.db.get_value("Project",{"name":self.project},"customer")
+			si.set_posting_time = 1
+			si.posting_date = self.date
+			si.due_date = self.date
+			si.issue_date = self.date
+			si.project = self.project
 
+			for adv in self.advances:
+				#creating loan on each employee 
+				ln = frappe.new_doc("Loan")
+				ln.applicant_type = "Employee"
+				ln.applicant = adv.employee_no
+				ln.posting_date = self.date
+				ln.repay_from_salary = 1
+				ln.loan_type = adv.advance_type
+				ln.loan_amount = adv.advance_amount
+				ln.repayment_method = "Repay Fixed Amount per Period"
+				ln.monthly_repayment_amount = adv.monthly_repay_amount
+				ln.repayment_start_date = adv.repayment_start_date
+				ln.custom_request_for_payment = self.name
+				ln.save(ignore_permissions=True)
+				ln.submit()
+
+				if ln.name:
+					#creating Loan Disbursement after creating loan
+					ln_d = frappe.new_doc("Loan Disbursement")
+					ln_d.against_loan = ln.name
+					ln_d.disbursement_date = self.date
+					ln_d.disbursed_amount = adv.advance_amount
+					ln_d.save(ignore_permissions=True)
+					ln_d.submit()
+
+				#adding items in sales invoice if advance type == "Housing Advance"
+				if adv.advance_type == "Housing Advance":
+					si_item = frappe.new_doc("Sales Invoice Item")
+					si_item.item_code = 891
+					si_item.qty = 1
+					si_item.rate = adv.advance_amount
+					si_item.employee_id = adv.employee_no
+					si_item.employee_name = adv.employee_name
+					si.append("items", si_item)
+			#adding 15% tax on the sales invoice
+			si_tax = frappe.new_doc("Sales Taxes and Charges")
+			si_tax.charge_type = "On Net Total"
+			si_tax.account_head = "VAT 15% - ERC"
+			si_tax.description = "VAT 15%"
+			si_tax.rate = 15
+			si.append("taxes", si_tax)
+
+			si.custom_request_for_payment = self.name
+			si.remarks = f"{self.expense_type} from Request for Payment"
+			#if items exist then invoice save in the system otherwise skip it.
+			if len(si.items) > 0 and self.project != "PROJ-0018":
+				si.save(ignore_permissions=True)
+				
