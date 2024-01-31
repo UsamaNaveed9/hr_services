@@ -30,6 +30,7 @@ frappe.ui.form.on('Payroll Invoices Generator', {
 
         frm.set_value("ms_date", final_start_date);
         frm.set_value("me_date", final_end_date);
+        frm.set_value("year", currentYear);
     },
     get_employees: function(frm){
         var project = frm.doc.project;
@@ -150,7 +151,10 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     due_date: frm.doc.due_date,
                     customer: frm.doc.customer,
                     invoice_type: frm.doc.invoice_type,
-                    employees: frm.doc.employees
+                    employees: frm.doc.employees,
+                    month_name: frm.doc.month_name,
+                    my_in_arabic: frm.doc.my_in_arabic,
+                    year: frm.doc.year
                 },
                 freeze: true,
                 freeze_message: "Invoice Creation in progress......",

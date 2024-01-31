@@ -35,6 +35,7 @@ def merge_invoices(due_date,customer,sales_invoices):
 			for inv_it in items:
 				si_item = frappe.new_doc("Sales Invoice Item")
 				si_item.item_code = inv_it.item_code
+				si_item.description = inv_it.description
 				si_item.qty = inv_it.qty
 				si_item.rate = inv_it.rate
 				si_item.employee_id = inv_it.employee_id

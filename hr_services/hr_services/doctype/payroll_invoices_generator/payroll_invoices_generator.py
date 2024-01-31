@@ -68,7 +68,7 @@ def get_employees_misk(project,start_date,end_date,type):
 
 
 @frappe.whitelist()
-def generate_invoices(project,due_date,customer,invoice_type,employees):
+def generate_invoices(project,due_date,customer,invoice_type,employees,month_name,my_in_arabic,year):
 	emps = json.loads(employees)
 	if invoice_type == "One Invoice with all employees details":
 		si = frappe.new_doc("Sales Invoice")
@@ -82,6 +82,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 		for emp in emps:
 			si_item = frappe.new_doc("Sales Invoice Item")
 			si_item.item_code = 34
+			si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 			si_item.qty = 1
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
@@ -159,6 +160,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 			total_mp = 0
 			si_item = frappe.new_doc("Sales Invoice Item")
 			si_item.item_code = 34
+			si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 			si_item.qty = 1
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
@@ -250,6 +252,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 
 		si_item = frappe.new_doc("Sales Invoice Item")
 		si_item.item_code = 34
+		si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 		si_item.qty = 1
 		si_item.rate = total_mp
 		si.append("items", si_item)
@@ -289,6 +292,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 
 		si_item = frappe.new_doc("Sales Invoice Item")
 		si_item.item_code = 34
+		si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 		si_item.qty = 1
 		si_item.rate = total_mp
 		si.append("items", si_item)
@@ -333,6 +337,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					qty += 1
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
+					si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 					si_item.qty = 1
 					nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 					added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
@@ -410,6 +415,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 
 			si_item = frappe.new_doc("Sales Invoice Item")
 			si_item.item_code = 34
+			si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 			si_item.qty = 1
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
@@ -592,6 +598,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 					qty += 1
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
+					si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 					si_item.qty = 1
 					manpower = 0
 					nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
@@ -730,6 +737,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
+					si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 					si_item.item_name = f"{dp} - {lc}"
 					si_item.qty = 1
 					si_item.rate = total_mp
@@ -789,6 +797,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
+					si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 					si_item.qty = r_wd
 					si_item.rate = invoicing_rate
 					si_item.employee_id = emp["employee"]
@@ -836,6 +845,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees):
 
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
+					si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
 					si_item.qty = remaining_units
 					si_item.rate = invoicing_rate
 					si_item.employee_id = emp["employee"]

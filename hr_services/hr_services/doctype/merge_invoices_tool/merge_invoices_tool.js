@@ -45,8 +45,9 @@ frappe.ui.form.on('Merge Invoices Tool', {
                         cur_frm.clear_table("sales_invoices");
                         frm.refresh_field("sales_invoices");
                         frappe.msgprint({
-                            title: __('Invoice Created Successfully'),
-                            indicator: 'green'
+                            title: __('Success'),
+                            indicator: 'green',
+                            message: __('Merge Invoice Created Successfully :)')
                         });
                     }
                 }
