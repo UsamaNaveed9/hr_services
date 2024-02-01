@@ -11,10 +11,12 @@
   "company",
   "naming_series",
   "expense_type",
+  "invoice_to_client",
   "column_break_0mrxq",
   "date",
   "project",
   "project_name",
+  "is_invoice_optional",
   "supplier",
   "section_break_cezld",
   "items",
@@ -149,6 +151,21 @@
    "label": "Advances",
    "mandatory_depends_on": "eval:doc.expense_type == 'Employee Advance'",
    "options": "RFP Employee Advances"
+  },
+  {
+   "default": "0",
+   "fetch_from": "project.custom_is_invoice_optional",
+   "fieldname": "is_invoice_optional",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is Invoice Optional"
+  },
+  {
+   "depends_on": "eval:doc.is_invoice_optional == 1 && doc.workflow_state == \"Pending for HRM Approval\"",
+   "fieldname": "invoice_to_client",
+   "fieldtype": "Select",
+   "label": "Invoice to Client",
+   "options": "\nYes\nNo"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -171,7 +188,7 @@
    "link_fieldname": "custom_request_for_payment"
   }
  ],
- "modified": "2024-01-30 15:05:34.938015",
+ "modified": "2024-02-01 17:47:10.376224",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

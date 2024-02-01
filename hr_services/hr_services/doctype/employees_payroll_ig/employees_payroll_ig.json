@@ -35,19 +35,19 @@
   },
   {
    "fieldname": "working_days",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "label": "Working Days"
   },
   {
    "fieldname": "total_remaining_units",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Total Remaining Units"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-12-27 14:45:18.989841",
+ "modified": "2024-02-01 14:42:39.002536",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Employees Payroll IG",

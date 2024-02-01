@@ -56,6 +56,15 @@ frappe.ui.form.on('Request For Payment', {
 			}
         }
 	},
+	project(frm){
+		//console.log(frm.doc.is_invoice_optional);
+		if(frm.doc.is_invoice_optional == 1){
+			frm.set_value("invoice_to_client","");
+		}
+		else if(frm.doc.is_invoice_optional == 0){
+			frm.set_value("invoice_to_client","Yes");
+		}
+	},
 	expense_type(frm){
 		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense'){
 			cur_frm.clear_table("items");

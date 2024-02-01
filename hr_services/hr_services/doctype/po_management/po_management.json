@@ -84,7 +84,7 @@
   {
    "allow_on_submit": 1,
    "fieldname": "po_units",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "PO Units",
    "reqd": 1
@@ -99,14 +99,14 @@
   {
    "allow_on_submit": 1,
    "fieldname": "used_units",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Used Units",
    "read_only_depends_on": "//eval:doc.docstatus == 1"
   },
   {
    "allow_on_submit": 1,
    "fieldname": "remaining_units",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Remaining Units",
    "read_only": 1
   },
@@ -165,7 +165,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-25 09:30:52.975590",
+ "modified": "2024-02-01 14:36:23.687281",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "PO Management",

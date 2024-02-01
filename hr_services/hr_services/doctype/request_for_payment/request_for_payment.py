@@ -27,7 +27,7 @@ class RequestForPayment(Document):
 			#new_doc.submit()
 
 			#creating sales invoice on the approval of request of payment and skip for project PROJ-0018 (Elite HQ)
-			if self.project != "PROJ-0018":
+			if self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
 				si = frappe.new_doc("Sales Invoice")
 				si.customer = frappe.db.get_value("Project",{"name":self.project},"customer")
 				si.set_posting_time = 1
@@ -85,36 +85,37 @@ class RequestForPayment(Document):
 			new_doc.submit()
 
 			#creating sales invoices on the list of invoices after the approval of request of payment
-			for inv in self.invoices:
-				si = frappe.new_doc("Sales Invoice")
-				si.customer = frappe.db.get_value("Project",{"name":inv.project},"customer")
-				si.set_posting_time = 1
-				si.posting_date = self.date
-				si.due_date = self.date
-				si.issue_date = self.date
-				si.project = inv.project
+			if self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
+				for inv in self.invoices:
+					si = frappe.new_doc("Sales Invoice")
+					si.customer = frappe.db.get_value("Project",{"name":inv.project},"customer")
+					si.set_posting_time = 1
+					si.posting_date = self.date
+					si.due_date = self.date
+					si.issue_date = self.date
+					si.project = inv.project
 
-				pur_doc = frappe.get_doc("Purchase Invoice",inv.purchase_invoice)
-				items = pur_doc.items
-				for inv_it in items:
-					si_item = frappe.new_doc("Sales Invoice Item")
-					si_item.item_code = inv_it.item_code
-					si_item.qty = inv_it.qty
-					si_item.rate = inv_it.rate
-					si_item.employee_id = inv_it.employee_no
-					si_item.employee_name = inv_it.employee_name
-					si.append("items", si_item)
+					pur_doc = frappe.get_doc("Purchase Invoice",inv.purchase_invoice)
+					items = pur_doc.items
+					for inv_it in items:
+						si_item = frappe.new_doc("Sales Invoice Item")
+						si_item.item_code = inv_it.item_code
+						si_item.qty = inv_it.qty
+						si_item.rate = inv_it.rate
+						si_item.employee_id = inv_it.employee_no
+						si_item.employee_name = inv_it.employee_name
+						si.append("items", si_item)
 
-				si_tax = frappe.new_doc("Sales Taxes and Charges")
-				si_tax.charge_type = "On Net Total"
-				si_tax.account_head = "VAT 15% - ERC"
-				si_tax.description = "VAT 15%"
-				si_tax.rate = 15
-				si.append("taxes", si_tax)
+					si_tax = frappe.new_doc("Sales Taxes and Charges")
+					si_tax.charge_type = "On Net Total"
+					si_tax.account_head = "VAT 15% - ERC"
+					si_tax.description = "VAT 15%"
+					si_tax.rate = 15
+					si.append("taxes", si_tax)
 
-				si.custom_request_for_payment = self.name
-				si.remarks = f"{self.expense_type} from Request for Payment"
-				si.save(ignore_permissions=True)
+					si.custom_request_for_payment = self.name
+					si.remarks = f"{self.expense_type} from Request for Payment"
+					si.save(ignore_permissions=True)
 		elif self.expense_type == "Payment For Part Timer":
 			#creating journal entry on the approval of request of payment
 			new_doc = frappe.new_doc("Journal Entry")
@@ -137,7 +138,7 @@ class RequestForPayment(Document):
 
 			#creating sales invoices on the approval of request of payment and skip for project PROJ-0018 (Elite HQ)
 			#one sales invoice for one employee record.
-			if self.project != "PROJ-0018":
+			if self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
 				for emp in self.employees:
 					si = frappe.new_doc("Sales Invoice")
 					si.customer = frappe.db.get_value("Project",{"name":self.project},"customer")
@@ -230,6 +231,6 @@ class RequestForPayment(Document):
 			si.custom_request_for_payment = self.name
 			si.remarks = f"{self.expense_type} from Request for Payment"
 			#if items exist then invoice save in the system otherwise skip it.
-			if len(si.items) > 0 and self.project != "PROJ-0018":
+			if len(si.items) > 0 and self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
 				si.save(ignore_permissions=True)
 				
