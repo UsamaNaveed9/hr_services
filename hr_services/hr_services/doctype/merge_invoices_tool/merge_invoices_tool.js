@@ -21,7 +21,7 @@ frappe.ui.form.on('Merge Invoices Tool', {
 		frm.fields_dict['sales_invoices'].grid.get_field("sales_invoice").get_query = function(doc, cdt, cdn) {
 			return {
 				filters: [
-					['Sales Invoice', 'customer', 'in', frm.doc.customer],
+					['Sales Invoice', 'customer', '=', frm.doc.customer],
 					['Sales Invoice', 'status', 'in', 'Draft'],
                     ['Sales Invoice', 'is_merged', '=', 0 ],
 				]
@@ -47,7 +47,7 @@ frappe.ui.form.on('Merge Invoices Tool', {
                         frappe.msgprint({
                             title: __('Success'),
                             indicator: 'green',
-                            message: __('Merge Invoice Created Successfully :)')
+                            message: __(res.message)
                         });
                     }
                 }

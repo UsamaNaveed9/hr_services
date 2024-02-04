@@ -131,6 +131,9 @@ doc_events = {
 	# }
     "Employee": {
         "on_update": "hr_services.custompy.employee.update_salary"
+    },
+    "Sales Invoice": {
+        "on_submit": "hr_services.custompy.sales_invoice.new_rec"
     }
 }
 

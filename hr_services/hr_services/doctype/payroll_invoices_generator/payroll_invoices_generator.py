@@ -78,6 +78,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si.due_date = due_date
 		si.issue_date = due_date
 		si.project = project
+		si.is_pos = 0
 
 		for emp in emps:
 			si_item = frappe.new_doc("Sales Invoice Item")
@@ -155,6 +156,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si.due_date = due_date
 		si.issue_date = due_date
 		si.project = project
+		si.is_pos = 0
 
 		for emp in emps:
 			total_mp = 0
@@ -222,6 +224,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si.due_date = due_date
 		si.issue_date = due_date
 		si.project = project
+		si.is_pos = 0
 		total_mp = 0
 
 		for emp in emps:
@@ -282,6 +285,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si.due_date = due_date
 		si.issue_date = due_date
 		si.project = project
+		si.is_pos = 0
 		total_mp = 0
 
 		for emp in emps:
@@ -329,6 +333,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si.due_date = due_date
 			si.issue_date = due_date
 			si.project = project
+			si.is_pos = 0
 			si.po_no = po
 			qty = 0
 			for emp in emps:
@@ -412,6 +417,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si.due_date = due_date
 			si.issue_date = due_date
 			si.project = project
+			si.is_pos = 0
 
 			si_item = frappe.new_doc("Sales Invoice Item")
 			si_item.item_code = 34
@@ -512,6 +518,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si.due_date = due_date
 			si.issue_date = due_date
 			si.project = project
+			si.is_pos = 0
 			si.po_no = po_rota
 			for emp in emps:
 				if po_rota == frappe.db.get_value("Employee", {"name":emp["employee"]}, "po_no_for_rotation"):
@@ -556,6 +563,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si.due_date = due_date
 			si.issue_date = due_date
 			si.project = project
+			si.is_pos = 0
 			si.po_no = po_neom
 			for emp in emps:
 				if po_neom == frappe.db.get_value("Employee", {"name":emp["employee"]}, "po_no_for_neom"):
@@ -591,6 +599,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si.due_date = due_date
 			si.issue_date = due_date
 			si.project = project
+			si.is_pos = 0
 			si.po_no = po
 			qty = 0
 			for emp in emps:
@@ -734,6 +743,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si.due_date = due_date
 					si.issue_date = due_date
 					si.project = project
+					si.is_pos = 0
 
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
@@ -792,6 +802,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si.due_date = due_date
 					si.issue_date = due_date
 					si.project = project
+					si.is_pos = 0
 					si.print_customer = frappe.db.get_value("Employee", {"name":emp["employee"]}, "print_customer_for_invoice")
 					si.po_no = po_mdoc.po_no
 
@@ -840,6 +851,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si.due_date = due_date
 					si.issue_date = due_date
 					si.project = project
+					si.is_pos = 0
 					si.print_customer = frappe.db.get_value("Employee", {"name":emp["employee"]}, "print_customer_for_invoice")
 					si.po_no = po_mdoc.po_no
 

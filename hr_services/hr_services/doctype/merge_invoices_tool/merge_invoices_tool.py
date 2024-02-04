@@ -5,6 +5,7 @@ import frappe
 from frappe.model.document import Document
 import json
 from frappe import _
+from frappe.utils import get_url_to_form
 
 class MergeInvoicesTool(Document):
 	pass
@@ -15,17 +16,19 @@ def merge_invoices(due_date,customer,sales_invoices):
 	#frappe.errprint(invs)
 	# Get the set of unique 'po_no' values
 	unique_po_nos = set(rec['po_no'] for rec in invs)
-
+	msg = ""
 	# Check if there is only one unique 'po_no'
 	if len(unique_po_nos) == 1:
 		po_no = list(unique_po_nos)
 
 		si = frappe.new_doc("Sales Invoice")
+		si.naming_series = "ACC-SINV-.YYYY.-"
 		si.customer = customer
 		si.set_posting_time = 1
 		si.posting_date = due_date
 		si.due_date = due_date
 		si.issue_date = due_date
+		si.is_pos = 0
 		si.po_no = po_no[0]
 
 		for sal_inv in invs:
@@ -55,13 +58,28 @@ def merge_invoices(due_date,customer,sales_invoices):
 		if si.name:
 			for sal_inv in invs:
 				remarks = remarks + " " + sal_inv["sales_invoice"]
-				frappe.db.set_value("Sales Invoice", sal_inv["sales_invoice"], "is_merged", 1)
+				copy_attachments(sal_inv["sales_invoice"], si)
+				# Delete the merged draft invoice
+				frappe.delete_doc('Sales Invoice', sal_inv["sales_invoice"], ignore_permissions=True)
 			si.remarks = remarks
 			si.save(ignore_permissions=True)
-			status = True
+			si.submit()
+			# Open the new Sales Invoice in the same tab
+			url = get_url_to_form("Sales Invoice", si.name)
+			# Construct a message with a clickable link
+			msg = f"Merge Invoice Created Successfully: <a href='{url}'>{si.name}</a>"
 	else:
 		frappe.throw(_("PO Nos must be same"))
 
-	return status	
+	return msg
+
+def copy_attachments(source_doc, target_doc):
+	# Copy attachments from the source document to the target document
+	for attachment in frappe.get_all('File', filters={'attached_to_doctype': "Sales Invoice", 'attached_to_name': source_doc}):
+		file_doc = frappe.get_doc('File', attachment.name)
+		file_copy = frappe.copy_doc(file_doc, ignore_no_copy=False)
+		file_copy.attached_to_doctype = target_doc.doctype
+		file_copy.attached_to_name = target_doc.name
+		file_copy.insert()
 
 

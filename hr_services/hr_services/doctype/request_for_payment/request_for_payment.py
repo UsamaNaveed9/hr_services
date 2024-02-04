@@ -35,6 +35,7 @@ class RequestForPayment(Document):
 				si.due_date = self.date
 				si.issue_date = self.date
 				si.project = self.project
+				si.is_pos = 0
 					
 				for it in self.items:
 					si_item = frappe.new_doc("Sales Invoice Item")
@@ -55,6 +56,7 @@ class RequestForPayment(Document):
 				si.custom_request_for_payment = self.name
 				si.remarks = f"{self.expense_type} from Request for Payment"
 				si.save(ignore_permissions=True)
+				copy_attachments(self, si)
 		elif self.expense_type == "Supplier Payment":
 			#creating Payment entry on the approval of request of payment
 			new_doc = frappe.new_doc("Payment Entry")
@@ -94,6 +96,7 @@ class RequestForPayment(Document):
 					si.due_date = self.date
 					si.issue_date = self.date
 					si.project = inv.project
+					si.is_pos = 0
 
 					pur_doc = frappe.get_doc("Purchase Invoice",inv.purchase_invoice)
 					items = pur_doc.items
@@ -116,6 +119,7 @@ class RequestForPayment(Document):
 					si.custom_request_for_payment = self.name
 					si.remarks = f"{self.expense_type} from Request for Payment"
 					si.save(ignore_permissions=True)
+					copy_attachments(self, si)
 		elif self.expense_type == "Payment For Part Timer":
 			#creating journal entry on the approval of request of payment
 			new_doc = frappe.new_doc("Journal Entry")
@@ -147,6 +151,7 @@ class RequestForPayment(Document):
 					si.due_date = self.date
 					si.issue_date = self.date
 					si.project = self.project
+					si.is_pos = 0
 
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
@@ -166,7 +171,7 @@ class RequestForPayment(Document):
 					si.custom_request_for_payment = self.name
 					si.remarks = f"{self.expense_type} from Request for Payment"
 					si.save(ignore_permissions=True)
-
+					copy_attachments(self, si)
 					if si.name:
 						po_mdoc = frappe.get_doc("PO Management", emp.po_mgt)
 						po_mdoc.used_units = po_mdoc.used_units + emp.working_days
@@ -185,6 +190,7 @@ class RequestForPayment(Document):
 			si.due_date = self.date
 			si.issue_date = self.date
 			si.project = self.project
+			si.is_pos = 0
 
 			for adv in self.advances:
 				#creating loan on each employee 
@@ -233,4 +239,14 @@ class RequestForPayment(Document):
 			#if items exist then invoice save in the system otherwise skip it.
 			if len(si.items) > 0 and self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
 				si.save(ignore_permissions=True)
+				copy_attachments(self, si)
 				
+
+def copy_attachments(source_doc, target_doc):
+	# Copy attachments from the source document to the target document
+	for attachment in frappe.get_all('File', filters={'attached_to_doctype': source_doc.doctype, 'attached_to_name': source_doc.name}):
+		file_doc = frappe.get_doc('File', attachment.name)
+		file_copy = frappe.copy_doc(file_doc, ignore_no_copy=False)
+		file_copy.attached_to_doctype = target_doc.doctype
+		file_copy.attached_to_name = target_doc.name
+		file_copy.insert()
