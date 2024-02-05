@@ -3,28 +3,32 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe import _	
 
 class RequestForPayment(Document):
 	def on_submit(self):
 		if self.expense_type == "Operational Expense" or self.expense_type == "Recruitment Expense" or self.expense_type == "Reimbursement Expense":
 			#creating journal entry on the approval of request of payment
-			new_doc = frappe.new_doc("Journal Entry")
-			new_doc.voucher_type = "Journal Entry"
-			new_doc.posting_date = self.date
-			new_doc.company = self.company
-			for it in self.items:
-				row = new_doc.append("accounts",{})
-				row.account = frappe.db.get_value("Item",{"name":it.item},"account_for_jv")
-				row.debit_in_account_currency = it.amount
+			if self.coa_for_jv:
+				new_doc = frappe.new_doc("Journal Entry")
+				new_doc.voucher_type = "Journal Entry"
+				new_doc.posting_date = self.date
+				new_doc.company = self.company
+				for it in self.items:
+					row = new_doc.append("accounts",{})
+					row.account = frappe.db.get_value("Item",{"name":it.item},"account_for_jv")
+					row.debit_in_account_currency = it.amount
 
-				row = new_doc.append("accounts",{})
-				row.account = frappe.db.get_value("Company",{"name":self.company},"default_bank_account")
-				row.credit_in_account_currency = it.amount
+					row = new_doc.append("accounts",{})
+					row.account = self.coa_for_jv
+					row.credit_in_account_currency = it.amount
 
-			new_doc.custom_request_for_payment = self.name
-			new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
-			new_doc.save(ignore_permissions=True)
-			#new_doc.submit()
+				new_doc.custom_request_for_payment = self.name
+				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
+				new_doc.save(ignore_permissions=True)
+				#new_doc.submit()
+			else:
+				frappe.throw(_("Bank is Manadatory"))
 
 			#creating sales invoice on the approval of request of payment and skip for project PROJ-0018 (Elite HQ)
 			if self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
@@ -122,23 +126,26 @@ class RequestForPayment(Document):
 					copy_attachments(self, si)
 		elif self.expense_type == "Payment For Part Timer":
 			#creating journal entry on the approval of request of payment
-			new_doc = frappe.new_doc("Journal Entry")
-			new_doc.voucher_type = "Journal Entry"
-			new_doc.posting_date = self.date
-			new_doc.company = self.company
-			for it in self.employees:
-				row = new_doc.append("accounts",{})
-				row.account = "51-0101 - OPE-ME- Basic Salary - ERC"
-				row.debit_in_account_currency = it.amount
+			if self.coa_for_jv:
+				new_doc = frappe.new_doc("Journal Entry")
+				new_doc.voucher_type = "Journal Entry"
+				new_doc.posting_date = self.date
+				new_doc.company = self.company
+				for it in self.employees:
+					row = new_doc.append("accounts",{})
+					row.account = "51-0101 - OPE-ME- Basic Salary - ERC"
+					row.debit_in_account_currency = it.amount
 
-				row = new_doc.append("accounts",{})
-				row.account = frappe.db.get_value("Company",{"name":self.company},"default_bank_account")
-				row.credit_in_account_currency = it.amount
+					row = new_doc.append("accounts",{})
+					row.account = self.coa_for_jv
+					row.credit_in_account_currency = it.amount
 
-			new_doc.custom_request_for_payment = self.name
-			new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
-			new_doc.save(ignore_permissions=True)
-			#new_doc.submit()
+				new_doc.custom_request_for_payment = self.name
+				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment"
+				new_doc.save(ignore_permissions=True)
+				#new_doc.submit()
+			else:
+				frappe.throw(_("Bank is Manadatory"))	
 
 			#creating sales invoices on the approval of request of payment and skip for project PROJ-0018 (Elite HQ)
 			#one sales invoice for one employee record.
