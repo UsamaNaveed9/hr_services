@@ -34,7 +34,8 @@ def _execute(filters):
 			"tax_total": inv.total_taxes_and_charges,
 			"grand_total": inv.grand_total,
 			"outstanding_amount": inv.outstanding_amount,
-			"date_of_com": inv.date_of_communication
+			"date_of_com": inv.date_of_communication,
+			"uploaded_date": inv.uploaded_date
 		}
 		#communicated is done or not
 		if inv.is_shared_with_client == 1:
@@ -161,6 +162,12 @@ def get_columns(invoice_list):
 			"fieldtype": "Data",
 			"width": 80,
 		},
+		{
+			"label": _("Uploaded Date"),
+			"fieldname": "uploaded_date",
+			"fieldtype": "Date",
+			"width": 100,
+		},
 		{"label": _("Remarks"), "fieldname": "remarks", "fieldtype": "Data", "width": 200},
 	]
 
@@ -192,7 +199,7 @@ def get_invoices(filters):
 		"""
 		select name, posting_date, customer, status, remarks, total, is_pos,
 		total_taxes_and_charges, grand_total, outstanding_amount, paid_amount,
-		is_shared_with_client, date_of_communication, company
+		is_shared_with_client, date_of_communication, uploaded_date, company
 		from `tabSales Invoice`
 		where {0}
 		order by posting_date desc, name desc""".format(
