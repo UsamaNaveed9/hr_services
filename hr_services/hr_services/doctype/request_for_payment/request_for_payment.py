@@ -70,7 +70,7 @@ class RequestForPayment(Document):
 			new_doc.mode_of_payment = "Bank"
 			new_doc.party_type = "Supplier"
 			new_doc.party = self.supplier
-			new_doc.paid_from = "11010201 - ALINMA - ERC"
+			new_doc.paid_from = self.coa_for_jv
 			new_doc.paid_from_account_currency = "SAR"
 			new_doc.paid_to = "2220102 - Local Suppliers - ERC"
 			new_doc.paid_to_account_currency = "SAR"
@@ -81,7 +81,7 @@ class RequestForPayment(Document):
 				row = new_doc.append("references",{})
 				row.reference_doctype = "Purchase Invoice"
 				row.reference_name = inv.purchase_invoice
-				row.allocated_amount = inv.outstanding_amount
+				row.allocated_amount = inv.paid_amount
 
 			new_doc.reference_no = self.name
 			new_doc.reference_date = self.date

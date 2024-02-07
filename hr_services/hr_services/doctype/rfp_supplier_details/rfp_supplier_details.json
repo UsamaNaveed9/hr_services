@@ -10,10 +10,12 @@
   "purchase_invoice",
   "supplier",
   "grand_total",
-  "column_break_nht8u",
   "outstanding_amount",
+  "column_break_nht8u",
+  "paid_amount",
   "project",
-  "project_name"
+  "project_name",
+  "remarks"
  ],
  "fields": [
   {
@@ -25,7 +27,7 @@
    "options": "Purchase Invoice"
   },
   {
-   "columns": 2,
+   "columns": 1,
    "fieldname": "supplier",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -54,26 +56,37 @@
    "read_only": 1
   },
   {
+   "columns": 1,
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Project",
-   "mandatory_depends_on": "eval:doc.purchase_invoice",
    "options": "Project"
   },
   {
-   "columns": 2,
    "fetch_from": "project.project_name",
    "fieldname": "project_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Project Name"
+  },
+  {
+   "columns": 2,
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Paid Amount"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-24 13:38:45.988203",
+ "modified": "2024-02-07 16:25:11.647917",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "RFP Supplier Details",

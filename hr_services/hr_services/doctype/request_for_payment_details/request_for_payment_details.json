@@ -13,7 +13,8 @@
   "column_break_nht8u",
   "employee_no",
   "employee_name",
-  "amount"
+  "amount",
+  "remarks"
  ],
  "fields": [
   {
@@ -73,12 +74,17 @@
   {
    "fieldname": "column_break_nht8u",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-01-24 14:05:04.901735",
+ "modified": "2024-02-07 16:24:17.832209",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request for Payment Details",

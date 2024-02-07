@@ -163,7 +163,6 @@
    "label": "Is Invoice Optional"
   },
   {
-   "depends_on": "eval:doc.is_invoice_optional == 1",
    "fieldname": "invoice_to_client",
    "fieldtype": "Select",
    "label": "Invoice to Client",
@@ -205,7 +204,7 @@
    "link_fieldname": "custom_request_for_payment"
   }
  ],
- "modified": "2024-02-05 14:35:26.829305",
+ "modified": "2024-02-07 15:54:38.746030",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

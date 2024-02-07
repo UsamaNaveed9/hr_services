@@ -15,7 +15,8 @@
   "column_break_nht8u",
   "emp_rate",
   "working_days",
-  "amount"
+  "amount",
+  "remarks"
  ],
  "fields": [
   {
@@ -85,12 +86,17 @@
    "in_list_view": 1,
    "label": "PO Mgt",
    "options": "PO Management"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-01 14:45:28.493633",
+ "modified": "2024-02-07 16:25:36.844316",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "RFP Part Timer Details",

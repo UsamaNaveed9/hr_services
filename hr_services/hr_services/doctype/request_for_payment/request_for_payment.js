@@ -149,7 +149,7 @@ frappe.ui.form.on("RFP Supplier Details", {
 
 						let total = 0;
 						for(let i in frm.doc.invoices){
-							total += frm.doc.invoices[i].outstanding_amount;
+							total += frm.doc.invoices[i].paid_amount;
 						}
 						frm.set_value("total_amount", total);
 						frm.refresh();
@@ -158,10 +158,27 @@ frappe.ui.form.on("RFP Supplier Details", {
             });
 		}
 	},
+	paid_amount:function(frm,cdt,cdn){
+		let row = locals[cdt][cdn]
+		if(row.outstanding_amount && row.paid_amount > row.outstanding_amount){
+			row.paid_amount = 0;
+			frappe.msgprint({
+				title: __('Error'),
+				indicator: 'red',
+				message: __('Paid Amount cannot be greater than Outstanding amount')
+			});
+		}
+		let total = 0;
+		for(let i in frm.doc.invoices){
+			total += frm.doc.invoices[i].paid_amount;
+		}
+		frm.set_value("total_amount", total);
+		frm.refresh();
+	},
 	invoices_remove(frm,cdt,cdn){
 		let total = 0;
 		for(let i in frm.doc.invoices){
-			total += frm.doc.invoices[i].outstanding_amount;
+			total += frm.doc.invoices[i].paid_amount;
 		}
 		frm.set_value("total_amount", total);
 		frm.refresh();
