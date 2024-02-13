@@ -1,0 +1,41 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2024-02-13 09:26:18.935916",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Request For Payment",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>Request For Payment</h3>",
+ "modified": "2024-02-13 10:02:43.403093",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "RFP Email Notification",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "condition": "doc.workflow_state == \"Pending for REC MGR Approval\"",
+   "receiver_by_role": "REC EXP Approver"
+  },
+  {
+   "condition": "doc.workflow_state == \"Pending for HRM Approval\"",
+   "receiver_by_role": "OPE EXP Approver"
+  },
+  {
+   "condition": "doc.workflow_state == \"Pending for FM Approval\"",
+   "receiver_by_document_field": "",
+   "receiver_by_role": "FM Req Approver"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "ERP Notification",
+ "sender_email": "erc.notify@gmail.com",
+ "subject": "Actions Required on Request For Payment: {{ doc.name }}",
+ "value_changed": "workflow_state"
+}
