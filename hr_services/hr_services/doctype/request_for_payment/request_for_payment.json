@@ -163,6 +163,7 @@
    "label": "Is Invoice Optional"
   },
   {
+   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1",
    "fieldname": "invoice_to_client",
    "fieldtype": "Select",
    "label": "Invoice to Client",
@@ -170,6 +171,7 @@
    "permlevel": 2
   },
   {
+   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1",
    "fieldname": "select_bank",
    "fieldtype": "Link",
    "label": "Select Bank",
@@ -204,7 +206,7 @@
    "link_fieldname": "custom_request_for_payment"
   }
  ],
- "modified": "2024-02-07 15:54:38.746030",
+ "modified": "2024-02-13 14:32:14.467601",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

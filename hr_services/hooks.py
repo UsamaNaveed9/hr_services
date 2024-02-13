@@ -135,6 +135,9 @@ doc_events = {
     },
     "Sales Invoice": {
         "on_submit": "hr_services.custompy.sales_invoice.new_rec"
+    },
+    "Purchase Invoice": {
+        "validate": "hr_services.custompy.purchase_invoice.check_inv"
     }
 }
 

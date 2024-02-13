@@ -204,6 +204,7 @@ class RequestForPayment(Document):
 				ln = frappe.new_doc("Loan")
 				ln.applicant_type = "Employee"
 				ln.applicant = adv.employee_no
+				ln.applicant_name = adv.employee_name
 				ln.posting_date = self.date
 				ln.repay_from_salary = 1
 				ln.loan_type = adv.advance_type
