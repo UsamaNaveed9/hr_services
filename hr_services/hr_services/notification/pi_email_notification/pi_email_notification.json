@@ -1,0 +1,37 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2024-02-13 16:57:41.946050",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Purchase Invoice",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"Purchase Invoice\")}}</h3>\n\n<p>{{ _(\"Please Take an Action on Purchase Invoice: \") }} {{ doc.name }}</p>\n\n{% set doc_link = frappe.utils.get_url_to_form('Purchase Invoice', doc.name) %} \n\n<a href=\"{{ doc_link }}\">Click Here</a> \n\n<p>Thank you, good day!</p>\n",
+ "modified": "2024-02-13 16:59:34.742888",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "PI Email Notification",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "condition": "doc.workflow_state == \"Pending for HRM Approval\"",
+   "receiver_by_role": "OPE EXP Approver"
+  },
+  {
+   "condition": "doc.workflow_state == \"Pending for FM Approval\"",
+   "receiver_by_document_field": "",
+   "receiver_by_role": "FM Req Approver"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "ERP Notification",
+ "sender_email": "erc.notify@gmail.com",
+ "subject": "Actions Required on Purchase Invoice",
+ "value_changed": "workflow_state"
+}
