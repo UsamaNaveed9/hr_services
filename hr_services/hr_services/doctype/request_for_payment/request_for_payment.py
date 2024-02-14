@@ -103,12 +103,20 @@ class RequestForPayment(Document):
 					si.is_pos = 0
 
 					pur_doc = frappe.get_doc("Purchase Invoice",inv.purchase_invoice)
+					#getting the tax rate if tax applied on invoice
+					tax_rate = 0
+					if pur_doc.taxes:
+						tax_rate = pur_doc.taxes[0].rate
+
 					items = pur_doc.items
 					for inv_it in items:
 						si_item = frappe.new_doc("Sales Invoice Item")
 						si_item.item_code = inv_it.item_code
 						si_item.qty = inv_it.qty
-						si_item.rate = inv_it.rate
+						if tax_rate > 0:
+							si_item.rate = inv_it.rate + (inv_it.rate * (tax_rate / 100))
+						else:	
+							si_item.rate = inv_it.rate
 						si_item.employee_id = inv_it.employee_no
 						si_item.employee_name = inv_it.employee_name
 						si.append("items", si_item)
@@ -159,6 +167,7 @@ class RequestForPayment(Document):
 					si.issue_date = self.date
 					si.project = self.project
 					si.is_pos = 0
+					si.po_no = emp.po_no
 
 					si_item = frappe.new_doc("Sales Invoice Item")
 					si_item.item_code = 34
