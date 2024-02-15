@@ -87,16 +87,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_item.qty = 1
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+			
+			housing_adv_loan = 0
+			sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+			if sslp_doc.loans:
+				for loan in sslp_doc.loans:
+					if loan.loan_type == "Housing Advance":
+						housing_adv_loan = housing_adv_loan + loan.total_payment
+
 			if nationality == "Saudi Arabia" and added_to_gosi == 1:
 				basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 				housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				si_item.rate = net_pay + loan_repay + ((basic + housing) * 0.0975)
+				si_item.rate = net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975)
 			else:
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				si_item.rate = net_pay + loan_repay
+				si_item.rate = net_pay + loan_repay - housing_adv_loan
 				
 			si_item.employee_id = emp["employee"]
 			si_item.employee_name = emp["employee_name"]
@@ -166,16 +174,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_item.qty = 1
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+			housing_adv_loan = 0
+			sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+			if sslp_doc.loans:
+				for loan in sslp_doc.loans:
+					if loan.loan_type == "Housing Advance":
+						housing_adv_loan = housing_adv_loan + loan.total_payment
+
 			if nationality == "Saudi Arabia" and added_to_gosi == 1:
 				basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 				housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				total_mp = net_pay + loan_repay + ((basic + housing) * 0.0975)
+				total_mp = net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975)
 			else:
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				total_mp = net_pay + loan_repay
+				total_mp = net_pay + loan_repay - housing_adv_loan
 				
 			si_item.employee_id = emp["employee"]
 			si_item.employee_name = emp["employee_name"]
@@ -230,16 +246,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		for emp in emps:
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+			housing_adv_loan = 0
+			sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+			if sslp_doc.loans:
+				for loan in sslp_doc.loans:
+					if loan.loan_type == "Housing Advance":
+						housing_adv_loan = housing_adv_loan + loan.total_payment
+
 			if nationality == "Saudi Arabia" and added_to_gosi == 1:
 				basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 				housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				total_mp = total_mp + (net_pay + loan_repay + ((basic + housing) * 0.0975))
+				total_mp = total_mp + (net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975))
 			else:
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				total_mp = total_mp + net_pay + loan_repay
+				total_mp = total_mp + net_pay + loan_repay - housing_adv_loan
 
 			if nationality == "Saudi Arabia":
 				basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
@@ -289,9 +313,16 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		total_mp = 0
 
 		for emp in emps:
+			housing_adv_loan = 0
+			sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+			if sslp_doc.loans:
+				for loan in sslp_doc.loans:
+					if loan.loan_type == "Housing Advance":
+						housing_adv_loan = housing_adv_loan + loan.total_payment
+
 			net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 			loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-			total_mp = total_mp + net_pay + loan_repay
+			total_mp = total_mp + net_pay + loan_repay - housing_adv_loan
 			total_mp = total_mp + frappe.db.get_value("Employee", {"name":emp["employee"]}, "custom_elite_monthly_fee")
 
 		si_item = frappe.new_doc("Sales Invoice Item")
@@ -346,16 +377,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si_item.qty = 1
 					nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 					added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+					housing_adv_loan = 0
+					sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+					if sslp_doc.loans:
+						for loan in sslp_doc.loans:
+							if loan.loan_type == "Housing Advance":
+								housing_adv_loan = housing_adv_loan + loan.total_payment
+
 					if nationality == "Saudi Arabia" and added_to_gosi == 1:
 						basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 						housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 						loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-						si_item.rate = net_pay + loan_repay + ((basic + housing) * 0.0975)
+						si_item.rate = net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975)
 					else:
 						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 						loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-						si_item.rate = net_pay + loan_repay
+						si_item.rate = net_pay + loan_repay - housing_adv_loan
 						
 					si_item.employee_id = emp["employee"]
 					si_item.employee_name = emp["employee_name"]
@@ -425,16 +464,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_item.qty = 1
 			nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 			added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+			housing_adv_loan = 0
+			sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+			if sslp_doc.loans:
+				for loan in sslp_doc.loans:
+					if loan.loan_type == "Housing Advance":
+						housing_adv_loan = housing_adv_loan + loan.total_payment
+
 			if nationality == "Saudi Arabia" and added_to_gosi == 1:
 				basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 				housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				si_item.rate = net_pay + loan_repay + ((basic + housing) * 0.0975)
+				si_item.rate = net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975)
 			else:
 				net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 				loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-				si_item.rate = net_pay + loan_repay
+				si_item.rate = net_pay + loan_repay - housing_adv_loan
 				
 			si_item.employee_id = emp["employee"]
 			si_item.employee_name = emp["employee_name"]
@@ -612,16 +659,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					manpower = 0
 					nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 					added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+					housing_adv_loan = 0
+					sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+					if sslp_doc.loans:
+						for loan in sslp_doc.loans:
+							if loan.loan_type == "Housing Advance":
+								housing_adv_loan = housing_adv_loan + loan.total_payment
+
 					if nationality == "Saudi Arabia" and added_to_gosi == 1:
 						basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 						housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 						loan_repay = float(frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment"))
-						manpower = manpower + net_pay + loan_repay + ((basic + housing) * 0.0975)
+						manpower = manpower + net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975)
 					else:
 						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 						loan_repay = float(frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment"))
-						manpower = manpower + net_pay + loan_repay
+						manpower = manpower + net_pay + loan_repay - housing_adv_loan
 
 					po_for_re = frappe.db.get_value("Employee", {"name":emp["employee"]}, "po_for_rotation_expense")
 					sc_for_rotation = ""
@@ -713,16 +768,24 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 						#manpower adding into total_mp
 						nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
 						added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+						housing_adv_loan = 0
+						sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+						if sslp_doc.loans:
+							for loan in sslp_doc.loans:
+								if loan.loan_type == "Housing Advance":
+									housing_adv_loan = housing_adv_loan + loan.total_payment
+
 						if nationality == "Saudi Arabia" and added_to_gosi == 1:
 							basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
 							housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
 							net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 							loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-							total_mp = total_mp + (net_pay + loan_repay + ((basic + housing) * 0.0975))
+							total_mp = total_mp + (net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975))
 						else:
 							net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
 							loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
-							total_mp = total_mp + net_pay + loan_repay
+							total_mp = total_mp + net_pay + loan_repay - housing_adv_loan
 						#gosi adding into total_mp
 						if nationality == "Saudi Arabia":
 							basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
@@ -769,7 +832,9 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 							sal_slip.invoice_created = 1
 							sal_slip.save(ignore_permissions=True)
 						status = True
-	#for misk client 
+	
+	
+	#only for misk client 
 	if project == "PROJ-0001":
 		for emp in emps:
 			po_mgt_list = frappe.db.get_list('PO Management',
