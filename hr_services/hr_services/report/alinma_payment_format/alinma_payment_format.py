@@ -31,7 +31,6 @@ def execute(filters=None):
 		row = {
 			"salary_slip_id": ss.name,
 			"employee": ss.employee,
-			"employee_name": ss.employee_name,
 		}
 
 		emp_doc = frappe.get_doc("Employee",ss.employee)
@@ -39,6 +38,7 @@ def execute(filters=None):
 		
 		row.update(
 			{
+				"employee_name": emp_doc.custom_emp_name_in_bank,
 				"account": emp_doc.iban or emp_doc.bank_ac_no, 
 				"bank": emp_doc.bank_name,
 				"payment_method": "BANK ACCOUNT" if emp_doc.bank_name == "INMA" else "SARIE",
