@@ -18,7 +18,8 @@ def get_totals(self):
 								payroll_entry, 
 								SUM(gross_pay) as total_gross,
 						 		SUM(total_deduction) as total_deduction,
-								SUM(net_pay) as total_net_pay
+								SUM(net_pay) as total_net_pay,
+								SUM(total_loan_repayment) as total_loan_repayment
 							FROM
 								`tabSalary Slip`
 							WHERE 

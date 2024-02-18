@@ -17,7 +17,7 @@ frappe.ui.form.on('Payroll Entry', {
                     frm.set_value("custom_total_earnings", totals.total_gross);
                 }
                 if(totals.total_deduction){
-                    frm.set_value("custom_total_deductions", totals.total_deduction);
+                    frm.set_value("custom_total_deductions", totals.total_deduction + totals.total_loan_repayment);
                 }
                 if(totals.total_net_pay){
                     frm.set_value("custom_total_net_pay", totals.total_net_pay);
