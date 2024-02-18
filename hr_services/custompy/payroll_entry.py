@@ -9,9 +9,9 @@ def get_totals(self):
 	#loading the frm data
 	self = json.loads(self)
 	#adding the employee id into emps list
-	emps = []
-	for emp in self["employees"]:
-		emps.append(emp["employee"])
+	# emps = []
+	# for emp in self["employees"]:
+	# 	emps.append(emp["employee"])
 	#getting the sum of gross pay, sum of total deductions, sum of net pay of all salary slips
 	totals = frappe.db.sql("""
 							SELECT 
@@ -22,11 +22,8 @@ def get_totals(self):
 							FROM
 								`tabSalary Slip`
 							WHERE 
-								employee IN %s
-					 			AND start_date >= %s
-					 			AND docstatus != 2
-					 			AND end_date <= %s
+					 			docstatus != 2
 					 			AND payroll_entry = %s
-							""", (tuple(emps), self["start_date"], self["end_date"], self["name"]),
+							""", (self["name"]),
 							as_dict=1)
 	return totals
