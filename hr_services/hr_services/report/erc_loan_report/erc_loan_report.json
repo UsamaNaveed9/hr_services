@@ -1,0 +1,30 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2024-02-19 15:02:30.664046",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "letterhead",
+ "modified": "2024-02-19 15:02:30.664046",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "ERC Loan Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Loan",
+ "report_name": "ERC Loan Report",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Loan Manager"
+  }
+ ]
+}

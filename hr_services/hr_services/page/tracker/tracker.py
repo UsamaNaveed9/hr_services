@@ -32,4 +32,45 @@ def get_outstanding_customers():
 			if customer['name'] == draft_outstanding_amount['customer']:
 				customer['outstanding_amount'] = customer['outstanding_amount'] + draft_outstanding_amount['outstanding_amount']
 
-	return customers
+	#Fetch Client employees Total Outstanding of loans except Elite HQ and Loan type: Housing Advance
+	query = """
+		SELECT
+			(SUM(disbursed_amount) - SUM(total_amount_paid)) as total_advance_outstanding
+		FROM
+			`tabLoan`
+		WHERE
+			docstatus = 1 
+			and loan_type != 'Housing Advance' 
+			and applicant IN (
+				SELECT
+					name
+				FROM
+					`tabEmployee`
+				WHERE
+					project != 'PROJ-0018')
+			"""
+
+	# Execute the query using frappe.get_all
+	client_adv_outstanding = frappe.db.sql(query, as_dict=True)
+	
+	#Fetch Elite HQ employees Total Outstanding of loans
+	query = """
+		SELECT
+			(SUM(disbursed_amount) - SUM(total_amount_paid)) as total_advance_outstanding
+		FROM
+			`tabLoan`
+		WHERE
+			docstatus = 1
+			and applicant IN (
+				SELECT
+					name
+				FROM
+					`tabEmployee`
+				WHERE
+					project = 'PROJ-0018')
+			"""
+
+	# Execute the query using frappe.get_all
+	elite_adv_outstanding = frappe.db.sql(query, as_dict=True)
+
+	return customers,client_adv_outstanding,elite_adv_outstanding
