@@ -5,7 +5,7 @@ import frappe
 from frappe.utils import get_url_to_form
 
 def new_rec(doc, method):
-	if doc.docstatus == 1 and doc.naming_series == 'Draft-.YYYY.-':
+	if doc.docstatus == 1 and "Draft" in doc.name:
 		# Create a new Sales Invoice with a different naming series
 		new_doc = frappe.copy_doc(doc)
 		new_doc.naming_series = 'ACC-SINV-.YYYY.-'

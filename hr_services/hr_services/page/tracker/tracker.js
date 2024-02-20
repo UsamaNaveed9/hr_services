@@ -32,12 +32,14 @@ function render_customer_list(page, customers, client_outstanding_adv, elite_out
 
         if (i === 0) {
             total = total + customer.outstanding_amount;
-            row = two_button_row(customer,client_outstanding_adv)
+            adv_of = "Clients"
+            row = two_button_row(customer,client_outstanding_adv,adv_of)
             content.append(row);
         }
         else if (i === 1) {    
                 total = total + customer.outstanding_amount;
-                row = two_button_row(customer,elite_outstanding_adv)
+                adv_of = "Elite HQ"
+                row = two_button_row(customer,elite_outstanding_adv,adv_of)
                 content.append(row);
         }     
         else {
@@ -105,7 +107,7 @@ function open_loan_report() {
      window.open(url, '_blank');
 }
 
-function two_button_row(customer,outstanding_adv){
+function two_button_row(customer,outstanding_adv,adv_of){
     // Create a new row only when i is 0
     var row = $('<div style="display: flex; align-items: center; margin-bottom: -20px;"></div>');
         
@@ -121,7 +123,7 @@ function two_button_row(customer,outstanding_adv){
 
     var spaceBetweenButtons = $('<div style="width: 200px;"></div>'); // Adjust the width for desired spacing
 
-    var AdvanceButton = $('<button class="btn btn-default" style="width: 20%; font-size: large; font-weight: bold; margin-left: 10px; margin-bottom: 5px; padding: 5px 1px 5px 1px;"></button>').text('Emp Advances (Elite HQ)');
+    var AdvanceButton = $('<button class="btn btn-default" style="width: 20%; font-size: large; font-weight: bold; margin-left: 10px; margin-bottom: 5px; padding: 5px 1px 5px 1px;"></button>').text('Emp Advances (' + adv_of + ')');
 
     var RemainingAmount = $('<span style="margin-left: 30px; font-weight: bold;"></span>').text(format_currency(outstanding_adv));
     

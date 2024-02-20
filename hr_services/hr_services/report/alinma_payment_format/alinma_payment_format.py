@@ -46,7 +46,7 @@ def execute(filters=None):
 				"basic": flt(emp_doc.basic_salary) * flt(ss.exchange_rate),
 				"housing": flt(emp_doc.housing_allowance) * flt(ss.exchange_rate),
 				"other_earnings": (flt(ss.gross_pay) - flt(basic_housing)) * flt(ss.exchange_rate),
-				"deductions": flt(ss.total_deduction) * flt(ss.exchange_rate),
+				"deductions": (flt(ss.total_deduction) + flt(ss.total_loan_repayment)) * flt(ss.exchange_rate),
 			}
 		)
 
