@@ -8,7 +8,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "category_name"
+  "category_name",
+  "price"
  ],
  "fields": [
   {
@@ -16,11 +17,16 @@
    "fieldtype": "Data",
    "label": "Category Name",
    "unique": 1
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-24 09:41:38.601989",
+ "modified": "2024-02-25 16:22:44.140162",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Insurance Category",

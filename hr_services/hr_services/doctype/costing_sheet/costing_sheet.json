@@ -1,0 +1,396 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-02-25 15:41:45.692143",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "column_break_qnqia",
+  "sheet_type",
+  "costing_for",
+  "column_break_qskfi",
+  "naming_series",
+  "employee_details_section",
+  "employee_id",
+  "employee_name",
+  "column_break_4t5fl",
+  "id_or_iqama",
+  "nationality",
+  "column_break_0tflo",
+  "job_title",
+  "salary_details_section",
+  "basic",
+  "housing",
+  "column_break_wj8rt",
+  "transport",
+  "mobile",
+  "column_break_tzbva",
+  "gasoline",
+  "food",
+  "government_fee_section",
+  "gosi",
+  "transfer_fee",
+  "monthly_transfer_fee",
+  "column_break_ye4ro",
+  "iqama_fee",
+  "monthly_iqama_fee",
+  "column_break_ur2ax",
+  "wl_fee",
+  "monthly_wl_fee",
+  "employee_vacation_section",
+  "leave_per_year_in_days",
+  "leave_amt_per_month",
+  "column_break_bp0p9",
+  "vacation_entitlement",
+  "exit_re_entry",
+  "exit_re_entry_monthly",
+  "column_break_fsnww",
+  "ticket_amount",
+  "ticket_amount_monthly",
+  "employee_benefits_section",
+  "end_of_services",
+  "column_break_gutao",
+  "insurance_class",
+  "price",
+  "column_break_r1w6g",
+  "yearly_med_inc",
+  "monthly_med_inc",
+  "erc_cost_total_section",
+  "erc_fee_column",
+  "transaction_fee",
+  "column_break_xdqja",
+  "total_salary",
+  "oh_cost_total",
+  "column_break_arg7s",
+  "total_with_erc",
+  "total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "CS-.YY.-"
+  },
+  {
+   "fieldname": "sheet_type",
+   "fieldtype": "Select",
+   "label": "Sheet Type",
+   "options": "Cenomi\nACWA\nMisk"
+  },
+  {
+   "fieldname": "costing_for",
+   "fieldtype": "Select",
+   "label": "Costing For",
+   "options": "System Employee\nNew Employee"
+  },
+  {
+   "fieldname": "column_break_qnqia",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_qskfi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee_details_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Details"
+  },
+  {
+   "depends_on": "eval:doc.costing_for == \"System Employee\"",
+   "fieldname": "employee_id",
+   "fieldtype": "Link",
+   "label": "Employee ID",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fieldname": "id_or_iqama",
+   "fieldtype": "Data",
+   "label": "National ID/Iqama"
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "Country"
+  },
+  {
+   "fieldname": "job_title",
+   "fieldtype": "Data",
+   "label": "Job Title"
+  },
+  {
+   "fieldname": "column_break_4t5fl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_0tflo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "salary_details_section",
+   "fieldtype": "Section Break",
+   "label": "Salary Details"
+  },
+  {
+   "fieldname": "basic",
+   "fieldtype": "Currency",
+   "label": "Basic"
+  },
+  {
+   "fieldname": "housing",
+   "fieldtype": "Currency",
+   "label": "Housing"
+  },
+  {
+   "fieldname": "transport",
+   "fieldtype": "Currency",
+   "label": "Transport"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Currency",
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "gasoline",
+   "fieldtype": "Currency",
+   "label": "Gasoline"
+  },
+  {
+   "fieldname": "food",
+   "fieldtype": "Currency",
+   "label": "Food"
+  },
+  {
+   "fieldname": "column_break_wj8rt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tzbva",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "government_fee_section",
+   "fieldtype": "Section Break",
+   "label": "Government fee"
+  },
+  {
+   "fieldname": "gosi",
+   "fieldtype": "Currency",
+   "label": "GOSI"
+  },
+  {
+   "fieldname": "transfer_fee",
+   "fieldtype": "Currency",
+   "label": "Transfer Fee"
+  },
+  {
+   "fieldname": "monthly_transfer_fee",
+   "fieldtype": "Currency",
+   "label": "Monthly Transfer Fee"
+  },
+  {
+   "fieldname": "iqama_fee",
+   "fieldtype": "Currency",
+   "label": "Iqama Fee"
+  },
+  {
+   "fieldname": "monthly_iqama_fee",
+   "fieldtype": "Currency",
+   "label": "Monthly Iqama Fee"
+  },
+  {
+   "fieldname": "column_break_ye4ro",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ur2ax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wl_fee",
+   "fieldtype": "Currency",
+   "label": "Working License Fee"
+  },
+  {
+   "fieldname": "monthly_wl_fee",
+   "fieldtype": "Currency",
+   "label": "Monthly Working License Fee"
+  },
+  {
+   "fieldname": "leave_per_year_in_days",
+   "fieldtype": "Int",
+   "label": "Leave per Year in Days"
+  },
+  {
+   "fieldname": "leave_amt_per_month",
+   "fieldtype": "Currency",
+   "label": "Annual Leave Amount per Month"
+  },
+  {
+   "fieldname": "employee_vacation_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Vacation"
+  },
+  {
+   "fieldname": "column_break_bp0p9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vacation_entitlement",
+   "fieldtype": "Select",
+   "label": "Vacation Entitlement",
+   "options": "Yearly\nEvery Two Year"
+  },
+  {
+   "fieldname": "exit_re_entry",
+   "fieldtype": "Currency",
+   "label": "Exit Re-Entry"
+  },
+  {
+   "fieldname": "exit_re_entry_monthly",
+   "fieldtype": "Currency",
+   "label": "Exit Re-Entry Monthly"
+  },
+  {
+   "fieldname": "column_break_fsnww",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ticket_amount",
+   "fieldtype": "Currency",
+   "label": "Ticket Amount"
+  },
+  {
+   "fieldname": "ticket_amount_monthly",
+   "fieldtype": "Currency",
+   "label": "Ticket Amount Monthly"
+  },
+  {
+   "fieldname": "employee_benefits_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Benefits"
+  },
+  {
+   "fieldname": "end_of_services",
+   "fieldtype": "Currency",
+   "label": "End of Services"
+  },
+  {
+   "fieldname": "insurance_class",
+   "fieldtype": "Link",
+   "label": "Insurance Class",
+   "options": "Insurance Category"
+  },
+  {
+   "fetch_from": "insurance_class.price",
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "column_break_gutao",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "yearly_med_inc",
+   "fieldtype": "Currency",
+   "label": "Yearly Medical Insurance"
+  },
+  {
+   "fieldname": "monthly_med_inc",
+   "fieldtype": "Currency",
+   "label": "Monthly Medical Insurance"
+  },
+  {
+   "fieldname": "column_break_r1w6g",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "erc_cost_total_section",
+   "fieldtype": "Section Break",
+   "label": "ERC Cost & Totals"
+  },
+  {
+   "fieldname": "erc_fee_column",
+   "fieldtype": "Currency",
+   "label": "ERC Fee"
+  },
+  {
+   "fieldname": "transaction_fee",
+   "fieldtype": "Currency",
+   "label": "Transaction Fee"
+  },
+  {
+   "fieldname": "column_break_xdqja",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_salary",
+   "fieldtype": "Currency",
+   "label": "Total Salary"
+  },
+  {
+   "fieldname": "oh_cost_total",
+   "fieldtype": "Currency",
+   "label": "OH Cost Total"
+  },
+  {
+   "fieldname": "column_break_arg7s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_with_erc",
+   "fieldtype": "Currency",
+   "label": "Total Including ERC Fee"
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost"
+  },
+  {
+   "default": "Now",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-25 16:32:24.803779",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Costing Sheet",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
