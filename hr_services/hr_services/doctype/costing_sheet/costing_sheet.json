@@ -37,6 +37,7 @@
   "transfer_fee",
   "monthly_transfer_fee",
   "column_break_ye4ro",
+  "transaction_fee",
   "iqama_fee",
   "monthly_iqama_fee",
   "column_break_ur2ax",
@@ -56,18 +57,16 @@
   "end_of_services",
   "column_break_gutao",
   "insurance_class",
-  "price",
   "column_break_r1w6g",
   "yearly_med_inc",
   "monthly_med_inc",
   "erc_cost_total_section",
-  "erc_fee_column",
-  "transaction_fee",
-  "column_break_xdqja",
   "total_salary",
   "oh_cost_total",
-  "column_break_arg7s",
+  "column_break_xdqja",
+  "erc_fee",
   "total_with_erc",
+  "column_break_arg7s",
   "total_cost"
  ],
  "fields": [
@@ -127,8 +126,9 @@
   },
   {
    "fieldname": "job_title",
-   "fieldtype": "Data",
-   "label": "Job Title"
+   "fieldtype": "Link",
+   "label": "Job Title",
+   "options": "Designation"
   },
   {
    "fieldname": "column_break_4t5fl",
@@ -184,7 +184,7 @@
   {
    "fieldname": "government_fee_section",
    "fieldtype": "Section Break",
-   "label": "Government fee"
+   "label": "Government & Bank fees"
   },
   {
    "fieldname": "gosi",
@@ -295,12 +295,6 @@
    "options": "Insurance Category"
   },
   {
-   "fetch_from": "insurance_class.price",
-   "fieldname": "price",
-   "fieldtype": "Currency",
-   "label": "Price"
-  },
-  {
    "fieldname": "column_break_gutao",
    "fieldtype": "Column Break"
   },
@@ -322,11 +316,6 @@
    "fieldname": "erc_cost_total_section",
    "fieldtype": "Section Break",
    "label": "ERC Cost & Totals"
-  },
-  {
-   "fieldname": "erc_fee_column",
-   "fieldtype": "Currency",
-   "label": "ERC Fee"
   },
   {
    "fieldname": "transaction_fee",
@@ -354,7 +343,7 @@
   {
    "fieldname": "total_with_erc",
    "fieldtype": "Currency",
-   "label": "Total Including ERC Fee"
+   "label": "Total OH Including ERC Fee"
   },
   {
    "fieldname": "total_cost",
@@ -366,11 +355,16 @@
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date"
+  },
+  {
+   "fieldname": "erc_fee",
+   "fieldtype": "Currency",
+   "label": "ERC Fee"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-25 16:32:24.803779",
+ "modified": "2024-02-26 18:20:32.835449",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Costing Sheet",
