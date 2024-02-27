@@ -2,6 +2,15 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Costing Sheet', {
+	onload: function(frm){
+		if(frm.is_new()){
+			frm.set_value("transfer_fee",2000);
+			frm.set_value("transaction_fee",5);
+			frm.set_value("iqama_fee",650);
+			frm.set_value("wl_fee",9700);
+			frm.set_value("exit_re_entry",200);
+		}
+	},
 	employee_id: function(frm) {
 		if(frm.doc.employee_id){
 			frappe.call({
@@ -58,6 +67,12 @@ frappe.ui.form.on('Costing Sheet', {
 	mobile: function(frm){
 		calc_total_salary(frm);
 	},
+	vt_allowance: function(frm){
+		calc_total_salary(frm);
+	},
+	neom_allowance: function(frm){
+		calc_total_salary(frm);
+	},
 	gasoline: function(frm){
 		calc_total_salary(frm);
 	},
@@ -96,6 +111,9 @@ frappe.ui.form.on('Costing Sheet', {
 		calc_Monthly_exitRE_TicktAmt(frm);
 		calc_oh_cost_total(frm);
 	},
+	relocation_allowance: function(frm){
+		calc_oh_cost_total(frm);
+	},
 	insurance_class: function(frm){
 		if(frm.doc.insurance_class){
 			frappe.call({
@@ -115,9 +133,11 @@ frappe.ui.form.on('Costing Sheet', {
 			});
 		}
 	},
+	recruitment_cost: function(frm){
+		calc_oh_cost_total(frm);
+	},
 	erc_fee: function(frm){
-		frm.set_value("total_with_erc", (frm.doc.oh_cost_total || 0) + (frm.doc.erc_fee || 0));
-		frm.set_value("total_cost", (frm.doc.total_salary || 0) + (frm.doc.total_with_erc || 0));
+		calc_totals(frm);
 	}
 });
 
@@ -143,8 +163,19 @@ function calc_Monthly_exitRE_TicktAmt(frm){
 
 //function for calculationg total salary of employee
 function calc_total_salary(frm){
-	let total_salary = (frm.doc.basic || 0) + (frm.doc.housing || 0) + (frm.doc.transport || 0) + (frm.doc.mobile || 0) + (frm.doc.gasoline || 0) + (frm.doc.food || 0);
+	let total_salary = 0;
+
+	total_salary += frm.doc.basic ?? 0;
+	total_salary += frm.doc.housing ?? 0;
+	total_salary += frm.doc.transport ?? 0;
+	total_salary += frm.doc.mobile ?? 0;
+	total_salary += frm.doc.vt_allowance ?? 0;
+	total_salary += frm.doc.neom_allowance ?? 0;
+	total_salary += frm.doc.gasoline ?? 0;
+	total_salary += frm.doc.food ?? 0;
+
 	frm.set_value("total_salary", total_salary);
+	calc_totals(frm);
 }
 
 //calculating gosi and end of services on the basis of basic and housing 
@@ -179,10 +210,28 @@ function calc_oh_cost_total(frm){
     total_oh_cost += frm.doc.exit_re_entry_monthly ?? 0;
     total_oh_cost += frm.doc.ticket_amount_monthly ?? 0;
     total_oh_cost += frm.doc.end_of_services ?? 0;
+	total_oh_cost += frm.doc.relocation_allowance ?? 0;
 
     total_oh_cost += frm.doc.monthly_med_inc ?? 0;
+	total_oh_cost += frm.doc.recruitment_cost ?? 0;
 
     frm.set_value("oh_cost_total", total_oh_cost);
-    console.log(total_oh_cost);
+	calc_totals(frm);
+    //console.log(total_oh_cost);
     frm.refresh();
+}
+
+//calculating totals
+function calc_totals(frm){
+	let total_with_erc = 0;
+	total_with_erc += frm.doc.oh_cost_total ?? 0;
+	total_with_erc += frm.doc.erc_fee ?? 0;
+
+	frm.set_value("total_with_erc", total_with_erc);
+
+	let total_cost = 0;
+	total_cost += frm.doc.total_salary ?? 0;
+	total_cost += frm.doc.total_with_erc ?? 0;
+	
+	frm.set_value("total_cost", total_cost);
 }

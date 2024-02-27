@@ -43,7 +43,7 @@ frappe.query_reports["ERC Loan Report"] = {
 		},
 		{
 			"fieldname":"to_date",
-			"label": __("From Date"),
+			"label": __("To Date"),
 			"fieldtype": "Date",
 		},
 	]

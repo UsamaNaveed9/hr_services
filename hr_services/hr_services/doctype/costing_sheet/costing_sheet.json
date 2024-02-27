@@ -26,9 +26,11 @@
   "salary_details_section",
   "basic",
   "housing",
-  "column_break_wj8rt",
   "transport",
+  "column_break_wj8rt",
   "mobile",
+  "vt_allowance",
+  "neom_allowance",
   "column_break_tzbva",
   "gasoline",
   "food",
@@ -55,12 +57,14 @@
   "ticket_amount_monthly",
   "employee_benefits_section",
   "end_of_services",
+  "relocation_allowance",
   "column_break_gutao",
   "insurance_class",
   "column_break_r1w6g",
   "yearly_med_inc",
   "monthly_med_inc",
   "erc_cost_total_section",
+  "recruitment_cost",
   "total_salary",
   "oh_cost_total",
   "column_break_xdqja",
@@ -189,7 +193,8 @@
   {
    "fieldname": "gosi",
    "fieldtype": "Currency",
-   "label": "GOSI"
+   "label": "GOSI",
+   "read_only": 1
   },
   {
    "fieldname": "transfer_fee",
@@ -199,7 +204,8 @@
   {
    "fieldname": "monthly_transfer_fee",
    "fieldtype": "Currency",
-   "label": "Monthly Transfer Fee"
+   "label": "Monthly Transfer Fee",
+   "read_only": 1
   },
   {
    "fieldname": "iqama_fee",
@@ -209,7 +215,8 @@
   {
    "fieldname": "monthly_iqama_fee",
    "fieldtype": "Currency",
-   "label": "Monthly Iqama Fee"
+   "label": "Monthly Iqama Fee",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ye4ro",
@@ -227,7 +234,8 @@
   {
    "fieldname": "monthly_wl_fee",
    "fieldtype": "Currency",
-   "label": "Monthly Working License Fee"
+   "label": "Monthly Working License Fee",
+   "read_only": 1
   },
   {
    "fieldname": "leave_per_year_in_days",
@@ -237,7 +245,8 @@
   {
    "fieldname": "leave_amt_per_month",
    "fieldtype": "Currency",
-   "label": "Annual Leave Amount per Month"
+   "label": "Annual Leave Amount per Month",
+   "read_only": 1
   },
   {
    "fieldname": "employee_vacation_section",
@@ -262,7 +271,8 @@
   {
    "fieldname": "exit_re_entry_monthly",
    "fieldtype": "Currency",
-   "label": "Exit Re-Entry Monthly"
+   "label": "Exit Re-Entry Monthly",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_fsnww",
@@ -276,7 +286,8 @@
   {
    "fieldname": "ticket_amount_monthly",
    "fieldtype": "Currency",
-   "label": "Ticket Amount Monthly"
+   "label": "Ticket Amount Monthly",
+   "read_only": 1
   },
   {
    "fieldname": "employee_benefits_section",
@@ -286,7 +297,8 @@
   {
    "fieldname": "end_of_services",
    "fieldtype": "Currency",
-   "label": "End of Services"
+   "label": "End of Services",
+   "read_only": 1
   },
   {
    "fieldname": "insurance_class",
@@ -301,12 +313,14 @@
   {
    "fieldname": "yearly_med_inc",
    "fieldtype": "Currency",
-   "label": "Yearly Medical Insurance"
+   "label": "Yearly Medical Insurance",
+   "read_only": 1
   },
   {
    "fieldname": "monthly_med_inc",
    "fieldtype": "Currency",
-   "label": "Monthly Medical Insurance"
+   "label": "Monthly Medical Insurance",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_r1w6g",
@@ -329,12 +343,14 @@
   {
    "fieldname": "total_salary",
    "fieldtype": "Currency",
-   "label": "Total Salary"
+   "label": "Total Salary",
+   "read_only": 1
   },
   {
    "fieldname": "oh_cost_total",
    "fieldtype": "Currency",
-   "label": "OH Cost Total"
+   "label": "OH Cost Total",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_arg7s",
@@ -343,12 +359,14 @@
   {
    "fieldname": "total_with_erc",
    "fieldtype": "Currency",
-   "label": "Total OH Including ERC Fee"
+   "label": "Total OH Including ERC Fee",
+   "read_only": 1
   },
   {
    "fieldname": "total_cost",
    "fieldtype": "Currency",
-   "label": "Total Cost"
+   "label": "Total Cost",
+   "read_only": 1
   },
   {
    "default": "Now",
@@ -360,11 +378,35 @@
    "fieldname": "erc_fee",
    "fieldtype": "Currency",
    "label": "ERC Fee"
+  },
+  {
+   "depends_on": "eval:doc.sheet_type == \"ACWA\"",
+   "fieldname": "vt_allowance",
+   "fieldtype": "Currency",
+   "label": "Vacation Travel Allowance"
+  },
+  {
+   "depends_on": "eval:doc.sheet_type == \"ACWA\"",
+   "fieldname": "neom_allowance",
+   "fieldtype": "Currency",
+   "label": "NEOM Allowance"
+  },
+  {
+   "depends_on": "eval:doc.sheet_type == \"ACWA\"",
+   "fieldname": "relocation_allowance",
+   "fieldtype": "Currency",
+   "label": "Relocation Allowance"
+  },
+  {
+   "depends_on": "eval:doc.sheet_type == \"ACWA\"",
+   "fieldname": "recruitment_cost",
+   "fieldtype": "Currency",
+   "label": "Recruitment Cost"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-26 18:20:32.835449",
+ "modified": "2024-02-27 16:33:55.251766",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Costing Sheet",
