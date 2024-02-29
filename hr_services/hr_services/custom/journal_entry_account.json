@@ -1,0 +1,32 @@
+{
+ "custom_fields": [],
+ "custom_perms": [],
+ "doctype": "Journal Entry Account",
+ "links": [],
+ "property_setters": [
+  {
+   "_assign": null,
+   "_comments": null,
+   "_liked_by": null,
+   "_user_tags": null,
+   "creation": "2024-02-28 15:30:52.509291",
+   "default_value": null,
+   "doc_type": "Journal Entry Account",
+   "docstatus": 0,
+   "doctype_or_field": "DocField",
+   "field_name": "reference_type",
+   "idx": 0,
+   "is_system_generated": 0,
+   "modified": "2024-02-28 15:30:52.509291",
+   "modified_by": "Administrator",
+   "module": null,
+   "name": "Journal Entry Account-reference_type-options",
+   "owner": "Administrator",
+   "property": "options",
+   "property_type": "Text",
+   "row_name": null,
+   "value": "\nSales Invoice\nPurchase Invoice\nJournal Entry\nSales Order\nPurchase Order\nExpense Claim\nAsset\nLoan\nPayroll Entry\nEmployee Advance\nExchange Rate Revaluation\nInvoice Discounting\nFees\nFull and Final Statement\nPayment Entry\nRequest For Payment"
+  }
+ ],
+ "sync_on_migrate": 1
+}

@@ -63,6 +63,21 @@
   "column_break_r1w6g",
   "yearly_med_inc",
   "monthly_med_inc",
+  "family_benefits_section",
+  "applicable",
+  "for_wife",
+  "wife_med_ins_yearly",
+  "wife_med_ins_monthly",
+  "column_break_petna",
+  "for_childs",
+  "no_of_children",
+  "chs_med_ins_yearly",
+  "chs_med_ins_monthly",
+  "column_break_l7zlt",
+  "family_ta_yearly",
+  "family_ta_monthly",
+  "family_exit_re_yearly",
+  "family_exit_re_monthly",
   "erc_cost_total_section",
   "recruitment_cost",
   "total_salary",
@@ -402,11 +417,96 @@
    "fieldname": "recruitment_cost",
    "fieldtype": "Currency",
    "label": "Recruitment Cost"
+  },
+  {
+   "fieldname": "family_benefits_section",
+   "fieldtype": "Section Break",
+   "label": "Family Benefits"
+  },
+  {
+   "fieldname": "applicable",
+   "fieldtype": "Select",
+   "label": "Applicable",
+   "options": "No\nYes"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.applicable == \"Yes\"",
+   "fieldname": "for_wife",
+   "fieldtype": "Check",
+   "label": "For Wife"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.applicable == \"Yes\"",
+   "fieldname": "for_childs",
+   "fieldtype": "Check",
+   "label": "For Childs"
+  },
+  {
+   "depends_on": "eval: doc.for_childs == 1",
+   "fieldname": "no_of_children",
+   "fieldtype": "Int",
+   "label": "No of Children"
+  },
+  {
+   "fieldname": "wife_med_ins_yearly",
+   "fieldtype": "Currency",
+   "label": "Wife Medical Insurance Yearly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wife_med_ins_monthly",
+   "fieldtype": "Currency",
+   "label": "Wife Medical Insurance Ins Monthly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_petna",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "chs_med_ins_yearly",
+   "fieldtype": "Currency",
+   "label": "Chs Medical Insurance Yearly"
+  },
+  {
+   "fieldname": "chs_med_ins_monthly",
+   "fieldtype": "Currency",
+   "label": "Chs Medical Insurance Monthly"
+  },
+  {
+   "fieldname": "column_break_l7zlt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "family_ta_yearly",
+   "fieldtype": "Currency",
+   "label": "Family Ticket Amount Yearly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "family_ta_monthly",
+   "fieldtype": "Currency",
+   "label": "Family Ticket Amount Monthly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "family_exit_re_yearly",
+   "fieldtype": "Currency",
+   "label": "Family Exit Re-Entry Yearly",
+   "read_only": 1
+  },
+  {
+   "fieldname": "family_exit_re_monthly",
+   "fieldtype": "Currency",
+   "label": "Family Exit Re-Entry Monthly",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-27 16:33:55.251766",
+ "modified": "2024-02-28 16:58:00.610783",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Costing Sheet",

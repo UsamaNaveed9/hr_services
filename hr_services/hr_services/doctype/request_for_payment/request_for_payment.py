@@ -18,12 +18,14 @@ class RequestForPayment(Document):
 					row = new_doc.append("accounts",{})
 					row.account = frappe.db.get_value("Item",{"name":it.item},"account_for_jv")
 					row.debit_in_account_currency = it.amount
+					row.reference_type = "Request For Payment"
+					row.reference_name = self.name
 
 					row = new_doc.append("accounts",{})
 					row.account = self.coa_for_jv
 					row.credit_in_account_currency = it.amount
 
-				new_doc.custom_request_for_payment = self.name
+				#new_doc.custom_request_for_payment = self.name
 				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
 				new_doc.save(ignore_permissions=True)
 				#new_doc.submit()
@@ -143,12 +145,14 @@ class RequestForPayment(Document):
 					row = new_doc.append("accounts",{})
 					row.account = "51-0101 - OPE-ME- Basic Salary - ERC"
 					row.debit_in_account_currency = it.amount
+					row.reference_type = "Request For Payment"
+					row.reference_name = self.name
 
 					row = new_doc.append("accounts",{})
 					row.account = self.coa_for_jv
 					row.credit_in_account_currency = it.amount
 
-				new_doc.custom_request_for_payment = self.name
+				#new_doc.custom_request_for_payment = self.name
 				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment"
 				new_doc.save(ignore_permissions=True)
 				#new_doc.submit()

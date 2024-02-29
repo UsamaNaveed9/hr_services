@@ -9,7 +9,9 @@
  "engine": "InnoDB",
  "field_order": [
   "category_name",
-  "price"
+  "price_for_emp",
+  "price_for_emp_wife",
+  "price_for_emp_child"
  ],
  "fields": [
   {
@@ -19,14 +21,24 @@
    "unique": 1
   },
   {
-   "fieldname": "price",
+   "fieldname": "price_for_emp",
    "fieldtype": "Currency",
-   "label": "Price"
+   "label": "Price For Emp"
+  },
+  {
+   "fieldname": "price_for_emp_wife",
+   "fieldtype": "Currency",
+   "label": "Price For Emp Wife"
+  },
+  {
+   "fieldname": "price_for_emp_child",
+   "fieldtype": "Currency",
+   "label": "Price For Emp Child"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-25 16:22:44.140162",
+ "modified": "2024-02-28 16:24:58.569128",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Insurance Category",

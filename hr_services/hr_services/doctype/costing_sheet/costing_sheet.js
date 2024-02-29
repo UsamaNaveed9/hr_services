@@ -11,6 +11,17 @@ frappe.ui.form.on('Costing Sheet', {
 			frm.set_value("exit_re_entry",200);
 		}
 	},
+	sheet_type: function(frm){
+		if(frm.doc.sheet_type == "Cenomi"){
+			frm.set_value("vt_allowance", 0);
+			frm.set_value("neom_allowance", 0);
+			frm.set_value("relocation_allowance", 0);
+			frm.set_value("recruitment_cost", 0);
+
+			calc_total_salary(frm);
+			calc_oh_cost_total(frm);
+		}
+	},
 	employee_id: function(frm) {
 		if(frm.doc.employee_id){
 			frappe.call({
@@ -101,18 +112,27 @@ frappe.ui.form.on('Costing Sheet', {
 	},
 	exit_re_entry: function(frm){
 		calc_Monthly_exitRE_TicktAmt(frm);
+		calc_family_ta_re(frm);
 		calc_oh_cost_total(frm);
 	},
 	ticket_amount: function(frm){
 		calc_Monthly_exitRE_TicktAmt(frm);
+		calc_family_ta_re(frm);
 		calc_oh_cost_total(frm);
 	},
 	vacation_entitlement: function(frm){
 		calc_Monthly_exitRE_TicktAmt(frm);
+		calc_family_ta_re(frm);
 		calc_oh_cost_total(frm);
 	},
 	relocation_allowance: function(frm){
 		calc_oh_cost_total(frm);
+	},
+	applicable: function(frm){
+		if(frm.doc.applicable == "No"){
+			frm.set_value("for_wife", 0);
+			frm.set_value("for_childs", 0);
+		}
 	},
 	insurance_class: function(frm){
 		if(frm.doc.insurance_class){
@@ -125,8 +145,63 @@ frappe.ui.form.on('Costing Sheet', {
 				callback(r) {
 					if(r.message) {
 						var d = r.message;
-						frm.set_value("yearly_med_inc", d.price);
-						frm.set_value("monthly_med_inc", d.price / 12);
+						frm.set_value("yearly_med_inc", d.price_for_emp);
+						frm.set_value("monthly_med_inc", d.price_for_emp / 12);
+						calc_oh_cost_total(frm);
+					}
+				}
+			});
+		}
+	},
+	for_wife: function(frm){
+		if(frm.doc.insurance_class && frm.doc.for_wife == 1){
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Insurance Category",
+					name: frm.doc.insurance_class,
+				},
+				callback(r) {
+					if(r.message) {
+						var d = r.message;
+						frm.set_value("wife_med_ins_yearly", d.price_for_emp_wife);
+						frm.set_value("wife_med_ins_monthly", d.price_for_emp_wife / 12);
+						calc_family_ta_re(frm);
+						calc_oh_cost_total(frm);
+					}
+				}
+			});
+		}
+		else{
+			frm.set_value("wife_med_ins_yearly", 0);
+			frm.set_value("wife_med_ins_monthly", 0);
+			calc_family_ta_re(frm);
+			calc_oh_cost_total(frm);
+		}
+	},
+	for_childs: function(frm){
+		if(frm.doc.for_childs == 0){
+			frm.set_value("no_of_children",0);
+			frm.set_value("chs_med_ins_yearly", 0);
+			frm.set_value("chs_med_ins_monthly", 0);
+			calc_family_ta_re(frm);
+			calc_oh_cost_total(frm);
+		}
+	},
+	no_of_children: function(frm){
+		if(frm.doc.insurance_class && frm.doc.for_childs == 1){
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Insurance Category",
+					name: frm.doc.insurance_class,
+				},
+				callback(r) {
+					if(r.message) {
+						var d = r.message;
+						frm.set_value("chs_med_ins_yearly", d.price_for_emp_child * frm.doc.no_of_children);
+						frm.set_value("chs_med_ins_monthly", (d.price_for_emp_child / 12) * frm.doc.no_of_children);
+						calc_family_ta_re(frm);
 						calc_oh_cost_total(frm);
 					}
 				}
@@ -159,6 +234,35 @@ function calc_Monthly_exitRE_TicktAmt(frm){
 			frm.set_value("ticket_amount_monthly", frm.doc.ticket_amount / 24 );
 		}
 	}
+}
+
+//function for family ticket amount and exit re entry
+function calc_family_ta_re(frm){
+	if(frm.doc.for_wife == 1 && frm.doc.for_childs == 0){
+		frm.set_value("family_ta_yearly", frm.doc.ticket_amount);
+		frm.set_value("family_ta_monthly", frm.doc.ticket_amount_monthly);
+		frm.set_value("family_exit_re_yearly", frm.doc.exit_re_entry);
+		frm.set_value("family_exit_re_monthly", frm.doc.exit_re_entry_monthly);
+	}
+	else if(frm.doc.for_wife == 0 && frm.doc.for_childs == 1){
+		frm.set_value("family_ta_yearly", frm.doc.ticket_amount * frm.doc.no_of_children );
+		frm.set_value("family_ta_monthly", frm.doc.ticket_amount_monthly * frm.doc.no_of_children);
+		frm.set_value("family_exit_re_yearly", frm.doc.exit_re_entry * frm.doc.no_of_children);
+		frm.set_value("family_exit_re_monthly", frm.doc.exit_re_entry_monthly * frm.doc.no_of_children);
+	}
+	else if(frm.doc.for_wife == 1 && frm.doc.for_childs == 1){
+		frm.set_value("family_ta_yearly", frm.doc.ticket_amount * (frm.doc.no_of_children + 1));
+		frm.set_value("family_ta_monthly", frm.doc.ticket_amount_monthly * (frm.doc.no_of_children + 1));
+		frm.set_value("family_exit_re_yearly", frm.doc.exit_re_entry * (frm.doc.no_of_children + 1));
+		frm.set_value("family_exit_re_monthly", frm.doc.exit_re_entry_monthly * (frm.doc.no_of_children + 1));
+	}
+	else{
+		frm.set_value("family_ta_yearly", 0);
+		frm.set_value("family_ta_monthly", 0);
+		frm.set_value("family_exit_re_yearly", 0);
+		frm.set_value("family_exit_re_monthly", 0);
+	}
+	
 }
 
 //function for calculationg total salary of employee
@@ -213,6 +317,10 @@ function calc_oh_cost_total(frm){
 	total_oh_cost += frm.doc.relocation_allowance ?? 0;
 
     total_oh_cost += frm.doc.monthly_med_inc ?? 0;
+	total_oh_cost += frm.doc.wife_med_ins_monthly ?? 0;
+	total_oh_cost += frm.doc.chs_med_ins_monthly ?? 0;
+	total_oh_cost += frm.doc.family_ta_monthly ?? 0;
+	total_oh_cost += frm.doc.family_exit_re_monthly ?? 0;
 	total_oh_cost += frm.doc.recruitment_cost ?? 0;
 
     frm.set_value("oh_cost_total", total_oh_cost);
