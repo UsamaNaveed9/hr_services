@@ -43,17 +43,17 @@ def execute(filters=None):
 				"bank": emp_doc.bank_name,
 				"payment_method": "BANK ACCOUNT" if emp_doc.bank_name == "INMA" else "SARIE",
 				"legal_no": emp_doc.iqama_national_id,
-				"basic": flt(emp_doc.basic_salary) * flt(ss.exchange_rate),
-				"housing": flt(emp_doc.housing_allowance) * flt(ss.exchange_rate),
-				"other_earnings": (flt(ss.gross_pay) - flt(basic_housing)) * flt(ss.exchange_rate),
-				"deductions": (flt(ss.total_deduction) + flt(ss.total_loan_repayment)) * flt(ss.exchange_rate),
+				"basic": round((flt(emp_doc.basic_salary) * flt(ss.exchange_rate)), 2),
+				"housing": round((flt(emp_doc.housing_allowance) * flt(ss.exchange_rate)), 2),
+				"other_earnings": round(((flt(ss.gross_pay) - flt(basic_housing)) * flt(ss.exchange_rate)), 2),
+				"deductions": round(((flt(ss.total_deduction) + flt(ss.total_loan_repayment)) * flt(ss.exchange_rate)), 2),
 			}
 		)
 
 		if currency == company_currency:
 			row.update(
 				{
-					"amount": flt(ss.net_pay) * flt(ss.exchange_rate),
+					"amount": round((flt(ss.net_pay) * flt(ss.exchange_rate)), 2),
 				}
 			)
 

@@ -9,6 +9,7 @@ frappe.ui.form.on('Costing Sheet', {
 			frm.set_value("iqama_fee",650);
 			frm.set_value("wl_fee",9700);
 			frm.set_value("exit_re_entry",200);
+			frm.set_value("salary_transfer_fee", 0.10);
 		}
 	},
 	sheet_type: function(frm){
@@ -213,6 +214,46 @@ frappe.ui.form.on('Costing Sheet', {
 	},
 	erc_fee: function(frm){
 		calc_totals(frm);
+	},
+	//Misk tab calculation and code
+	employee_id_m: function(frm) {
+		if(frm.doc.employee_id_m){
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Employee",
+					name: frm.doc.employee_id_m,
+				},
+				callback(r) {
+					if(r.message) {
+						var d = r.message;
+						//console.log(d);
+						frm.set_value("employee_name_m", d.employee_name);
+						frm.set_value("nationality_m", d.nationality);
+						frm.set_value("designation_m", d.designation);
+					}
+				}
+			});
+		}
+	},
+	monthly_pkg_amt: function(frm){
+		let daily_rate = frm.doc.monthly_pkg_amt / 30;
+		frm.set_value("daily_rate", daily_rate);
+		frm.set_value("salary_transfer_fee", 0.10);
+		frm.set_value("agency_fee", daily_rate * 0.08);
+		let total_daily_rate = frm.doc.daily_rate + frm.doc.salary_transfer_fee + frm.doc.agency_fee;
+		frm.set_value("total_daily_rate", total_daily_rate);
+	},
+	total_package: function(frm){
+		let basic = frm.doc.total_package / 1.35;
+		frm.set_value("basic_pm", basic);
+		frm.set_value("housing_pm", basic * 0.25);
+		frm.set_value("transportation_pm", basic * 0.1);
+		frm.set_value("basic_pd", basic / 30);
+		frm.set_value("housing_pd", (basic * 0.25)/30);
+		frm.set_value("transportation_pd", (basic * 0.1)/30);
+		frm.set_value("total_pm", frm.doc.basic_pm + frm.doc.housing_pm + frm.doc.transportation_pm);
+		frm.set_value("total_pd", frm.doc.basic_pd + frm.doc.housing_pd + frm.doc.transportation_pd);
 	}
 });
 

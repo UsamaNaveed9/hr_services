@@ -9,13 +9,14 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "posting_date",
-  "column_break_qnqia",
   "sheet_type",
-  "costing_for",
+  "column_break_qnqia",
+  "posting_date",
   "column_break_qskfi",
   "naming_series",
+  "cenomi_tab",
   "employee_details_section",
+  "costing_for",
   "employee_id",
   "employee_name",
   "column_break_4t5fl",
@@ -86,7 +87,41 @@
   "erc_fee",
   "total_with_erc",
   "column_break_arg7s",
-  "total_cost"
+  "total_cost",
+  "misk_tab",
+  "employment_type",
+  "costing_for_m",
+  "column_break_gpf3n",
+  "employee_id_m",
+  "employee_name_m",
+  "designation_m",
+  "column_break_3j0lv",
+  "nationality_m",
+  "full_time_section",
+  "total_package",
+  "column_break_wmnye",
+  "hidden",
+  "column_break_ekwik",
+  "hidden1",
+  "salary_details",
+  "basic_pm",
+  "housing_pm",
+  "transportation_pm",
+  "column_break_tnulm",
+  "basic_pd",
+  "housing_pd",
+  "transportation_pd",
+  "column_break_tzd1k",
+  "total_pm",
+  "total_pd",
+  "part_time_section",
+  "monthly_pkg_amt",
+  "column_break_wosjk",
+  "daily_rate",
+  "salary_transfer_fee",
+  "column_break_owfci",
+  "agency_fee",
+  "total_daily_rate"
  ],
  "fields": [
   {
@@ -105,7 +140,7 @@
    "fieldname": "costing_for",
    "fieldtype": "Select",
    "label": "Costing For",
-   "options": "System Employee\nNew Employee"
+   "options": "New Employee\nSystem Employee"
   },
   {
    "fieldname": "column_break_qnqia",
@@ -450,12 +485,14 @@
    "label": "No of Children"
   },
   {
+   "depends_on": "eval:doc.for_wife == 1",
    "fieldname": "wife_med_ins_yearly",
    "fieldtype": "Currency",
    "label": "Wife Medical Insurance Yearly",
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.for_wife == 1",
    "fieldname": "wife_med_ins_monthly",
    "fieldtype": "Currency",
    "label": "Wife Medical Insurance Ins Monthly",
@@ -466,11 +503,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval: doc.for_childs == 1",
    "fieldname": "chs_med_ins_yearly",
    "fieldtype": "Currency",
    "label": "Chs Medical Insurance Yearly"
   },
   {
+   "depends_on": "eval: doc.for_childs == 1",
    "fieldname": "chs_med_ins_monthly",
    "fieldtype": "Currency",
    "label": "Chs Medical Insurance Monthly"
@@ -480,33 +519,228 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.for_wife == 1 || doc.for_childs == 1",
    "fieldname": "family_ta_yearly",
    "fieldtype": "Currency",
    "label": "Family Ticket Amount Yearly",
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.for_wife == 1 || doc.for_childs == 1",
    "fieldname": "family_ta_monthly",
    "fieldtype": "Currency",
    "label": "Family Ticket Amount Monthly",
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.for_wife == 1 || doc.for_childs == 1",
    "fieldname": "family_exit_re_yearly",
    "fieldtype": "Currency",
    "label": "Family Exit Re-Entry Yearly",
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.for_wife == 1 || doc.for_childs == 1",
    "fieldname": "family_exit_re_monthly",
    "fieldtype": "Currency",
    "label": "Family Exit Re-Entry Monthly",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:[\"Cenomi\", \"ACWA\"].includes(doc.sheet_type)",
+   "fieldname": "cenomi_tab",
+   "fieldtype": "Tab Break",
+   "label": "Cenomi & ACWA"
+  },
+  {
+   "depends_on": "eval:doc.sheet_type == \"Misk\"",
+   "fieldname": "misk_tab",
+   "fieldtype": "Tab Break",
+   "label": "Misk"
+  },
+  {
+   "fieldname": "costing_for_m",
+   "fieldtype": "Select",
+   "label": "Costing For",
+   "options": "New Employee\nSystem Employee"
+  },
+  {
+   "depends_on": "eval:doc.costing_for_m == \"System Employee\"",
+   "fieldname": "employee_id_m",
+   "fieldtype": "Link",
+   "label": "Employee ID",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "employee_name_m",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fieldname": "designation_m",
+   "fieldtype": "Link",
+   "label": "Designation",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "nationality_m",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "Country"
+  },
+  {
+   "fieldname": "column_break_gpf3n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_3j0lv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employment_type",
+   "fieldtype": "Select",
+   "label": "Employment Type",
+   "options": "Full Time\nPart Time"
+  },
+  {
+   "depends_on": "eval:doc.employment_type == \"Full Time\"",
+   "fieldname": "full_time_section",
+   "fieldtype": "Section Break",
+   "label": "Full Time"
+  },
+  {
+   "depends_on": "eval:doc.employment_type == \"Part Time\"",
+   "fieldname": "part_time_section",
+   "fieldtype": "Section Break",
+   "label": "Part Time"
+  },
+  {
+   "fieldname": "monthly_pkg_amt",
+   "fieldtype": "Currency",
+   "label": "Monthly Package Amount"
+  },
+  {
+   "fieldname": "daily_rate",
+   "fieldtype": "Currency",
+   "label": "Daily Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "salary_transfer_fee",
+   "fieldtype": "Currency",
+   "label": "Salary Transfer Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "agency_fee",
+   "fieldtype": "Currency",
+   "label": "Agency Fee 8%",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_daily_rate",
+   "fieldtype": "Currency",
+   "label": "Total Daily Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wosjk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_owfci",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_package",
+   "fieldtype": "Currency",
+   "label": "Total Package"
+  },
+  {
+   "fieldname": "basic_pm",
+   "fieldtype": "Currency",
+   "label": "Basic P/M Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "basic_pd",
+   "fieldtype": "Currency",
+   "label": "Basic P/D Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "housing_pm",
+   "fieldtype": "Currency",
+   "label": "Housing P/M Cost 25%",
+   "read_only": 1
+  },
+  {
+   "fieldname": "housing_pd",
+   "fieldtype": "Currency",
+   "label": "Housing P/D Cost 25%",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transportation_pm",
+   "fieldtype": "Currency",
+   "label": "Transportation P/M Cost 10%",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transportation_pd",
+   "fieldtype": "Currency",
+   "label": "Transportation P/D Cost 10%",
+   "read_only": 1
+  },
+  {
+   "fieldname": "salary_details",
+   "fieldtype": "Section Break",
+   "label": "Salary Details"
+  },
+  {
+   "fieldname": "column_break_tnulm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tzd1k",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_pm",
+   "fieldtype": "Currency",
+   "label": "Total P/M Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_pd",
+   "fieldtype": "Currency",
+   "label": "Total P/D Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wmnye",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden"
+  },
+  {
+   "fieldname": "column_break_ekwik",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 16:58:00.610783",
+ "modified": "2024-03-04 16:51:03.075356",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Costing Sheet",
@@ -526,6 +760,7 @@
    "write": 1
   }
  ],
+ "search_fields": "employee_name,id_or_iqama",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
