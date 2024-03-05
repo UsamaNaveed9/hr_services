@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Request</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}},{\"id\":\"So3wP1dNqH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"gDLyTXSrp3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Tools</b></span>\",\"col\":12}},{\"id\":\"eRGLQUl3ZQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Invoices Generator\",\"col\":3}},{\"id\":\"IMy8E6UCPH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Merge Invoices Tool\",\"col\":9}},{\"id\":\"ydqkI1Y94W\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accrued Vacation Salary\",\"col\":4}},{\"id\":\"JscWbMiMUn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accrued End of Services\",\"col\":4}},{\"id\":\"2zWrSqhLL2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PO Management\",\"col\":3}},{\"id\":\"DF6bgLmL-h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Costing Sheet\",\"col\":3}},{\"id\":\"-9AVSnk5jU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"hjNI9nAglR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tracker\",\"col\":3}},{\"id\":\"kA9nwirSy0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoices Detail\",\"col\":3}},{\"id\":\"qumu-VpBUN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Alinma Payment Format\",\"col\":3}},{\"id\":\"MjhLxVgf9Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoicing Report\",\"col\":3}}]",
+ "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Request</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}},{\"id\":\"So3wP1dNqH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"gDLyTXSrp3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Tools</b></span>\",\"col\":12}},{\"id\":\"eRGLQUl3ZQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Invoices Generator\",\"col\":3}},{\"id\":\"IMy8E6UCPH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Merge Invoices Tool\",\"col\":9}},{\"id\":\"ydqkI1Y94W\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accrued Vacation Salary\",\"col\":4}},{\"id\":\"JscWbMiMUn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accrued End of Services\",\"col\":4}},{\"id\":\"2zWrSqhLL2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PO Management\",\"col\":3}},{\"id\":\"DF6bgLmL-h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Costing Sheet\",\"col\":3}},{\"id\":\"-9AVSnk5jU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"hjNI9nAglR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tracker\",\"col\":3}},{\"id\":\"kA9nwirSy0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoices Detail\",\"col\":3}},{\"id\":\"qumu-VpBUN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Alinma Payment Format\",\"col\":3}},{\"id\":\"MjhLxVgf9Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoicing Report\",\"col\":3}},{\"id\":\"ts4-mZHlbf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERC Costing Sheet\",\"col\":3}}]",
  "creation": "2024-01-21 14:40:27.949807",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Elite",
  "links": [],
- "modified": "2024-02-26 13:28:32.758230",
+ "modified": "2024-03-05 14:18:15.236087",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite",
@@ -68,6 +68,13 @@
    "doc_view": "List",
    "label": "Invoices Detail",
    "link_to": "Invoices Detail",
+   "type": "Report"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "ERC Costing Sheet",
+   "link_to": "Costing Sheet ERC",
    "type": "Report"
   },
   {

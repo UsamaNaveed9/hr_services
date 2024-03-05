@@ -114,6 +114,48 @@
   "column_break_tzd1k",
   "total_pm",
   "total_pd",
+  "insurance_cost_section",
+  "mi_class",
+  "mi_price_yearly",
+  "mi_pm",
+  "mi_pd",
+  "column_break_5vj28",
+  "for_spouse",
+  "spouse_pm",
+  "spouse_pd",
+  "column_break_xmcid",
+  "for_childs_m",
+  "no_of_children_m",
+  "childs_pm",
+  "childs_pd",
+  "other_cost_section",
+  "gosi_pm",
+  "gosi_pd",
+  "eos_pm",
+  "eos_pd",
+  "st_fee_pm",
+  "st_fee_pd",
+  "column_break_mpdhr",
+  "iqama_fee_pm",
+  "iqama_fee_pd",
+  "labor_pm",
+  "labor_pd",
+  "annual_ticket_pm",
+  "annual_ticket_pd",
+  "column_break_usnm7",
+  "wl_fee_pm",
+  "wl_fee_pd",
+  "annual_leave_pm",
+  "annual_leave_pd",
+  "totals_m",
+  "oh_pm_cost",
+  "oh_pd_cost",
+  "column_break_jbgjg",
+  "agency_fee_pm",
+  "agency_fee_pd",
+  "column_break_a085b",
+  "grand_total_pm",
+  "grand_total_pd",
   "part_time_section",
   "monthly_pkg_amt",
   "column_break_wosjk",
@@ -693,6 +735,7 @@
    "read_only": 1
   },
   {
+   "depends_on": "eval:doc.employment_type == \"Full Time\"",
    "fieldname": "salary_details",
    "fieldtype": "Section Break",
    "label": "Salary Details"
@@ -736,11 +779,239 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Hidden1"
+  },
+  {
+   "fieldname": "mi_class",
+   "fieldtype": "Link",
+   "label": "MI Class",
+   "options": "Insurance Category"
+  },
+  {
+   "fieldname": "mi_price_yearly",
+   "fieldtype": "Currency",
+   "label": "MI Price Yearly"
+  },
+  {
+   "fieldname": "mi_pm",
+   "fieldtype": "Currency",
+   "label": "MI P/M Cost"
+  },
+  {
+   "fieldname": "mi_pd",
+   "fieldtype": "Currency",
+   "label": "MI P/D Cost"
+  },
+  {
+   "fieldname": "column_break_5vj28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "for_spouse",
+   "fieldtype": "Check",
+   "label": "For Spouse"
+  },
+  {
+   "fieldname": "spouse_pm",
+   "fieldtype": "Currency",
+   "label": "Spouse P/M Cost"
+  },
+  {
+   "fieldname": "spouse_pd",
+   "fieldtype": "Currency",
+   "label": "Spouse P/D Cost"
+  },
+  {
+   "fieldname": "column_break_xmcid",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "for_childs_m",
+   "fieldtype": "Check",
+   "label": "For Childs"
+  },
+  {
+   "fieldname": "no_of_children_m",
+   "fieldtype": "Int",
+   "label": "No of Children"
+  },
+  {
+   "fieldname": "childs_pm",
+   "fieldtype": "Currency",
+   "label": "Childs P/M Cost"
+  },
+  {
+   "fieldname": "childs_pd",
+   "fieldtype": "Currency",
+   "label": "Childs P/D Cost"
+  },
+  {
+   "depends_on": "eval:doc.employment_type == \"Full Time\"",
+   "fieldname": "insurance_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Insurance Cost"
+  },
+  {
+   "depends_on": "eval:doc.employment_type == \"Full Time\"",
+   "fieldname": "other_cost_section",
+   "fieldtype": "Section Break",
+   "label": "Other Cost"
+  },
+  {
+   "fieldname": "iqama_fee_pm",
+   "fieldtype": "Currency",
+   "label": "Iqama Fee P/M"
+  },
+  {
+   "fieldname": "iqama_fee_pd",
+   "fieldtype": "Currency",
+   "label": "Iqama Fee P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "st_fee_pm",
+   "fieldtype": "Currency",
+   "label": "ST Fee P/M",
+   "read_only": 1
+  },
+  {
+   "fieldname": "st_fee_pd",
+   "fieldtype": "Currency",
+   "label": "ST Fee P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mpdhr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "labor_pm",
+   "fieldtype": "Currency",
+   "label": "Labor Card P/M"
+  },
+  {
+   "fieldname": "labor_pd",
+   "fieldtype": "Currency",
+   "label": "Labor Card P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_usnm7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wl_fee_pm",
+   "fieldtype": "Currency",
+   "label": "Working License Fee P/M"
+  },
+  {
+   "fieldname": "wl_fee_pd",
+   "fieldtype": "Currency",
+   "label": "Working License Fee P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "annual_ticket_pm",
+   "fieldtype": "Currency",
+   "label": "Annual Ticket P/M"
+  },
+  {
+   "fieldname": "annual_ticket_pd",
+   "fieldtype": "Currency",
+   "label": "Annual Ticket P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "eos_pm",
+   "fieldtype": "Currency",
+   "label": "EOS P/M",
+   "read_only": 1
+  },
+  {
+   "fieldname": "eos_pd",
+   "fieldtype": "Currency",
+   "label": "EOS P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "annual_leave_pm",
+   "fieldtype": "Currency",
+   "label": "Annual Leave P/M",
+   "read_only": 1
+  },
+  {
+   "fieldname": "annual_leave_pd",
+   "fieldtype": "Currency",
+   "label": "Annual Leave P/D",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.employment_type == \"Full Time\"",
+   "fieldname": "totals_m",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "oh_pm_cost",
+   "fieldtype": "Currency",
+   "label": "OH P/M Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "oh_pd_cost",
+   "fieldtype": "Currency",
+   "label": "OH P/D Cost",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jbgjg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "agency_fee_pm",
+   "fieldtype": "Currency",
+   "label": "Agency Fee 8% P/M",
+   "read_only": 1
+  },
+  {
+   "fieldname": "agency_fee_pd",
+   "fieldtype": "Currency",
+   "label": "Agency Fee 8% P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_a085b",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "grand_total_pm",
+   "fieldtype": "Currency",
+   "label": "Grand Total P/M",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total_pd",
+   "fieldtype": "Currency",
+   "label": "Grand Total P/D",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gosi_pm",
+   "fieldtype": "Currency",
+   "label": "GOSI P/M",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gosi_pd",
+   "fieldtype": "Currency",
+   "label": "GOSI P/D",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-04 16:51:03.075356",
+ "modified": "2024-03-05 16:37:29.337442",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Costing Sheet",

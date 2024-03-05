@@ -10,6 +10,8 @@ frappe.ui.form.on('Costing Sheet', {
 			frm.set_value("wl_fee",9700);
 			frm.set_value("exit_re_entry",200);
 			frm.set_value("salary_transfer_fee", 0.10);
+			frm.set_value("st_fee_pm", 0.10);
+			frm.set_value("st_fee_pd", 0.10);
 		}
 	},
 	sheet_type: function(frm){
@@ -236,6 +238,10 @@ frappe.ui.form.on('Costing Sheet', {
 			});
 		}
 	},
+	employment_type: function(frm){
+		frm.set_value("total_package",0);
+		frm.set_value("monthly_pkg_amt",0);
+	},
 	monthly_pkg_amt: function(frm){
 		let daily_rate = frm.doc.monthly_pkg_amt / 30;
 		frm.set_value("daily_rate", daily_rate);
@@ -254,6 +260,10 @@ frappe.ui.form.on('Costing Sheet', {
 		frm.set_value("transportation_pd", (basic * 0.1)/30);
 		frm.set_value("total_pm", frm.doc.basic_pm + frm.doc.housing_pm + frm.doc.transportation_pm);
 		frm.set_value("total_pd", frm.doc.basic_pd + frm.doc.housing_pd + frm.doc.transportation_pd);
+		calc_gosi_m(frm);
+		calc_eos_m(frm);
+		calc_annual_leave_amt_m(frm);
+		calc_oh_cost_total_m(frm);
 	}
 });
 
@@ -383,4 +393,66 @@ function calc_totals(frm){
 	total_cost += frm.doc.total_with_erc ?? 0;
 	
 	frm.set_value("total_cost", total_cost);
+}
+
+//calculating gosi and end of services on the basis of basic and housing for misk
+function calc_gosi_m(frm){
+	if(frm.doc.nationality_m == "Saudi Arabia"){
+		let gosi = (((frm.doc.basic_pm || 0) + (frm.doc.housing_pm || 0)) * 0.1175);
+		frm.set_value("gosi_pm", gosi);
+		frm.set_value("gosi_pd", gosi/30);
+		console.log(gosi);
+	}
+	else{
+		let gosi = (((frm.doc.basic_pm || 0) + (frm.doc.housing_pm || 0)) * 0.02);
+		frm.set_value("gosi_pm", gosi);
+		frm.set_value("gosi_pd", gosi/30);
+		console.log(gosi);
+	}
+}
+ 
+//calculating end of service of employee for misk
+function calc_eos_m(frm){
+	let eos_amt = (((((frm.doc.basic_pm || 0) + (frm.doc.housing_pm || 0) + (frm.doc.transportation_pm || 0)) * 2) / 3 ) / 12);
+	frm.set_value("eos_pm", eos_amt);
+	frm.set_value("eos_pd", eos_amt/30);
+}
+
+//calculating annual leave amount for misk
+function calc_annual_leave_amt_m(frm){
+	let annual_leave_amt = ((((frm.doc.basic_pm || 0) + (frm.doc.housing_pm || 0) + (frm.doc.transportation_pm || 0)) / 30 ) * 2.5);
+	frm.set_value("annual_leave_pm", annual_leave_amt);
+	frm.set_value("annual_leave_pd", annual_leave_amt/30);
+}
+
+//calculating total OH Cost on all expenses, fees, benefits of employee for misk
+function calc_oh_cost_total_m(frm){
+	let total_oh_cost_pm = 0;
+
+    total_oh_cost_pm += frm.doc.gosi_pm ?? 0;
+	total_oh_cost_pm += frm.doc.eos_pm ?? 0;
+	total_oh_cost_pm += frm.doc.st_fee_pm ?? 0;
+	total_oh_cost_pm += frm.doc.iqama_fee_pm ?? 0;
+	total_oh_cost_pm += frm.doc.labor_pm ?? 0;
+	total_oh_cost_pm += frm.doc.annual_ticket_pm ?? 0;
+	total_oh_cost_pm += frm.doc.wl_fee_pm ?? 0;
+	total_oh_cost_pm += frm.doc.annual_leave_pm ?? 0;
+	total_oh_cost_pm += frm.doc.mi_pm ?? 0;
+	total_oh_cost_pm += frm.doc.spouse_pm ?? 0;
+	total_oh_cost_pm += frm.doc.childs_pm ?? 0;
+	
+    frm.set_value("oh_pm_cost", total_oh_cost_pm);
+	frm.set_value("oh_pd_cost", total_oh_cost_pm/30);
+	
+	//calculating agency fee 8%
+	let agency_fee_pm = (frm.doc.oh_pm_cost + frm.doc.total_pm) * 0.08;
+	let agency_fee_pd = (frm.doc.oh_pd_cost + frm.doc.total_pd) * 0.08;
+
+	frm.set_value("agency_fee_pm", agency_fee_pm);
+	frm.set_value("agency_fee_pd", agency_fee_pd);
+	//calculating grand total P/M and P/D
+	frm.set_value("grand_total_pm", frm.doc.total_pm + frm.doc.oh_pm_cost + frm.doc.agency_fee_pm);
+	frm.set_value("grand_total_pd", frm.doc.total_pd + frm.doc.oh_pd_cost + frm.doc.agency_fee_pd);
+    //console.log(total_oh_cost);
+    frm.refresh();
 }
