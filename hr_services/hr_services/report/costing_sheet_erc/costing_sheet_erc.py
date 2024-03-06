@@ -4,6 +4,7 @@
 import frappe
 from frappe import _
 from frappe.utils import flt
+import copy
 
 def execute(filters=None):
 	columns = get_columns(filters)
@@ -11,14 +12,14 @@ def execute(filters=None):
 	return columns, data
 
 def get_columns(filters):
-	columns = [
-		{"label": _("Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 200},
-		{"label": _("Iqama/ID"), "fieldname": "id_or_iqama", "fieldtype": "Data", "width": 110},
-		{"label": _("Nationality"), "fieldname": "nationality", "fieldtype": "Data", "width": 110},
-		{"label": _("Job Title"), "fieldname": "job_title", "fieldtype": "Data", "width": 140},
-	]
-
 	if filters.get("sheet_type") == "Cenomi":
+		columns = [
+			{"label": _("Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 200},
+			{"label": _("Iqama/ID"), "fieldname": "id_or_iqama", "fieldtype": "Data", "width": 110},
+			{"label": _("Nationality"), "fieldname": "nationality", "fieldtype": "Data", "width": 110},
+			{"label": _("Job Title"), "fieldname": "job_title", "fieldtype": "Data", "width": 140},
+		]
+
 		field_label_mapping = {
 			"basic": "Basic",
 			"housing": "Housing",
@@ -54,6 +55,13 @@ def get_columns(filters):
 			} for field in field_label_mapping
 		])	
 	elif filters.get("sheet_type") == "ACWA":
+		columns = [
+			{"label": _("Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 200},
+			{"label": _("Iqama/ID"), "fieldname": "id_or_iqama", "fieldtype": "Data", "width": 110},
+			{"label": _("Nationality"), "fieldname": "nationality", "fieldtype": "Data", "width": 110},
+			{"label": _("Job Title"), "fieldname": "job_title", "fieldtype": "Data", "width": 140},
+		]
+
 		field_label_mapping = {
 			"basic": "Basic",
 			"housing": "Housing",
@@ -88,6 +96,63 @@ def get_columns(filters):
 				"width": 120
 			} for field in field_label_mapping
 		])
+	elif filters.get("sheet_type") == "Misk" and filters.get("emp_type") == "Full Time":
+		columns = [
+			{"label": _("Name"), "fieldname": "employee_name_m", "fieldtype": "Data", "width": 200},
+			{"label": _("Nationality"), "fieldname": "nationality_m", "fieldtype": "Data", "width": 110},
+			{"label": _("Job Title"), "fieldname": "designation_m", "fieldtype": "Data", "width": 140},
+		]
+
+		field_label_mapping = {
+			"basic_pm": "Basic Salary",
+			"housing_pm": "Housing",
+			"transportation_pm": "Transportation",
+			"mi_pm": "MI-Emp",
+			"spouse_pm": "MI-Spouse",
+			"no_of_children_m": "No of Children",
+			"childs_pm": "MI-# of Children",
+			"transfer_fee_pm": "Iqama Transfer Fee",
+			"iqama_fee_pm": "Iqama Fee",
+			"labor_pm": "Labor Card",
+			"wl_fee_pm": "Working Liecence Fee",
+			"st_fee_pm": "Salary Transfer Fees",
+			"gosi_pm": "GOSI",
+			"eos_pm": "EOS",
+			"annual_leave_pm": "Annual Leave",
+			"agency_fee_pm": "Agencey Fees 8%",
+		}
+
+		columns.extend([
+			{
+				"label": field_label_mapping[field],
+				"fieldname": field,
+				"fieldtype": "Currency",
+				"options": "currency",
+				"width": 120
+			} for field in field_label_mapping
+		])
+	elif filters.get("sheet_type") == "Misk" and filters.get("emp_type") == "Part Time":
+		columns = [
+			{"label": _("Name"), "fieldname": "employee_name_m", "fieldtype": "Data", "width": 420},
+			{"label": _("Nationality"), "fieldname": "nationality_m", "fieldtype": "Data", "width": 110},
+			{"label": _("Job Title"), "fieldname": "designation_m", "fieldtype": "Data", "width": 140},
+		]
+
+		field_label_mapping = {
+			"daily_rate": "Daily Rate",
+			"salary_transfer_fee": "Salary transfer fees",
+			"agency_fee": "Agencey Fees 8%",
+			"total_daily_rate": "Total Daily Rate"
+		}
+
+		columns.extend([
+			{
+				"label": field_label_mapping[field],
+				"fieldname": field,
+				"fieldtype": "Data",
+				"width": 120
+			} for field in field_label_mapping
+		])		
 
 	return columns
 
@@ -168,5 +233,68 @@ def get_cost_sheet_details(filters):
 			row["total_one_time_cost"] = row.transfer_fee + row.relocation_allowance + row.recruitment_cost
 			row["total_cost_per_year"] = (row.total_salary_monthly * 12) + row.total_yearly_cost + row.total_one_time_cost + row.erc_fee
 			row["vat"] = row.total_cost_per_year * 0.15
+ 		
+		return cost_details
+	
+	elif filters.get("sheet_type") == "Misk" and filters.get("emp_type") == "Full Time":
+		filter_obj.update({"sheet_type": filters.get("sheet_type")})
+		filter_obj.update({"employment_type": filters.get("emp_type")})
+
+		cost_details = frappe.get_all(
+			"Costing Sheet",
+			fields=[
+				"employee_name_m", "nationality_m", "designation_m", "basic_pm","housing_pm",
+				"transportation_pm","mi_pm","spouse_pm","no_of_children_m","childs_pm","transfer_fee_pm",
+				"iqama_fee_pm","labor_pm","wl_fee_pm","st_fee_pm","gosi_pm","eos_pm","annual_leave_pm","agency_fee_pm"
+			],
+			filters=filter_obj,
+		)
+ 		
+		return cost_details
+	
+	elif filters.get("sheet_type") == "Misk" and filters.get("emp_type") == "Part Time":
+		filter_obj.update({"sheet_type": filters.get("sheet_type")})
+		filter_obj.update({"employment_type": filters.get("emp_type")})
+
+		cost_details_data = frappe.get_all(
+			"Costing Sheet",
+			fields=[
+				"employee_name_m", "nationality_m", "designation_m", "monthly_pkg_amt", "daily_rate",
+				"salary_transfer_fee", "agency_fee", "total_daily_rate"
+			],
+			filters=filter_obj,
+		)
+		for cdd in cost_details_data:
+			# Format numeric values as currency
+			for key, value in cdd.items():
+				if isinstance(value, (int, float)):
+					cdd[key] = frappe.utils.fmt_money(value, currency="", precision=2)
+
+
+		cost_details = copy.deepcopy(cost_details_data)
+		# Append an empty row
+		cost_details.append({})
+
+		# Append a row with employee_name_m = "Keywords Guide"
+		cost_details.append({
+			"employee_name_m": "Keywords Guide"
+		})
+		# Append an empty row
+		cost_details.append({})
+
+		cost_details.append({
+			"employee_name_m": "1. Salary Tranfer will be Charged as per the bank"
+		})
+
+		cost_details.append({
+			"employee_name_m": "2. Mentioned Salary Transfer Fee Cost is Per Transaction."
+		})
+		# Append an empty row
+		cost_details.append({})
+		for row in cost_details_data:
+			msg = f"{row.monthly_pkg_amt} Monthly/30 days = {row.daily_rate} SAR"
+			cost_details.append({
+				"employee_name_m": msg
+			})
  		
 		return cost_details

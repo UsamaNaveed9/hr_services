@@ -9,9 +9,19 @@ frappe.ui.form.on('Costing Sheet', {
 			frm.set_value("iqama_fee",650);
 			frm.set_value("wl_fee",9700);
 			frm.set_value("exit_re_entry",200);
+			//for misk
 			frm.set_value("salary_transfer_fee", 0.10);
 			frm.set_value("st_fee_pm", 0.10);
 			frm.set_value("st_fee_pd", 0.10);
+			frm.set_value("iqama_fee_yearly", 650);
+			frm.set_value("iqama_fee_pm", 650/12);
+			frm.set_value("iqama_fee_pd", 650/365);
+			frm.set_value("labor_yearly", 96);
+			frm.set_value("labor_pm", 96/12);
+			frm.set_value("labor_pd", 96/365);
+			frm.set_value("wl_fee_yearly", 9700);
+			frm.set_value("wl_fee_pm", 9700/12);
+			frm.set_value("wl_fee_pd", 9700/365);
 		}
 	},
 	sheet_type: function(frm){
@@ -260,11 +270,111 @@ frappe.ui.form.on('Costing Sheet', {
 		frm.set_value("transportation_pd", (basic * 0.1)/30);
 		frm.set_value("total_pm", frm.doc.basic_pm + frm.doc.housing_pm + frm.doc.transportation_pm);
 		frm.set_value("total_pd", frm.doc.basic_pd + frm.doc.housing_pd + frm.doc.transportation_pd);
+		if(frm.doc.nationality_m != "Saudi Arabia"){
+			frm.set_value("transfer_fee_yearly", 2000);
+			frm.set_value("transfer_fee_pm", 2000/12);
+			frm.set_value("transfer_fee_pd", 2000/365);
+		}
 		calc_gosi_m(frm);
 		calc_eos_m(frm);
 		calc_annual_leave_amt_m(frm);
 		calc_oh_cost_total_m(frm);
-	}
+	},
+	st_fee_pm: function(frm){
+		frm.set_value("st_fee_pd", frm.doc.st_fee_pm);
+		calc_oh_cost_total_m(frm);
+	},
+	iqama_fee_yearly: function(frm){
+		frm.set_value("iqama_fee_pm", frm.doc.iqama_fee_yearly/12);
+		frm.set_value("iqama_fee_pd", frm.doc.iqama_fee_yearly/365);
+		calc_oh_cost_total_m(frm);
+	},
+	labor_yearly: function(frm){
+		frm.set_value("labor_pm", frm.doc.labor_yearly/12);
+		frm.set_value("labor_pd", frm.doc.labor_yearly/365);
+		calc_oh_cost_total_m(frm);
+	},
+	transfer_fee_yearly: function(frm){
+		frm.set_value("transfer_fee_pm", frm.doc.transfer_fee_yearly/12);
+		frm.set_value("transfer_fee_pd", frm.doc.transfer_fee_yearly/365);
+		calc_oh_cost_total_m(frm);
+	},
+	wl_fee_yearly: function(frm){
+		frm.set_value("wl_fee_pm", frm.doc.wl_fee_yearly/12);
+		frm.set_value("wl_fee_pd", frm.doc.wl_fee_yearly/365);
+		calc_oh_cost_total_m(frm);
+	},
+	mi_class: function(frm){
+		if(frm.doc.mi_class){
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Insurance Category",
+					name: frm.doc.mi_class,
+				},
+				callback(r) {
+					if(r.message) {
+						var d = r.message;
+						frm.set_value("mi_price_yearly", d.price_for_emp);
+						frm.set_value("mi_pm", d.price_for_emp / 12);
+						frm.set_value("mi_pd", (d.price_for_emp / 12)/30);
+						calc_oh_cost_total_m(frm);
+					}
+				}
+			});
+		}
+	},
+	for_spouse: function(frm){
+		if(frm.doc.mi_class && frm.doc.for_spouse == 1){
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Insurance Category",
+					name: frm.doc.mi_class,
+				},
+				callback(r) {
+					if(r.message) {
+						var d = r.message;
+						frm.set_value("spouse_pm", d.price_for_emp_wife / 12);
+						frm.set_value("spouse_pd", (d.price_for_emp_wife / 12) / 30);
+						calc_oh_cost_total_m(frm);
+					}
+				}
+			});
+		}
+		else{
+			frm.set_value("spouse_pm", 0);
+			frm.set_value("spouse_pd", 0);
+			calc_oh_cost_total_m(frm);
+		}
+	},
+	for_childs_m: function(frm){
+		if(frm.doc.for_childs_m == 0){
+			frm.set_value("no_of_children_m",0);
+			frm.set_value("childs_pm", 0);
+			frm.set_value("childs_pd", 0);
+			calc_oh_cost_total_m(frm);
+		}
+	},
+	no_of_children_m: function(frm){
+		if(frm.doc.mi_class && frm.doc.for_childs_m == 1){
+			frappe.call({
+				method: "frappe.client.get",
+				args: {
+					doctype: "Insurance Category",
+					name: frm.doc.mi_class,
+				},
+				callback(r) {
+					if(r.message) {
+						var d = r.message;
+						frm.set_value("childs_pm", (d.price_for_emp_child / 12) * frm.doc.no_of_children_m);
+						frm.set_value("childs_pd", ((d.price_for_emp_child / 12) * frm.doc.no_of_children_m) / 30);
+						calc_oh_cost_total_m(frm);
+					}
+				}
+			});
+		}
+	},
 });
 
 //function for calculating Monthly Exit Re-Entry(exitRE) and Ticket Amount Monthly
@@ -434,7 +544,7 @@ function calc_oh_cost_total_m(frm){
 	total_oh_cost_pm += frm.doc.st_fee_pm ?? 0;
 	total_oh_cost_pm += frm.doc.iqama_fee_pm ?? 0;
 	total_oh_cost_pm += frm.doc.labor_pm ?? 0;
-	total_oh_cost_pm += frm.doc.annual_ticket_pm ?? 0;
+	total_oh_cost_pm += frm.doc.transfer_fee_pm ?? 0;
 	total_oh_cost_pm += frm.doc.wl_fee_pm ?? 0;
 	total_oh_cost_pm += frm.doc.annual_leave_pm ?? 0;
 	total_oh_cost_pm += frm.doc.mi_pm ?? 0;

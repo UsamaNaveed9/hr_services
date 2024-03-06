@@ -13,6 +13,15 @@ frappe.query_reports["Costing Sheet ERC"] = {
 			"default": "Cenomi",
 		},
 		{
+			"fieldname": "emp_type",
+			"label": __("Employment Type"),
+			"fieldtype": "Select",
+			"options": "Full Time\nPart Time",
+			"hidden": true,  // Initially hidden
+			"depends_on": "eval:doc.sheet_type=='Misk'",
+			"default": "Full Time"
+		},
+		{
 			"fieldname":"from_date",
 			"label": __("From Date"),
 			"fieldtype": "Date",

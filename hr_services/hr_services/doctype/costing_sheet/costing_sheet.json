@@ -135,18 +135,22 @@
   "eos_pd",
   "st_fee_pm",
   "st_fee_pd",
-  "column_break_mpdhr",
-  "iqama_fee_pm",
-  "iqama_fee_pd",
-  "labor_pm",
-  "labor_pd",
-  "annual_ticket_pm",
-  "annual_ticket_pd",
-  "column_break_usnm7",
-  "wl_fee_pm",
-  "wl_fee_pd",
   "annual_leave_pm",
   "annual_leave_pd",
+  "column_break_mpdhr",
+  "iqama_fee_yearly",
+  "iqama_fee_pm",
+  "iqama_fee_pd",
+  "labor_yearly",
+  "labor_pm",
+  "labor_pd",
+  "column_break_usnm7",
+  "wl_fee_yearly",
+  "wl_fee_pm",
+  "wl_fee_pd",
+  "transfer_fee_yearly",
+  "transfer_fee_pm",
+  "transfer_fee_pd",
   "totals_m",
   "oh_pm_cost",
   "oh_pd_cost",
@@ -175,6 +179,8 @@
   {
    "fieldname": "sheet_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Sheet Type",
    "options": "Cenomi\nACWA\nMisk"
   },
@@ -464,6 +470,7 @@
    "default": "Now",
    "fieldname": "posting_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
    "label": "Posting Date"
   },
   {
@@ -787,19 +794,25 @@
    "options": "Insurance Category"
   },
   {
+   "depends_on": "eval:doc.mi_class",
    "fieldname": "mi_price_yearly",
    "fieldtype": "Currency",
-   "label": "MI Price Yearly"
+   "label": "MI Price Yearly",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.mi_class",
    "fieldname": "mi_pm",
    "fieldtype": "Currency",
-   "label": "MI P/M Cost"
+   "label": "MI P/M Cost",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.mi_class",
    "fieldname": "mi_pd",
    "fieldtype": "Currency",
-   "label": "MI P/D Cost"
+   "label": "MI P/D Cost",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_5vj28",
@@ -812,14 +825,18 @@
    "label": "For Spouse"
   },
   {
+   "depends_on": "eval:doc.for_spouse == 1",
    "fieldname": "spouse_pm",
    "fieldtype": "Currency",
-   "label": "Spouse P/M Cost"
+   "label": "Spouse P/M Cost",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.for_spouse == 1",
    "fieldname": "spouse_pd",
    "fieldtype": "Currency",
-   "label": "Spouse P/D Cost"
+   "label": "Spouse P/D Cost",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_xmcid",
@@ -832,19 +849,24 @@
    "label": "For Childs"
   },
   {
+   "depends_on": "eval:doc.for_childs_m == 1",
    "fieldname": "no_of_children_m",
    "fieldtype": "Int",
    "label": "No of Children"
   },
   {
+   "depends_on": "eval:doc.for_childs_m == 1",
    "fieldname": "childs_pm",
    "fieldtype": "Currency",
-   "label": "Childs P/M Cost"
+   "label": "Childs P/M Cost",
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.for_childs_m == 1",
    "fieldname": "childs_pd",
    "fieldtype": "Currency",
-   "label": "Childs P/D Cost"
+   "label": "Childs P/D Cost",
+   "read_only": 1
   },
   {
    "depends_on": "eval:doc.employment_type == \"Full Time\"",
@@ -861,7 +883,8 @@
   {
    "fieldname": "iqama_fee_pm",
    "fieldtype": "Currency",
-   "label": "Iqama Fee P/M"
+   "label": "Iqama Fee P/M",
+   "read_only": 1
   },
   {
    "fieldname": "iqama_fee_pd",
@@ -872,8 +895,7 @@
   {
    "fieldname": "st_fee_pm",
    "fieldtype": "Currency",
-   "label": "ST Fee P/M",
-   "read_only": 1
+   "label": "ST Fee P/M"
   },
   {
    "fieldname": "st_fee_pd",
@@ -888,7 +910,8 @@
   {
    "fieldname": "labor_pm",
    "fieldtype": "Currency",
-   "label": "Labor Card P/M"
+   "label": "Labor Card P/M",
+   "read_only": 1
   },
   {
    "fieldname": "labor_pd",
@@ -903,23 +926,13 @@
   {
    "fieldname": "wl_fee_pm",
    "fieldtype": "Currency",
-   "label": "Working License Fee P/M"
+   "label": "Working License Fee P/M",
+   "read_only": 1
   },
   {
    "fieldname": "wl_fee_pd",
    "fieldtype": "Currency",
    "label": "Working License Fee P/D",
-   "read_only": 1
-  },
-  {
-   "fieldname": "annual_ticket_pm",
-   "fieldtype": "Currency",
-   "label": "Annual Ticket P/M"
-  },
-  {
-   "fieldname": "annual_ticket_pd",
-   "fieldtype": "Currency",
-   "label": "Annual Ticket P/D",
    "read_only": 1
   },
   {
@@ -1007,11 +1020,43 @@
    "fieldtype": "Currency",
    "label": "GOSI P/D",
    "read_only": 1
+  },
+  {
+   "fieldname": "transfer_fee_pm",
+   "fieldtype": "Currency",
+   "label": "Transfer Fee PM",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transfer_fee_pd",
+   "fieldtype": "Currency",
+   "label": "Transfer Fee PD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "iqama_fee_yearly",
+   "fieldtype": "Currency",
+   "label": "Iqama Fee Yearly"
+  },
+  {
+   "fieldname": "labor_yearly",
+   "fieldtype": "Currency",
+   "label": "Labor Card Yearly"
+  },
+  {
+   "fieldname": "transfer_fee_yearly",
+   "fieldtype": "Currency",
+   "label": "Transfer Fee Yearly"
+  },
+  {
+   "fieldname": "wl_fee_yearly",
+   "fieldtype": "Currency",
+   "label": "Working License Fee Yearly"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-05 16:37:29.337442",
+ "modified": "2024-03-06 16:18:34.235976",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Costing Sheet",
