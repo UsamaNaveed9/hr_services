@@ -98,9 +98,9 @@ def get_columns(filters):
 		])
 	elif filters.get("sheet_type") == "Misk" and filters.get("emp_type") == "Full Time":
 		columns = [
-			{"label": _("Name"), "fieldname": "employee_name_m", "fieldtype": "Data", "width": 200},
-			{"label": _("Nationality"), "fieldname": "nationality_m", "fieldtype": "Data", "width": 110},
-			{"label": _("Job Title"), "fieldname": "designation_m", "fieldtype": "Data", "width": 140},
+			{"label": _("Name"), "fieldname": "employee_name_m", "fieldtype": "Data", "width": 350},
+			{"label": _("Nationality"), "fieldname": "nationality_m", "fieldtype": "Data", "width": 150},
+			{"label": _("Designation"), "fieldname": "designation_m", "fieldtype": "Data", "width": 140},
 		]
 
 		field_label_mapping = {
@@ -126,8 +126,7 @@ def get_columns(filters):
 			{
 				"label": field_label_mapping[field],
 				"fieldname": field,
-				"fieldtype": "Currency",
-				"options": "currency",
+				"fieldtype": "Data",
 				"width": 120
 			} for field in field_label_mapping
 		])
@@ -135,7 +134,7 @@ def get_columns(filters):
 		columns = [
 			{"label": _("Name"), "fieldname": "employee_name_m", "fieldtype": "Data", "width": 420},
 			{"label": _("Nationality"), "fieldname": "nationality_m", "fieldtype": "Data", "width": 110},
-			{"label": _("Job Title"), "fieldname": "designation_m", "fieldtype": "Data", "width": 140},
+			{"label": _("Designation"), "fieldname": "designation_m", "fieldtype": "Data", "width": 140},
 		]
 
 		field_label_mapping = {
@@ -150,7 +149,7 @@ def get_columns(filters):
 				"label": field_label_mapping[field],
 				"fieldname": field,
 				"fieldtype": "Data",
-				"width": 120
+				"width": 130
 			} for field in field_label_mapping
 		])		
 
@@ -240,16 +239,82 @@ def get_cost_sheet_details(filters):
 		filter_obj.update({"sheet_type": filters.get("sheet_type")})
 		filter_obj.update({"employment_type": filters.get("emp_type")})
 
-		cost_details = frappe.get_all(
+		cost_details_data = frappe.get_all(
 			"Costing Sheet",
-			fields=[
-				"employee_name_m", "nationality_m", "designation_m", "basic_pm","housing_pm",
-				"transportation_pm","mi_pm","spouse_pm","no_of_children_m","childs_pm","transfer_fee_pm",
-				"iqama_fee_pm","labor_pm","wl_fee_pm","st_fee_pm","gosi_pm","eos_pm","annual_leave_pm","agency_fee_pm"
-			],
+			fields=["*"],
 			filters=filter_obj,
 		)
- 		
+
+		for cdd in cost_details_data:
+			# Format numeric values as currency
+			for key, value in cdd.items():
+				if isinstance(value, (int, float)):
+					cdd[key] = frappe.utils.fmt_money(value, currency="", precision=2)
+
+
+		cost_details = copy.deepcopy(cost_details_data)
+		# Append an empty row
+		cost_details.append({})
+		for row in cost_details_data:
+			# Append a row with total package and salary details
+			cost_details.append({"employee_name_m": "<strong>Total Package</strong>","nationality_m":row.total_package,"designation_m":"<strong>P/M Cost</strong>","basic_pm":"<strong>P/D Cost</strong>"})
+			cost_details.append({"employee_name_m": "Basic","nationality_m":"","designation_m":row.basic_pm,"basic_pm":row.basic_pd})
+			cost_details.append({"employee_name_m": "Housing 25%","nationality_m":"","designation_m":row.housing_pm,"basic_pm":row.housing_pd})
+			cost_details.append({"employee_name_m": "Transportation 10%","nationality_m":"","designation_m":row.transportation_pm,"basic_pm":row.transportation_pd})
+			cost_details.append({"employee_name_m": "","nationality_m":"","designation_m":row.total_pm,"basic_pm":row.total_pd})
+			# Append an empty row
+			cost_details.append({})
+			# Append rows for OH Cost
+			cost_details.append({"employee_name_m": "","nationality_m":"","designation_m":"<strong>P/M Cost</strong>","basic_pm":"<strong>P/D Cost</strong>"})
+			cost_details.append({"employee_name_m": "MI Class","nationality_m":row.mi_class,"designation_m":row.mi_pm,"basic_pm":row.mi_pd})
+			cost_details.append({"employee_name_m": "MI Spouse","nationality_m":"","designation_m":row.spouse_pm,"basic_pm":row.spouse_pd})
+			cost_details.append({"employee_name_m": "MI Children","nationality_m":row.no_of_children_m,"designation_m":row.childs_pm,"basic_pm":row.childs_pd})
+			cost_details.append({"employee_name_m": "Iqama Transfer Fee","nationality_m":"","designation_m":row.transfer_fee_pm,"basic_pm":row.transfer_fee_pd})
+			cost_details.append({"employee_name_m": "Iqama Fee","nationality_m":"","designation_m":row.iqama_fee_pm,"basic_pm":row.iqama_fee_pd})
+			cost_details.append({"employee_name_m": "Labor Card","nationality_m":"","designation_m":row.labor_pm,"basic_pm":row.labor_pd})
+			cost_details.append({"employee_name_m": "Working Liecence Fee","nationality_m":"","designation_m":row.wl_fee_pm,"basic_pm":row.wl_fee_pd})
+			cost_details.append({"employee_name_m": "ST Fee","nationality_m":"","designation_m":row.st_fee_pm,"basic_pm":row.st_fee_pd})
+			percentage = "11.75%" if row.nationality_m == "Saudi Arabia" else "2"
+			cost_details.append({"employee_name_m": "GOSI","nationality_m":percentage,"designation_m":row.gosi_pm,"basic_pm":row.gosi_pd})
+			cost_details.append({"employee_name_m": "EOS","nationality_m":"","designation_m":row.eos_pm,"basic_pm":row.eos_pd})
+			cost_details.append({"employee_name_m": "Annual Leave","nationality_m":"","designation_m":row.annual_leave_pm,"basic_pm":row.annual_leave_pd})
+			cost_details.append({"employee_name_m": "<strong>Emp OH Cost</strong>","nationality_m":"","designation_m":row.oh_pm_cost,"basic_pm":row.oh_pd_cost})
+			# Append an empty row
+			cost_details.append({})
+			cost_details.append({"employee_name_m": "Agency Fee","nationality_m":"8%","designation_m":row.agency_fee_pm,"basic_pm":row.agency_fee_pd})
+			# Append an empty row
+			cost_details.append({})
+			cost_details.append({"employee_name_m": "<strong>Grand Total</strong>","nationality_m":"","designation_m":row.grand_total_pm,"basic_pm":row.grand_total_pd})
+			# Append an empty row
+			cost_details.append({})
+
+		cost_details.append({"employee_name_m": "Keywords Guide","nationality_m":"Keywords Notes"})
+		# Append an empty row
+		cost_details.append({})
+		cost_details.append({"employee_name_m": "1. Basic Salary calculated on 30 days per month"})
+		cost_details.append({"employee_name_m": "2. Housing is 25% from the Basic Salary"})
+		cost_details.append({"employee_name_m": "3. Transporttation is 10% from the Basic Salary"})
+		cost_details.append({"employee_name_m": "4. First Iqama Transfer fees SAR 2000 . Cost may increase depending upon the number of transfers."})
+		cost_details.append({"employee_name_m": "5. Labor Card is the Iqama card issuance and Courier Fee"})
+		cost_details.append({"employee_name_m": "6. Working Liecence Fee is SAR 9700."})
+		cost_details.append({"employee_name_m": "7. Medical Insurance Based on Seleted Class divided on 365 days. By Defaut VIP is selected"})
+		cost_details.append({"employee_name_m": "7.1 The Cost of the mentioned insurance is for the healthy insurer, price may vary depends on the health status of the insurer"})
+		cost_details.append({"employee_name_m": "7.2 Family insuranece is added only when the employee shares the insurance health declaration"})
+		cost_details.append({"employee_name_m": "7.3 Medical Insurance available Classes are E, A, VIP, VIP+"})
+		cost_details.append({"employee_name_m": "8. Salary Transfer Fees is the monthly cost for transferring the wages in the bank "})
+		cost_details.append({"employee_name_m": "9. Gosi Percentage is the GOSI company percentage of 2% to be calculated from the basic salary and housing only "})
+		cost_details.append({"employee_name_m": "10. Eos as per MoL regulations"})
+		cost_details.append({"employee_name_m": "11. Annual Leaves as per MOL regulations"})
+		cost_details.append({"employee_name_m": "12. Agency fees 8% from the overall daily cost"})
+		# Append an empty row
+		cost_details.append({})
+		cost_details.append({"employee_name_m": "Note: Additional Hiring Cost will be added if the employee hires from abroad depending upon the Country from where the employee is hired"})
+		# Append an empty row
+		cost_details.append({})
+		cost_details.append({"employee_name_m": "Legends"})
+		cost_details.append({"employee_name_m": "MI","nationality_m":"Medical Insurance"})
+		cost_details.append({"employee_name_m": "ST","nationality_m":"Salary Transfer"})
+		
 		return cost_details
 	
 	elif filters.get("sheet_type") == "Misk" and filters.get("emp_type") == "Part Time":
@@ -270,27 +335,19 @@ def get_cost_sheet_details(filters):
 				if isinstance(value, (int, float)):
 					cdd[key] = frappe.utils.fmt_money(value, currency="", precision=2)
 
-
 		cost_details = copy.deepcopy(cost_details_data)
 		# Append an empty row
 		cost_details.append({})
 
 		# Append a row with employee_name_m = "Keywords Guide"
-		cost_details.append({
-			"employee_name_m": "Keywords Guide"
-		})
+		cost_details.append({"employee_name_m": "Keywords Guide"})
+		# Append an empty row
+		cost_details.append({})
+		cost_details.append({"employee_name_m": "1. Salary Tranfer will be Charged as per the bank"})
+		cost_details.append({"employee_name_m": "2. Mentioned Salary Transfer Fee Cost is Per Transaction."})
 		# Append an empty row
 		cost_details.append({})
 
-		cost_details.append({
-			"employee_name_m": "1. Salary Tranfer will be Charged as per the bank"
-		})
-
-		cost_details.append({
-			"employee_name_m": "2. Mentioned Salary Transfer Fee Cost is Per Transaction."
-		})
-		# Append an empty row
-		cost_details.append({})
 		for row in cost_details_data:
 			msg = f"{row.monthly_pkg_amt} Monthly/30 days = {row.daily_rate} SAR"
 			cost_details.append({
