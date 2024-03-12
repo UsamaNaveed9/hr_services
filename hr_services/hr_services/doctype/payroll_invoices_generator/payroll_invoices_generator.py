@@ -146,7 +146,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
-		si.remarks = "Payroll Invoce"
+		si.remarks = "Payroll Invoice"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -222,7 +222,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
-		si.remarks = "Payroll Invoce"
+		si.remarks = "Payroll Invoice"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -291,7 +291,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
-		si.remarks = "Payroll Invoce"
+		si.remarks = "Payroll Invoice"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -339,7 +339,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 		si_tax.rate = 15
 		si.append("taxes", si_tax)
 
-		si.remarks = "Payroll Invoce"
+		si.remarks = "Payroll Invoice"
 		si.save(ignore_permissions=True)
 
 		if si.name:
@@ -436,7 +436,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.remarks = "Payroll Invoce"
+			si.remarks = "Payroll Invoice"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -523,7 +523,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.remarks = "Payroll Invoce"
+			si.remarks = "Payroll Invoice"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -597,7 +597,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.remarks = "Payroll Invoce"
+			si.remarks = "Payroll Invoice"
 			#if items exist then invoice save in the system otherwise skip it.
 			if len(si.items) > 0:
 				si.save(ignore_permissions=True)
@@ -633,7 +633,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.remarks = "Payroll Invoce"
+			si.remarks = "Payroll Invoice"
 			#if items exist then invoice save in the system otherwise skip it.
 			if len(si.items) > 0:
 				si.save(ignore_permissions=True)
@@ -735,7 +735,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.remarks = "Payroll Invoce"
+			si.remarks = "Payroll Invoice"
 			si.save(ignore_permissions=True)
 
 			if si.name:
@@ -823,7 +823,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
-					si.remarks = "Payroll Invoce"
+					si.remarks = "Payroll Invoice"
 					si.save(ignore_permissions=True)
 
 					if si.name:
@@ -887,7 +887,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
-					si.remarks = "Payroll Invoce"
+					si.remarks = "Payroll Invoice"
 					si.save(ignore_permissions=True)
 					
 					if si.name:
@@ -936,7 +936,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
-					si.remarks = "Payroll Invoce"
+					si.remarks = "Payroll Invoice"
 					si.save(ignore_permissions=True)
 
 					if si.name:
