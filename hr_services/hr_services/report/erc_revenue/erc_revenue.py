@@ -43,7 +43,7 @@ def get_data(filters):
 			full_time_employees = frappe.get_all('Employee',
 							  		filters={'project': row.name,'employment_type': 'Full-time'}, 
 									fields=['name', 'employee_name','project','project_name'])
-			#frappe.errprint(len(full_time_employees))	
+				
 			ft_no_of_emp = 0 #ft for full time
 			full_timers_total = 0.0 #revenue will calculate 8% of each employee if invoice issued
 			for emp in full_time_employees:
@@ -60,15 +60,13 @@ def get_data(filters):
 					(emp.name, from_date, to_date, '%Payroll Invoice%'),
 					as_dict=True
 				)
-				#frappe.errprint(exist)
 				# Check if any records were found for the employee
 				if sales_invoices:
 					ft_no_of_emp += 1
 					for sal_inv in sales_invoices:
 						total_value = sal_inv['total']
 						full_timers_total += total_value
-			frappe.errprint(ft_no_of_emp)
-			frappe.errprint(full_timers_total)
+			
 			full_timer_revenue = (full_timers_total / 1.08) * 0.08
 			#Misk Full time employees row append into data
 			data.append({"project_name": "Misk Full Time", "no_of_emps": ft_no_of_emp, "erc_fee": "8%", "total_revenue": full_timer_revenue})
@@ -77,7 +75,7 @@ def get_data(filters):
 			part_time_employees = frappe.get_all('Employee',
 							  		filters={'project': row.name,'employment_type': 'Part-time'},
 									fields=['name', 'employee_name','project','project_name'])
-			frappe.errprint(len(part_time_employees))	
+				
 			pt_no_of_emp = 0 #pt for part time
 			part_timers_total = 0.0 #revenue will calculate 8% of each employee if invoice issued
 			for emp in part_time_employees:
@@ -94,15 +92,13 @@ def get_data(filters):
 					(emp.name, from_date, to_date, '%Payment For Part Timer%'),
 					as_dict=True
 				)
-				#frappe.errprint(exist)
 				# Check if any records were found for the employee
 				if sales_invoices:
 					pt_no_of_emp += 1
 					for sal_inv in sales_invoices:
 						total_value = sal_inv['total']
 						part_timers_total += total_value
-			frappe.errprint(pt_no_of_emp)
-			frappe.errprint(part_timers_total)
+			
 			part_timer_revenue = (part_timers_total / 1.08) * 0.08
 			#Misk part time employees row append into data
 			data.append({"project_name": "Misk Part Time", "no_of_emps": pt_no_of_emp, "erc_fee": "8%", "total_revenue": part_timer_revenue})
@@ -123,7 +119,7 @@ def get_data(filters):
 			row["total_revenue"] = emps_count * row.erc_fee
 			row["erc_fee"] = frappe.utils.fmt_money(row.erc_fee, currency="", precision=2)
 			data.append(row)
-	#frappe.errprint(data)
+	
 	total_row = {
 		"project_name": '<strong>Total </strong>',
 		"no_of_emps": sum(row["no_of_emps"] for row in data),
@@ -150,29 +146,3 @@ def get_month_map():
 		"November": 11,
 		"December": 12
 	})
-
-
-			# employees = frappe.get_all('Employee',
-			# 				  		filters={'project': row.project_id}, 
-			# 						fields=['name', 'employee_name','project','project_name'])
-			# no_of_emp = 0
-			# #frappe.errprint(len(employees))
-			# for emp in employees:
-			# 	exist = frappe.db.sql(
-			# 		"""select 1
-			# 		from `tabSales Invoice Item` si_item, `tabSales Invoice` si
-			# 		where si_item.parent = si.name
-			# 		and si_item.employee_id = %s
-			# 		and si.posting_date >= %s
-			# 		and si.posting_date <= %s
-			# 		and si.docstatus = 1
-			# 		and si.remarks LIKE %s
-			# 		""",
-			# 		(emp.name, filters.get("from_date"), filters.get("to_date"), '%Payroll%'),
-			# 	)
-			# 	exist = bool(exist)  # Convert to boolean
-
-			# 	if exist:
-			# 		no_of_emp += 1
-			# row["no_of_emps"] = no_of_emp
-			# data.append(row)

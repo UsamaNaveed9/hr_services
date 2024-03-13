@@ -3,7 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe import _	
+from frappe import _, msgprint
 
 class RequestForPayment(Document):
 	def on_submit(self):
@@ -28,6 +28,7 @@ class RequestForPayment(Document):
 				#new_doc.custom_request_for_payment = self.name
 				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
 				new_doc.save(ignore_permissions=True)
+				copy_attachments(self, new_doc)
 				#new_doc.submit()
 			else:
 				frappe.throw(_("Bank is Manadatory"))
@@ -91,6 +92,7 @@ class RequestForPayment(Document):
 			new_doc.remarks = f"{self.expense_type} approved by Request For Payment"
 			new_doc.save(ignore_permissions=True)
 			new_doc.submit()
+			copy_attachments(self, new_doc)
 
 			#creating sales invoices on the list of invoices after the approval of request of payment
 			if self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
@@ -133,7 +135,7 @@ class RequestForPayment(Document):
 					si.custom_request_for_payment = self.name
 					si.remarks = f"{self.expense_type} from Request for Payment"
 					si.save(ignore_permissions=True)
-					copy_attachments(self, si)
+					#copy_attachments(self, si)
 		elif self.expense_type == "Payment For Part Timer":
 			#creating journal entry on the approval of request of payment
 			if self.coa_for_jv:
@@ -155,6 +157,7 @@ class RequestForPayment(Document):
 				#new_doc.custom_request_for_payment = self.name
 				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment"
 				new_doc.save(ignore_permissions=True)
+				copy_attachments(self, new_doc)
 				#new_doc.submit()
 			else:
 				frappe.throw(_("Bank is Manadatory"))	
@@ -261,6 +264,22 @@ class RequestForPayment(Document):
 			if len(si.items) > 0 and self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
 				si.save(ignore_permissions=True)
 				copy_attachments(self, si)
+
+	def submit(self):
+		if (self.expense_type == "Operational Expense" or self.expense_type == "Recruitment Expense" or self.expense_type == "Reimbursement Expense") and len(self.items) > 10:
+			msgprint(_("The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Request For Payment Record and revert to the Previous stage"))
+			self.queue_action('submit', timeout=20000)
+		elif self.expense_type == "Supplier Payment" and len(self.invoices) > 5:
+			msgprint(_("The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Request For Payment Record and revert to the Previous stage"))
+			self.queue_action('submit', timeout=20000)
+		elif self.expense_type == "Payment For Part Timer" and len(self.employees) > 5:
+			msgprint(_("The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Request For Payment Record and revert to the Previous stage"))
+			self.queue_action('submit', timeout=20000)
+		elif self.expense_type == "Employee Advance" and len(self.advances) > 5:
+			msgprint(_("The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Request For Payment Record and revert to the Previous stage"))
+			self.queue_action('submit', timeout=20000)
+		else:
+			self._submit()
 				
 
 def copy_attachments(source_doc, target_doc):

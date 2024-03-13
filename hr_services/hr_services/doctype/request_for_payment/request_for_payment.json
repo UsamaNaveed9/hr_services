@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2023-11-09 14:13:21.653727",
@@ -189,7 +190,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-02-28 14:42:55.377746",
+ "modified": "2024-03-13 11:08:45.470831",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",
