@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "letterhead",
- "modified": "2024-03-10 14:35:05.010851",
+ "modified": "2024-03-13 14:00:19.389706",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "ERC Revenue",
@@ -25,9 +25,6 @@
   },
   {
    "role": "Accounts Manager"
-  },
-  {
-   "role": "Employee Self Service"
   },
   {
    "role": "Finance User"

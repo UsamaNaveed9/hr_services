@@ -85,6 +85,46 @@ frappe.ui.form.on('Request For Payment', {
 			frm.refresh_field("employees");
 			frm.set_value("total_amount",0);
 		}
+		if(frm.doc.expense_type == 'Employee Advance'){
+			frm.set_value("project","");
+			cur_frm.clear_table("advances");
+			frm.refresh_field("advances");
+			frm.set_value("total_amount",0);
+		}
+	},
+	before_save(frm){
+		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense'){
+			let total = 0;
+			for(let i in frm.doc.items){
+					total += frm.doc.items[i].amount;
+				}
+			frm.set_value("total_amount", total);
+			frm.refresh();
+		}
+		if(frm.doc.expense_type == 'Supplier Payment'){
+			let total = 0;
+			for(let i in frm.doc.invoices){
+				total += frm.doc.invoices[i].paid_amount;
+			}
+			frm.set_value("total_amount", total);
+			frm.refresh();
+		}
+		if(frm.doc.expense_type == 'Payment For Part Timer'){
+			let total = 0;
+			for(let i in frm.doc.employees){
+				total += frm.doc.employees[i].amount;
+			}
+			frm.set_value("total_amount", total);
+			frm.refresh();
+		}
+		if(frm.doc.expense_type == 'Employee Advance'){
+			let total = 0;
+			for(let i in frm.doc.advances){
+				total += frm.doc.advances[i].advance_amount;
+			}
+			frm.set_value("total_amount", total);
+			frm.refresh();
+		}
 	}
 });
 

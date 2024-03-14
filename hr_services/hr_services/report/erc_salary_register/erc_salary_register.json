@@ -10,7 +10,7 @@
  "idx": 0,
  "is_standard": "Yes",
  "letter_head": "letterhead",
- "modified": "2024-03-13 11:49:54.275599",
+ "modified": "2024-03-13 14:00:01.691869",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "ERC Salary Register",
@@ -21,10 +21,13 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "HR User"
+   "role": "Accounts User"
   },
   {
-   "role": "HR Manager"
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Finance User"
   }
  ]
 }

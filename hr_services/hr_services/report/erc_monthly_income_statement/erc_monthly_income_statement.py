@@ -4,21 +4,27 @@
 import frappe
 from frappe import _
 import datetime
+from frappe.utils import flt
+
+from erpnext.accounts.report.financial_statements import (
+	get_data,
+	get_period_list,
+)
 
 def execute(filters=None):
 	columns = get_columns()
-	data = get_data(filters)
+	data = get_full_data(filters)
 	return columns, data
 
 def get_columns():
 	columns = [
 		{"label": _("Particulars"), "fieldname": "particulars", "fieldtype": "Data", "width": 400},
-		{"label": _("Amount"), "fieldname": "amount", "fieldtype": "Currency", "width": 150},
+		{"label": _("Amount"), "fieldname": "amount", "fieldtype": "Currency", "width": 200},
 	]
 	
 	return columns
 
-def get_data(filters):
+def get_full_data(filters):
 	# Fetch customers according to projects
 	projects = frappe.get_all('Project', 
 							filters={'status': 'Open'}, 
@@ -120,23 +126,98 @@ def get_data(filters):
 			row["erc_fee"] = frappe.utils.fmt_money(row.erc_fee, currency="", precision=2)
 			data.append(row)
 	
-	total_row = {
-		"project_name": '<strong>Total </strong>',
-		"no_of_emps": sum(row["no_of_emps"] for row in data),
-		"erc_fee": "",
-		"total_revenue": sum(row["total_revenue"] for row in data)
-	}
+	# total_row = {
+	# 	"project_name": '<strong>Total </strong>',
+	# 	"no_of_emps": sum(row["no_of_emps"] for row in data),
+	# 	"erc_fee": "",
+	# 	"total_revenue": sum(row["total_revenue"] for row in data)
+	# }
 	#Append Revenue row
 	total_revenue = sum(row["total_revenue"] for row in data)
-	revenue_row = {"particulars": "Revenue","amount": total_revenue}
+	revenue_row = {"particulars": "Revenue","amount": total_revenue, "indent": 0.0}
 	mis_data.append(revenue_row)
+	#Append project wise breakdown under revenue
+	for row in data:
+		projectwise_rows = {"particulars": row["project_name"] ,"amount": row["total_revenue"] , "indent": 1.0}
+		mis_data.append(projectwise_rows)
+
 	cogs_row = {"particulars": "COGS","amount": 0}
 	mis_data.append(cogs_row)
 	gross_row = {"particulars": '<strong>Gross Profit </strong>',"amount": total_revenue}
 	mis_data.append(gross_row)
-	
-	data.append(total_row)
+	#empty row
+	empty_row = {}
+	mis_data.append(empty_row)
 
+	#parameters for period list
+	filter_based_on = "Date Range"
+	period_start_date = from_date
+	period_end_date = to_date
+	periodicity = "Monthly"
+	from_fiscal_year = fiscal_year
+	to_fiscal_year = fiscal_year
+
+	period_list = get_period_list(
+		from_fiscal_year,
+		to_fiscal_year,
+		period_start_date,
+		period_end_date,
+		filter_based_on,
+		periodicity,
+		company=filters.get("company"),
+	)
+	#frappe.errprint(period_list)
+	#getting all accounts that have the root type Expense
+	expense = get_data(
+		filters.company,
+		"Expense",
+		"Debit",
+		period_list,
+		filters=filters,
+		accumulated_values=filters.accumulated_values,
+		ignore_closing_entries=True,
+		ignore_accumulated_values_for_fy=True,
+	)
+
+	#Manpower Expense BreakDown
+	manpower_row = {"particulars": "G&A Manpower Expense","amount": 0,  "indent": 0.0}
+	mis_data.append(manpower_row)
+	total_of_manpower_expense = 0.0
+	#append those expense account that have expense category as Manpower Expense
+	for acc_row in expense:
+		if "account" in acc_row and frappe.db.exists("Account", {"name": acc_row["account"], "is_group": 0, "custom_expense_category": "Manpower Expense"}):
+			total_of_manpower_expense += acc_row["total"]
+			mis_data.append({"particulars": acc_row["account_name"] ,"amount": acc_row["total"],  "indent": 1.0})
+
+	manpower_row["amount"] = total_of_manpower_expense
+
+	#Other Expense BreakDown
+	other_exp_row = {"particulars": "Other Expense","amount":0,  "indent": 0.0}
+	mis_data.append(other_exp_row)
+	total_of_other_expense = 0.0
+	#append those expense account that have expense category as Other Expense
+	for acc_row in expense:
+		if "account" in acc_row and frappe.db.exists("Account", {"name": acc_row["account"], "is_group": 0, "custom_expense_category": "Other Expense"}):
+			total_of_other_expense += acc_row["total"]
+			mis_data.append({"particulars": acc_row["account_name"] ,"amount": acc_row["total"],  "indent": 1.0})
+	
+	other_exp_row["amount"] = total_of_other_expense
+	#append total expense row
+	total_expense = total_of_manpower_expense + total_of_other_expense
+	total_expense_row = {"particulars": '<strong>Total Expense </strong>',"amount": total_expense}
+	mis_data.append(total_expense_row)
+	#empty row
+	mis_data.append(empty_row)
+	operating_profit = total_revenue - total_expense  
+	operating_profit_row = {"particulars": '<strong>Operating Profit </strong>',"amount": operating_profit}
+	mis_data.append(operating_profit_row)
+	#empty row
+	mis_data.append(empty_row)
+	income_loss_row = {"particulars": "Other income/loss","amount": 0}
+	mis_data.append(income_loss_row)
+	net_income_row = {"particulars": '<strong>Net Income - Monthly </strong>',"amount": operating_profit}
+	mis_data.append(net_income_row)
+	
 	return mis_data
 
 def get_month_map():
