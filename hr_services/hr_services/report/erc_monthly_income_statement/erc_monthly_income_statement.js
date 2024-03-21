@@ -21,12 +21,32 @@ frappe.query_reports["ERC Monthly Income Statement"] = {
 			"reqd": 1
 		},
 		{
-			"fieldname":"month",
-			"label": __("Month"),
+			"fieldname": "periodicity",
+			"label": __("Periodicity"),
+			"fieldtype": "Select",
+			"options": [
+				{ "value": "One Month", "label": __("One Month") },
+				{ "value": "Multi Months", "label": __("Multi Months") }
+			],
+			"default": "One Month",
+			"reqd": 1
+		},
+		{
+			"fieldname":"from_month",
+			"label": __("Start Month"),
 			"fieldtype": "Select",
 			"options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
 			"default": "January",
 			"reqd": 1
+		},
+		{
+			"fieldname":"to_month",
+			"label": __("End Month"),
+			"fieldtype": "Select",
+			"options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
+			"default": "January",
+			"reqd": 1,
+			"depends_on": "eval:doc.periodicity == 'Multi Months'"
 		}
 	]
 };
