@@ -106,13 +106,13 @@ def get_data(filters):
 			# Fetch employees according to projects
 			employees = frappe.get_all('Employee',
 							  		filters={'project': row.name}, 
-									fields=['name', 'employee_name','project','project_name','status','relieving_date'])
+									fields=['name', 'employee_name','project','project_name','status','relieving_date','date_of_joining'])
 			emps_count = 0
 			for emp in employees:
-				if emp.status == "Active":
+				if emp.status == "Active" and emp.date_of_joining <= to_date:
 					emps_count += 1
 				else:
-					if emp.relieving_date and from_date <= emp.relieving_date <= to_date:
+					if emp.relieving_date and emp.relieving_date >= from_date and emp.date_of_joining <= to_date:
 						emps_count +=1
 			
 			row["no_of_emps"] = emps_count

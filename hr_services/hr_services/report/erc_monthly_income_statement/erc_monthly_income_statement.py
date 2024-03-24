@@ -3,13 +3,8 @@
 
 import frappe
 from frappe import _
-import datetime
-from frappe.utils import flt
-
-from erpnext.accounts.report.financial_statements import (
-	get_data,
-	get_period_list,
-)
+from frappe.utils import getdate, get_last_day, fmt_money
+from erpnext.accounts.report.financial_statements import get_data, get_period_list
 
 def execute(filters=None):
 	#get month start date and month end date on the basis of fiscal year and month name
@@ -20,7 +15,7 @@ def execute(filters=None):
 		today = frappe.utils.getdate()
 		from_date = today.replace(day=1, month=int(month_map[month_name]), year=int(fiscal_year))
 		to_date = frappe.utils.get_last_day(from_date)
-	elif filters.get("periodicity") == "Multi Months":
+	elif filters.get("periodicity") == "Period":
 		start_month_name = filters.get("from_month")
 		end_month_name = filters.get("to_month")
 		fiscal_year = filters.get("fiscal_year")
@@ -32,22 +27,15 @@ def execute(filters=None):
 		end_month_first_date = today.replace(day=1, month=int(month_map[end_month_name]), year=int(fiscal_year))
 		to_date = frappe.utils.get_last_day(end_month_first_date)
 
-	#parameters for period list
-	filter_based_on = "Date Range"
-	period_start_date = from_date
-	period_end_date = to_date
-	periodicity = "Monthly"
-	from_fiscal_year = fiscal_year
-	to_fiscal_year = fiscal_year
-
+	#get the period list with passing parameters
 	period_list = get_period_list(
-		from_fiscal_year,
-		to_fiscal_year,
-		period_start_date,
-		period_end_date,
-		filter_based_on,
-		periodicity,
-		company=filters.get("company"),
+		from_fiscal_year=fiscal_year,
+        to_fiscal_year=fiscal_year,
+        period_start_date=from_date,
+        period_end_date=to_date,
+        filter_based_on="Date Range",
+        periodicity="Monthly",
+        company=filters.get("company"),
 	)
 
 	columns = get_columns(period_list)
@@ -56,12 +44,7 @@ def execute(filters=None):
 
 def get_columns(period_list):
 	columns = [
-		{
-			"fieldname": "account",
-			"label": _("Particulars"),
-			"fieldtype": "Data",
-			"width": 300,
-		}
+		{"fieldname": "account", "label": _("Particulars"), "fieldtype": "Data", "width": 300}
 	]
 	for period in period_list:
 		columns.append(
@@ -74,24 +57,12 @@ def get_columns(period_list):
 			}
 		)
 	
-	columns.append(
-		{
-			"fieldname": "total",
-			"label": _("Total"),
-			"fieldtype": "Currency",
-			"width": 150,
-			"options": "currency",
-		}
-	)
-
+	columns.append({"fieldname": "total", "label": _("Total"), "fieldtype": "Currency", "width": 150, "options": "currency"})
 	return columns
 
 def get_full_data(filters,from_date,to_date,period_list):
 	# Fetch customers according to projects
-	projects = frappe.get_all('Project', 
-							filters={'status': 'Open'}, 
-							fields=['name', 'project_name','erc_fee'],
-							order_by='name')
+	projects = frappe.get_all('Project', filters={'status': 'Open'}, fields=['name', 'project_name','erc_fee'], order_by='name')
 
 	rev_data = []	#Revenue data
 	exp_data = [] #Expense data
@@ -183,10 +154,10 @@ def get_full_data(filters,from_date,to_date,period_list):
 			for period in period_list:
 				emps_count = 0
 				for emp in employees:
-					if emp.status == "Active" and emp.date_of_joining >= period.from_date:
+					if emp.status == "Active" and emp.date_of_joining <= period.to_date:
 						emps_count += 1
 					else:
-						if emp.relieving_date and emp.relieving_date <= period.to_date:
+						if emp.relieving_date and emp.relieving_date >= period.from_date and emp.date_of_joining <= period.to_date:
 							emps_count +=1
 			
 				row["no_of_emps"] = emps_count
