@@ -230,3 +230,10 @@ doc_events = {
 # auth_hooks = [
 #	"hr_services.auth.validate"
 # ]
+
+fixtures = [
+    {
+        "dt": "Workflow",
+        "filters":[["is_active", "=", 1]]
+    }
+]

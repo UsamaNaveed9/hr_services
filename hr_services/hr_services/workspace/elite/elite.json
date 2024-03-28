@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Request</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}},{\"id\":\"4ExzbswYD7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"a5bezI-ugm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"So3wP1dNqH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"XMR9NFVkeH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"jKWmrk9rbV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"PB6qd8ZUi7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master\",\"col\":3}},{\"id\":\"gDLyTXSrp3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Tools</b></span>\",\"col\":12}},{\"id\":\"eRGLQUl3ZQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Invoices Generator\",\"col\":4}},{\"id\":\"IMy8E6UCPH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Merge Invoices Tool\",\"col\":6}},{\"id\":\"ydqkI1Y94W\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accrued Vacation Salary\",\"col\":4}},{\"id\":\"JscWbMiMUn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accrued End of Services\",\"col\":4}},{\"id\":\"2zWrSqhLL2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PO Management\",\"col\":3}},{\"id\":\"DF6bgLmL-h\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Costing Sheet\",\"col\":4}},{\"id\":\"-9AVSnk5jU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"hjNI9nAglR\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tracker\",\"col\":4}},{\"id\":\"kA9nwirSy0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoices Detail\",\"col\":4}},{\"id\":\"MjhLxVgf9Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Invoicing Report\",\"col\":4}},{\"id\":\"qumu-VpBUN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Alinma Payment Format\",\"col\":4}},{\"id\":\"hq5AN-06nz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERC Salary Register\",\"col\":4}},{\"id\":\"cE88c2-0_Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Advances Detail\",\"col\":4}},{\"id\":\"q4fWXKfHU_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERC Revenue\",\"col\":4}},{\"id\":\"hBFDj5Z3wW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERC Monthly Income Statement\",\"col\":6}},{\"id\":\"ts4-mZHlbf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ERC Costing Sheet\",\"col\":4}}]",
+ "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Request</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}},{\"id\":\"4ExzbswYD7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"a5bezI-ugm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"So3wP1dNqH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"XMR9NFVkeH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"jKWmrk9rbV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"PB6qd8ZUi7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master\",\"col\":3}},{\"id\":\"_OjVQhkdTO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Entry\",\"col\":3}},{\"id\":\"gDLyTXSrp3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Tools</b></span>\",\"col\":12}},{\"id\":\"-TmMgrPsBb\",\"type\":\"card\",\"data\":{\"card_name\":\"Accrued\",\"col\":3}},{\"id\":\"TTn_kQ8c0t\",\"type\":\"card\",\"data\":{\"card_name\":\"Invoice\",\"col\":3}},{\"id\":\"sBrzRBhH69\",\"type\":\"card\",\"data\":{\"card_name\":\"Costing\",\"col\":3}},{\"id\":\"4FKQ5gXnsz\",\"type\":\"card\",\"data\":{\"card_name\":\"PO\",\"col\":3}},{\"id\":\"-9AVSnk5jU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"WMUfNJx1hq\",\"type\":\"card\",\"data\":{\"card_name\":\"Invoices Reports\",\"col\":3}},{\"id\":\"uO321pG6mc\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll Report\",\"col\":3}},{\"id\":\"WqvkNdiN01\",\"type\":\"card\",\"data\":{\"card_name\":\"Revenue\",\"col\":4}},{\"id\":\"OE4lF68OQe\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>File Management</b></span>\",\"col\":12}},{\"id\":\"ZO6T0ybKxq\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Finance\",\"col\":3}},{\"id\":\"P38lWC1mxn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR\",\"col\":3}},{\"id\":\"3KvI6XyIIz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"IT\",\"col\":3}},{\"id\":\"4zMBg19m6t\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchasing\",\"col\":3}},{\"id\":\"gL2yWStYde\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recruitment\",\"col\":3}}]",
  "creation": "2024-01-21 14:40:27.949807",
  "custom_blocks": [],
  "docstatus": 0,
@@ -11,8 +11,222 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Elite",
- "links": [],
- "modified": "2024-03-21 10:50:57.449362",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accrued",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accrued End of Services",
+   "link_count": 0,
+   "link_to": "Accrued End of Services",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Accrued Vacation",
+   "link_count": 0,
+   "link_to": "Accrued Vacation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Invoice",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payroll Invoices Generator",
+   "link_count": 0,
+   "link_to": "Payroll Invoices Generator",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Merge Invoices Tool",
+   "link_count": 0,
+   "link_to": "Merge Invoices Tool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PO",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PO Management",
+   "link_count": 0,
+   "link_to": "PO Management",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Costing",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Costing Sheet",
+   "link_count": 0,
+   "link_to": "Costing Sheet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "ERC Costing Sheet Report",
+   "link_count": 0,
+   "link_to": "Costing Sheet ERC",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Invoices Reports",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tracker",
+   "link_count": 0,
+   "link_to": "tracker",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Invoices Detail",
+   "link_count": 0,
+   "link_to": "Invoices Detail",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Invoicing Report",
+   "link_count": 0,
+   "link_to": "Invoicing Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payroll Report",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Alinma Payment Format",
+   "link_count": 0,
+   "link_to": "Alinma Payment Format",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "ERC Salary Register",
+   "link_count": 0,
+   "link_to": "ERC Salary Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Advances Detail",
+   "link_count": 0,
+   "link_to": "ERC Loan Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Revenue",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "ERC Revenue",
+   "link_count": 0,
+   "link_to": "ERC Revenue",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "ERC Monthly Income Statement",
+   "link_count": 0,
+   "link_to": "ERC Monthly Income Statement",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-03-28 13:38:20.826906",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite",
@@ -22,21 +236,16 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 1.0,
+ "sequence_id": 2.0,
  "shortcuts": [
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Payroll Invoices Generator",
-   "link_to": "Payroll Invoices Generator",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "ERC Salary Register",
-   "link_to": "ERC Salary Register",
-   "type": "Report"
+   "label": "Finance",
+   "link_to": "File",
+   "stats_filter": "[[\"File\",\"folder\",\"=\",\"Home/Finance\",false]]",
+   "type": "DocType",
+   "url": "http://192.168.100.17/app/file/view/home/Finance"
   },
   {
    "color": "Grey",
@@ -44,6 +253,14 @@
    "label": "Payment Entry",
    "link_to": "Payment Entry",
    "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Purchasing",
+   "link_to": "File",
+   "stats_filter": "[[\"File\",\"folder\",\"=\",\"Home/Purchasing\",false]]",
    "type": "DocType"
   },
   {
@@ -57,32 +274,26 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "ERC Revenue",
-   "link_to": "ERC Revenue",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "format": "{}",
-   "label": "Accrued Vacation Salary",
-   "link_to": "Accrued Vacation",
+   "label": "Payroll Entry",
+   "link_to": "Payroll Entry",
    "stats_filter": "[]",
    "type": "DocType"
   },
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "ERC Monthly Income Statement",
-   "link_to": "ERC Monthly Income Statement",
-   "type": "Report"
+   "label": "IT",
+   "link_to": "File",
+   "stats_filter": "[[\"File\",\"folder\",\"=\",\"Home/IT\",false]]",
+   "type": "DocType"
   },
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Advances Detail",
-   "link_to": "ERC Loan Report",
-   "type": "Report"
+   "label": "HR",
+   "link_to": "File",
+   "stats_filter": "[[\"File\",\"folder\",\"=\",\"Home/HR\",false]]",
+   "type": "DocType"
   },
   {
    "color": "Grey",
@@ -95,9 +306,9 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Costing Sheet",
-   "link_to": "Costing Sheet",
-   "stats_filter": "[]",
+   "label": "Recruitment",
+   "link_to": "File",
+   "stats_filter": "[[\"File\",\"folder\",\"=\",\"Home/Recruitment\",false]]",
    "type": "DocType"
   },
   {
@@ -117,68 +328,10 @@
    "type": "DocType"
   },
   {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Alinma Payment Format",
-   "link_to": "Alinma Payment Format",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Invoices Detail",
-   "link_to": "Invoices Detail",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "ERC Costing Sheet",
-   "link_to": "Costing Sheet ERC",
-   "type": "Report"
-  },
-  {
    "color": "Blue",
    "doc_view": "List",
    "label": "Purchase Invoice",
    "link_to": "Purchase Invoice",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Tracker",
-   "link_to": "tracker",
-   "type": "Page"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Merge Invoices Tool",
-   "link_to": "Merge Invoices Tool",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Invoicing Report",
-   "link_to": "Invoicing Report",
-   "type": "Report"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Accrued End of Services",
-   "link_to": "Accrued End of Services",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "PO Management",
-   "link_to": "PO Management",
    "stats_filter": "[]",
    "type": "DocType"
   }
