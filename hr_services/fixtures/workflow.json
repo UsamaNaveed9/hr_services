@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Request For Payment",
   "is_active": 1,
-  "modified": "2024-02-15 13:15:05.683825",
+  "modified": "2024-04-02 12:17:54.621036",
   "name": "Request For Payment wf",
   "override_status": 0,
   "send_email_alert": 0,
@@ -134,6 +134,48 @@
     "state": "Rejected",
     "update_field": null,
     "update_value": null
+   },
+   {
+    "allow_edit": "OPE EXP Approver",
+    "avoid_status_override": 0,
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request For Payment wf",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Update Required",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "FM Req Approver",
+    "avoid_status_override": 0,
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request For Payment wf",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Resubmitted",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "FM Req Approver",
+    "avoid_status_override": 0,
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Request For Payment wf",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Resubmitted and Approved",
+    "update_field": null,
+    "update_value": null
    }
   ],
   "transitions": [
@@ -257,6 +299,50 @@
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Approved by FM"
+   },
+   {
+    "action": "Update Required",
+    "allow_self_approval": 1,
+    "allowed": "FM Req Approver",
+    "condition": "doc.expense_type in [\"Operational Expense\", \"Recruitment Expense\", \"Reimbursement Expense\"]",
+    "next_state": "Update Required",
+    "parent": "Request For Payment wf",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved by FM"
+   },
+   {
+    "action": "Resubmit",
+    "allow_self_approval": 1,
+    "allowed": "OPE EXP Approver",
+    "condition": null,
+    "next_state": "Resubmitted",
+    "parent": "Request For Payment wf",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Update Required"
+   },
+   {
+    "action": "Resubmit and Approved",
+    "allow_self_approval": 1,
+    "allowed": "FM Req Approver",
+    "condition": null,
+    "next_state": "Resubmitted and Approved",
+    "parent": "Request For Payment wf",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Resubmitted"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "FM Req Approver",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Request For Payment wf",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Resubmitted and Approved"
    }
   ],
   "workflow_name": "Request For Payment wf",

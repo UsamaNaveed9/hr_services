@@ -235,5 +235,20 @@ fixtures = [
     {
         "dt": "Workflow",
         "filters":[["is_active", "=", 1]]
+    },
+    {
+        "dt": "Role",
+        "filters":[["is_custom", "=", 1]]
+    },
+    {
+        "dt": "File",
+        "filters":[["folder", "=", "Home"],
+                   ["is_folder", "=", 1]]
+    },
+    {
+        "dt": "Workflow State"
+    },
+    {
+        "dt": "Workflow Action Master"
     }
 ]

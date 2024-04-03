@@ -1,0 +1,200 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "question-sign",
+  "modified": "2023-07-28 02:05:22.483883",
+  "name": "Pending",
+  "style": "",
+  "workflow_state_name": "Pending"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "ok-sign",
+  "modified": "2023-07-28 02:05:22.485463",
+  "name": "Approved",
+  "style": "Success",
+  "workflow_state_name": "Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "remove",
+  "modified": "2023-07-28 02:05:22.487143",
+  "name": "Rejected",
+  "style": "Danger",
+  "workflow_state_name": "Rejected"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-09 10:23:10.129404",
+  "name": "Draft",
+  "style": "",
+  "workflow_state_name": "Draft"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-09 10:23:48.090113",
+  "name": "Pending for Approval",
+  "style": "",
+  "workflow_state_name": "Pending for Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-09 10:24:37.648788",
+  "name": "Approved by HR MGR",
+  "style": "",
+  "workflow_state_name": "Approved by HR MGR"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-09 10:25:05.209173",
+  "name": "Rejected by HR MGR",
+  "style": "",
+  "workflow_state_name": "Rejected by HR MGR"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-09 10:26:20.674979",
+  "name": "Approved by CEO",
+  "style": "",
+  "workflow_state_name": "Approved by CEO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-16 15:37:14.350709",
+  "name": "Rejected by CEO",
+  "style": "Warning",
+  "workflow_state_name": "Rejected by CEO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2023-11-09 10:33:07.450304",
+  "name": "Pending for Final Approval",
+  "style": "",
+  "workflow_state_name": "Pending for Final Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-22 11:32:36.882312",
+  "name": "Approved by FM",
+  "style": "Success",
+  "workflow_state_name": "Approved by FM"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-22 11:31:06.346665",
+  "name": "Rejected by FM",
+  "style": "Warning",
+  "workflow_state_name": "Rejected by FM"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-22 11:31:26.966236",
+  "name": "Pending for HRM Approval",
+  "style": "Inverse",
+  "workflow_state_name": "Pending for HRM Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-22 11:30:53.400166",
+  "name": "Pending for FM Approval",
+  "style": "Primary",
+  "workflow_state_name": "Pending for FM Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-16 15:34:16.107688",
+  "name": "Pending for CEO Approval",
+  "style": "Primary",
+  "workflow_state_name": "Pending for CEO Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-22 11:31:12.145937",
+  "name": "Rejected by HRM",
+  "style": "Warning",
+  "workflow_state_name": "Rejected by HRM"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-31 08:54:39.860573",
+  "name": "Pending for REC MGR Approval",
+  "style": "Info",
+  "workflow_state_name": "Pending for REC MGR Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-01-31 08:55:02.415027",
+  "name": "Rejected by REC MGR",
+  "style": "Warning",
+  "workflow_state_name": "Rejected by REC MGR"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-04-02 09:20:58.731680",
+  "name": "Cancel",
+  "style": "",
+  "workflow_state_name": "Cancel"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-04-02 09:40:16.709112",
+  "name": "Update Required",
+  "style": "Danger",
+  "workflow_state_name": "Update Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-04-02 09:40:42.150434",
+  "name": "Resubmitted and Approved",
+  "style": "Success",
+  "workflow_state_name": "Resubmitted and Approved"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-04-02 11:55:01.234987",
+  "name": "Resubmitted",
+  "style": "Primary",
+  "workflow_state_name": "Resubmitted"
+ }
+]

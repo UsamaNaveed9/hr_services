@@ -2,16 +2,12 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Sales Invoice', {
-	// refresh: function(frm) {
-	// 	// Add a custom query to filter customers
-	// 	frm.fields_dict['customer'].get_query = function(doc, cdt, cdn) {
-	// 		return {
-	// 			filters: {
-	// 				'is_standard_invoice_customer': 1
-	// 			}
-	// 		};
-	// 	};
-	// },
+	refresh: function(frm) {
+		//setting the return series if is_return is checked
+		if(frm.doc.is_return == 1){
+			frm.set_value("naming_series","ACC-SINV-RET-.YYYY.-")
+		}
+	},
 	setup(frm) {
 		frm.set_query("customer", function(){
             return{
@@ -38,4 +34,12 @@ frappe.ui.form.on('Sales Invoice', {
 			}
         }
 	},
+	is_return(frm) {
+		if(frm.doc.is_return == 1){
+			frm.set_value("naming_series","ACC-SINV-RET-.YYYY.-")
+		}
+		else{
+			frm.set_value("naming_series","Draft-.YYYY.-")
+		}
+	}
 });

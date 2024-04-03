@@ -3,7 +3,8 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe import _, msgprint
+from frappe import _, msgprint, qb
+import json
 
 class RequestForPayment(Document):
 	def on_submit(self):
@@ -290,3 +291,59 @@ def copy_attachments(source_doc, target_doc):
 		file_copy.attached_to_doctype = target_doc.doctype
 		file_copy.attached_to_name = target_doc.name
 		file_copy.insert()
+
+@frappe.whitelist()
+def update_linked_records(self):
+	self = json.loads(self)
+	if frappe.db.exists("Sales Invoice", {"custom_request_for_payment": self["name"]}):
+		#get sales invoices
+		si_doc = frappe.get_doc("Sales Invoice", {"custom_request_for_payment": self["name"]})
+		# Remove existing child table items
+		si_doc.items = []
+		
+		# Append new items
+		for it in self["items"]:
+			si_item = frappe.new_doc("Sales Invoice Item")
+			si_item.item_code = it["item"]
+			si_item.qty = it["qty"]
+			si_item.rate = it["rate"]
+			if "employee_no" in it:
+				si_item.employee_id = it["employee_no"]
+			if "employee_name" in it:	
+				si_item.employee_name = it["employee_name"]
+			si_doc.append("items", si_item)
+
+		si_doc.save(ignore_permissions=True)
+	
+	# Get journal entries
+	journals = frappe.get_all("Journal Entry Account",
+							   filters={"reference_type": "Request For Payment",
+										"reference_name": self["name"],
+										"docstatus": 0},
+							   distinct=True,
+							   pluck="parent")
+	
+	for journal_name in journals:
+		# Get journal entry
+		je_doc = frappe.get_doc("Journal Entry", journal_name)
+		
+		# Remove existing child table items
+		je_doc.accounts = []
+		
+		# Append new items
+		for it in self["items"]:
+			row = je_doc.append("accounts",{})
+			row.account = frappe.db.get_value("Item",{"name":it["item"]},"account_for_jv")
+			row.debit_in_account_currency = it["amount"]
+			row.reference_type = "Request For Payment"
+			row.reference_name = self["name"]
+
+			row = je_doc.append("accounts",{})
+			row.account = self["coa_for_jv"]
+			row.credit_in_account_currency = it["amount"]
+		
+		# Save journal entry
+		je_doc.save(ignore_permissions=True)
+	frappe.db.set_value("Request For Payment", self["name"], "resubmitted_and_updated", 1, update_modified=False)
+	status = "Done"
+	return 	status

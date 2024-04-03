@@ -125,6 +125,13 @@ frappe.ui.form.on('Request For Payment', {
 			frm.set_value("total_amount", total);
 			frm.refresh();
 		}
+	},
+	refresh(frm){
+		if(frm.doc.resubmitted_and_updated == 0 && frm.doc.workflow_state == "Resubmitted and Approved"){
+			frm.add_custom_button(__('Update Linked Records'), function(){
+				update_linked_records(frm);
+			}).addClass("btn-primary");
+		}
 	}
 });
 
@@ -343,4 +350,25 @@ function calculate_amount(frm, cdt, cdn){
 	}
 	frm.set_value("total_amount", total);
 	frm.refresh();
+}
+
+function update_linked_records(frm){
+	frappe.call({
+        method: 'hr_services.hr_services.doctype.request_for_payment.request_for_payment.update_linked_records',
+        args: {
+            self: frm.doc
+        },
+        freeze: true,
+        freeze_message: "Updating Linked Records...",
+        callback: function(r){
+            if(r.message){
+                frm.remove_custom_button('Update Linked Records');
+                frappe.msgprint({
+                    title: __("Success"),
+                    message: __("Records Updated Successfully"),
+                    indicator: "green",
+                });
+            }
+        }
+    })
 }

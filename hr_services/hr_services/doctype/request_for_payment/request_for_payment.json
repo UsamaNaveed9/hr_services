@@ -21,6 +21,7 @@
   "is_invoice_optional",
   "supplier",
   "coa_for_jv",
+  "resubmitted_and_updated",
   "section_break_cezld",
   "items",
   "invoices",
@@ -111,6 +112,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "total_amount",
    "fieldtype": "Currency",
    "label": "Total Amount",
@@ -185,12 +187,21 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "COA for JV"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "resubmitted_and_updated",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Resubmitted and Updated",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-03-13 11:08:45.470831",
+ "modified": "2024-04-02 12:24:04.045184",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",
