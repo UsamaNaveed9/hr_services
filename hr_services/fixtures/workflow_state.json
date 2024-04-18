@@ -196,5 +196,14 @@
   "name": "Resubmitted",
   "style": "Primary",
   "workflow_state_name": "Resubmitted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-04-18 11:07:10.606510",
+  "name": "Cancelled",
+  "style": "",
+  "workflow_state_name": "Cancelled"
  }
 ]

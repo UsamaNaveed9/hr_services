@@ -9,7 +9,7 @@ frappe.ui.form.on('Request For Payment', {
 					['Item', 'item_group', 'in',frm.doc.expense_type],
 				]
 			}
-        }
+		}
 
 		frm.fields_dict['items'].grid.get_field("employee_no").get_query = function(doc, cdt, cdn) {
 			return {
@@ -66,11 +66,19 @@ frappe.ui.form.on('Request For Payment', {
 		}
 	},
 	expense_type(frm){
-		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense'){
+		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense' || frm.doc.expense_type == 'Split Amount b/w Client and Employee'){
 			cur_frm.clear_table("items");
 			frm.refresh_field("items");
 			frm.set_value("project","");
 			frm.set_value("total_amount",0);
+
+			frm.fields_dict['items'].grid.get_field("item").get_query = function(doc, cdt, cdn) {
+				return {
+					filters: [
+						['Item', 'item_group', 'in','Operational Expense'],
+					]
+				}
+			}
 		}
 		if(frm.doc.expense_type == 'Supplier Payment'){
 			cur_frm.clear_table("invoices");
@@ -85,7 +93,7 @@ frappe.ui.form.on('Request For Payment', {
 			frm.refresh_field("employees");
 			frm.set_value("total_amount",0);
 		}
-		if(frm.doc.expense_type == 'Employee Advance'){
+		if(frm.doc.expense_type == 'Employee Advance' || frm.doc.expense_type == 'Split Amount b/w Client and Employee'){
 			frm.set_value("project","");
 			cur_frm.clear_table("advances");
 			frm.refresh_field("advances");
@@ -131,6 +139,20 @@ frappe.ui.form.on('Request For Payment', {
 			frm.add_custom_button(__('Update Linked Records'), function(){
 				update_linked_records(frm);
 			}).addClass("btn-primary");
+		}
+		if(frm.doc.expense_type == 'Split Amount b/w Client and Employee'){
+			let total = 0;
+			if(frm.doc.items){
+				for(let i in frm.doc.items){
+					total += frm.doc.items[i].amount;
+				}
+			}
+			if(frm.doc.advances){
+				for(let i in frm.doc.advances){
+					total += frm.doc.advances[i].advance_amount;
+				}
+			}
+			frm.set_value("total_amount", total);
 		}
 	}
 });

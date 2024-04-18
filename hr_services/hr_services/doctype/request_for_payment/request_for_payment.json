@@ -83,11 +83,11 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "eval:doc.expense_type == 'Operational Expense' || doc.expense_type == 'Recruitment Expense' || doc.expense_type == 'Reimbursement Expense'",
+   "depends_on": "eval:doc.expense_type == 'Operational Expense' || doc.expense_type == 'Recruitment Expense' || doc.expense_type == 'Reimbursement Expense' || doc.expense_type == 'Split Amount b/w Client and Employee'",
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "mandatory_depends_on": "eval:doc.expense_type == 'Operational Expense' || doc.expense_type == 'Recruitment Expense' || doc.expense_type == 'Reimbursement Expense'",
+   "mandatory_depends_on": "eval:doc.expense_type == 'Operational Expense' || doc.expense_type == 'Recruitment Expense' || doc.expense_type == 'Reimbursement Expense' || doc.expense_type == 'Split Amount b/w Client and Employee'",
    "options": "Request for Payment Details"
   },
   {
@@ -108,7 +108,7 @@
    "fieldname": "expense_type",
    "fieldtype": "Select",
    "label": "Expense Type",
-   "options": "\nOperational Expense\nRecruitment Expense\nReimbursement Expense\nSupplier Payment\nPayment For Part Timer\nEmployee Advance",
+   "options": "\nOperational Expense\nRecruitment Expense\nReimbursement Expense\nSupplier Payment\nPayment For Part Timer\nEmployee Advance\nSplit Amount b/w Client and Employee",
    "reqd": 1
   },
   {
@@ -150,11 +150,11 @@
    "options": "RFP Part Timer Details"
   },
   {
-   "depends_on": "eval:doc.expense_type == 'Employee Advance'",
+   "depends_on": "eval:doc.expense_type == 'Employee Advance' || doc.expense_type == 'Split Amount b/w Client and Employee'",
    "fieldname": "advances",
    "fieldtype": "Table",
    "label": "Advances",
-   "mandatory_depends_on": "eval:doc.expense_type == 'Employee Advance'",
+   "mandatory_depends_on": "eval:doc.expense_type == 'Employee Advance' || doc.expense_type == 'Split Amount b/w Client and Employee'",
    "options": "RFP Employee Advances"
   },
   {
@@ -201,7 +201,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-02 12:24:04.045184",
+ "modified": "2024-04-18 13:36:27.672856",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

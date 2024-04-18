@@ -533,7 +533,7 @@
   "doctype": "Workflow",
   "document_type": "Payroll Entry",
   "is_active": 1,
-  "modified": "2024-03-28 13:32:23.278479",
+  "modified": "2024-04-18 11:08:07.327581",
   "name": "Payroll Entry wf",
   "override_status": 0,
   "send_email_alert": 0,
@@ -621,6 +621,20 @@
     "state": "Rejected by FM",
     "update_field": null,
     "update_value": null
+   },
+   {
+    "allow_edit": "FM Req Approver",
+    "avoid_status_override": 0,
+    "doc_status": "2",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Payroll Entry wf",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Cancelled",
+    "update_field": null,
+    "update_value": null
    }
   ],
   "transitions": [
@@ -678,6 +692,17 @@
     "parentfield": "transitions",
     "parenttype": "Workflow",
     "state": "Pending for FM Approval"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "FM Req Approver",
+    "condition": null,
+    "next_state": "Cancelled",
+    "parent": "Payroll Entry wf",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved by FM"
    }
   ],
   "workflow_name": "Payroll Entry wf",
