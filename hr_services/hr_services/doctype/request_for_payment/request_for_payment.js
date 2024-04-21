@@ -154,6 +154,15 @@ frappe.ui.form.on('Request For Payment', {
 			}
 			frm.set_value("total_amount", total);
 		}
+		if(frm.doc.expense_type == 'Split Amount b/w Client and Employee'){
+			frm.fields_dict['advances'].grid.get_field("employee_no").get_query = function(doc, cdt, cdn) {
+				return {
+					filters: [
+						['Employee', 'name', 'in',frm.doc.items[0].employee_no]
+					]
+				}
+			}
+		}
 	}
 });
 
