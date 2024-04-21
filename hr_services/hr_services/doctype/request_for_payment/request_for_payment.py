@@ -279,9 +279,6 @@ class RequestForPayment(Document):
 					row.reference_type = "Request For Payment"
 					row.reference_name = self.name
 
-					row = new_doc.append("accounts",{})
-					row.account = self.coa_for_jv
-					row.credit_in_account_currency = it.amount
 				#adjustment rows for the loans
 				for ad in self.advances:
 					row = new_doc.append("accounts",{})
@@ -289,10 +286,10 @@ class RequestForPayment(Document):
 					row.debit_in_account_currency = ad.advance_amount
 					row.reference_type = "Request For Payment"
 					row.reference_name = self.name
-
-					row = new_doc.append("accounts",{})
-					row.account = self.coa_for_jv
-					row.credit_in_account_currency = ad.advance_amount
+				#credit total of the request
+				row = new_doc.append("accounts",{})
+				row.account = self.coa_for_jv
+				row.credit_in_account_currency = self.total_amount
 
 				new_doc.user_remark = f"{self.expense_type} of Client {self.project_name} from Request for Payment "		
 				new_doc.save(ignore_permissions=True)
