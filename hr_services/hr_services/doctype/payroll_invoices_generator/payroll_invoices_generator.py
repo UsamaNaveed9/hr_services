@@ -10,21 +10,26 @@ class PayrollInvoicesGenerator(Document):
 	pass
 
 @frappe.whitelist()
-def get_employees(project,start_date,end_date):
+def get_employees(project,start_date,end_date,month_name):
 	employees = frappe.get_all('Employee', filters={'status': 'Active', 'project':project}, fields=['name','employee_name'])
 
 	filtered_employees = []
-	for employee in employees:
-		salary_slip = frappe.get_value(
-			"Salary Slip",
-			filters={"employee": employee["name"], "invoice_created": 0,"start_date": start_date, "end_date": end_date, "docstatus": 1},
-			fieldname="name",
-		)
-		if salary_slip:
-			employee["salary_slip"] = salary_slip
-			filtered_employees.append(employee)
-	if not filtered_employees:
-		frappe.throw(_("No Salary slip exists in the period from {0} to {1}".format(start_date,end_date)))
+	if project != "PROJ-0007": #if project not equal to Alhokair
+		for employee in employees:
+			salary_slip = frappe.get_value(
+				"Salary Slip",
+				filters={"employee": employee["name"], "invoice_created": 0,"start_date": start_date, "end_date": end_date, "docstatus": 1},
+				fieldname="name",
+			)
+			if salary_slip:
+				employee["salary_slip"] = salary_slip
+				filtered_employees.append(employee)
+		if not filtered_employees:
+			frappe.throw(_("No Salary slip exists in the period from {0} to {1}".format(start_date,end_date)))
+	elif project == "PROJ-0007": #if project equal to Alhokair
+		for employee in employees:
+			if not frappe.db.exists("Payroll Processed",{"employee": employee["name"],"month_name":month_name,"project": project}):
+				filtered_employees.append(employee)
 
 	return filtered_employees
 
@@ -833,6 +838,63 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 							sal_slip.save(ignore_permissions=True)
 						status = True
 	
+	elif invoice_type == "Division(dept) wise invoices Alhokair":
+		dept_list = []
+		for emp in emps:
+			dept = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
+			if dept and dept not in dept_list:
+				dept_list.append(dept)
+
+		for dept in dept_list:
+			no_emps_of_dept = 0
+			slted_emps = []
+			for emp in emps:
+				emp_dp = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
+				if dept == emp_dp:
+					no_emps_of_dept += 1
+					slted_emps.append(emp["employee"])
+		
+			#frappe.errprint(dept)
+			#frappe.errprint(no_emps_of_dept)
+			#frappe.errprint(slted_emps)
+			if no_emps_of_dept > 0 and slted_emps:		
+				si = frappe.new_doc("Sales Invoice")
+				si.customer = customer
+				si.set_posting_time = 1
+				si.posting_date = due_date
+				si.due_date = due_date
+				si.issue_date = due_date
+				si.project = project
+				si.is_pos = 0
+
+				si_item = frappe.new_doc("Sales Invoice Item")
+				si_item.item_code = 34
+				si_item.item_name = f"{dept} - Operational Cost of employees"
+				si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
+				si_item.qty = no_emps_of_dept
+				si_item.rate = frappe.db.get_value("Department", {"name":dept}, "custom_month_erc_cost")
+				si.append("items", si_item)
+
+				si_tax = frappe.new_doc("Sales Taxes and Charges")
+				si_tax.charge_type = "On Net Total"
+				si_tax.account_head = "VAT 15% - ERC"
+				si_tax.description = "VAT 15%"
+				si_tax.rate = 15
+				si.append("taxes", si_tax)
+
+				si.remarks = "Payroll Invoice"
+				si.save(ignore_permissions=True)
+
+				if si.name:
+					for s_emp in slted_emps:
+						pp = frappe.new_doc("Payroll Processed")
+						pp.employee = s_emp
+						pp.employee_name = frappe.db.get_value("Employee", {"name":emp["employee"]}, "employee_name")
+						pp.month_name = month_name
+						pp.project = project
+						pp.project_name = frappe.db.get_value("Project", {"name":project}, "project_name")
+						pp.save(ignore_permissions=True)
+		status = True
 	
 	#only for misk client 
 	if project == "PROJ-0001":

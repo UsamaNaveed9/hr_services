@@ -250,5 +250,8 @@ fixtures = [
     },
     {
         "dt": "Workflow Action Master"
+    },
+    {
+        "dt": "Invoice Type"
     }
 ]

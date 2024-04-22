@@ -1,0 +1,65 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-11-27 12:52:20.541885",
+  "name": "Invoice based on per PO",
+  "type": "Invoice based on per PO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-11-27 12:59:08.829569",
+  "name": "One Invoice with all employees details",
+  "type": "One Invoice with all employees details"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-11-27 13:08:16.101143",
+  "name": "One Invoice with all employees details sumup each emp in one line",
+  "type": "One Invoice with all employees details sumup each emp in one line"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-11-27 13:12:58.659697",
+  "name": "One Invoice with all employees total one line only",
+  "type": "One Invoice with all employees total one line only"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-11-27 15:02:37.111642",
+  "name": "Invoice based on per Employee",
+  "type": "Invoice based on per Employee"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-12-06 15:03:19.207668",
+  "name": "One Invoice with all employees total one line only without gosi and btc",
+  "type": "One Invoice with all employees total one line only without gosi and btc"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-12-10 08:54:11.148434",
+  "name": "Invoice based on per PO with other POs",
+  "type": "Invoice based on per PO with other POs"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2023-12-21 11:59:41.712081",
+  "name": "One Invoice with all employees total dept wise one line only",
+  "type": "One Invoice with all employees total dept wise one line only"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2024-04-22 14:26:27.440924",
+  "name": "Division(dept) wise invoices Alhokair",
+  "type": "Division(dept) wise invoices Alhokair"
+ }
+]
