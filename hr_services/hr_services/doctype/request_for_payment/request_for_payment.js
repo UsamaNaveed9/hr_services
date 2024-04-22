@@ -66,19 +66,11 @@ frappe.ui.form.on('Request For Payment', {
 		}
 	},
 	expense_type(frm){
-		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense' || frm.doc.expense_type == 'Split Amount b/w Client and Employee'){
+		if(frm.doc.expense_type == 'Operational Expense' || frm.doc.expense_type == 'Recruitment Expense' || frm.doc.expense_type == 'Reimbursement Expense'){
 			cur_frm.clear_table("items");
 			frm.refresh_field("items");
 			frm.set_value("project","");
 			frm.set_value("total_amount",0);
-
-			frm.fields_dict['items'].grid.get_field("item").get_query = function(doc, cdt, cdn) {
-				return {
-					filters: [
-						['Item', 'item_group', 'in','Operational Expense'],
-					]
-				}
-			}
 		}
 		if(frm.doc.expense_type == 'Supplier Payment'){
 			cur_frm.clear_table("invoices");
@@ -98,6 +90,20 @@ frappe.ui.form.on('Request For Payment', {
 			cur_frm.clear_table("advances");
 			frm.refresh_field("advances");
 			frm.set_value("total_amount",0);
+		}
+		if(frm.doc.expense_type == 'Split Amount b/w Client and Employee'){
+			cur_frm.clear_table("items");
+			frm.refresh_field("items");
+			frm.set_value("project","");
+			frm.set_value("total_amount",0);
+
+			frm.fields_dict['items'].grid.get_field("item").get_query = function(doc, cdt, cdn) {
+				return {
+					filters: [
+						['Item', 'item_group', 'in','Operational Expense'],
+					]
+				}
+			}
 		}
 	},
 	before_save(frm){
