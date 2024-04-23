@@ -857,43 +857,102 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 			#frappe.errprint(dept)
 			#frappe.errprint(no_emps_of_dept)
 			#frappe.errprint(slted_emps)
-			if no_emps_of_dept > 0 and slted_emps:		
-				si = frappe.new_doc("Sales Invoice")
-				si.customer = customer
-				si.set_posting_time = 1
-				si.posting_date = due_date
-				si.due_date = due_date
-				si.issue_date = due_date
-				si.project = project
-				si.is_pos = 0
+			if dept != "Holding Bus Tour":
+				if no_emps_of_dept > 0 and slted_emps:		
+					si = frappe.new_doc("Sales Invoice")
+					si.customer = customer
+					si.set_posting_time = 1
+					si.posting_date = due_date
+					si.due_date = due_date
+					si.issue_date = due_date
+					si.project = project
+					si.is_pos = 0
 
-				si_item = frappe.new_doc("Sales Invoice Item")
-				si_item.item_code = 34
-				si_item.item_name = f"{dept} - Operational Cost of employees"
-				si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
-				si_item.qty = no_emps_of_dept
-				si_item.rate = frappe.db.get_value("Department", {"name":dept}, "custom_month_erc_cost")
-				si.append("items", si_item)
+					si_item = frappe.new_doc("Sales Invoice Item")
+					si_item.item_code = 34
+					si_item.item_name = f"{dept} - Operational Cost of employees"
+					si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
+					si_item.qty = no_emps_of_dept
+					si_item.rate = frappe.db.get_value("Department", {"name":dept}, "custom_month_erc_cost")
+					si.append("items", si_item)
 
-				si_tax = frappe.new_doc("Sales Taxes and Charges")
-				si_tax.charge_type = "On Net Total"
-				si_tax.account_head = "VAT 15% - ERC"
-				si_tax.description = "VAT 15%"
-				si_tax.rate = 15
-				si.append("taxes", si_tax)
+					si_tax = frappe.new_doc("Sales Taxes and Charges")
+					si_tax.charge_type = "On Net Total"
+					si_tax.account_head = "VAT 15% - ERC"
+					si_tax.description = "VAT 15%"
+					si_tax.rate = 15
+					si.append("taxes", si_tax)
 
-				si.remarks = "Payroll Invoice"
-				si.save(ignore_permissions=True)
+					si.remarks = "Payroll Invoice"
+					si.save(ignore_permissions=True)
 
-				if si.name:
+					if si.name:
+						for s_emp in slted_emps:
+							pp = frappe.new_doc("Payroll Processed")
+							pp.employee = s_emp
+							pp.employee_name = frappe.db.get_value("Employee", {"name":emp["employee"]}, "employee_name")
+							pp.month_name = month_name
+							pp.project = project
+							pp.project_name = frappe.db.get_value("Project", {"name":project}, "project_name")
+							pp.save(ignore_permissions=True)
+			elif dept == "Holding Bus Tour":
+				if no_emps_of_dept > 0 and slted_emps:		
+					si = frappe.new_doc("Sales Invoice")
+					si.customer = customer
+					si.set_posting_time = 1
+					si.posting_date = due_date
+					si.due_date = due_date
+					si.issue_date = due_date
+					si.project = project
+					si.is_pos = 0
+
 					for s_emp in slted_emps:
-						pp = frappe.new_doc("Payroll Processed")
-						pp.employee = s_emp
-						pp.employee_name = frappe.db.get_value("Employee", {"name":emp["employee"]}, "employee_name")
-						pp.month_name = month_name
-						pp.project = project
-						pp.project_name = frappe.db.get_value("Project", {"name":project}, "project_name")
-						pp.save(ignore_permissions=True)
+						si_item = frappe.new_doc("Sales Invoice Item")
+						si_item.item_code = 34
+						si_item.item_name = f"{dept} - Operational Cost of employees"
+						si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
+						si_item.employee_id = s_emp
+						si_item.qty = 1
+						si_item.rate = frappe.db.get_value("Department", {"name":dept}, "custom_month_erc_cost")
+						si.append("items", si_item)
+
+						si_item = frappe.new_doc("Sales Invoice Item")
+						si_item.item_code = 781
+						si_item.qty = 1
+						nationality = frappe.db.get_value("Employee", {"name":s_emp}, "nationality")
+						if nationality == "Saudi Arabia":
+							basic = frappe.db.get_value("Employee", {"name":s_emp}, "basic_salary")
+							housing = frappe.db.get_value("Employee", {"name":s_emp}, "housing_allowance")
+							si_item.rate = (basic + housing) * 0.1175
+						else:
+							basic = frappe.db.get_value("Employee", {"name":s_emp}, "basic_salary")
+							housing = frappe.db.get_value("Employee", {"name":s_emp}, "housing_allowance")
+							si_item.rate = (basic + housing) * 0.02
+
+						si_item.employee_id = s_emp
+						si_item.employee_name = frappe.db.get_value("Employee", {"name":s_emp}, "employee_name")
+						si.append("items", si_item)
+
+					si_tax = frappe.new_doc("Sales Taxes and Charges")
+					si_tax.charge_type = "On Net Total"
+					si_tax.account_head = "VAT 15% - ERC"
+					si_tax.description = "VAT 15%"
+					si_tax.rate = 15
+					si.append("taxes", si_tax)
+
+					si.remarks = "Payroll Invoice"
+					si.save(ignore_permissions=True)
+
+					if si.name:
+						for s_emp in slted_emps:
+							pp = frappe.new_doc("Payroll Processed")
+							pp.employee = s_emp
+							pp.employee_name = frappe.db.get_value("Employee", {"name":s_emp}, "employee_name")
+							pp.month_name = month_name
+							pp.project = project
+							pp.project_name = frappe.db.get_value("Project", {"name":project}, "project_name")
+							pp.save(ignore_permissions=True)
+
 		status = True
 	
 	#only for misk client 
