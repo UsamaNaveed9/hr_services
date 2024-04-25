@@ -253,5 +253,8 @@ fixtures = [
     },
     {
         "dt": "Invoice Type"
+    },
+    {
+        "dt": "Module Profile"
     }
 ]

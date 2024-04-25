@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "Finance File MGT",
  "links": [],
- "modified": "2024-04-04 14:11:33.969612",
+ "modified": "2024-04-25 11:12:27.417945",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Finance File MGT",
@@ -29,7 +29,7 @@
    "role": "Finance User"
   }
  ],
- "sequence_id": 32.0,
+ "sequence_id": 33.0,
  "shortcuts": [
   {
    "color": "Grey",

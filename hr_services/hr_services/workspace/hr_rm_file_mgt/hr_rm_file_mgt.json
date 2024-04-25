@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "HR RM File MGT",
  "links": [],
- "modified": "2024-04-04 14:11:09.181283",
+ "modified": "2024-04-25 11:12:28.575346",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR RM File MGT",
@@ -32,7 +32,7 @@
    "role": "HR REC User"
   }
  ],
- "sequence_id": 33.0,
+ "sequence_id": 34.0,
  "shortcuts": [
   {
    "color": "Grey",
