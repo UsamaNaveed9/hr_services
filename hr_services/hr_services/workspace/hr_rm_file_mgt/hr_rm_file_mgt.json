@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "HR RM File MGT",
  "links": [],
- "modified": "2024-04-25 11:12:28.575346",
+ "modified": "2024-04-29 14:24:44.019036",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR RM File MGT",
@@ -29,7 +29,10 @@
    "role": "REC EXP Approver"
   },
   {
-   "role": "HR REC User"
+   "role": "Elite REC User"
+  },
+  {
+   "role": "Elite HR User"
   }
  ],
  "sequence_id": 34.0,

@@ -34,7 +34,8 @@ doctype_js = {"Employee" : "customjs/employee.js",
               "Project": "customjs/project.js",
               "Payroll Entry": "customjs/payroll_entry.js",
               "Purchase Invoice": "customjs/purchase_invoice.js",
-              "Asset Category": "customjs/asset_category.js"
+              "Asset Category": "customjs/asset_category.js",
+              "Job Offer": "customjs/job_offer.js"
               }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -256,5 +257,8 @@ fixtures = [
     },
     {
         "dt": "Module Profile"
+    },
+    {
+        "dt": "Salary Items"
     }
 ]

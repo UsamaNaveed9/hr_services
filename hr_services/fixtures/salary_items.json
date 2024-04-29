@@ -1,0 +1,23 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Salary Items",
+  "modified": "2024-04-29 13:14:06.713833",
+  "name": "Basic Salary",
+  "salary_item": "Basic Salary"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Salary Items",
+  "modified": "2024-04-29 13:14:15.059541",
+  "name": "Housing Allowance",
+  "salary_item": "Housing Allowance"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Salary Items",
+  "modified": "2024-04-29 13:14:36.179127",
+  "name": "Transportations Allowance",
+  "salary_item": "Transportations Allowance"
+ }
+]
