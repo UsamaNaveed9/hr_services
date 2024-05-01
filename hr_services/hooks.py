@@ -132,7 +132,8 @@ doc_events = {
 	# 	"on_trash": "method"
 	# }
     "Employee": {
-        "on_update": "hr_services.custompy.employee.update_salary"
+        "on_update": "hr_services.custompy.employee.update_salary",
+        "before_insert": "hr_services.custompy.employee.check_id"
     },
     "Sales Invoice": {
         "on_submit": "hr_services.custompy.sales_invoice.new_rec"

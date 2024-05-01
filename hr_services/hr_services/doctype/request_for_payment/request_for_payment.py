@@ -51,7 +51,8 @@ class RequestForPayment(Document):
 					si_item.employee_id = it.employee_no
 					si_item.employee_name = it.employee_name
 					si_item.qty = it.qty
-					si_item.rate = it.rate	
+					si_item.rate = it.rate
+					si_item.custom_rfp = self.name
 					si.append("items", si_item)
 
 				si_tax = frappe.new_doc("Sales Taxes and Charges")
@@ -61,7 +62,7 @@ class RequestForPayment(Document):
 				si_tax.rate = 15
 				si.append("taxes", si_tax)
 
-				si.custom_request_for_payment = self.name
+				#si.custom_request_for_payment = self.name
 				si.remarks = f"{self.expense_type} from Request for Payment"
 				si.save(ignore_permissions=True)
 				copy_attachments(self, si)
@@ -124,6 +125,7 @@ class RequestForPayment(Document):
 							si_item.rate = inv_it.rate
 						si_item.employee_id = inv_it.employee_no
 						si_item.employee_name = inv_it.employee_name
+						si_item.custom_rfp = self.name
 						si.append("items", si_item)
 
 					si_tax = frappe.new_doc("Sales Taxes and Charges")
@@ -133,7 +135,7 @@ class RequestForPayment(Document):
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
-					si.custom_request_for_payment = self.name
+					#si.custom_request_for_payment = self.name
 					si.remarks = f"{self.expense_type} from Request for Payment"
 					si.save(ignore_permissions=True)
 					#copy_attachments(self, si)
@@ -183,6 +185,7 @@ class RequestForPayment(Document):
 					si_item.rate = frappe.db.get_value("PO Management",{"name": emp.po_mgt},"invoicing_rate")
 					si_item.employee_id = emp.employee_no
 					si_item.employee_name = emp.employee_name
+					si_item.custom_rfp = self.name
 					si.append("items", si_item)
 
 					si_tax = frappe.new_doc("Sales Taxes and Charges")
@@ -192,7 +195,7 @@ class RequestForPayment(Document):
 					si_tax.rate = 15
 					si.append("taxes", si_tax)
 
-					si.custom_request_for_payment = self.name
+					#si.custom_request_for_payment = self.name
 					si.remarks = f"{self.expense_type} from Request for Payment"
 					si.save(ignore_permissions=True)
 					copy_attachments(self, si)
@@ -250,6 +253,7 @@ class RequestForPayment(Document):
 					si_item.rate = adv.advance_amount
 					si_item.employee_id = adv.employee_no
 					si_item.employee_name = adv.employee_name
+					si_item.custom_rfp = self.name
 					si.append("items", si_item)
 			#adding 15% tax on the sales invoice
 			si_tax = frappe.new_doc("Sales Taxes and Charges")
@@ -259,7 +263,7 @@ class RequestForPayment(Document):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.custom_request_for_payment = self.name
+			#si.custom_request_for_payment = self.name
 			si.remarks = f"{self.expense_type} from Request for Payment"
 			#if items exist then invoice save in the system otherwise skip it.
 			if len(si.items) > 0 and self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
@@ -316,7 +320,8 @@ class RequestForPayment(Document):
 				si_item.employee_id = it.employee_no
 				si_item.employee_name = it.employee_name
 				si_item.qty = it.qty
-				si_item.rate = it.rate	
+				si_item.rate = it.rate
+				si_item.custom_rfp = self.name
 				si.append("items", si_item)
 
 			for adv in self.advances:
@@ -353,6 +358,7 @@ class RequestForPayment(Document):
 					si_item.rate = adv.advance_amount
 					si_item.employee_id = adv.employee_no
 					si_item.employee_name = adv.employee_name
+					si_item.custom_rfp = self.name
 					si.append("items", si_item)
 			#adding 15% tax on the sales invoice
 			si_tax = frappe.new_doc("Sales Taxes and Charges")
@@ -362,7 +368,7 @@ class RequestForPayment(Document):
 			si_tax.rate = 15
 			si.append("taxes", si_tax)
 
-			si.custom_request_for_payment = self.name
+			#si.custom_request_for_payment = self.name
 			si.remarks = f"{self.expense_type} from Request for Payment"
 			#if items exist then invoice save in the system otherwise skip it.
 			if len(si.items) > 0 and self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
@@ -411,6 +417,7 @@ def update_linked_records(self):
 			si_item.item_code = it["item"]
 			si_item.qty = it["qty"]
 			si_item.rate = it["rate"]
+			si_item.custom_rfp = self.name
 			if "employee_no" in it:
 				si_item.employee_id = it["employee_no"]
 			if "employee_name" in it:	

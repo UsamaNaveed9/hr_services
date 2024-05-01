@@ -44,6 +44,7 @@ def merge_invoices(due_date,customer,sales_invoices):
 				si_item.rate = inv_it.rate
 				si_item.employee_id = inv_it.employee_id
 				si_item.employee_name = inv_it.employee_name
+				si_item.custom_rfp = inv_it.custom_rfp
 				si.append("items", si_item)
 
 		si_tax = frappe.new_doc("Sales Taxes and Charges")

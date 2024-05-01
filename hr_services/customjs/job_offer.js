@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Job Offer', {
 	before_save(frm){
-		if(frm.doc.custom_salary_details.length > 0){
+		if(frm.doc.custom_salary_details){
 			calculate_salary(frm);
 		}
 	},

@@ -2,6 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
+from frappe import _
 
 @frappe.whitelist()
 def update_salary(doc, method):
@@ -20,5 +21,13 @@ def update_salary(doc, method):
 			frappe.db.sql("""update `tabSalary Structure Assignment` set mobile_allowance=%s where name=%s """,(doc.mobile_allowance, struct_assigned.name))
 
 		frappe.db.commit()
+
+	if doc.iqama_national_id and frappe.db.exists("Employee",{"iqama_national_id": doc.iqama_national_id, "name": ["!=", doc.name]}):
+		frappe.throw(_("Iqama No/National ID must be Unique. This <b>{0}</b> is already assigned to another Employee").format(doc.iqama_national_id))	
+
+@frappe.whitelist()
+def check_id(doc, method):
+	if doc.iqama_national_id and frappe.db.exists("Employee",{"iqama_national_id": doc.iqama_national_id}):
+		frappe.throw(_("Iqama No/National ID must be Unique. This <b>{0}</b> is already assigned to another Employee").format(doc.iqama_national_id))
 
 
