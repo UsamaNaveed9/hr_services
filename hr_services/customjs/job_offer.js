@@ -4,6 +4,11 @@
 frappe.provide("erpnext.job_offer");
 
 frappe.ui.form.on('Job Offer', {
+	onload: function (frm) {
+		frm.set_query("select_terms", function() {
+			return { filters: { custom_for_job_offer: 1 } };
+		});
+	},
 	before_save(frm){
 		if(frm.doc.custom_salary_details){
 			calculate_salary(frm);
@@ -25,6 +30,29 @@ frappe.ui.form.on('Job Offer', {
 					erpnext.job_offer.make_contract(frm);
 				}
 			);
+		}
+		if(frm.doc.custom_project){
+			if(frm.doc.custom_project == "PROJ-0002"){ //ACWA-NEOM project
+				frm.set_value("select_terms","Neom");
+			}
+			else if(frm.doc.custom_project == "PROJ-0001"){ //Misk project
+				frm.set_value("select_terms","Misk");
+			}
+			else if(frm.doc.custom_project == "PROJ-0005"){ //Cummins project
+				frm.set_value("select_terms","Cummins");
+			}
+			else if(frm.doc.custom_project == "PROJ-0022" && frm.doc.custom_divisions == "Hittin"){ //Riyadh Schools Platform and division == Hittin project
+				frm.set_value("select_terms","RSP Hittin");
+			}
+			else if(frm.doc.custom_project == "PROJ-0022" && frm.doc.custom_divisions == "Admin"){ //Riyadh Schools Platform and division == Admin project
+				frm.set_value("select_terms","RSP Admin");
+			}
+			else if(frm.doc.custom_project == "PROJ-0022" && frm.doc.custom_divisions == "Al-Salam"){ //Riyadh Schools Platform and division == Al-Salam project
+				frm.set_value("select_terms","RSP Al-Salam");
+			}
+			else{
+				frm.set_value("select_terms","Elite");
+			}
 		}
 
 	},
@@ -71,9 +99,15 @@ function calculate_salary(frm){
 }
 
 erpnext.job_offer.make_employee = function (frm) {
-	console.log("YES")
 	frappe.model.open_mapped_doc({
 		method: "hr_services.custompy.job_offer.make_employee",
+		frm: frm
+	});
+};
+
+erpnext.job_offer.make_contract = function (frm) {
+	frappe.model.open_mapped_doc({
+		method: "hr_services.custompy.job_offer.make_contract",
 		frm: frm
 	});
 };

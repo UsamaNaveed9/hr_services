@@ -40,3 +40,29 @@ def make_employee(source_name, target_doc=None):
 		set_missing_values,
 	)
 	return doc
+
+
+@frappe.whitelist()
+def make_contract(source_name, target_doc=None):
+	def set_missing_values(source, target):
+		target.party_type = "Job Applicant"
+
+	doc = get_mapped_doc(
+		"Job Offer",
+		source_name,
+		{
+			"Job Offer": {
+				"doctype": "Contract",
+				"field_map": {"name": "custom_job_offer",
+							"job_applicant": "party_name",
+							"applicant_name": "custom_c_name",
+							"custom_country": "custom_nationality",
+							"designation": "custom_designation"
+				},
+			},
+			"Contract Details": {"doctype": "Contract Details"},
+		},
+		target_doc,
+		set_missing_values,
+	)
+	return doc

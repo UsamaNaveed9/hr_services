@@ -7,20 +7,31 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "salary_item"
+  "salary_item",
+  "component_in_arabic"
  ],
  "fields": [
   {
    "allow_in_quick_entry": 1,
    "fieldname": "salary_item",
    "fieldtype": "Data",
-   "label": "Salary Item",
+   "in_list_view": 1,
+   "label": "Salary Component",
+   "reqd": 1,
    "unique": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "component_in_arabic",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Component in Arabic",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-12 15:27:17.044822",
+ "modified": "2024-05-13 17:21:04.534012",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Salary Items",
