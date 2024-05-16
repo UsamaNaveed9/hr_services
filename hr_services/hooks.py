@@ -35,7 +35,8 @@ doctype_js = {"Employee" : "customjs/employee.js",
               "Payroll Entry": "customjs/payroll_entry.js",
               "Purchase Invoice": "customjs/purchase_invoice.js",
               "Asset Category": "customjs/asset_category.js",
-              "Job Offer": "customjs/job_offer.js"
+              "Job Offer": "customjs/job_offer.js",
+              "Contract": "customjs/contract.js"
               }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -140,6 +141,10 @@ doc_events = {
     },
     "Purchase Invoice": {
         "before_insert": "hr_services.custompy.purchase_invoice.check_inv"
+    },
+    "Contract": {
+        "before_insert": "hr_services.custompy.contract.check_job_offer",
+        "on_update": "hr_services.custompy.contract.validate_after_save"
     }
 }
 
