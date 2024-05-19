@@ -81,6 +81,11 @@ def fill_and_attach_template(doctype, name, template):
 		'transportation': tranport,
 		'vacation_travel': vacation_travel,
 		'custom_total_salary': data.custom_total_salary,
+		'custom_job_title_on_visa': data.custom_job_title_on_visa,
+		'custom_job_title_in_arabic': data.custom_job_title_in_arabic,
+		'custom_project_name': data.custom_project_name,
+		'project_name_in_arabic': frappe.db.get_value("Project",data.custom_project,"custom_project_name_in_arabic"),
+		'custom_leave_days': data.custom_leave_days,
 	}
 
 	template_doc = frappe.get_doc("File", {"attached_to_doctype":"Word Template","attached_to_name":template,"attached_to_field":"word_template_file"})

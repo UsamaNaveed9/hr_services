@@ -4,7 +4,7 @@
 frappe.ui.form.on('Contract',{
     refresh(frm){
         calculate_end_date(frm);
-        if(frm.doc.is_signed == 1){
+        if(frm.doc.docstatus == 1){
             frm.add_custom_button(__('Creat Word File'), function (){
                 var dialog = new frappe.ui.Dialog({
                     title: __('Choose a template file'),
@@ -33,13 +33,22 @@ frappe.ui.form.on('Contract',{
                 });
                 dialog.show();
             })
-
+        }
+        if(frm.doc.is_signed == 1){
             frm.add_custom_button(__('Create Employee'), function(){
                 frappe.model.open_mapped_doc({
                     method: "hr_services.custompy.contract.make_employee",
                     frm: frm
                 });
             })
+        }
+    },
+    is_signed(frm){
+        if(frm.doc.is_signed == 1){
+            frm.set_value("custom_status", "Signed");
+        }
+        else if(frm.doc.is_signed == 0){
+            frm.set_value("custom_status", "Sent");
         }
     },
     custom_contract_duration(frm){

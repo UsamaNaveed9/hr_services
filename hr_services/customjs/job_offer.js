@@ -31,7 +31,7 @@ frappe.ui.form.on('Job Offer', {
 				}
 			);
 		}
-		if(frm.doc.custom_project){
+		if(frm.doc.custom_project && frm.doc.docstatus == 0){
 			if(frm.doc.custom_project == "PROJ-0002"){ //ACWA-NEOM project
 				frm.set_value("select_terms","Neom");
 			}

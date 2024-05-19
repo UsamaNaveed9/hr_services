@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"TrRgFLeATn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"o7HUxtuiAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":3}},{\"id\":\"BSfCSxeOZN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ouzRaGAJJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"0akZyj1E4k\",\"type\":\"card\",\"data\":{\"card_name\":\"Jobs\",\"col\":4}},{\"id\":\"06gIuB5svR\",\"type\":\"card\",\"data\":{\"card_name\":\"Appointment\",\"col\":4}},{\"id\":\"Q4msp7F8vF\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"TrRgFLeATn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"o7HUxtuiAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":3}},{\"id\":\"BSfCSxeOZN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ouzRaGAJJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"0akZyj1E4k\",\"type\":\"card\",\"data\":{\"card_name\":\"Jobs\",\"col\":4}},{\"id\":\"Q4msp7F8vF\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
  "creation": "2024-04-25 11:11:46.004914",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,36 +12,6 @@
  "is_hidden": 0,
  "label": "Elite Recruitment",
  "links": [
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Appointment",
-   "link_count": 2,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Appointment Letter Template",
-   "link_count": 0,
-   "link_to": "Appointment Letter Template",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "dependencies": "Job Applicant",
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Appointment Letter",
-   "link_count": 0,
-   "link_to": "Appointment Letter",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -121,7 +91,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-05-13 16:41:28.730801",
+ "modified": "2024-05-19 13:07:46.272156",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite Recruitment",
