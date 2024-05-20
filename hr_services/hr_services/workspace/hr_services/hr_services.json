@@ -257,7 +257,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-04-25 11:12:20.278526",
+ "modified": "2024-05-20 13:22:30.856043",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "HR Services",
@@ -267,7 +267,7 @@
  "public": 1,
  "quick_lists": [],
  "roles": [],
- "sequence_id": 16.0,
+ "sequence_id": 17.0,
  "shortcuts": [],
  "title": "HR Services"
 }

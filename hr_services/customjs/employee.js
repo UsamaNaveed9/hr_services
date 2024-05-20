@@ -24,6 +24,32 @@ frappe.ui.form.on('Employee', {
     },
     mobile_allowance(frm){
         calculate_ctc(frm);
+    },
+    iqama_issue_date(frm){
+        frappe.call({
+            method: "hr_services.custompy.employee.convert_into_hijri",
+            args: {
+                date: frm.doc.iqama_issue_date
+            },
+            callback: function(r){
+                if(r.message){
+                    frm.set_value("custom_iqama_issue_date_in_hijri",r.message);
+                }
+            }
+        })
+    },
+    iqama_expiry_date(frm){
+        frappe.call({
+            method: "hr_services.custompy.employee.convert_into_hijri",
+            args: {
+                date: frm.doc.iqama_expiry_date
+            },
+            callback: function(r){
+                if(r.message){
+                    frm.set_value("custom_iqama_expiry_date_in_hijri",r.message);
+                }
+            }
+        })
     }
 });
 

@@ -3,6 +3,8 @@
 
 import frappe
 from frappe import _
+from hijri_converter import Hijri, Gregorian
+from datetime import datetime
 
 @frappe.whitelist()
 def update_salary(doc, method):
@@ -29,5 +31,16 @@ def update_salary(doc, method):
 def check_id(doc, method):
 	if doc.iqama_national_id and frappe.db.exists("Employee",{"iqama_national_id": doc.iqama_national_id}):
 		frappe.throw(_("Iqama No/National ID must be Unique. This <b>{0}</b> is already assigned to another Employee").format(doc.iqama_national_id))
+
+@frappe.whitelist()
+def convert_into_hijri(date):
+	hijri_date = Gregorian.fromisoformat(date).to_hijri().isoformat()
+	# Parse the date
+	parsed_date = datetime.strptime(hijri_date, "%Y-%m-%d")
+
+	# Format the date to "DD-MM-YYYY"
+	formatted_date = parsed_date.strftime("%d-%m-%Y")
+	
+	return formatted_date
 
 

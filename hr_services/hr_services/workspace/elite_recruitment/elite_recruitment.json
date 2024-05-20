@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"TrRgFLeATn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"o7HUxtuiAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":3}},{\"id\":\"BSfCSxeOZN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ouzRaGAJJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"0akZyj1E4k\",\"type\":\"card\",\"data\":{\"card_name\":\"Jobs\",\"col\":4}},{\"id\":\"Q4msp7F8vF\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"TrRgFLeATn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"o7HUxtuiAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":3}},{\"id\":\"BSfCSxeOZN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ouzRaGAJJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"0akZyj1E4k\",\"type\":\"card\",\"data\":{\"card_name\":\"Jobs\",\"col\":4}},{\"id\":\"Q4msp7F8vF\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"yRajwfh0bN\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}}]",
  "creation": "2024-04-25 11:11:46.004914",
  "custom_blocks": [],
  "docstatus": 0,
@@ -89,9 +89,48 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Setup",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Branch",
+   "link_count": 0,
+   "link_to": "Branch",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Department",
+   "link_count": 0,
+   "link_to": "Department",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Designation",
+   "link_count": 0,
+   "link_to": "Designation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-05-20 11:23:22.908809",
+ "modified": "2024-05-20 13:28:33.746429",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite Recruitment",
@@ -111,7 +150,7 @@
    "role": "Elite REC User"
   }
  ],
- "sequence_id": 3.0,
+ "sequence_id": 4.0,
  "shortcuts": [
   {
    "color": "Grey",
