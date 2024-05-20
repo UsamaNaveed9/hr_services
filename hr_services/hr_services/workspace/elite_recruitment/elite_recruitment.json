@@ -82,7 +82,7 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
+   "is_query_report": 1,
    "label": "Candidate Detail",
    "link_count": 0,
    "link_to": "Candidate Detail",
@@ -91,7 +91,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-05-19 17:11:21.536568",
+ "modified": "2024-05-20 11:23:22.908809",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite Recruitment",
