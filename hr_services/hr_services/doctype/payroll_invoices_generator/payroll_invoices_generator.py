@@ -910,7 +910,7 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 						si_item = frappe.new_doc("Sales Invoice Item")
 						si_item.item_code = 34
 						si_item.item_name = f"{dept} - Operational Cost of employees"
-						si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
+						si_item.description = f"ERC for the month of {month_name} {year}\nERC لشهر {my_in_arabic}"
 						si_item.employee_id = s_emp
 						si_item.qty = 1
 						si_item.rate = frappe.db.get_value("Department", {"name":dept}, "custom_month_erc_cost")
@@ -931,6 +931,13 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 
 						si_item.employee_id = s_emp
 						si_item.employee_name = frappe.db.get_value("Employee", {"name":s_emp}, "employee_name")
+						si.append("items", si_item)
+
+						si_item = frappe.new_doc("Sales Invoice Item")
+						si_item.item_code = 632
+						si_item.employee_id = s_emp
+						si_item.qty = 1
+						si_item.rate = 125
 						si.append("items", si_item)
 
 					si_tax = frappe.new_doc("Sales Taxes and Charges")

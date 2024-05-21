@@ -15,13 +15,27 @@ frappe.ui.form.on('Job Offer', {
 		}
 	},
 	refresh: function (frm) {
-		if ((!frm.doc.__islocal) && (frm.doc.status == 'Accepted') && (frm.doc.custom_qiwa_status == 'Accepted by Candidate' || frm.doc.custom_qiwa_status == 'Accepted by His/Her Sponsor') 
-			&& (frm.doc.custom_gosi_status == 'Accepted') && (frm.doc.docstatus === 1) && (!frm.doc.__onload || !frm.doc.__onload.employee)) {
-			frm.add_custom_button(__('Create Employee'),
-				function () {
-					erpnext.job_offer.make_employee(frm);
+		if ((!frm.doc.__islocal) && (frm.doc.status == 'Accepted') && (frm.doc.docstatus === 1) && (!frm.doc.__onload || !frm.doc.__onload.employee)) {
+			if(frm.doc.custom_nationality == "Saudi"){
+				if((frm.doc.custom_qiwa_status == 'Accepted by Candidate' || frm.doc.custom_qiwa_status == 'Accepted by His/Her Sponsor') 
+					&& (frm.doc.custom_gosi_status == 'Accepted')){
+						frm.add_custom_button(__('Create Employee'),
+							function () {
+								erpnext.job_offer.make_employee(frm);
+							}
+						);
 				}
-			);
+			}
+			if(frm.doc.custom_nationality == "Non Saudi"){
+				if(frm.doc.custom_qiwa_status == 'Accepted by Candidate' || frm.doc.custom_qiwa_status == 'Accepted by His/Her Sponsor'){
+					frm.add_custom_button(__('Create Employee'),
+						function () {
+							erpnext.job_offer.make_employee(frm);
+						}
+					);
+					
+				}
+			}
 		}
 		if ((!frm.doc.__islocal) && (frm.doc.status == 'Accepted') && (frm.doc.custom_job_title_on_visa)
 			&& (frm.doc.docstatus === 1) && (!frm.doc.__onload || !frm.doc.__onload.employee)) {
