@@ -54,16 +54,16 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
-   "label": "Employee Exits",
+   "is_query_report": 1,
+   "label": "Health Insurance Class",
    "link_count": 0,
-   "link_to": "Employee Exits",
+   "link_to": "Health Insurance Class",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2024-05-20 13:32:32.617273",
+ "modified": "2024-05-22 15:22:17.269771",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite HR",

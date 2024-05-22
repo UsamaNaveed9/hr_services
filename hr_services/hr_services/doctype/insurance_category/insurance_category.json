@@ -9,8 +9,11 @@
  "engine": "InnoDB",
  "field_order": [
   "category_name",
+  "details_for_costing_sheet_section",
   "price_for_emp",
+  "column_break_s29z5",
   "price_for_emp_wife",
+  "column_break_almfg",
   "price_for_emp_child"
  ],
  "fields": [
@@ -34,11 +37,24 @@
    "fieldname": "price_for_emp_child",
    "fieldtype": "Currency",
    "label": "Price For Emp Child"
+  },
+  {
+   "fieldname": "details_for_costing_sheet_section",
+   "fieldtype": "Section Break",
+   "label": "Details For Costing Sheet"
+  },
+  {
+   "fieldname": "column_break_s29z5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_almfg",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-28 16:24:58.569128",
+ "modified": "2024-05-22 13:47:51.019811",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Insurance Category",
