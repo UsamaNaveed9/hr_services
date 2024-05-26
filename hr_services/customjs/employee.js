@@ -50,6 +50,30 @@ frappe.ui.form.on('Employee', {
                 }
             }
         })
+    },
+    custom_h_i_cancelled(frm){
+        if(frm.doc.custom_h_i_cancelled == 1){
+            frm.set_value("custom_hi_cancelled_status","Yes");
+        }
+        else{
+            frm.set_value("custom_hi_cancelled_status","");
+        }
+    },
+    custom_clearance_form_signed(frm){
+        if(frm.doc.custom_clearance_form_signed == 1){
+            frm.set_value("custom_cf_signed_status","Yes");
+        }
+        else{
+            frm.set_value("custom_cf_signed_status","");
+        }
+    },
+    custom_gosi_removed(frm){
+        if(frm.doc.custom_gosi_removed == 1){
+            frm.set_value("custom_gosi_removed_status","Yes");
+        }
+        else{
+            frm.set_value("custom_gosi_removed_status","");
+        }
     }
 });
 
