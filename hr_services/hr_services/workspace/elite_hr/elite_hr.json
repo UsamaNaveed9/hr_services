@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"7oBmWXjUJv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"n7NV5VftwL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"R4d9orJByH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":4}},{\"id\":\"fp81SfLg8s\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Znd8_lhvlw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"8CtLVWVyi6\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"saWfkepALY\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}}]",
+ "content": "[{\"id\":\"7oBmWXjUJv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"n7NV5VftwL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"R4d9orJByH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":4}},{\"id\":\"fp81SfLg8s\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Znd8_lhvlw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"8CtLVWVyi6\",\"type\":\"card\",\"data\":{\"card_name\":\"Project Wise Reports\",\"col\":4}},{\"id\":\"rLb0sxn4st\",\"type\":\"card\",\"data\":{\"card_name\":\"Employees Wise Reports\",\"col\":4}},{\"id\":\"saWfkepALY\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"c9_kFJw0V-\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":3}}]",
  "creation": "2024-05-20 13:21:33.933999",
  "custom_blocks": [],
  "docstatus": 0,
@@ -46,7 +46,75 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Key Reports",
+   "label": "Employees Wise Reports",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Employee Health Insurance",
+   "link_count": 0,
+   "link_to": "Employee Health Insurance",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Inactive Employees Settlement",
+   "link_count": 0,
+   "link_to": "Inactive Employees Settlement",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Setup",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project",
+   "link_count": 0,
+   "link_to": "Project",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Insurance Category",
+   "link_count": 0,
+   "link_to": "Insurance Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Iqama and WL Fees",
+   "link_count": 0,
+   "link_to": "Iqama and WL Fees",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project Wise Reports",
    "link_count": 2,
    "link_type": "DocType",
    "onboard": 0,
@@ -65,15 +133,15 @@
   {
    "hidden": 0,
    "is_query_report": 1,
-   "label": "Employee Health Insurance",
+   "label": "WL & Iqama Costs and Durations",
    "link_count": 0,
-   "link_to": "Employee Health Insurance",
+   "link_to": "WL Iqama Costs and Durations",
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2024-05-23 13:38:06.030947",
+ "modified": "2024-05-27 16:14:54.899439",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite HR",

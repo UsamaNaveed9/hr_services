@@ -17,7 +17,7 @@ def get_columns():
 		{"label": _("Employee Name"), "fieldname": "employee_name", "fieldtype": "Data", "width": 220},
 		{"label": _("Iqama No"), "fieldname": "iqama_no", "fieldtype": "Data", "width": 110},
 		{"label": _("Date of Joining"), "fieldname": "date_of_joining", "fieldtype": "Date", "width": 110},
-		{"label": _("Leaving Date"), "fieldname": "relieving_date", "fieldtype": "Date", "width": 110},
+		{"label": _("Left Date"), "fieldname": "relieving_date", "fieldtype": "Date", "width": 110},
 		{"label": _("Health Insurance Cancelled"), "fieldname": "hi_cancelled", "fieldtype": "Data", "width": 200},
 		{"label": _("Clearance Form Signed"), "fieldname": "cf_signed", "fieldtype": "Data", "width": 170},
 		{"label": _("Nationality"), "fieldname": "nationality", "fieldtype": "Data", "width": 110},

@@ -8,21 +8,38 @@ from datetime import datetime
 
 @frappe.whitelist()
 def update_salary(doc, method):
-	if frappe.db.exists("Salary Structure Assignment",{"employee": doc.name, "project": doc.project, "company": doc.company}):
-		struct_assigned = frappe.get_doc("Salary Structure Assignment", {"employee": doc.name, "project": doc.project, "company": doc.company})
-		
-		if struct_assigned.base != doc.basic_salary:
-			frappe.db.sql("""update `tabSalary Structure Assignment` set base=%s where name=%s """,(doc.basic_salary, struct_assigned.name))
-		if struct_assigned.housing_allowance != doc.housing_allowance:
-			frappe.db.sql("""update `tabSalary Structure Assignment` set housing_allowance=%s where name=%s """,(doc.housing_allowance, struct_assigned.name))
-		if struct_assigned.transport_allowance != doc.transport_allowance:
-			frappe.db.sql("""update `tabSalary Structure Assignment` set transport_allowance=%s where name=%s """,(doc.transport_allowance, struct_assigned.name))
-		if struct_assigned.food_allowance != doc.food_allowance:
-			frappe.db.sql("""update `tabSalary Structure Assignment` set food_allowance=%s where name=%s """,(doc.food_allowance, struct_assigned.name))
-		if struct_assigned.mobile_allowance != doc.mobile_allowance:
-			frappe.db.sql("""update `tabSalary Structure Assignment` set mobile_allowance=%s where name=%s """,(doc.mobile_allowance, struct_assigned.name))
+	 # List of fields to check for changes
+	fields_to_check = ["basic_salary", "housing_allowance", "transport_allowance", "food_allowance", "mobile_allowance"]
+	
+	# Flag to check if any relevant field has changed
+	relevant_field_changed = any(doc.has_value_changed(field) for field in fields_to_check)
 
-		frappe.db.commit()
+	if relevant_field_changed:
+		# Fetch the salary structure assignment in one query
+		struct_assigned = frappe.db.get_value(
+			"Salary Structure Assignment", 
+			{"employee": doc.name, "project": doc.project, "company": doc.company}, 
+			["name", "base", "housing_allowance", "transport_allowance", "food_allowance", "mobile_allowance"],
+			as_dict=True
+		)
+
+		if struct_assigned:
+			updates = {}
+			if struct_assigned['base'] != doc.basic_salary:
+				updates["base"] = doc.basic_salary
+			if struct_assigned['housing_allowance'] != doc.housing_allowance:
+				updates["housing_allowance"] = doc.housing_allowance
+			if struct_assigned['transport_allowance'] != doc.transport_allowance:
+				updates["transport_allowance"] = doc.transport_allowance
+			if struct_assigned['food_allowance'] != doc.food_allowance:
+				updates["food_allowance"] = doc.food_allowance
+			if struct_assigned['mobile_allowance'] != doc.mobile_allowance:
+				updates["mobile_allowance"] = doc.mobile_allowance
+
+			if updates:
+				# Perform a single update query with the collected updates
+				frappe.db.set_value("Salary Structure Assignment", struct_assigned['name'], updates, update_modified=False)
+				frappe.db.commit()
 
 	if doc.iqama_national_id and frappe.db.exists("Employee",{"iqama_national_id": doc.iqama_national_id, "name": ["!=", doc.name]}):
 		frappe.throw(_("Iqama No/National ID must be Unique. This <b>{0}</b> is already assigned to another Employee").format(doc.iqama_national_id))	
