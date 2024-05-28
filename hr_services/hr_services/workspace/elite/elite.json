@@ -226,7 +226,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-05-20 13:22:28.638886",
+ "modified": "2024-05-28 15:47:58.648246",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite",
@@ -263,6 +263,15 @@
    "type": "DocType"
   },
   {
+   "color": "Green",
+   "doc_view": "List",
+   "format": "{} Active",
+   "label": "Employee Master",
+   "link_to": "Employee",
+   "stats_filter": "[[\"Employee\",\"status\",\"=\",\"Active\",false]]",
+   "type": "DocType"
+  },
+  {
    "color": "Grey",
    "doc_view": "List",
    "label": "Journal Entry",
@@ -275,14 +284,6 @@
    "doc_view": "List",
    "label": "Request For Payment",
    "link_to": "Request For Payment",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Employee Master",
-   "link_to": "Employee",
    "stats_filter": "[]",
    "type": "DocType"
   },
