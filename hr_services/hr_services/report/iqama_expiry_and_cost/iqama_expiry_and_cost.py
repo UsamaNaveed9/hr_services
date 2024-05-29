@@ -27,7 +27,8 @@ def get_columns():
 			{"label": _("Iqama Duration"), "fieldname": "iqama_duration", "fieldtype": "Data", "width": 120},
 			{"label": _("Iqama Cost"), "fieldname": "iqama_cost", "fieldtype": "Currency", "width": 110},
 			{"label": _("WL Duration"), "fieldname": "wl_duration", "fieldtype": "Data", "width": 110},
-			{"label": _("WL Cost"), "fieldname": "wl_cost", "fieldtype": "Currency", "width": 120}
+			{"label": _("WL Cost"), "fieldname": "wl_cost", "fieldtype": "Currency", "width": 110},
+			{"label": _("Total Cost(Iqama + WL)"), "fieldname": "total_cost", "fieldtype": "Currency", "width": 120},
 		]
 	
 	return columns
@@ -38,7 +39,7 @@ def get_employees(filters):
 	data = frappe.db.sql(
 		"""select project as project_id, project_name,name as employee_id, employee_name, iqama_national_id as iqama_no, iqama_expiry_date, 
 			custom_iqama_expiry_date_in_hijri, company
-		  	from tabEmployee where status = 'Active' %s"""
+		  	from tabEmployee where status = 'Active' and nationality != 'Saudi Arabia' %s"""
 		% conditions,
 		as_dict=1,
 	)
@@ -56,6 +57,7 @@ def get_employees(filters):
 			rec["iqama_cost"] = iqama_cost
 			rec["wl_duration"] = str(wl_duration) + ' Months'
 			rec["wl_cost"] = wl_cost
+			rec["total_cost"] = iqama_cost + wl_cost
 
 	return data
 
@@ -78,6 +80,9 @@ def get_conditions(filters):
 		].index(filters["month"]) + 1
 		conditions += " and month(iqama_expiry_date) = '%s'" % month
 
+	if filters.get("fiscal_year"):
+		fiscal_year_start, fiscal_year_end = frappe.db.get_value("Fiscal Year",filters["fiscal_year"],["year_start_date","year_end_date"])
+		conditions += " and iqama_expiry_date between '%s' and '%s'" % (fiscal_year_start, fiscal_year_end)
 	if filters.get("company"):
 		conditions += " and company = '%s'" % filters["company"].replace("'", "\\'")
 

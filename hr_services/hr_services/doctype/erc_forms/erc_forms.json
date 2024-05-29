@@ -1,0 +1,269 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-05-29 13:38:02.791810",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "forms",
+  "employee",
+  "employee_name",
+  "column_break_exdbx",
+  "date",
+  "employment_date",
+  "nationality",
+  "national_id_no",
+  "column_break_gvseo",
+  "position",
+  "project",
+  "project_name",
+  "more_details_section",
+  "last_working_day_date",
+  "basic_salary",
+  "housing_allowance",
+  "year",
+  "column_break_fp5zc",
+  "total_amount",
+  "transportation_allowance",
+  "vacation_allowance",
+  "effective_month",
+  "new_basic_salary",
+  "column_break_kudpr",
+  "monthly_deduction_amount",
+  "total_salary",
+  "increment",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "ERC-F-.YY.-"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ERC Forms",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "column_break_exdbx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gvseo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "Country"
+  },
+  {
+   "fetch_from": "employee.iqama_national_id",
+   "fieldname": "national_id_no",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "National ID No"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "position",
+   "fieldtype": "Link",
+   "label": "Position",
+   "options": "Designation"
+  },
+  {
+   "fetch_from": "employee.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "employee.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name"
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "employment_date",
+   "fieldtype": "Date",
+   "label": "Employment Date"
+  },
+  {
+   "fieldname": "last_working_day_date",
+   "fieldtype": "Date",
+   "label": "Last Working Day Date"
+  },
+  {
+   "fieldname": "more_details_section",
+   "fieldtype": "Section Break",
+   "label": "More Details"
+  },
+  {
+   "fieldname": "column_break_fp5zc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount"
+  },
+  {
+   "fieldname": "column_break_kudpr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "monthly_deduction_amount",
+   "fieldtype": "Data",
+   "label": "Monthly Deduction Amount"
+  },
+  {
+   "fetch_from": "employee.basic_salary",
+   "fieldname": "basic_salary",
+   "fieldtype": "Currency",
+   "label": "Basic Salary"
+  },
+  {
+   "fetch_from": "employee.housing_allowance",
+   "fieldname": "housing_allowance",
+   "fieldtype": "Currency",
+   "label": "Housing Allowance"
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Link",
+   "label": "Year",
+   "options": "Fiscal Year"
+  },
+  {
+   "fetch_from": "employee.transport_allowance",
+   "fieldname": "transportation_allowance",
+   "fieldtype": "Currency",
+   "label": "Transportation Allowance"
+  },
+  {
+   "fetch_from": "employee.food_allowance",
+   "fieldname": "vacation_allowance",
+   "fieldtype": "Currency",
+   "label": "Vacation Allowance"
+  },
+  {
+   "fieldname": "effective_month",
+   "fieldtype": "Select",
+   "label": "Effective Month",
+   "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "fetch_from": "employee.ctc",
+   "fieldname": "total_salary",
+   "fieldtype": "Currency",
+   "label": "Total Salary"
+  },
+  {
+   "fieldname": "increment",
+   "fieldtype": "Int",
+   "label": "Increment %"
+  },
+  {
+   "fieldname": "new_basic_salary",
+   "fieldtype": "Currency",
+   "label": "New Basic Salary"
+  },
+  {
+   "fieldname": "forms",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Forms",
+   "options": "\nEmbassy Form\nEmployment Letter\nEnd of Contract Notification\nExperience Letter\nIndebtedness Letter\nLetter for Extend of Probation\nSalary Certificate\nSalary Increment Letter\nSalary Letter"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-05-29 16:53:08.950798",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "ERC Forms",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OPE EXP Approver",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Elite HR User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name",
+ "track_changes": 1
+}

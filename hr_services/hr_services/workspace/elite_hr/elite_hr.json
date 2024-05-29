@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"7oBmWXjUJv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"n7NV5VftwL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"R4d9orJByH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":4}},{\"id\":\"fp81SfLg8s\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Znd8_lhvlw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"8CtLVWVyi6\",\"type\":\"card\",\"data\":{\"card_name\":\"Project Wise Reports\",\"col\":4}},{\"id\":\"rLb0sxn4st\",\"type\":\"card\",\"data\":{\"card_name\":\"Employees Wise Reports\",\"col\":4}},{\"id\":\"saWfkepALY\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"c9_kFJw0V-\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":3}}]",
+ "content": "[{\"id\":\"7oBmWXjUJv\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"n7NV5VftwL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"HR Dashboard\",\"col\":3}},{\"id\":\"R4d9orJByH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":4}},{\"id\":\"fp81SfLg8s\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Znd8_lhvlw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"syHx0bB3nC\",\"type\":\"card\",\"data\":{\"card_name\":\"ERC Forms\",\"col\":4}},{\"id\":\"8CtLVWVyi6\",\"type\":\"card\",\"data\":{\"card_name\":\"Project Wise Reports\",\"col\":4}},{\"id\":\"rLb0sxn4st\",\"type\":\"card\",\"data\":{\"card_name\":\"Employees Wise Reports\",\"col\":4}},{\"id\":\"saWfkepALY\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}},{\"id\":\"c9_kFJw0V-\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":3}}]",
  "creation": "2024-05-20 13:21:33.933999",
  "custom_blocks": [],
  "docstatus": 0,
@@ -149,9 +149,28 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ERC Forms",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ERC Forms",
+   "link_count": 0,
+   "link_to": "ERC Forms",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-05-28 16:52:48.209545",
+ "modified": "2024-05-29 13:39:04.580453",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite HR",
