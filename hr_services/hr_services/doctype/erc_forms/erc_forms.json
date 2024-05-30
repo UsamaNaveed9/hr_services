@@ -18,25 +18,32 @@
   "employment_date",
   "nationality",
   "national_id_no",
+  "embassy_name_in_arabic",
+  "department",
+  "salutation",
   "column_break_gvseo",
+  "date_in_hijri",
   "position",
   "project",
   "project_name",
+  "passport_no",
   "more_details_section",
   "last_working_day_date",
   "basic_salary",
   "housing_allowance",
   "year",
-  "column_break_fp5zc",
   "total_amount",
+  "column_break_fp5zc",
   "transportation_allowance",
   "vacation_allowance",
   "effective_month",
   "new_basic_salary",
-  "column_break_kudpr",
   "monthly_deduction_amount",
+  "column_break_kudpr",
   "total_salary",
   "increment",
+  "section_break_k4wub",
+  "items",
   "amended_from"
  ],
  "fields": [
@@ -209,13 +216,51 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Forms",
-   "options": "\nEmbassy Form\nEmployment Letter\nEnd of Contract Notification\nExperience Letter\nIndebtedness Letter\nLetter for Extend of Probation\nSalary Certificate\nSalary Increment Letter\nSalary Letter"
+   "options": "\nEmbassy Form\nEmployment Letter\nEnd of Contract Notification\nERC Assets Receiving\nExperience Letter\nIndebtedness Letter\nLetter for Extend of Probation\nPassport Office Authorization\nSalary Certificate\nSalary Increment Letter\nSalary Letter"
+  },
+  {
+   "fieldname": "date_in_hijri",
+   "fieldtype": "Data",
+   "label": "Date in Hijri"
+  },
+  {
+   "fieldname": "embassy_name_in_arabic",
+   "fieldtype": "Data",
+   "label": "Embassy Name in Arabic"
+  },
+  {
+   "fetch_from": "employee.passport_number",
+   "fieldname": "passport_no",
+   "fieldtype": "Data",
+   "label": "Passport No"
+  },
+  {
+   "fieldname": "section_break_k4wub",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Assets Items"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Select",
+   "label": "Department",
+   "options": "HR\nFinance"
+  },
+  {
+   "fieldname": "salutation",
+   "fieldtype": "Link",
+   "label": "Salutation",
+   "options": "Salutation"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-05-29 16:53:08.950798",
+ "modified": "2024-05-30 15:33:17.924801",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "ERC Forms",

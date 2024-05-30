@@ -8,7 +8,8 @@
  "field_order": [
   "item",
   "item_name",
-  "qty"
+  "qty",
+  "condition"
  ],
  "fields": [
   {
@@ -30,12 +31,19 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Qty"
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Condition",
+   "options": "New\nUsed"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-10-17 13:13:31.667450",
+ "modified": "2024-05-30 14:14:32.231593",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Assets Items",
