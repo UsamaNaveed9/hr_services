@@ -29,6 +29,12 @@ frappe.ui.form.on('ERC Forms', {
 			frm.toggle_display(['items'], false);
 			frm.toggle_display(['department'], false);
 			frm.toggle_display(['salutation'], false);
+			frm.toggle_display(['cr_no'], false);
+			frm.toggle_display(['authorized_person_name_in_arabic'], false);
+			frm.toggle_display(['ap_iqama_no'], false);
+			frm.toggle_display(['ap_nationality'], false);
+			frm.toggle_display(['purpose'], false);
+			
 			if(frm.doc.date){
 				frappe.call({
 					method: "hr_services.custompy.employee.convert_into_hijri",
@@ -104,7 +110,11 @@ function show_fields(frm){
 		frm.toggle_display(['monthly_deduction_amount'], false);
 		frm.toggle_display(['total_salary'], false);
 		frm.toggle_display(['increment'], false);
-
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 	}
 	else if(frm.doc.forms == 'Employment Letter'){
 		//show fiels
@@ -134,6 +144,11 @@ function show_fields(frm){
 		frm.toggle_display(['monthly_deduction_amount'], false);
 		frm.toggle_display(['total_salary'], false);
 		frm.toggle_display(['increment'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 
 	}
 	else if(frm.doc.forms == 'End of Contract Notification' || frm.doc.forms == 'Experience Letter'){
@@ -164,6 +179,11 @@ function show_fields(frm){
 		frm.toggle_display(['monthly_deduction_amount'], false);
 		frm.toggle_display(['total_salary'], false);
 		frm.toggle_display(['increment'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 	}
 	else if(frm.doc.forms == 'ERC Assets Receiving'){
 		//show fiels
@@ -193,6 +213,11 @@ function show_fields(frm){
 		frm.toggle_display(['monthly_deduction_amount'], false);
 		frm.toggle_display(['total_salary'], false);
 		frm.toggle_display(['increment'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 
 		//filter on items
 		frm.fields_dict['items'].grid.get_field('item').get_query = function(doc, cdt, cdn) {
@@ -234,6 +259,11 @@ function show_fields(frm){
 		frm.toggle_display(['effective_month'], false);
 		frm.toggle_display(['new_basic_salary'], false);
 		frm.toggle_display(['increment'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 		
 	}
 	else if(frm.doc.forms == 'Letter for Extend of Probation'){
@@ -264,8 +294,47 @@ function show_fields(frm){
 		frm.toggle_display(['effective_month'], false);
 		frm.toggle_display(['new_basic_salary'], false);
 		frm.toggle_display(['increment'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 	}
-	else if(frm.doc.forms == 'Salary Certificate'){
+	else if(frm.doc.forms == 'Passport Office Authorization'){
+		//show fiels
+		frm.toggle_display(['employee'], true);
+		frm.toggle_display(['employee_name'], true);
+		frm.toggle_display(['nationality'], true);
+		frm.toggle_display(['national_id_no'], true);
+		frm.toggle_display(['cr_no'], true);
+		frm.toggle_display(['authorized_person_name_in_arabic'], true);
+		frm.toggle_display(['ap_iqama_no'], true);
+		frm.toggle_display(['ap_nationality'], true);
+		frm.toggle_display(['purpose'], true);
+		//hide fields
+		frm.toggle_display(['position'], false);
+		frm.toggle_display(['salutation'], false);
+		frm.toggle_display(['employment_date'], false);
+		frm.toggle_display(['monthly_deduction_amount'], false);
+		frm.toggle_display(['total_amount'], false);
+		frm.toggle_display(['basic_salary'], false);
+		frm.toggle_display(['housing_allowance'], false);
+		frm.toggle_display(['transportation_allowance'], false);
+		frm.toggle_display(['vacation_allowance'], false);
+		frm.toggle_display(['total_salary'], false);
+		frm.toggle_display(['department'], false);
+		frm.toggle_display(['items'], false);
+		frm.toggle_display(['passport_no'], false);
+		frm.toggle_display(['embassy_name_in_arabic'], false);
+		frm.toggle_display(['last_working_day_date'], false);
+		frm.toggle_display(['project'], false);
+		frm.toggle_display(['project_name'], false);
+		frm.toggle_display(['year'], false);
+		frm.toggle_display(['effective_month'], false);
+		frm.toggle_display(['new_basic_salary'], false);
+		frm.toggle_display(['increment'], false);
+	}
+	else if(frm.doc.forms == 'Salary Certificate' || frm.doc.forms == 'Salary Letter'){
 		//show fiels
 		frm.toggle_display(['employee'], true);
 		frm.toggle_display(['employee_name'], true);
@@ -293,11 +362,44 @@ function show_fields(frm){
 		frm.toggle_display(['new_basic_salary'], false);
 		frm.toggle_display(['monthly_deduction_amount'], false);
 		frm.toggle_display(['increment'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 	}
 	else if(frm.doc.forms == 'Salary Increment Letter'){
-		
-	}
-	else if(frm.doc.forms == 'Salary Letter'){
-		
+		//show fiels
+		frm.toggle_display(['salutation'], true);
+		frm.toggle_display(['project'], true);
+		frm.toggle_display(['project_name'], true);
+		frm.toggle_display(['year'], true);
+		frm.toggle_display(['effective_month'], true);
+		frm.toggle_display(['increment'], true);
+		frm.toggle_display(['employee'], true);
+		frm.toggle_display(['employee_name'], true);
+		frm.toggle_display(['basic_salary'], true);
+		frm.toggle_display(['new_basic_salary'], true);
+		//hide fields
+		frm.toggle_display(['housing_allowance'], false);
+		frm.toggle_display(['transportation_allowance'], false);
+		frm.toggle_display(['vacation_allowance'], false);
+		frm.toggle_display(['total_salary'], false);
+		frm.toggle_display(['employment_date'], false);
+		frm.toggle_display(['nationality'], false);
+		frm.toggle_display(['national_id_no'], false);
+		frm.toggle_display(['position'], false);
+		frm.toggle_display(['department'], false);
+		frm.toggle_display(['items'], false);
+		frm.toggle_display(['passport_no'], false);
+		frm.toggle_display(['embassy_name_in_arabic'], false);
+		frm.toggle_display(['last_working_day_date'], false);
+		frm.toggle_display(['total_amount'], false);
+		frm.toggle_display(['monthly_deduction_amount'], false);
+		frm.toggle_display(['cr_no'], false);
+		frm.toggle_display(['authorized_person_name_in_arabic'], false);
+		frm.toggle_display(['ap_iqama_no'], false);
+		frm.toggle_display(['ap_nationality'], false);
+		frm.toggle_display(['purpose'], false);
 	}
 }

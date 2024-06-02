@@ -170,7 +170,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-05-29 13:39:04.580453",
+ "modified": "2024-06-02 16:20:40.918029",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite HR",
@@ -180,7 +180,14 @@
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "",
- "roles": [],
+ "roles": [
+  {
+   "role": "OPE EXP Approver"
+  },
+  {
+   "role": "Elite HR User"
+  }
+ ],
  "sequence_id": 3.0,
  "shortcuts": [
   {

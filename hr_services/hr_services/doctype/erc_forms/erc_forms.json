@@ -33,15 +33,20 @@
   "housing_allowance",
   "year",
   "total_amount",
+  "cr_no",
+  "authorized_person_name_in_arabic",
   "column_break_fp5zc",
   "transportation_allowance",
   "vacation_allowance",
   "effective_month",
   "new_basic_salary",
   "monthly_deduction_amount",
+  "ap_iqama_no",
+  "ap_nationality",
   "column_break_kudpr",
   "total_salary",
   "increment",
+  "purpose",
   "section_break_k4wub",
   "items",
   "amended_from"
@@ -186,7 +191,7 @@
    "fetch_from": "employee.food_allowance",
    "fieldname": "vacation_allowance",
    "fieldtype": "Currency",
-   "label": "Vacation Allowance"
+   "label": "Others Allowance"
   },
   {
    "fieldname": "effective_month",
@@ -255,12 +260,38 @@
    "fieldtype": "Link",
    "label": "Salutation",
    "options": "Salutation"
+  },
+  {
+   "fieldname": "cr_no",
+   "fieldtype": "Data",
+   "label": "CR No"
+  },
+  {
+   "fieldname": "authorized_person_name_in_arabic",
+   "fieldtype": "Data",
+   "label": "Authorized Person Name in Arabic"
+  },
+  {
+   "fieldname": "ap_nationality",
+   "fieldtype": "Link",
+   "label": "Nationality(Authorized Person)",
+   "options": "Country"
+  },
+  {
+   "fieldname": "ap_iqama_no",
+   "fieldtype": "Data",
+   "label": "Iqama No(Authorized Person)"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Small Text",
+   "label": "Purpose"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-05-30 15:33:17.924801",
+ "modified": "2024-06-02 14:38:42.006168",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "ERC Forms",
