@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"TrRgFLeATn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"o7HUxtuiAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":3}},{\"id\":\"BSfCSxeOZN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ouzRaGAJJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"0akZyj1E4k\",\"type\":\"card\",\"data\":{\"card_name\":\"Jobs\",\"col\":4}},{\"id\":\"Q4msp7F8vF\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"yRajwfh0bN\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}}]",
+ "content": "[{\"id\":\"TrRgFLeATn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"o7HUxtuiAQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master List\",\"col\":4}},{\"id\":\"BSfCSxeOZN\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ouzRaGAJJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Masters &amp; Reports</b></span>\",\"col\":12}},{\"id\":\"0akZyj1E4k\",\"type\":\"card\",\"data\":{\"card_name\":\"Jobs\",\"col\":4}},{\"id\":\"Q4msp7F8vF\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"yRajwfh0bN\",\"type\":\"card\",\"data\":{\"card_name\":\"Setup\",\"col\":4}}]",
  "creation": "2024-04-25 11:11:46.004914",
  "custom_blocks": [],
  "docstatus": 0,
@@ -150,7 +150,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-05-28 15:48:21.694085",
+ "modified": "2024-06-04 13:36:27.966339",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite Recruitment",
