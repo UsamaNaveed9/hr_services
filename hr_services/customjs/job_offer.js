@@ -8,6 +8,16 @@ frappe.ui.form.on('Job Offer', {
 		frm.set_query("select_terms", function() {
 			return { filters: { custom_for_job_offer: 1 } };
 		});
+
+		if(frm.doc.__islocal){
+			var new_row = cur_frm.add_child('custom_salary_details');
+			new_row.salary_components = 'Basic Salary';
+			var new_row = cur_frm.add_child('custom_salary_details');
+			new_row.salary_components = 'Housing Allowance';
+			var new_row = cur_frm.add_child('custom_salary_details');
+			new_row.salary_components = 'Transportations Allowance';
+			cur_frm.refresh_field("custom_salary_details");
+		}
 	},
 	before_save(frm){
 		if(frm.doc.custom_salary_details){
