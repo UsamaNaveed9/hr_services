@@ -12,10 +12,13 @@ frappe.ui.form.on('Job Offer', {
 		if(frm.doc.__islocal){
 			var new_row = cur_frm.add_child('custom_salary_details');
 			new_row.salary_components = 'Basic Salary';
+			new_row.amount = 0.0;
 			var new_row = cur_frm.add_child('custom_salary_details');
 			new_row.salary_components = 'Housing Allowance';
+			new_row.amount = 0.0;
 			var new_row = cur_frm.add_child('custom_salary_details');
 			new_row.salary_components = 'Transportations Allowance';
+			new_row.amount = 0.0;
 			cur_frm.refresh_field("custom_salary_details");
 		}
 	},
