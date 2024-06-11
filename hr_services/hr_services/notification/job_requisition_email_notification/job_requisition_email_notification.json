@@ -1,0 +1,31 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "creation": "2024-06-11 11:38:38.651090",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Job Requisition",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h3>{{_(\"Job Requisition\")}}</h3>\n\n<p>{{ _(\"Please Take an Action on Job Requisition: \") }} {{ doc.name }} {{ _(\"of Project:\") }} {{ doc.requested_by_name }} </p>\n\n{% set doc_link = frappe.utils.get_url_to_form('Job Requisition', doc.name) %} \n\n<a href=\"{{ doc_link }}\">Click Here</a> \n\n<p>Thank you, good day!</p>",
+ "modified": "2024-06-11 11:42:09.470094",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Job Requisition Email Notification",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "condition": "doc.workflow_state == \"Pending for REC MGR Approval\"",
+   "receiver_by_role": "REC EXP Approver"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "sender": "ERP Notification",
+ "sender_email": "erc.notify@gmail.com",
+ "subject": "Actions Required on Job Requisition: {{ doc.name }}",
+ "value_changed": "workflow_state"
+}
