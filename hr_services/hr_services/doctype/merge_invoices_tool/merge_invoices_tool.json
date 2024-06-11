@@ -10,9 +10,15 @@
   "customer",
   "customer_name",
   "column_break_wuh7p",
-  "due_date",
+  "project",
+  "project_name",
   "section_break_ocum7",
   "sales_invoices",
+  "section_break_d8kvs",
+  "due_date",
+  "column_break_sc21v",
+  "billing_address",
+  "column_break_duzhm",
   "section_break_wwoim",
   "hidden",
   "column_break_63w5e",
@@ -89,13 +95,46 @@
    "fieldname": "merge_invoices",
    "fieldtype": "Button",
    "label": "Merge Invoices"
+  },
+  {
+   "fetch_from": "customer.project_id",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_d8kvs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_sc21v",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "billing_address",
+   "fieldtype": "Link",
+   "label": "Billing Address",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_duzhm",
+   "fieldtype": "Column Break"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-01-23 08:35:58.719104",
+ "modified": "2024-06-11 15:26:08.079344",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Merge Invoices Tool",

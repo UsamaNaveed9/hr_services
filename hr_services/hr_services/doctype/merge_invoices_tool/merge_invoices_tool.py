@@ -11,7 +11,7 @@ class MergeInvoicesTool(Document):
 	pass
 
 @frappe.whitelist()
-def merge_invoices(due_date,customer,sales_invoices):
+def merge_invoices(due_date,customer,sales_invoices,project,print_customer=None):
 	invs = json.loads(sales_invoices)
 	#frappe.errprint(invs)
 	# Get the set of unique 'po_no' values
@@ -30,11 +30,11 @@ def merge_invoices(due_date,customer,sales_invoices):
 		si.issue_date = due_date
 		si.is_pos = 0
 		si.po_no = po_no[0]
+		si.project = project
+		si.print_customer = print_customer
 
 		for sal_inv in invs:
 			sales_doc = frappe.get_doc("Sales Invoice",sal_inv["sales_invoice"])
-			si.project = sales_doc.project
-			si.print_customer = sales_doc.print_customer
 			items = sales_doc.items
 			for inv_it in items:
 				si_item = frappe.new_doc("Sales Invoice Item")

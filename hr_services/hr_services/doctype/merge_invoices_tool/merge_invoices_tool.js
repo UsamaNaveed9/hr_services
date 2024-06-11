@@ -17,6 +17,15 @@ frappe.ui.form.on('Merge Invoices Tool', {
                 ]
             }
         });
+
+        frm.set_query("billing_address", function(){
+            return{
+                filters:[
+                    ["Customer","is_standard_invoice_customer","=", 0],
+                    ["Customer","project_id","=",frm.doc.project]
+                ]
+            }
+        });
         
 		frm.fields_dict['sales_invoices'].grid.get_field("sales_invoice").get_query = function(doc, cdt, cdn) {
 			return {
@@ -35,7 +44,9 @@ frappe.ui.form.on('Merge Invoices Tool', {
                 args: {
                     due_date: frm.doc.due_date,
                     customer: frm.doc.customer,
-                    sales_invoices: frm.doc.sales_invoices
+                    sales_invoices: frm.doc.sales_invoices,
+                    project: frm.doc.project,
+                    print_customer: frm.doc.billing_address
                 },
                 freeze: true,
                 freeze_message: "Invoice Merging in progress......",
