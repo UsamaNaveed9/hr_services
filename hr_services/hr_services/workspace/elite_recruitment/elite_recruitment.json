@@ -94,10 +94,20 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Setup",
-   "link_count": 5,
+   "link_count": 6,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Project",
+   "link_count": 0,
+   "link_to": "Project",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   },
   {
    "hidden": 0,
@@ -150,7 +160,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-06-04 13:36:27.966339",
+ "modified": "2024-06-23 10:57:58.603295",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite Recruitment",

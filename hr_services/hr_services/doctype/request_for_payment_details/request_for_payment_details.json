@@ -52,7 +52,7 @@
   {
    "columns": 1,
    "fieldname": "qty",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Qty"
   },
@@ -87,7 +87,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-02 11:26:33.226765",
+ "modified": "2024-06-23 09:40:27.119801",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request for Payment Details",
