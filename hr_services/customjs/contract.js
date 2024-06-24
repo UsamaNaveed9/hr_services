@@ -2,6 +2,11 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Contract',{
+    onload(frm){
+        if(frm.doc.custom_posting_date && cur_frm.doc.__islocal){
+            convert_into_hijri(frm);
+        }
+    },
     refresh(frm){
         calculate_end_date(frm);
         if(frm.doc.docstatus == 1){
@@ -34,7 +39,7 @@ frappe.ui.form.on('Contract',{
                 dialog.show();
             })
         }
-        if(frm.doc.is_signed == 1){
+        if(frm.doc.is_signed == 1 && frm.doc.docstatus == 1){
             frm.add_custom_button(__('Create Employee'), function(){
                 frappe.model.open_mapped_doc({
                     method: "hr_services.custompy.contract.make_employee",
@@ -42,6 +47,9 @@ frappe.ui.form.on('Contract',{
                 });
             })
         }
+    },
+    custom_posting_date(frm){
+        convert_into_hijri(frm);
     },
     is_signed(frm){
         if(frm.doc.is_signed == 1){
@@ -88,4 +96,18 @@ function calculate_salary(frm){
 	}
 	frm.set_value("custom_total_salary", total);
 	frm.refresh();
+}
+
+function convert_into_hijri(frm){
+    frappe.call({
+        method: "hr_services.custompy.employee.convert_into_hijri",
+        args: {
+            date: frm.doc.custom_posting_date
+        },
+        callback: function(r){
+            if(r.message){
+                frm.set_value("custom_date_in_hijri",r.message);
+            }
+        }
+    });
 }

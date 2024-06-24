@@ -87,6 +87,21 @@ frappe.ui.form.on('Job Offer', {
 		if(frm.doc.custom_nationality == 'Saudi'){
 			frm.set_value("custom_country", "Saudi Arabia");
 		}
+		else if(frm.doc.custom_nationality == 'Non Saudi'){
+			frappe.call({
+				'method': 'frappe.client.get_value',
+				'args': {
+					'doctype': 'Job Applicant',
+					'filters': {
+						'name': frm.doc.job_applicant
+					},
+				   'fieldname':'custom_nationality'
+				},
+				'callback': function(res){
+					frm.set_value("custom_country",res.message.custom_nationality);
+				}
+			});
+		}
 		else{
 			frm.set_value("custom_country", "");
 		}
@@ -94,15 +109,34 @@ frappe.ui.form.on('Job Offer', {
 	custom_applicant_type: function(frm){
 		if(frm.doc.custom_applicant_type == 'Local'){
 			frm.set_value("custom_job_title_on_visa", "");
+			frm.set_value("custom_nationality", "");
+			frm.set_df_property('custom_nationality','read_only',0);
 		}
 		else if(frm.doc.custom_applicant_type == 'Overseas'){
 			frm.set_value("custom_qiwa_status", "");
 			frm.set_value("custom_gosi_status", "");
+			frm.set_value("custom_nationality", "Non Saudi");
+			frm.set_df_property('custom_nationality','read_only',1);
+			frappe.call({
+				'method': 'frappe.client.get_value',
+				'args': {
+					'doctype': 'Job Applicant',
+					'filters': {
+						'name': frm.doc.job_applicant
+					},
+				   'fieldname':'custom_nationality'
+				},
+				'callback': function(res){
+					frm.set_value("custom_country",res.message.custom_nationality);
+				}
+			});
 		}
 		else{
 			frm.set_value("custom_qiwa_status", "");
 			frm.set_value("custom_gosi_status", "");
 			frm.set_value("custom_job_title_on_visa", "");
+			frm.set_value("custom_nationality", "");
+			frm.set_df_property('custom_nationality','read_only',0);
 		}
 	}
 });

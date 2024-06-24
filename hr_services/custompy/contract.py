@@ -11,15 +11,16 @@ from frappe.model.mapper import get_mapped_doc
 @frappe.whitelist()
 def check_job_offer(doc, method):
 	job_offer_salary = frappe.db.get_value("Job Offer",doc.custom_job_offer,"custom_total_salary")
-	if frappe.db.exists("Contract",{"custom_job_offer": doc.custom_job_offer}):
-		frappe.throw(_("Contract on this Job Offer <b>{0}</b> already exist").format(doc.custom_job_offer))
-	elif job_offer_salary != doc.custom_total_salary:
-		frappe.throw(_("Contract Total Salary: <b>{0}</b> must be equal to Job Offer Salary: <b>{1}</b>").format(doc.custom_total_salary,job_offer_salary))
+	if doc.party_type == "Job Applicant":
+		if frappe.db.exists("Contract",{"custom_job_offer": doc.custom_job_offer}):
+			frappe.throw(_("Contract on this Job Offer <b>{0}</b> already exist").format(doc.custom_job_offer))
+		elif job_offer_salary != doc.custom_total_salary:
+			frappe.throw(_("Contract Total Salary: <b>{0}</b> must be equal to Job Offer Salary: <b>{1}</b>").format(doc.custom_total_salary,job_offer_salary))
 
 @frappe.whitelist()
 def validate_after_save(doc, method):
 	job_offer_salary = frappe.db.get_value("Job Offer",doc.custom_job_offer,"custom_total_salary")
-	if doc.docstatus == 0:
+	if doc.docstatus == 0 and doc.party_type == "Job Applicant":
 		if frappe.db.exists("Contract",{"custom_job_offer": doc.custom_job_offer,"name": ["!=", doc.name]}):
 			frappe.throw(_("Contract on this Job Offer <b>{0}</b> already exist").format(doc.custom_job_offer))
 		elif job_offer_salary != doc.custom_total_salary:
@@ -93,11 +94,11 @@ def fill_and_attach_template(doctype, name, template):
 
 	output_file = _fill_template(template_path, data_dict)
 	output_doc = frappe.get_doc({
-	    "doctype": "File",
-	    "file_name": "-".join([name, template_doc.file_name]),
-	    "attached_to_doctype": doctype,
-	    "attached_to_name": name,
-	    "content": output_file.getvalue(),
+		"doctype": "File",
+		"file_name": "-".join([name, template_doc.file_name]),
+		"attached_to_doctype": doctype,
+		"attached_to_name": name,
+		"content": output_file.getvalue(),
 	})
 	output_doc.save()
 
