@@ -3,6 +3,14 @@
 
 frappe.ui.form.on('Request For Payment', {
 	setup(frm) {
+		frm.set_query("select_bank", function() {
+			return {
+				filters: {
+					"custom_show_in_rfp":1
+				}
+			};
+		});
+
 		frm.fields_dict['items'].grid.get_field("item").get_query = function(doc, cdt, cdn) {
 			return {
 				filters: [

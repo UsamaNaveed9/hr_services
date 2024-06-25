@@ -9,6 +9,14 @@ frappe.ui.form.on('Employee', {
 		        ]
 		    }
 		});
+
+        frm.set_query("custom_bank", function(){
+		    return {
+		        filters: {
+                    custom_show_in_emp_master: 1
+                }
+		    }
+		});
 	},
 	basic_salary(frm) {
 		calculate_ctc(frm);
@@ -26,30 +34,34 @@ frappe.ui.form.on('Employee', {
         calculate_ctc(frm);
     },
     iqama_issue_date(frm){
-        frappe.call({
-            method: "hr_services.custompy.employee.convert_into_hijri",
-            args: {
-                date: frm.doc.iqama_issue_date
-            },
-            callback: function(r){
-                if(r.message){
-                    frm.set_value("custom_iqama_issue_date_in_hijri",r.message);
+        if(frm.doc.iqama_issue_date){
+            frappe.call({
+                method: "hr_services.custompy.employee.convert_into_hijri",
+                args: {
+                    date: frm.doc.iqama_issue_date
+                },
+                callback: function(r){
+                    if(r.message){
+                        frm.set_value("custom_iqama_issue_date_in_hijri",r.message);
+                    }
                 }
-            }
-        })
+            })
+        }
     },
     iqama_expiry_date(frm){
-        frappe.call({
-            method: "hr_services.custompy.employee.convert_into_hijri",
-            args: {
-                date: frm.doc.iqama_expiry_date
-            },
-            callback: function(r){
-                if(r.message){
-                    frm.set_value("custom_iqama_expiry_date_in_hijri",r.message);
+        if(frm.doc.iqama_expiry_date){
+            frappe.call({
+                method: "hr_services.custompy.employee.convert_into_hijri",
+                args: {
+                    date: frm.doc.iqama_expiry_date
+                },
+                callback: function(r){
+                    if(r.message){
+                        frm.set_value("custom_iqama_expiry_date_in_hijri",r.message);
+                    }
                 }
-            }
-        })
+            })
+        }
     },
     custom_h_i_cancelled(frm){
         if(frm.doc.custom_h_i_cancelled == 1){
@@ -73,6 +85,42 @@ frappe.ui.form.on('Employee', {
         }
         else{
             frm.set_value("custom_gosi_removed_status","");
+        }
+    },
+    date_of_joining(frm){
+        calculate_probation_end_date(frm);
+    },
+    custom_probation_period(frm){
+        calculate_probation_end_date(frm);
+    },
+    before_save(frm){
+        if(frm.doc.custom_residence_type == "Visitor(Have Border No)"){
+            if (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '3'){ //border no length must be 10 and start with 3
+                frappe.msgprint({
+                    title: __("Error"),
+                    indicator: "red",
+                    message: __("Enter a valid Border No"),
+                });
+                frappe.validated = false;
+            }
+        }
+        else if(frm.doc.custom_residence_type == "Resident(Have ID/Iqama No)"){
+            if (frm.doc.nationality == "Saudi Arabia" && (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '1')){ //saudi national id length must be 10 and start with 1
+                frappe.msgprint({
+                    title: __("Error"),
+                    indicator: "red",
+                    message: __("Enter a valid National ID"),
+                });
+                frappe.validated = false;
+            }
+            else if (frm.doc.nationality != "Saudi Arabia" && (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '2')){ //iqama no length must be 10 and start with 2
+                frappe.msgprint({
+                    title: __("Error"),
+                    indicator: "red",
+                    message: __("Enter a valid Iqama No"),
+                });
+                frappe.validated = false;
+            }
         }
     }
 });
@@ -98,3 +146,8 @@ function calculate_ctc(frm){
         frm.set_value("ctc", total_salary);
 }
 
+function calculate_probation_end_date(frm){
+    if(frm.doc.date_of_joining && frm.doc.custom_probation_period){
+        frm.set_value("custom_probation_end_date", frappe.datetime.add_days(frm.doc.date_of_joining, frm.doc.custom_probation_period - 1));
+    }   
+}
