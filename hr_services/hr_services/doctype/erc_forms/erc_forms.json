@@ -35,15 +35,18 @@
   "total_amount",
   "cr_no",
   "authorized_person_name_in_arabic",
+  "reason_in_english",
   "column_break_fp5zc",
   "transportation_allowance",
   "vacation_allowance",
   "effective_month",
   "new_basic_salary",
-  "monthly_deduction_amount",
+  "deduction_in_months",
   "ap_iqama_no",
   "ap_nationality",
+  "reason_in_arabic",
   "column_break_kudpr",
+  "monthly_dedt_amt",
   "total_salary",
   "increment",
   "purpose",
@@ -146,11 +149,6 @@
   {
    "fieldname": "column_break_kudpr",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "monthly_deduction_amount",
-   "fieldtype": "Data",
-   "label": "Monthly Deduction Amount"
   },
   {
    "fetch_from": "employee.basic_salary",
@@ -275,11 +273,31 @@
    "fieldname": "purpose",
    "fieldtype": "Small Text",
    "label": "Purpose"
+  },
+  {
+   "fieldname": "reason_in_english",
+   "fieldtype": "Small Text",
+   "label": "Reason In English"
+  },
+  {
+   "fieldname": "deduction_in_months",
+   "fieldtype": "Int",
+   "label": "Deduction in Months"
+  },
+  {
+   "fieldname": "reason_in_arabic",
+   "fieldtype": "Small Text",
+   "label": "Reason In Arabic"
+  },
+  {
+   "fieldname": "monthly_dedt_amt",
+   "fieldtype": "Currency",
+   "label": "Monthly Deduction Amount"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-06-04 13:45:12.588462",
+ "modified": "2024-06-26 17:37:28.995239",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "ERC Forms",

@@ -17,6 +17,18 @@ frappe.ui.form.on('Employee', {
                 }
 		    }
 		});
+
+        if(frm.doc.project){
+            frm.set_query("custom_class", function (doc) {
+                return {
+                  query:"hr_services.custompy.employee.get_classes",
+                  filters: {
+                    value: frm.doc.project,
+                    apply_on: frm.doc.project_name,
+                  },
+                };
+            });
+        }
 	},
 	basic_salary(frm) {
 		calculate_ctc(frm);
@@ -118,6 +130,32 @@ frappe.ui.form.on('Employee', {
                     title: __("Error"),
                     indicator: "red",
                     message: __("Enter a valid Iqama No"),
+                });
+                frappe.validated = false;
+            }
+        }
+
+        //limit on iban must be 24. if bank is alinma then add amount no with limit 14
+        if(frm.doc.bank_name){
+            // Regular expression to check for any letter (a-z, A-Z)
+            const letterRegex = /[a-zA-Z]/;
+
+            // Test the IBAN string against the regular expression
+            let letterExist = letterRegex.test(frm.doc.iban);
+            
+            if(frm.doc.bank_name == "INMA" && (frm.doc.iban.length != 14 || letterExist)){
+                frappe.msgprint({
+                    title: __("Error"),
+                    indicator: "red",
+                    message: __("Enter a valid Account No"),
+                });
+                frappe.validated = false;
+            }
+            else if(frm.doc.bank_name != "INMA" && (frm.doc.iban.length != 24 || !letterExist)){
+                frappe.msgprint({
+                    title: __("Error"),
+                    indicator: "red",
+                    message: __("Enter a valid IBAN"),
                 });
                 frappe.validated = false;
             }

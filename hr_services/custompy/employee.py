@@ -60,4 +60,18 @@ def convert_into_hijri(date):
 	
 	return formatted_date
 
+@frappe.whitelist()
+@frappe.validate_and_sanitize_search_inputs
+def get_classes(doctype, txt, searchfield, start, page_len, filters):
+	project = [filters.get("value")]
+	if not project:
+		frappe.throw(_("Project value is required"))
 
+	return frappe.get_all(
+		"Health Insurances",
+		filters={"parent": ("in", project)},
+		fields=["distinct insurance"],
+		as_list=1,
+	)
+
+	
