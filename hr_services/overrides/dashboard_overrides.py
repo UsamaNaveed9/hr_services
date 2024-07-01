@@ -4,7 +4,7 @@ from frappe import _
 def get_dashboard_for_employee(data):
 	data["transactions"].extend(
 		[
-			{"label": _("Purchase"), "items": ["Purchase Invoice"]},
+			{"label": _("Purchase Invoice"), "items": ["Purchase Invoice"]},
 			{"label": _("Invoice to Client"), "items": ["Sales Invoice"]},
 			{"label": _("Employee Advance"), "items": ["Loan"]},
 		]
