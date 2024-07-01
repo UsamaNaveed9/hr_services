@@ -1,5 +1,15 @@
 
 frappe.ui.form.on('Employee', {
+    onload: function (frm) {
+		frm.set_query("department", function() {
+			return {
+				"filters": {
+					"company": frm.doc.company,
+                    "custom_project": frm.doc.project,
+				}
+			};
+		});
+	},
     setup(frm) {
 		frm.set_query("print_customer_for_invoice", function(){
 		    return {
