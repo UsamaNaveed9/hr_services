@@ -19,8 +19,8 @@ def get_columns():
 		{"label": _("Project ID"), "fieldname": "project_id", "fieldtype": "Link","options":"Project", "width": 100},
 		{"label": _("Project Name"), "fieldname": "project_name", "fieldtype": "Data", "width": 180},
 		{"label": _("Offer Date"), "fieldname": "offer_date", "fieldtype": "Date", "width": 130},
-		{"label": _("Valid Days"), "fieldname": "valid_days", "fieldtype": "Int", "width": 130},
-		{"label": _("Passed Days"), "fieldname": "passed_days", "fieldtype": "Int", "width": 130},
+		{"label": _("Valid Days"), "fieldname": "valid_days", "fieldtype": "Int", "width": 100},
+		{"label": _("Passed Days"), "fieldname": "passed_days", "fieldtype": "Int", "width": 120},
 	]
 	
 	return columns

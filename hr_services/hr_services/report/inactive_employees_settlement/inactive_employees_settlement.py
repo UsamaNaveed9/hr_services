@@ -22,7 +22,8 @@ def get_columns():
 		{"label": _("Clearance Form Signed"), "fieldname": "cf_signed", "fieldtype": "Data", "width": 170},
 		{"label": _("Nationality"), "fieldname": "nationality", "fieldtype": "Data", "width": 110},
 		{"label": _("Gosi Removed"), "fieldname": "gosi_removed", "fieldtype": "Data", "width": 120},
-		{"label": _("Left Type"), "fieldname": "left_type", "fieldtype": "Data", "width": 150}
+		{"label": _("Left Type"), "fieldname": "left_type", "fieldtype": "Data", "width": 150},
+		{"label": _("Leave Balance"), "fieldname": "leave_balance", "fieldtype": "Float", "width": 150}
 	]
 	
 	return columns
@@ -52,7 +53,8 @@ def get_data(filters):
 					WHEN custom_gosi_removed = 1 THEN 'Yes'
 					ELSE 'No'
 				END AS gosi_removed,
-				custom_left_type AS left_type
+				custom_left_type AS left_type,
+				custom_leave_balance AS leave_balance
 			FROM 
 				`tabEmployee`
 			WHERE

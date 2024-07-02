@@ -27,5 +27,14 @@ frappe.query_reports["Iqama Expiry and Cost"] = {
 			"options": "Company",
 			"default": frappe.defaults.get_user_default("Company")
 		}
-	]
+	],
+	"formatter": function (value, row, column, data, default_formatter) {
+		value = default_formatter(value, row, column, data);
+
+		if (column.fieldname == "iqama_expiry_date" && data && frappe.datetime.get_today() > data.iqama_expiry_date) {
+			value = "<span style='color:red'>" + value + "</span>";
+		}
+
+		return value;
+	},
 };
