@@ -118,6 +118,56 @@ frappe.ui.form.on('Costing Sheet', {
 		frm.set_value("monthly_wl_fee", frm.doc.wl_fee / 12 );
 		calc_oh_cost_total(frm);
 	},
+	nationality: function(frm){
+		if(frm.doc.nationality == "Saudi Arabia"){
+			frm.set_value("iqama_fee", 0);
+			frm.set_value("monthly_iqama_fee", 0);
+			frm.set_value("wl_fee", 0);
+			frm.set_value("monthly_wl_fee", 0);
+
+			calc_oh_cost_total(frm);
+			//hide the fields
+			frm.toggle_display(['iqama_fee'], false);
+			frm.toggle_display(['monthly_iqama_fee'], false);
+			frm.toggle_display(['wl_fee'], false);
+			frm.toggle_display(['monthly_wl_fee'], false);
+		}
+		else{
+			frm.set_value("iqama_fee", 650);
+			frm.set_value("wl_fee", 9700);
+			//show the fields
+			frm.toggle_display(['iqama_fee'], true);
+			frm.toggle_display(['monthly_iqama_fee'], true);
+			frm.toggle_display(['wl_fee'], true);
+			frm.toggle_display(['monthly_wl_fee'], true);
+		}
+	},
+	nationality_m: function(frm){
+		if(frm.doc.nationality_m == "Saudi Arabia"){
+			frm.set_value("iqama_fee_yearly", 0);
+			frm.set_value("wl_fee_yearly", 0);
+
+			calc_oh_cost_total(frm);
+			//hide the fields
+			frm.toggle_display(['iqama_fee_yearly'], false);
+			frm.toggle_display(['iqama_fee_pm'], false);
+			frm.toggle_display(['iqama_fee_pd'], false);
+			frm.toggle_display(['wl_fee_yearly'], false);
+			frm.toggle_display(['wl_fee_pm'], false);
+			frm.toggle_display(['wl_fee_pd'], false);
+		}
+		else{
+			frm.set_value("iqama_fee_yearly", 650);
+			frm.set_value("wl_fee_yearly", 9700);
+			//show the fields
+			frm.toggle_display(['iqama_fee_yearly'], true);
+			frm.toggle_display(['iqama_fee_pm'], true);
+			frm.toggle_display(['iqama_fee_pd'], true);
+			frm.toggle_display(['wl_fee_yearly'], true);
+			frm.toggle_display(['wl_fee_pm'], true);
+			frm.toggle_display(['wl_fee_pd'], true);
+		}
+	},
 	leave_per_year_in_days: function(frm){
 		let leave_amt_per_month = (((((frm.doc.basic || 0) + (frm.doc.housing || 0) + (frm.doc.transport || 0)) / 30 ) * frm.doc.leave_per_year_in_days ) / 12);
 		frm.set_value("leave_amt_per_month", leave_amt_per_month);
@@ -225,7 +275,27 @@ frappe.ui.form.on('Costing Sheet', {
 		calc_oh_cost_total(frm);
 	},
 	erc_fee: function(frm){
-		calc_totals(frm);
+		if(frm.doc.erc_fee >= 600){
+			calc_totals(frm);
+		}
+		else{
+			frappe.msgprint({
+				title: __("Error"),
+				indicator: "red",
+				message: __("ERC Fee must be greater than 600"),
+			});
+			frappe.validated = false;
+		}
+	},
+	before_save: function(frm){
+		if(frm.doc.erc_fee < 600){
+			frappe.msgprint({
+				title: __("Error"),
+				indicator: "red",
+				message: __("ERC Fee must be greater than 600"),
+			});
+			frappe.validated = false;
+		}
 	},
 	//Misk tab calculation and code
 	employee_id_m: function(frm) {

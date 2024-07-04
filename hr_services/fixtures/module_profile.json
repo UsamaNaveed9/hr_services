@@ -612,11 +612,23 @@
     "parent": "Accounts MGR",
     "parentfield": "block_modules",
     "parenttype": "Module Profile"
+   },
+   {
+    "module": "Buying",
+    "parent": "Accounts MGR",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Accounts MGR",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
    }
   ],
   "docstatus": 0,
   "doctype": "Module Profile",
-  "modified": "2024-04-03 09:38:28.906402",
+  "modified": "2024-07-04 11:30:17.871990",
   "module_profile_name": "Accounts MGR",
   "name": "Accounts MGR"
  },
@@ -831,11 +843,29 @@
     "parent": "Accounts User",
     "parentfield": "block_modules",
     "parenttype": "Module Profile"
+   },
+   {
+    "module": "Accounts",
+    "parent": "Accounts User",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Projects",
+    "parent": "Accounts User",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
+   },
+   {
+    "module": "Selling",
+    "parent": "Accounts User",
+    "parentfield": "block_modules",
+    "parenttype": "Module Profile"
    }
   ],
   "docstatus": 0,
   "doctype": "Module Profile",
-  "modified": "2023-11-07 14:18:23.924147",
+  "modified": "2024-07-04 11:28:27.070443",
   "module_profile_name": "Accounts User",
   "name": "Accounts User"
  }
