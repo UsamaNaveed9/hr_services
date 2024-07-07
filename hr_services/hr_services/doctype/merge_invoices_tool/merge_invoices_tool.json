@@ -33,7 +33,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "project.customer",
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
@@ -134,7 +133,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-06-11 15:26:08.079344",
+ "modified": "2024-07-07 15:13:41.185984",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Merge Invoices Tool",
