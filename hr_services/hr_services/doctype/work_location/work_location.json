@@ -9,7 +9,8 @@
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
-  "location"
+  "location",
+  "location_in_arabic"
  ],
  "fields": [
   {
@@ -22,11 +23,18 @@
    "oldfieldtype": "Data",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "location_in_arabic",
+   "fieldtype": "Data",
+   "label": "Location in Arabic",
+   "reqd": 1
   }
  ],
  "icon": "fa fa-code-fork",
  "links": [],
- "modified": "2024-01-23 16:55:57.763938",
+ "modified": "2024-07-08 10:37:49.543762",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Work Location",

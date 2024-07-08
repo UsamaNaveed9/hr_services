@@ -61,5 +61,12 @@
   "modified": "2024-04-22 14:26:27.440924",
   "name": "Division(dept) wise invoices Alhokair",
   "type": "Division(dept) wise invoices Alhokair"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Invoice Type",
+  "modified": "2024-07-08 10:18:49.482734",
+  "name": "Location wise Invoices with all employees details separately",
+  "type": "Location wise Invoices with all employees details separately"
  }
 ]
