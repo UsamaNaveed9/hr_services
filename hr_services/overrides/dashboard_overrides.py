@@ -14,3 +14,15 @@ def get_dashboard_for_employee(data):
 		{"Purchase Invoice": "employee_no", "Sales Invoice": "employee_id", "Loan": "applicant"}
 	)
 	return data
+
+def get_dashboard_for_payroll_entry(data):
+	data["transactions"].extend(
+		[
+			{"items": ["Sales Invoice"]},
+		]
+	)
+
+	data["non_standard_fieldnames"].update(
+		{"Sales Invoice": "custom_payroll_entry_link"}
+	)
+	return data

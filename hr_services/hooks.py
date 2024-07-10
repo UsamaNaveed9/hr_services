@@ -187,6 +187,7 @@ doc_events = {
 # along with any modifications made in other Frappe apps
 override_doctype_dashboards = {
     "Employee": "hr_services.overrides.dashboard_overrides.get_dashboard_for_employee",
+    "Payroll Entry": "hr_services.overrides.dashboard_overrides.get_dashboard_for_payroll_entry",
 }
 
 # exempt linked doctypes from being automatically cancelled

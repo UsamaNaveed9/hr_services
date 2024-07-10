@@ -35,6 +35,8 @@ def merge_invoices(due_date,customer,sales_invoices,project,print_customer=None)
 
 		for sal_inv in invs:
 			sales_doc = frappe.get_doc("Sales Invoice",sal_inv["sales_invoice"])
+			if sales_doc.custom_payroll_entry_link:
+				si.custom_payroll_entry_link = sales_doc.custom_payroll_entry_link
 			items = sales_doc.items
 			for inv_it in items:
 				si_item = frappe.new_doc("Sales Invoice Item")
