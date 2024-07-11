@@ -14,6 +14,7 @@
   "expense_type",
   "invoice_to_client",
   "select_bank",
+  "payment_screenshort",
   "column_break_0mrxq",
   "date",
   "project",
@@ -166,7 +167,7 @@
    "label": "Is Invoice Optional"
   },
   {
-   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1",
+   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1 || frappe.session.user == \"n.alayyaf@eliteresources.co\"",
    "fieldname": "invoice_to_client",
    "fieldtype": "Select",
    "label": "Invoice to Client",
@@ -174,7 +175,7 @@
    "permlevel": 2
   },
   {
-   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1",
+   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1 || frappe.session.user == \"n.alayyaf@eliteresources.co\"",
    "fieldname": "select_bank",
    "fieldtype": "Link",
    "label": "Select Bank",
@@ -196,13 +197,21 @@
    "hidden": 1,
    "label": "Resubmitted and Updated",
    "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.workflow_state == \"Pending for HRM Approval\" || doc.workflow_state == \"Pending for FM Approval\" || doc.docstatus == 1 || frappe.session.user == \"n.alayyaf@eliteresources.co\"",
+   "fieldname": "payment_screenshort",
+   "fieldtype": "Attach",
+   "label": "Payment Screenshort",
+   "mandatory_depends_on": "eval:doc.select_bank",
+   "permlevel": 2
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2024-06-23 11:01:10.078904",
+ "modified": "2024-07-11 16:02:08.231571",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Request For Payment",

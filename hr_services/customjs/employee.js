@@ -113,7 +113,17 @@ frappe.ui.form.on('Employee', {
         calculate_probation_end_date(frm);
     },
     custom_probation_period(frm){
-        calculate_probation_end_date(frm);
+        if(frm.doc.custom_probation_period == 90 || frm.doc.custom_probation_period == 180){
+            calculate_probation_end_date(frm);
+        }
+        else{
+            frappe.msgprint({
+                title: __("Error"),
+                indicator: "red",
+                message: __("Probation period must be 90 or 180"),
+            });
+            frappe.validated = false;
+        }   
     },
     before_save(frm){
         if(frm.doc.custom_residence_type == "Visitor(Have Border No)"){

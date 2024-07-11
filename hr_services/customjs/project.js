@@ -11,4 +11,22 @@ frappe.ui.form.on('Project', {
 		    }
 		});
 	},
+	erc_fee: function(frm){
+		check_erc_fee(frm);
+	},
+	before_save: function(frm){
+		check_erc_fee(frm);
+	}
+	
 });
+
+function check_erc_fee(frm){
+	if(frm.doc.erc_fee < 600){
+		frappe.msgprint({
+			title: __("Error"),
+			indicator: "red",
+			message: __("ERC Fee must be greater than 600"),
+		});
+		frappe.validated = false;
+	}
+}
