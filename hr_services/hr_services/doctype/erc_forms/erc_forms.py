@@ -1,11 +1,20 @@
 # Copyright (c) 2024, Elite Resources and contributors
 # For license information, please see license.txt
 
-# import frappe
+import frappe
+from frappe.utils import add_days
 from frappe.model.document import Document
 
 class ERCForms(Document):
-	pass
+	def before_insert(self):
+		if self.employee:
+			updates = {}
+			updates["custom_probation_period"] = 180
+			updates["custom_probation_end_date"] = add_days(self.employment_date, 180 - 1)
+			frappe.db.set_value("Employee", self.employee, updates, update_modified=False)
+			frappe.db.commit()
+
+			
 # import frappe
 # from frappe import _
 # import re
