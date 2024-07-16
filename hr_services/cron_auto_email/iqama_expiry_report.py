@@ -41,7 +41,7 @@ class BuildReport:
 
 		#Recipients email that users have above Role
 		self.email_to = get_recipients(self)
-		print(self.email_to)
+		
 		#Report Format 
 		self.format = "HTML"
 
