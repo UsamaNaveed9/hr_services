@@ -152,23 +152,28 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"hr_services.tasks.all"
-#	],
-#	"daily": [
-#		"hr_services.tasks.daily"
-#	],
-#	"hourly": [
-#		"hr_services.tasks.hourly"
-#	],
-#	"weekly": [
-#		"hr_services.tasks.weekly"
-#	],
-#	"monthly": [
-#		"hr_services.tasks.monthly"
-#	],
-# }
+scheduler_events = {
+    "cron": {
+        "0 6 20 * *": [
+            "hr_services.cron_auto_email.iqama_expiry_report.send_email"
+        ]
+    }
+	# "all": [
+	# 	"hr_services.tasks.all"
+	# ],
+	# "daily": [
+	# 	"hr_services.tasks.daily"
+	# ],
+	# "hourly": [
+	# 	"hr_services.tasks.hourly"
+	# ],
+	# "weekly": [
+	# 	"hr_services.tasks.weekly"
+	# ],
+	# "monthly": [
+	# 	"hr_services.tasks.monthly"
+	# ],
+}
 
 # Testing
 # -------
