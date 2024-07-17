@@ -1,0 +1,48 @@
+{
+ "cards": [
+  {
+   "card": "Job Openings (This Month)"
+  },
+  {
+   "card": "Job Offers (This-Month)"
+  },
+  {
+   "card": "Total Active Employees"
+  },
+  {
+   "card": "New Hires (This Quarter)"
+  },
+  {
+   "card": "Total Saudi Employees"
+  },
+  {
+   "card": "Total Non-Saudi Employees"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Job Openings (Project Wise)",
+   "width": "Half"
+  },
+  {
+   "chart": "Job Offer Status (This Month)",
+   "width": "Half"
+  },
+  {
+   "chart": "Employees (Project Wise)",
+   "width": "Full"
+  }
+ ],
+ "creation": "2024-07-17 14:02:54.926524",
+ "dashboard_name": "Master Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2024-07-17 16:40:32.950650",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Master Dashboard",
+ "owner": "Administrator"
+}

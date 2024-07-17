@@ -183,9 +183,10 @@ scheduler_events = {
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "hr_services.event.get_events"
-# }
+override_whitelisted_methods = {
+    "frappe.desk.doctype.dashboard_chart.dashboard_chart.get": "hr_services.override_methods.dashboard_chart.get"
+	#"frappe.desk.doctype.event.event.get_events": "hr_services.event.get_events"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
