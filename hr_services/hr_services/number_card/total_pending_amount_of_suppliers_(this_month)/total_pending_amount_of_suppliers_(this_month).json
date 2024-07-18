@@ -1,0 +1,22 @@
+{
+ "creation": "2024-07-18 15:10:42.442788",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "filters_config": "",
+ "filters_json": "{\"\":\"Elite Resources Center\"}",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Total Pending Amount of Suppliers (This Month)",
+ "method": "hr_services.custompy.purchase_invoice.get_suppliers_outstanding",
+ "modified": "2024-07-18 15:10:42.442788",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Total Pending Amount of Suppliers (This Month)",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Daily",
+ "type": "Custom"
+}

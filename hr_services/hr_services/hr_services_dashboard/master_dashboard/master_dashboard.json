@@ -17,6 +17,24 @@
   },
   {
    "card": "Total Non-Saudi Employees"
+  },
+  {
+   "card": "Total Suppliers Bills (This Month)"
+  },
+  {
+   "card": "Total Paid Amount To Suppliers (This Month)"
+  },
+  {
+   "card": "Total Pending Amount of Suppliers (This Month)"
+  },
+  {
+   "card": "Total Customer Issued Bills (This Month)"
+  },
+  {
+   "card": "Total Received Amount from Customers (This Month)"
+  },
+  {
+   "card": "Total Overdue Amount of Customers (This Month)"
   }
  ],
  "charts": [
@@ -40,7 +58,7 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2024-07-17 16:40:32.950650",
+ "modified": "2024-07-18 15:50:20.240307",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Master Dashboard",
