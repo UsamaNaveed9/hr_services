@@ -274,5 +274,8 @@ fixtures = [
     },
     {
         "dt": "Salary Items"
+    },
+    {
+        "dt": "Employees Category By Age"
     }
 ]

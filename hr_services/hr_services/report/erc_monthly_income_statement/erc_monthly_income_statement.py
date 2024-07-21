@@ -30,17 +30,20 @@ def execute(filters=None):
 	#get the period list with passing parameters
 	period_list = get_period_list(
 		from_fiscal_year=fiscal_year,
-        to_fiscal_year=fiscal_year,
-        period_start_date=from_date,
-        period_end_date=to_date,
-        filter_based_on="Date Range",
-        periodicity="Monthly",
-        company=filters.get("company"),
+		to_fiscal_year=fiscal_year,
+		period_start_date=from_date,
+		period_end_date=to_date,
+		filter_based_on="Date Range",
+		periodicity="Monthly",
+		company=filters.get("company"),
 	)
 
 	columns = get_columns(period_list)
 	data = get_full_data(filters,from_date,to_date,period_list)
-	return columns, data
+
+	chart = get_chart_data(filters, columns, data)
+
+	return columns, data, None, chart
 
 def get_columns(period_list):
 	columns = [
@@ -290,3 +293,44 @@ def get_month_map():
 		"November": 11,
 		"December": 12
 	})
+
+def get_chart_data(filters, columns, data):
+	labels = [d.get("label") for d in columns[1:]]
+
+	# Initialize lists to store data
+	income_data, expense_data, net_profit = [], [], []
+
+	# Process each column
+	for p in columns[1:]:
+		# Get the field name for the current column
+		fieldname = p.get("fieldname")
+		
+		# Fetch income data
+		income_value = next((item.get(fieldname) for item in data if item.get('account') == '<strong>Gross Profit </strong>'), 0.0)
+		income_data.append(income_value)
+
+		# Fetch expense data
+		expense_value = next((item.get(fieldname) for item in data if item.get('account') == '<strong>Total Expense </strong>'), 0.0)
+		expense_data.append(expense_value)
+
+		# Fetch net profit data
+		net_profit_value = next((item.get(fieldname) for item in data if item.get('account') == '<strong>Operating Profit </strong>'), 0.0)
+		net_profit.append(net_profit_value)
+
+	# Prepare datasets for the chart
+	datasets = []
+	if income_data:
+		datasets.append({"name": _("Income"), "values": income_data})
+	if expense_data:
+		datasets.append({"name": _("Expense"), "values": expense_data})
+	if net_profit:
+		datasets.append({"name": _("Net Profit/Loss"), "values": net_profit})
+
+	# Create the chart dictionary
+	chart = {"data": {"labels": labels, "datasets": datasets}}
+
+	# Set additional chart properties
+	chart["type"] = "bar"
+	chart["fieldtype"] = "Currency"
+
+	return chart

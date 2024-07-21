@@ -1,0 +1,51 @@
+[
+ {
+  "category": "Employees Below 65 Yrs",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:01:38.534818",
+  "name": "Employees Below 65 Yrs"
+ },
+ {
+  "category": "Wives Below 65 Yrs",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:01:53.798423",
+  "name": "Wives Below 65 Yrs"
+ },
+ {
+  "category": "Married Female Employees",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:02:14.212073",
+  "name": "Married Female Employees"
+ },
+ {
+  "category": "Single Female Employees",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:02:33.212810",
+  "name": "Single Female Employees"
+ },
+ {
+  "category": "Children Below 18 Yrs",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:02:48.927772",
+  "name": "Children Below 18 Yrs"
+ },
+ {
+  "category": "Children Above 18 Yrs",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:03:01.938801",
+  "name": "Children Above 18 Yrs"
+ },
+ {
+  "category": "Employees Above 65 Yrs",
+  "docstatus": 0,
+  "doctype": "Employees Category By Age",
+  "modified": "2024-07-21 15:03:14.436084",
+  "name": "Employees Above 65 Yrs"
+ }
+]
