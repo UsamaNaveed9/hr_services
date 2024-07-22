@@ -760,16 +760,16 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 						sal_slip.save(ignore_permissions=True)
 				status = True
 
-	elif invoice_type == "One Invoice with all employees total dept wise one line only":
+	elif invoice_type == "One Invoice with all employees total dept under loc wise one line only":
 		dept_list = []
 		loc_list = []
 		for emp in emps:
 			dept = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
 			loc = frappe.db.get_value("Employee", {"name":emp["employee"]}, "custom_location")
-			if dept and dept not in dept_list:
+			if dept not in dept_list:
 				dept_list.append(dept)
 
-			if loc and loc not in loc_list:
+			if loc not in loc_list:
 				loc_list.append(loc)	
 		
 		for dp in dept_list:
@@ -843,10 +843,95 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 
 					if si.name:
 						for emp in emps:
+							emp_dp = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
+							emp_loc = frappe.db.get_value("Employee", {"name":emp["employee"]}, "custom_location")
+							if dp == emp_dp and lc == emp_loc:
+								sal_slip = frappe.get_doc("Salary Slip", emp["salary_slip"])
+								sal_slip.invoice_created = 1
+								sal_slip.save(ignore_permissions=True)
+						status = True
+
+	elif invoice_type == "One Invoice with dept wise all employees total one line only":
+		dept_list = []
+		for emp in emps:
+			dept = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
+			if dept not in dept_list:
+				dept_list.append(dept)
+		
+		for dp in dept_list:
+			total_mp = 0
+			for emp in emps:
+				emp_dp = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
+				if dp == emp_dp:
+					#manpower adding into total_mp
+					nationality = frappe.db.get_value("Employee", {"name":emp["employee"]}, "nationality")
+					added_to_gosi = frappe.db.get_value("Employee", {"name":emp["employee"]}, "added_to_gosi")
+
+					housing_adv_loan = 0
+					sslp_doc = frappe.get_doc("Salary Slip",emp["salary_slip"])
+					if sslp_doc.loans:
+						for loan in sslp_doc.loans:
+							if loan.loan_type == "Housing Advance":
+								housing_adv_loan = housing_adv_loan + loan.total_payment
+
+					if nationality == "Saudi Arabia" and added_to_gosi == 1:
+						basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
+						housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
+						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
+						loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
+						total_mp = total_mp + (net_pay + loan_repay - housing_adv_loan + ((basic + housing) * 0.0975))
+					else:
+						net_pay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "net_pay")
+						loan_repay = frappe.db.get_value("Salary Slip", {"name":emp["salary_slip"]}, "total_loan_repayment")
+						total_mp = total_mp + net_pay + loan_repay - housing_adv_loan
+					#gosi adding into total_mp
+					if nationality == "Saudi Arabia":
+						basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
+						housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
+						total_mp = total_mp + ((basic + housing) * 0.1175)
+					else:
+						basic = frappe.db.get_value("Employee", {"name":emp["employee"]}, "basic_salary")
+						housing = frappe.db.get_value("Employee", {"name":emp["employee"]}, "housing_allowance")
+						total_mp = total_mp + ((basic + housing) * 0.02)
+					#erc fee and bank charges adding into total_mp
+					total_mp = total_mp + frappe.db.get_value("Project", {"name":project}, "erc_fee")
+					total_mp = total_mp + frappe.db.get_value("Project", {"name":project}, "bt_charges")
+			if total_mp > 0:	
+				si = frappe.new_doc("Sales Invoice")
+				si.customer = customer
+				si.set_posting_time = 1
+				si.posting_date = due_date
+				si.due_date = due_date
+				si.issue_date = due_date
+				si.project = project
+				si.is_pos = 0
+
+				si_item = frappe.new_doc("Sales Invoice Item")
+				si_item.item_code = 34
+				si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
+				si_item.qty = 1
+				si_item.rate = total_mp
+				si.append("items", si_item)
+
+				si_tax = frappe.new_doc("Sales Taxes and Charges")
+				si_tax.charge_type = "On Net Total"
+				si_tax.account_head = "VAT 15% - ERC"
+				si_tax.description = "VAT 15%"
+				si_tax.rate = 15
+				si.append("taxes", si_tax)
+
+				si.custom_payroll_entry_link = frappe.db.get_value("Salary Slip", emps[0]["salary_slip"], "payroll_entry")
+				si.remarks = "Payroll Invoice"
+				si.save(ignore_permissions=True)
+
+				if si.name:
+					for emp in emps:
+						emp_dp = frappe.db.get_value("Employee", {"name":emp["employee"]}, "department")
+						if dp == emp_dp:
 							sal_slip = frappe.get_doc("Salary Slip", emp["salary_slip"])
 							sal_slip.invoice_created = 1
 							sal_slip.save(ignore_permissions=True)
-						status = True
+					status = True					
 	
 	elif invoice_type == "Division(dept) wise invoices Alhokair":
 		dept_list = []
