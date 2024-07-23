@@ -8,7 +8,7 @@ from datetime import datetime
 
 @frappe.whitelist()
 def update_salary(doc, method):
-	 # List of fields to check for changes
+	# List of fields to check for changes
 	fields_to_check = ["basic_salary", "housing_allowance", "transport_allowance", "food_allowance", "mobile_allowance"]
 	
 	# Flag to check if any relevant field has changed
@@ -42,7 +42,21 @@ def update_salary(doc, method):
 				frappe.db.commit()
 
 	if doc.iqama_national_id and frappe.db.exists("Employee",{"iqama_national_id": doc.iqama_national_id, "name": ["!=", doc.name]}):
-		frappe.throw(_("Iqama No/National ID must be Unique. This <b>{0}</b> is already assigned to another Employee").format(doc.iqama_national_id))	
+		frappe.throw(_("Iqama No/National ID must be Unique. This <b>{0}</b> is already assigned to another Employee").format(doc.iqama_national_id))
+
+	if doc.custom_old_name:
+		# List of attachments fields to check for changes
+		attach_fields_to_check = ["custom_muqeem_pdf", "custom_cv", "custom_passport", "custom_jo", "custom_gosi_contract", "custom_qiwa_contract", "custom_erc_contract"]
+		
+		# Check value exists in the value or not
+		for field in attach_fields_to_check:
+			if hasattr(doc, field) and getattr(doc, field):
+				file_doc = frappe.db.get_value("File", {"attached_to_doctype":"Employee", "attached_to_name":doc.custom_old_name, "attached_to_field":field}, "name")
+				frappe.db.set_value("File", file_doc, {"attached_to_name": doc.name})
+
+		frappe.db.set_value("Employee", doc.name, {"custom_old_name": ""}, update_modified=False)
+		frappe.db.commit()
+
 
 @frappe.whitelist()
 def check_id(doc, method):

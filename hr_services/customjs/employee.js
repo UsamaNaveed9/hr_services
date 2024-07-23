@@ -180,6 +180,11 @@ frappe.ui.form.on('Employee', {
                 frappe.validated = false;
             }
         }
+
+        //save the name of document before save into a field name named custom_old_name
+        if(frm.doc.__islocal){
+            frm.set_value("custom_old_name",frm.doc.name)
+        }
     }
 });
 
