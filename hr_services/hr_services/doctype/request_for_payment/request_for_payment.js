@@ -36,15 +36,27 @@ frappe.ui.form.on('Request For Payment', {
 				]
 			}
         }
-
+		
 		frm.fields_dict['employees'].grid.get_field("employee_no").get_query = function(doc, cdt, cdn) {
-			return {
-				filters: [
-					['Employee', 'project', 'in',frm.doc.project],
-					['Employee', 'employment_type', 'in','Part-time']
-				]
+			let row = locals[cdt][cdn];
+			if(row.po_type == "Manpower"){
+				return {
+					filters: [
+						['Employee', 'project', 'in',frm.doc.project],
+						['Employee', 'employment_type', 'in','Part-time'],
+						['Employee', 'status', '=','Active']
+					]
+				}
 			}
-        }
+			else if(row.po_type == "Expense"){
+				return {
+					filters: [
+						['Employee', 'project', 'in',frm.doc.project],
+						['Employee', 'status', '=','Active']
+					]
+				}
+			}
+		}
 
 		frm.fields_dict['advances'].grid.get_field("employee_no").get_query = function(doc, cdt, cdn) {
 			return {
@@ -56,12 +68,25 @@ frappe.ui.form.on('Request For Payment', {
 
 		frm.fields_dict['employees'].grid.get_field("po_mgt").get_query = function(doc, cdt, cdn) {
 			let row = locals[cdt][cdn];
-			return {
-				filters: [
-					['PO Management', 'employee_no', '=',row.employee_no],
-					['PO Management', 'status', 'in','Active']
-				]
+			if(row.po_type == "Manpower"){
+				return {
+					filters: [
+						['PO Management', 'employee_no', '=',row.employee_no],
+						['PO Management', 'status', 'in','Active'],
+						['PO Management', 'po_type', '=','Manpower']
+					]
+				}
 			}
+			else if(row.po_type == "Expense"){
+				return {
+					filters: [
+						['PO Management', 'status', 'in','Active'],
+						['PO Management', 'po_type', '=','Expense'],
+						['Employees of Expense PO', 'employee', 'in',row.employee_no]
+					]
+				}
+			}
+			
         }
 	},
 	project(frm){

@@ -71,8 +71,14 @@ function calculate(frm){
 	frm.set_value("invoicing_rate",inv_rate);
 	frm.set_value("margin",margin);
 	frm.set_value("po_amount_wm",amount_wm);
-	if(frm.doc.employment_type == "Part-time"){
+	if(frm.doc.po_type == "Manpower" && frm.doc.employment_type == "Part-time"){
 		frm.set_value("employee_rate",emp_rate);
+	}
+	else if(frm.doc.po_type == "Expense"){
+		frm.set_value("employee_rate",emp_rate);
+		frm.set_value("invoicing_rate",emp_rate);
+		frm.set_value("margin",0);
+		frm.set_value("po_amount_wm",frm.doc.po_amount);
 	}
 	else{
 		frm.set_value("employee_rate", 0);

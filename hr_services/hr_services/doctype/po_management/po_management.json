@@ -10,7 +10,10 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "po_type",
   "employee_no",
+  "employees",
+  "description",
   "employee_name",
   "employment_type",
   "project_no",
@@ -37,14 +40,16 @@
    "options": "PO-MG-.YY.-"
   },
   {
+   "depends_on": "eval:doc.po_type == \"Manpower\"",
    "fieldname": "employee_no",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Employee No",
-   "options": "Employee",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.po_type == \"Manpower\"",
+   "options": "Employee"
   },
   {
+   "depends_on": "eval:doc.employee_no",
    "fetch_from": "employee_no.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
@@ -52,6 +57,7 @@
    "label": "Employee Name"
   },
   {
+   "depends_on": "eval:doc.employee_no",
    "fetch_from": "employee_no.project",
    "fieldname": "project_no",
    "fieldtype": "Link",
@@ -59,6 +65,7 @@
    "options": "Project"
   },
   {
+   "depends_on": "eval:doc.employee_no",
    "fetch_from": "project_no.project_name",
    "fieldname": "project_name",
    "fieldtype": "Data",
@@ -142,6 +149,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:doc.employee_no",
    "fetch_from": "employee_no.employment_type",
    "fieldname": "employment_type",
    "fieldtype": "Data",
@@ -160,12 +168,32 @@
    "fieldtype": "Currency",
    "label": "Employee Rate",
    "read_only": 1
+  },
+  {
+   "fieldname": "po_type",
+   "fieldtype": "Select",
+   "label": "PO Type",
+   "options": "Manpower\nExpense"
+  },
+  {
+   "depends_on": "eval:doc.po_type == \"Expense\"",
+   "fieldname": "employees",
+   "fieldtype": "Table MultiSelect",
+   "label": "Employees",
+   "mandatory_depends_on": "eval:doc.po_type == \"Expense\"",
+   "options": "Employees of Expense PO"
+  },
+  {
+   "depends_on": "eval:doc.po_type == \"Expense\"",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description(Employees Name)"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-02-01 14:36:23.687281",
+ "modified": "2024-07-29 14:26:39.276229",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "PO Management",

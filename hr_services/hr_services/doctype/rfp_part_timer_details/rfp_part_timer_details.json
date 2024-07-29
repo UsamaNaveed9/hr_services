@@ -7,6 +7,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "po_type",
   "employee_no",
   "employee_name",
   "po_mgt",
@@ -32,7 +33,7 @@
    "options": "Employee"
   },
   {
-   "columns": 2,
+   "columns": 1,
    "fetch_from": "employee_no.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
@@ -91,12 +92,20 @@
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
+  },
+  {
+   "columns": 1,
+   "fieldname": "po_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "PO Type",
+   "options": "Manpower\nExpense"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-07 16:25:36.844316",
+ "modified": "2024-07-29 13:19:54.507039",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "RFP Part Timer Details",
