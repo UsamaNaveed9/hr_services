@@ -10,6 +10,9 @@ frappe.pages['tracker'].on_page_load = function(wrapper) {
         refresh_customer_list(page);
     });
 
+    // Add custom class to the button
+	refresh_button.addClass('btn-primary');
+
 	frappe.call({
         method: 'hr_services.hr_services.page.tracker.tracker.get_outstanding_customers',
         callback: function(r) {
