@@ -1,5 +1,6 @@
 
 //when a dashboard loaded this dashboard_view.js file run
+//file path: apps/frappe/frappe/core/page/dashboard_view/dashboard_view.js
 //funciton: set_drop_down() exists under Dashboard class
 //some additional lines written in the set_drop_down() function
 
