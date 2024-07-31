@@ -114,8 +114,27 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "ERC Forms",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "ERC Forms",
+   "link_count": 0,
+   "link_to": "ERC Forms",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Employees Wise Reports",
-   "link_count": 3,
+   "link_count": 4,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -152,25 +171,16 @@
   },
   {
    "hidden": 0,
-   "is_query_report": 0,
-   "label": "ERC Forms",
-   "link_count": 1,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "ERC Forms",
+   "is_query_report": 1,
+   "label": "Probation Period Ended",
    "link_count": 0,
-   "link_to": "ERC Forms",
-   "link_type": "DocType",
+   "link_to": "Probation Period Ended",
+   "link_type": "Report",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2024-07-04 10:23:11.274006",
+ "modified": "2024-07-31 15:16:15.370235",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite HR",
