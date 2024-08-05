@@ -303,6 +303,18 @@ frappe.ui.form.on("RFP Supplier Details", {
 });
 
 frappe.ui.form.on("RFP Part Timer Details", {
+	po_type:function(frm,cdt,cdn){
+		let row = locals[cdt][cdn];
+		row.employee_no = '';
+		row.employee_name = '';
+		row.po_mgt = '';
+		row.po_no = '';
+		row.remaining_units = '';
+		row.emp_rate = 0;
+		row.working_days = 0;
+		row.amount = 0;
+		frm.refresh();
+	},
 	po_mgt:function(frm, cdt, cdn){
 		let row = locals[cdt][cdn];
 		if(row.po_mgt){
