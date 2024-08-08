@@ -97,48 +97,49 @@ class RequestForPayment(Document):
 			copy_attachments(self, new_doc)
 
 			#creating sales invoices on the list of invoices after the approval of request of payment
-			if self.project != "PROJ-0018" and self.invoice_to_client == "Yes":
+			if self.invoice_to_client == "Yes":
 				for inv in self.invoices:
-					si = frappe.new_doc("Sales Invoice")
-					si.customer = frappe.db.get_value("Project",{"name":inv.project},"customer")
-					si.set_posting_time = 1
-					si.posting_date = self.date
-					si.due_date = self.date
-					si.issue_date = self.date
-					si.project = inv.project
-					si.is_pos = 0
+					if inv.project != "PROJ-0018":
+						si = frappe.new_doc("Sales Invoice")
+						si.customer = frappe.db.get_value("Project",{"name":inv.project},"customer")
+						si.set_posting_time = 1
+						si.posting_date = self.date
+						si.due_date = self.date
+						si.issue_date = self.date
+						si.project = inv.project
+						si.is_pos = 0
 
-					pur_doc = frappe.get_doc("Purchase Invoice",inv.purchase_invoice)
-					#getting the tax rate if tax applied on invoice
-					tax_rate = 0
-					if pur_doc.taxes:
-						tax_rate = pur_doc.taxes[0].rate
+						pur_doc = frappe.get_doc("Purchase Invoice",inv.purchase_invoice)
+						#getting the tax rate if tax applied on invoice
+						tax_rate = 0
+						if pur_doc.taxes:
+							tax_rate = pur_doc.taxes[0].rate
 
-					items = pur_doc.items
-					for inv_it in items:
-						si_item = frappe.new_doc("Sales Invoice Item")
-						si_item.item_code = inv_it.item_code
-						si_item.qty = inv_it.qty
-						if tax_rate > 0:
-							si_item.rate = inv_it.rate + (inv_it.rate * (tax_rate / 100))
-						else:	
-							si_item.rate = inv_it.rate
-						si_item.employee_id = inv_it.employee_no
-						si_item.employee_name = inv_it.employee_name
-						si_item.custom_rfp = self.name
-						si.append("items", si_item)
+						items = pur_doc.items
+						for inv_it in items:
+							si_item = frappe.new_doc("Sales Invoice Item")
+							si_item.item_code = inv_it.item_code
+							si_item.qty = inv_it.qty
+							if tax_rate > 0:
+								si_item.rate = inv_it.rate + (inv_it.rate * (tax_rate / 100))
+							else:	
+								si_item.rate = inv_it.rate
+							si_item.employee_id = inv_it.employee_no
+							si_item.employee_name = inv_it.employee_name
+							si_item.custom_rfp = self.name
+							si.append("items", si_item)
 
-					si_tax = frappe.new_doc("Sales Taxes and Charges")
-					si_tax.charge_type = "On Net Total"
-					si_tax.account_head = "VAT 15% - ERC"
-					si_tax.description = "VAT 15%"
-					si_tax.rate = 15
-					si.append("taxes", si_tax)
+						si_tax = frappe.new_doc("Sales Taxes and Charges")
+						si_tax.charge_type = "On Net Total"
+						si_tax.account_head = "VAT 15% - ERC"
+						si_tax.description = "VAT 15%"
+						si_tax.rate = 15
+						si.append("taxes", si_tax)
 
-					#si.custom_request_for_payment = self.name
-					si.remarks = f"{self.expense_type} from Request for Payment"
-					si.save(ignore_permissions=True)
-					#copy_attachments(self, si)
+						#si.custom_request_for_payment = self.name
+						si.remarks = f"{self.expense_type} from Request for Payment"
+						si.save(ignore_permissions=True)
+						#copy_attachments(self, si)
 		elif self.expense_type == "Payment For Part Timer":
 			#creating journal entry on the approval of request of payment
 			if self.coa_for_jv:
