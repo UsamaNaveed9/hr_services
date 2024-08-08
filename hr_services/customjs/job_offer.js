@@ -138,7 +138,26 @@ frappe.ui.form.on('Job Offer', {
 			frm.set_value("custom_nationality", "");
 			frm.set_df_property('custom_nationality','read_only',0);
 		}
-	}
+	},
+	offer_date: function(frm){
+		convert_into_hijri(frm);
+	},
+	select_terms: function (frm) {
+		if(frm.doc.select_terms){
+			frappe.call({
+				method: 'hr_services.custompy.job_offer.get_terms_and_conditions',
+				args: {
+					template_name: frm.doc.select_terms,
+					doc: frm.doc
+				},
+				callback: function(r) {
+					if (!r.exc) {
+						frm.set_value("custom_terms_and_conditions_in_arabic", r.message);
+					}
+				}
+			})
+		}
+	},
 });
 
 frappe.ui.form.on("Contract Details", {
@@ -172,3 +191,17 @@ erpnext.job_offer.make_contract = function (frm) {
 		frm: frm
 	});
 };
+
+function convert_into_hijri(frm){
+    frappe.call({
+        method: "hr_services.custompy.employee.convert_into_hijri",
+        args: {
+            date: frm.doc.offer_date
+        },
+        callback: function(r){
+            if(r.message){
+                frm.set_value("custom_offer_date_in_hijri",r.message);
+            }
+        }
+    });
+}

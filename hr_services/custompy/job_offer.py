@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.mapper import get_mapped_doc
+import json
 
 @frappe.whitelist()
 def make_employee(source_name, target_doc=None):
@@ -66,3 +67,14 @@ def make_contract(source_name, target_doc=None):
 		set_missing_values,
 	)
 	return doc
+
+
+@frappe.whitelist()
+def get_terms_and_conditions(template_name, doc):
+	if isinstance(doc, str):
+		doc = json.loads(doc)
+
+	terms_and_conditions = frappe.get_doc("Terms and Conditions", template_name)
+
+	if terms_and_conditions.custom_terms_and_conditions_in_arabic:
+		return frappe.render_template(terms_and_conditions.custom_terms_and_conditions_in_arabic, doc)
