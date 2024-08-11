@@ -156,7 +156,10 @@ scheduler_events = {
     "cron": {
         "0 6 20 * *": [
             "hr_services.cron_auto_email.iqama_expiry_report.send_email"
-        ]
+        ],
+        "0 6 22 * *": [
+            "hr_services.cron_auto_email.probation_period_ended.send_email"
+        ],
     }
 	# "all": [
 	# 	"hr_services.tasks.all"
