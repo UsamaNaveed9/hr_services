@@ -144,12 +144,13 @@ def send_email():
 		if not self.format == "HTML":
 			attachments = [{"fname": self.get_file_name(), "fcontent": data}]
 
-		frappe.sendmail(
-			recipients=self.email_to.split(),
-			subject="Employee List those iqama will Expiry Next Month",
-			message=message,
-			attachments=attachments,
-		)            
+		for recipient_email in self.email_to:
+			frappe.sendmail(
+				recipients=recipient_email,
+				subject="Employee List those iqama will Expiry Next Month",
+				message=message,
+				attachments=attachments,
+			)            
 		
 def make_links(columns, data):
 	for row in data:
@@ -209,4 +210,4 @@ def get_recipients(self):
 	# Filter out users with empty email fields and concatenate emails
 	email_list = [user['email'] for user in users if user['email']]
 	
-	return "\n".join(email_list)
+	return email_list
