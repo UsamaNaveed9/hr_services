@@ -11,22 +11,45 @@ frappe.ui.form.on('Project', {
 		    }
 		});
 	},
-	erc_fee: function(frm){
-		check_erc_fee(frm);
-	},
 	before_save: function(frm){
-		check_erc_fee(frm);
+		validate(frm);
+	},
+	invoice_type: function(frm){
+		if(frm.doc.invoice_type == 'Employee Wise Invoices with PO from PO Mgt'){
+			frm.set_value("custom_allow_po_management",1);
+			frm.set_value("custom_with_po",1);
+		}
+		else if(frm.doc.invoice_type == 'Employee Wise Invoices without PO from PO Mgt'){
+			frm.set_value("custom_allow_po_management",1);
+			frm.set_value("custom_with_po",0);
+		}
+		else{
+			frm.set_value("custom_allow_po_management",0);
+			frm.set_value("custom_with_po",0);
+		}
 	}
 	
 });
 
-function check_erc_fee(frm){
-	if(frm.doc.erc_fee < 600){
+function validate(frm){
+	if(frm.doc.invoice_type && !frm.doc.customer){
 		frappe.msgprint({
 			title: __("Error"),
 			indicator: "red",
-			message: __("ERC Fee must be greater than 600"),
+			message: __("Customer is missing"),
 		});
 		frappe.validated = false;
+		frm.scroll_to_field('customer');
+	}
+	if(!((['Employee Wise Invoices with PO from PO Mgt','Employee Wise Invoices without PO from PO Mgt']).includes(frm.doc.invoice_type))){
+		if(frm.doc.erc_fee < 600){
+			frappe.msgprint({
+				title: __("Error"),
+				indicator: "red",
+				message: __("ERC Fee must be greater than 600"),
+			});
+			frappe.validated = false;
+		}
+		frm.scroll_to_field('erc_fee');
 	}
 }
