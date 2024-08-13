@@ -126,32 +126,34 @@ frappe.ui.form.on('Employee', {
         }   
     },
     before_save(frm){
-        if(frm.doc.custom_residence_type == "Visitor(Have Border No)"){
-            if (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '3'){ //border no length must be 10 and start with 3
-                frappe.msgprint({
-                    title: __("Error"),
-                    indicator: "red",
-                    message: __("Enter a valid Border No"),
-                });
-                frappe.validated = false;
+        if(frm.doc.iqama_national_id){
+            if(frm.doc.custom_residence_type == "Visitor(Have Border No)"){
+                if (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '3'){ //border no length must be 10 and start with 3
+                    frappe.msgprint({
+                        title: __("Error"),
+                        indicator: "red",
+                        message: __("Enter a valid Border No"),
+                    });
+                    frappe.validated = false;
+                }
             }
-        }
-        else if(frm.doc.custom_residence_type == "Resident(Have ID/Iqama No)"){
-            if (frm.doc.nationality == "Saudi Arabia" && (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '1')){ //saudi national id length must be 10 and start with 1
-                frappe.msgprint({
-                    title: __("Error"),
-                    indicator: "red",
-                    message: __("Enter a valid National ID"),
-                });
-                frappe.validated = false;
-            }
-            else if (frm.doc.nationality != "Saudi Arabia" && (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '2')){ //iqama no length must be 10 and start with 2
-                frappe.msgprint({
-                    title: __("Error"),
-                    indicator: "red",
-                    message: __("Enter a valid Iqama No"),
-                });
-                frappe.validated = false;
+            else if(frm.doc.custom_residence_type == "Resident(Have ID/Iqama No)"){
+                if (frm.doc.nationality == "Saudi Arabia" && (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '1')){ //saudi national id length must be 10 and start with 1
+                    frappe.msgprint({
+                        title: __("Error"),
+                        indicator: "red",
+                        message: __("Enter a valid National ID"),
+                    });
+                    frappe.validated = false;
+                }
+                else if (frm.doc.nationality != "Saudi Arabia" && (frm.doc.iqama_national_id.length != 10 || frm.doc.iqama_national_id[0] != '2')){ //iqama no length must be 10 and start with 2
+                    frappe.msgprint({
+                        title: __("Error"),
+                        indicator: "red",
+                        message: __("Enter a valid Iqama No"),
+                    });
+                    frappe.validated = false;
+                }
             }
         }
 
