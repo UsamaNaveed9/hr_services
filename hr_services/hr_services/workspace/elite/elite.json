@@ -131,45 +131,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Payroll Report",
-   "link_count": 3,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Alinma Payment Format",
-   "link_count": 0,
-   "link_to": "Alinma Payment Format",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "ERC Salary Register",
-   "link_count": 0,
-   "link_to": "ERC Salary Register",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 1,
-   "label": "Advances Detail",
-   "link_count": 0,
-   "link_to": "ERC Loan Report",
-   "link_type": "Report",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Revenue",
    "link_count": 2,
    "link_type": "DocType",
@@ -234,9 +195,58 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payroll Report",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Alinma Payment Format",
+   "link_count": 0,
+   "link_to": "Alinma Payment Format",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "ERC Salary Register",
+   "link_count": 0,
+   "link_to": "ERC Salary Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Advances Detail",
+   "link_count": 0,
+   "link_to": "ERC Loan Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Loan Repayment Details",
+   "link_count": 0,
+   "link_to": "Loan Repayment Details",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-07-17 14:04:24.915579",
+ "modified": "2024-08-13 12:03:16.095431",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite",
