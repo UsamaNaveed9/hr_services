@@ -30,7 +30,8 @@ def make_employee(source_name, target_doc=None):
 		{
 			"Job Offer": {
 				"doctype": "Employee",
-				"field_map": {"applicant_name": "employee_name", 
+				"field_map": {"applicant_name": "employee_name",
+				  			"custom_applicant_name_in_arabic": "name_in_arabic",
 							"offer_date": "scheduled_confirmation_date",
 							"custom_project": "project",
 							"custom_salutation": "salutation",
