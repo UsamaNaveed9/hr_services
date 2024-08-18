@@ -2,6 +2,16 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Payroll Invoices Generator', {
+    onload: function(frm){
+        // Get the current month name
+        var monthNames = ["January", "February", "March", "April", "May", "June", 
+            "July", "August", "September", "October", "November", "December"];
+        var currentDate = new Date();
+        var currentMonth = monthNames[currentDate.getMonth()];
+
+        // Set the field value with the current month name
+        frm.set_value('month_name', currentMonth);
+    },
 	refresh: function(frm) {
         // Hide the Save button
         frm.disable_save();
