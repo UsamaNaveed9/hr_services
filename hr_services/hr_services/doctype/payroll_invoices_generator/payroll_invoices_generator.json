@@ -204,7 +204,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-08-20 13:39:03.706028",
+ "modified": "2024-08-20 14:25:19.563702",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Payroll Invoices Generator",
@@ -233,5 +233,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }
