@@ -42,9 +42,15 @@ frappe.ui.form.on('Payroll Invoices Generator', {
         frm.set_value("me_date", final_end_date);
         frm.set_value("year", currentYear);
     },
+    project: function(frm){
+        //When Project is Misk then Employment Type set from here
+        if(frm.doc.project == "PROJ-0001"){
+            frm.set_value("employment_type", "Full-time");
+        }
+    },
     get_employees: function(frm){
         var project = frm.doc.project;
-        if (project != "PROJ-0001" && frm.doc.ms_date && frm.doc.me_date){
+        if (frm.doc.allow_po_management == 0 && frm.doc.ms_date && frm.doc.me_date){
             frappe.call({
                 method: "hr_services.hr_services.doctype.payroll_invoices_generator.payroll_invoices_generator.get_employees",
                 args: {
@@ -82,9 +88,9 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                 }
             })
         }
-        else if (project == "PROJ-0001" && frm.doc.ms_date && frm.doc.me_date && frm.doc.employment_type){
+        else if (frm.doc.allow_po_management == 1 && frm.doc.ms_date && frm.doc.me_date){
             frappe.call({
-                method: "hr_services.hr_services.doctype.payroll_invoices_generator.payroll_invoices_generator.get_employees_misk",
+                method: "hr_services.hr_services.doctype.payroll_invoices_generator.payroll_invoices_generator.get_allow_po_mgt_employees",
                 args: {
                     project: project,
                     start_date: frm.doc.ms_date,
@@ -198,6 +204,21 @@ frappe.ui.form.on('Payroll Invoices Generator', {
                     message: __('Employees are missing')
                 });
             }
+        }
+    }
+});
+
+frappe.ui.form.on("Employees Payroll IG", {
+    working_days: function(frm,cdt,cdn){
+        let row = locals[cdt][cdn];
+        if(row.working_days > row.total_remaining_units && frm.doc.with_po == 1){
+            row.working_days = 0;
+            frm.refresh_field("employees");
+            frappe.msgprint({
+                title: __('Error'),
+                indicator: 'red',
+                message: __('Working Days not greater than Total Remaining Units')
+            });
         }
     }
 });

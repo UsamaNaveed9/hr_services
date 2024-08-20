@@ -34,8 +34,11 @@ def get_employees(project,start_date,end_date,month_name):
 	return filtered_employees
 
 @frappe.whitelist()
-def get_employees_misk(project,start_date,end_date,type):
-	employees = frappe.get_all('Employee', filters={'status': 'Active', 'project':project,'employment_type': type}, fields=['name','employee_name'])
+def get_allow_po_mgt_employees(project,start_date,end_date,type=None):
+	if project == "PROJ-0001": #when project misk because employment type use in misk
+		employees = frappe.get_all('Employee', filters={'status': 'Active', 'project':project,'employment_type': type}, fields=['name','employee_name'])
+	else:
+		employees = frappe.get_all('Employee', filters={'status': 'Active', 'project':project}, fields=['name','employee_name'])
 
 	filtered_employees = []
 	for employee in employees:
@@ -1164,17 +1167,16 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 						sal_slip.save(ignore_permissions=True)
 		
 		status = True
-		
 
-	#only for misk client 
-	if project == "PROJ-0001":
+	elif invoice_type == "Employee Wise Invoices with PO from PO Mgt":
 		for emp in emps:
 			po_mgt_list = frappe.db.get_list('PO Management',
 							filters={
 								'status': 'Active',
 								'docstatus': 1,
 								'employee_no': emp["employee"],
-								'project_no': 'PROJ-0001'
+								'project_no': project,
+								'po_type': 'Manpower'
 							},
 							fields=['name'],
 							order_by='creation asc'
@@ -1286,4 +1288,60 @@ def generate_invoices(project,due_date,customer,invoice_type,employees,month_nam
 						po_mdoc.status = "Completed"
 						po_mdoc.save(ignore_permissions=True)
 					status = True
+
+	elif invoice_type == "Employee Wise Invoices without PO from PO Mgt":
+		for emp in emps:
+			po_mgt_list = frappe.db.get_list('PO Management',
+							filters={
+								'status': 'Active',
+								'docstatus': 1,
+								'employee_no': emp["employee"],
+								'project_no': project,
+								'po_type': 'Manpower'
+							},
+							pluck='name',
+							order_by='creation asc'
+						)
+			
+			po_mdoc = frappe.get_doc("PO Management", po_mgt_list[0])
+			invoicing_rate = po_mdoc.invoicing_rate
+			emp_working_days = emp["working_days"]
+				
+			si = frappe.new_doc("Sales Invoice")
+			si.customer = customer
+			si.set_posting_time = 1
+			si.posting_date = due_date
+			si.due_date = due_date
+			si.issue_date = due_date
+			si.project = project
+			si.is_pos = 0
+			si.print_customer = frappe.db.get_value("Employee", {"name":emp["employee"]}, "print_customer_for_invoice")
+
+			si_item = frappe.new_doc("Sales Invoice Item")
+			si_item.item_code = 34
+			si_item.description = f"Manpower cost for the month of {month_name} {year}\nتكلفة القوى العامله لشهر {my_in_arabic}"
+			si_item.qty = emp_working_days
+			si_item.rate = invoicing_rate
+			si_item.employee_id = emp["employee"]
+			si_item.employee_name = emp["employee_name"]
+			si.append("items", si_item)
+
+			si_tax = frappe.new_doc("Sales Taxes and Charges")
+			si_tax.charge_type = "On Net Total"
+			si_tax.account_head = "VAT 15% - ERC"
+			si_tax.description = "VAT 15%"
+			si_tax.rate = 15
+			si.append("taxes", si_tax)
+
+			si.custom_payroll_entry_link = frappe.db.get_value("Salary Slip", emps[0]["salary_slip"], "payroll_entry")
+			si.remarks = "Payroll Invoice"
+			si.save(ignore_permissions=True)
+					
+			if si.name:
+				sal_slip = frappe.get_doc("Salary Slip", emp["salary_slip"])
+				sal_slip.invoice_created = 1
+				sal_slip.save(ignore_permissions=True)
+					
+				status = True
+
 	return status

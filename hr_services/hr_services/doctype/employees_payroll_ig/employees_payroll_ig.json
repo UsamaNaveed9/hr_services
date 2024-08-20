@@ -9,6 +9,7 @@
   "employee",
   "employee_name",
   "salary_slip",
+  "column_break_auo06",
   "working_days",
   "total_remaining_units"
  ],
@@ -42,12 +43,16 @@
    "fieldname": "total_remaining_units",
    "fieldtype": "Float",
    "label": "Total Remaining Units"
+  },
+  {
+   "fieldname": "column_break_auo06",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-02-01 14:42:39.002536",
+ "modified": "2024-08-20 11:31:54.147798",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Employees Payroll IG",

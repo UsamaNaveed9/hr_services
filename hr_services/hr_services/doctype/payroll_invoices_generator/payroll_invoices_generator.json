@@ -13,12 +13,12 @@
   "year",
   "project",
   "project_name",
-  "employment_type",
   "get_employees",
   "column_break_wuh7p",
   "ms_date",
   "me_date",
   "no_of_employees",
+  "employment_type",
   "column_break_yqh5q",
   "customer",
   "customer_name",
@@ -32,7 +32,9 @@
   "generate_invoices",
   "column_break_0n7ll",
   "hidden1",
-  "invoice_type"
+  "invoice_type",
+  "allow_po_management",
+  "with_po"
  ],
  "fields": [
   {
@@ -180,13 +182,29 @@
    "fieldname": "year",
    "fieldtype": "Data",
    "label": "Year"
+  },
+  {
+   "default": "0",
+   "fetch_from": "project.custom_allow_po_management",
+   "fieldname": "allow_po_management",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Allow PO Management"
+  },
+  {
+   "default": "0",
+   "fetch_from": "project.custom_with_po",
+   "fieldname": "with_po",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "With PO"
   }
  ],
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-01-31 11:35:03.374678",
+ "modified": "2024-08-20 13:39:03.706028",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Payroll Invoices Generator",
