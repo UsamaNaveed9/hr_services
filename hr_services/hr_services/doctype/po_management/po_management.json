@@ -11,25 +11,33 @@
  "field_order": [
   "naming_series",
   "po_type",
-  "employee_no",
-  "employees",
-  "description",
-  "employee_name",
-  "employment_type",
   "project_no",
   "project_name",
+  "with_po",
   "column_break_d19yz",
   "status",
+  "employee_no",
+  "employee_name",
+  "employees",
+  "monthly_amount",
+  "column_break_xm3z0",
+  "employment_type",
+  "description",
+  "po_details_section",
   "po_no",
   "po_amount",
+  "column_break_zaagz",
   "po_units",
   "used_units",
-  "column_break_xm3z0",
-  "employee_rate",
-  "invoicing_rate",
-  "margin",
-  "po_amount_wm",
+  "column_break_kmjxc",
   "remaining_units",
+  "calculations_section",
+  "invoicing_rate",
+  "employee_rate",
+  "column_break_vxgtv",
+  "margin",
+  "column_break_rkrhs",
+  "po_amount_wm",
   "amended_from"
  ],
  "fields": [
@@ -57,15 +65,14 @@
    "label": "Employee Name"
   },
   {
-   "depends_on": "eval:doc.employee_no",
-   "fetch_from": "employee_no.project",
    "fieldname": "project_no",
    "fieldtype": "Link",
    "label": "Project No",
-   "options": "Project"
+   "options": "Project",
+   "reqd": 1
   },
   {
-   "depends_on": "eval:doc.employee_no",
+   "depends_on": "eval:doc.project_no",
    "fetch_from": "project_no.project_name",
    "fieldname": "project_name",
    "fieldtype": "Data",
@@ -73,28 +80,31 @@
   },
   {
    "allow_on_submit": 1,
+   "depends_on": "eval:doc.with_po",
    "fieldname": "po_no",
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "PO No",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.with_po"
   },
   {
    "allow_on_submit": 1,
+   "depends_on": "eval:doc.with_po",
    "fieldname": "po_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "PO Amount",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.with_po"
   },
   {
    "allow_on_submit": 1,
+   "depends_on": "eval:doc.with_po",
    "fieldname": "po_units",
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "PO Units",
-   "reqd": 1
+   "mandatory_depends_on": "eval:doc.with_po"
   },
   {
    "allow_on_submit": 1,
@@ -105,6 +115,7 @@
   },
   {
    "allow_on_submit": 1,
+   "depends_on": "eval:doc.with_po",
    "fieldname": "used_units",
    "fieldtype": "Float",
    "label": "Used Units",
@@ -159,7 +170,7 @@
    "allow_on_submit": 1,
    "fieldname": "po_amount_wm",
    "fieldtype": "Currency",
-   "label": "PO Amount without Margin",
+   "label": "Amount without Margin",
    "read_only": 1
   },
   {
@@ -188,12 +199,54 @@
    "fieldname": "description",
    "fieldtype": "Small Text",
    "label": "Description(Employees Name)"
+  },
+  {
+   "fieldname": "po_details_section",
+   "fieldtype": "Section Break",
+   "label": "PO Details"
+  },
+  {
+   "fieldname": "column_break_kmjxc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "calculations_section",
+   "fieldtype": "Section Break",
+   "label": "Calculations"
+  },
+  {
+   "fieldname": "column_break_zaagz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_vxgtv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_rkrhs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fetch_from": "project_no.custom_with_po",
+   "fieldname": "with_po",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "With PO"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.project_no && doc.with_po == 0",
+   "fieldname": "monthly_amount",
+   "fieldtype": "Currency",
+   "label": "Monthly Amount",
+   "mandatory_depends_on": "eval:doc.project_no && doc.with_po == 0"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-07-29 14:26:39.276229",
+ "modified": "2024-08-14 16:08:29.986040",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "PO Management",

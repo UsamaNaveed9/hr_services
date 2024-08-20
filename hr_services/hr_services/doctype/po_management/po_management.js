@@ -2,18 +2,32 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('PO Management', {
+	onload(frm) {
+		if(frm.doc.with_po == 0 && !frm.doc.__islocal){
+			frm.toggle_display(['remaining_units'], false);
+		}
+	},
 	setup(frm) {
+		//only those project will visible that have the Allow PO Management checked
+		frm.set_query("project_no", function(){
+		    return {
+		        filters: [
+		            ["Project","custom_allow_po_management","=", 1]
+		        ]
+		    }
+		});
+		//employee filtered on the base of project
 		frm.set_query("employee_no", function(){
 		    return {
 		        filters: [
-		            ["Employee","project","in", "PROJ-0001"]
+		            ["Employee","project","in", frm.doc.project_no]
 		        ]
 		    }
 		});
 	},
 	po_units(frm) {
 		if(frm.doc.po_amount && frm.doc.po_units){
-			calculate(frm);
+			with_po_calculation(frm);
 		}
 		if(frm.doc.used_units){
 			if(frm.doc.po_units >= frm.doc.used_units){
@@ -53,12 +67,17 @@ frappe.ui.form.on('PO Management', {
 	},
 	po_amount(frm) {
 		if(frm.doc.po_amount && frm.doc.po_units){
-			calculate(frm);
+			with_po_calculation(frm);
+		}
+	},
+	monthly_amount(frm){
+		if(frm.doc.monthly_amount){
+			without_po_calculation(frm);
 		}
 	}
 });
 
-function calculate(frm){
+function with_po_calculation(frm){
 	//inv_rate for invoicing rate, amount_wm for PO Amount without Margin, margin for Margin 8%, emp_rate for Employee Rate
 	let inv_rate = 0;
 	let amount_wm = 0;
@@ -83,4 +102,17 @@ function calculate(frm){
 	else{
 		frm.set_value("employee_rate", 0);
 	}
+};
+
+function without_po_calculation(frm){
+	//inv_rate for invoicing rate, amount_wm for PO Amount without Margin, margin for Margin 8%, emp_rate for Employee Rate
+	let inv_rate = 0;
+	let amount_wm = 0;
+	let margin = 0;
+	inv_rate = frm.doc.monthly_amount / 30;
+	amount_wm = frm.doc.monthly_amount / 1.08;
+	margin = amount_wm * 0.08;
+	frm.set_value("invoicing_rate",inv_rate);
+	frm.set_value("margin",margin);
+	frm.set_value("po_amount_wm",amount_wm);
 };
