@@ -207,6 +207,11 @@ def get_invoices_amt(customers):
 
 		customers.append(customer)
 
-	customers = sorted(customers, key=lambda x: x['project_id'])		
+	customers = sorted(customers, key=lambda x: x['project_id'])
 	
+	for cust in customers:
+		if frappe.db.exists("Payment Received No Breakdown",cust['project_id']):
+			payment_received_doc = frappe.get_doc("Payment Received No Breakdown", cust['project_id'])
+			cust['shared_with_client'] = cust['shared_with_client'] - payment_received_doc.total_received_amount
+
 	return customers
