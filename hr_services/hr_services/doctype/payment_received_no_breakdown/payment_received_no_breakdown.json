@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:project",
+ "creation": "2024-08-20 14:31:20.569990",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "project",
+  "project_name",
+  "section_break_gk6dw",
+  "receiving_details",
+  "section_break_99knw",
+  "hidden",
+  "column_break_vc56s",
+  "total_received_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "Project",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Project Name"
+  },
+  {
+   "fieldname": "section_break_gk6dw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "receiving_details",
+   "fieldtype": "Table",
+   "label": "Receiving Details",
+   "options": "Payment Received Items",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_99knw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_received_amount",
+   "fieldtype": "Currency",
+   "label": "Total Received Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_vc56s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hidden"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-20 14:56:39.834344",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Payment Received No Breakdown",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "FM Req Approver",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
