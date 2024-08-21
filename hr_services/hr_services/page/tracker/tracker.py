@@ -5,7 +5,7 @@ def get_outstanding_customers():
 	# Fetch customers according to projects
 	customers = frappe.get_all('Customer', 
 							filters={'disabled': 0, 'is_standard_invoice_customer':1}, 
-							fields=['name', 'customer_name','project_name'],
+							fields=['name', 'customer_name','project_id','project_name'],
 							order_by='project_id')
 	
 	# Fetch submitted outstanding amounts
@@ -31,6 +31,10 @@ def get_outstanding_customers():
 		for draft_outstanding_amount in draft_outstanding_amounts:
 			if customer['name'] == draft_outstanding_amount['customer']:
 				customer['outstanding_amount'] = customer['outstanding_amount'] + draft_outstanding_amount['outstanding_amount']
+
+		if frappe.db.exists("Payment Received No Breakdown",customer['project_id']):
+			payment_received_doc = frappe.get_doc("Payment Received No Breakdown", customer['project_id'])
+			customer['outstanding_amount'] = customer['outstanding_amount'] - payment_received_doc.total_received_amount
 
 	#Fetch Client employees Total Outstanding of loans except Elite HQ and Loan type: Housing Advance
 	query = """
