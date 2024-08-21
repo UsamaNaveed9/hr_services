@@ -111,8 +111,8 @@ def get_invoices_amt(customers):
 								WHERE 
 									customer IN ({}) 
 									AND (
-											(docstatus = 0 AND show_in_report = 1) 
-											OR (docstatus = 1 AND is_shared_with_client = 0)
+											(docstatus = 0 AND show_in_report = 1 AND custom_not_for_tracker = 0) 
+											OR (docstatus = 1 AND is_shared_with_client = 0 AND custom_not_for_tracker = 0)
 										)
 								GROUP BY 
 									customer
@@ -147,7 +147,7 @@ def get_invoices_amt(customers):
 									`tabSales Invoice`
 								WHERE 
 									customer IN ({}) 
-									AND (docstatus = 0 AND show_in_report = 1 AND po_no = "")
+									AND (docstatus = 0 AND show_in_report = 1 AND po_no = "" AND custom_not_for_tracker = 0)
 								GROUP BY 
 									customer
 								""".format(', '.join(['%s']*len(po_customers))), tuple([customer['name'] for customer in po_customers]), as_dict=True)
@@ -162,8 +162,8 @@ def get_invoices_amt(customers):
 								WHERE 
 									customer IN ({}) 
 									AND (
-											(docstatus = 0 AND show_in_report = 1 AND po_no != "") 
-											OR (docstatus = 1 AND is_shared_with_client = 0 AND po_no != "")
+											(docstatus = 0 AND show_in_report = 1 AND po_no != "" AND custom_not_for_tracker = 0) 
+											OR (docstatus = 1 AND is_shared_with_client = 0 AND po_no != "" AND custom_not_for_tracker = 0)
 										)
 								GROUP BY 
 									customer
@@ -178,7 +178,7 @@ def get_invoices_amt(customers):
 									`tabSales Invoice`
 								WHERE 
 									customer IN ({}) 
-									AND (docstatus = 1 AND uploaded_on_client_portal = 1)
+									AND (docstatus = 1 AND uploaded_on_client_portal = 1 AND custom_not_for_tracker = 0)
 								GROUP BY 
 									customer
 								""".format(', '.join(['%s']*len(po_customers))), tuple([customer['name'] for customer in po_customers]), as_dict=True)
