@@ -39,6 +39,25 @@ frappe.query_reports["Alinma Payment Format"] = {
 			}
 		},
 		{
+			"fieldname":"department",
+			"label": __("Department"),
+			"fieldtype": "Link",
+			"options": "Department",
+			get_query: function() {
+				let selected_projects = frappe.query_report.get_filter_value('project') || [];
+		
+				if (selected_projects.length > 0) {
+					return {
+						filters: {
+							custom_project: ['in', selected_projects]
+						}
+					};
+				} else {
+					return {};
+				}
+			}
+		},
+		{
 			"fieldname":"employee",
 			"label": __("Employee"),
 			"fieldtype": "Link",

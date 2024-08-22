@@ -178,6 +178,9 @@ def get_salary_slips(filters, company_currency):
 			project_tuple = tuple(projects)
 			conditions.append(f"and project IN {project_tuple}")
 
+	if filters.get("department"):
+		conditions.append(f"and department = '{filters.department}'")		
+
 	con = "{}".format(" ".join(conditions)) if conditions else ""
 
 	salary_slips = frappe.db.sql(
