@@ -10,7 +10,7 @@ frappe.ui.form.on('Contract',{
     refresh(frm){
         calculate_end_date(frm);
         if(frm.doc.docstatus == 1){
-            frm.add_custom_button(__('Creat Word File'), function (){
+            frm.add_custom_button(__('Create Word File'), function (){
                 var dialog = new frappe.ui.Dialog({
                     title: __('Choose a template file'),
                     fields: [
@@ -37,7 +37,7 @@ frappe.ui.form.on('Contract',{
                     }
                 });
                 dialog.show();
-            })
+            }).addClass('btn-primary');
         }
         if(frm.doc.is_signed == 1 && frm.doc.docstatus == 1){
             frm.add_custom_button(__('Create Employee'), function(){

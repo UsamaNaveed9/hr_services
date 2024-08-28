@@ -48,6 +48,10 @@ def make_employee(source_name, target_doc=None):
 def make_contract(source_name, target_doc=None):
 	def set_missing_values(source, target):
 		target.party_type = "Job Applicant"
+		if source.custom_contract_duration == "1 Year":
+			target.custom_contract_duration = 1
+		elif source.custom_contract_duration == "2 Year":
+			target.custom_contract_duration = 2
 
 	doc = get_mapped_doc(
 		"Job Offer",
@@ -58,8 +62,10 @@ def make_contract(source_name, target_doc=None):
 				"field_map": {"name": "custom_job_offer",
 							"job_applicant": "party_name",
 							"applicant_name": "custom_c_name",
+							"custom_applicant_name_in_arabic": "custom_name_in_arabic",
 							"custom_country": "custom_nationality",
-							"designation": "custom_designation"
+							"designation": "custom_designation",
+							"custom_contract_type": "custom_contract_type"
 				},
 			},
 			"Contract Details": {"doctype": "Contract Details"},
