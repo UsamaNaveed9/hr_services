@@ -37,7 +37,8 @@ doctype_js = {"Employee" : "customjs/employee.js",
               "Asset Category": "customjs/asset_category.js",
               "Job Offer": "customjs/job_offer.js",
               "Contract": "customjs/contract.js",
-              "Job Opening": "customjs/job_opening.js"
+              "Job Opening": "customjs/job_opening.js",
+              "Job Applicant": "customjs/job_applicant.js"
               }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -197,6 +198,7 @@ override_whitelisted_methods = {
 override_doctype_dashboards = {
     "Employee": "hr_services.overrides.dashboard_overrides.get_dashboard_for_employee",
     "Payroll Entry": "hr_services.overrides.dashboard_overrides.get_dashboard_for_payroll_entry",
+    "Job Applicant": "hr_services.overrides.dashboard_overrides.get_data_for_job_applicant",
 }
 
 # exempt linked doctypes from being automatically cancelled

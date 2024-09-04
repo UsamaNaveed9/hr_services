@@ -26,3 +26,11 @@ def get_dashboard_for_payroll_entry(data):
 		{"Sales Invoice": "custom_payroll_entry_link"}
 	)
 	return data
+
+def get_data_for_job_applicant(data):
+	data["transactions"] = 	[	
+			{"items": ["Employee"]},
+			{"items": ["Job Offer"]},
+			{"items": ["Contract"]},
+		]
+	return data
