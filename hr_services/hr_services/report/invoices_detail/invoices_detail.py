@@ -42,6 +42,13 @@ def _execute(filters):
 			row.update({"communicated": "Yes"})
 		else:
 			row.update({"communicated": "No"})
+
+		#Include in tracker or not
+		if inv.custom_not_for_tracker == 0:
+			row.update({"tracker_status": "Yes"})
+		else:
+			row.update({"tracker_status": "No"})
+
 		#calculate the paid amount
 		paid = 0
 		paid = inv.grand_total - inv.outstanding_amount
@@ -89,6 +96,7 @@ def get_columns(invoice_list):
 			"options": "Sales Invoice",
 			"width": 170,
 		},
+		{"label": _("Tracker Status"), "fieldname": "tracker_status", "fieldtype": "Data", "width": 100},
 		{"label": _("Invoice Date"), "fieldname": "posting_date", "fieldtype": "Date", "width": 100},
 		{
 			"label": _("Customer"),
@@ -198,7 +206,7 @@ def get_invoices(filters):
 	return frappe.db.sql(
 		"""
 		select name, posting_date, customer, status, remarks, total, is_pos,
-		total_taxes_and_charges, grand_total, outstanding_amount, paid_amount,
+		total_taxes_and_charges, grand_total, outstanding_amount, paid_amount, custom_not_for_tracker,
 		is_shared_with_client, date_of_communication, uploaded_date, company
 		from `tabSales Invoice`
 		where {0}
