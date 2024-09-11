@@ -3,11 +3,20 @@ import frappe
 @frappe.whitelist()
 def get_outstanding_customers():
 	# Fetch customers according to projects
-	customers = frappe.get_all('Customer', 
-							filters={'disabled': 0, 'is_standard_invoice_customer':1}, 
-							fields=['name', 'customer_name','project_id','project_name'],
-							order_by='project_id')
-	
+	customers = frappe.db.sql("""
+						SELECT 
+							c.name, c.customer_name, c.project_id, p.project_name, p.custom_tracker_order
+						FROM 
+							`tabCustomer` c
+						JOIN 
+							`tabProject` p ON c.project_id = p.name
+						WHERE 
+							c.disabled = 0 
+							AND c.is_standard_invoice_customer = 1
+						ORDER BY 
+							CAST(p.custom_tracker_order AS UNSIGNED) ASC
+					""", as_dict=True)
+
 	# Fetch submitted outstanding amounts
 	paid_outstanding_amounts = frappe.get_all('Sales Invoice',
 										 filters={'customer': ('in', [customer['name'] for customer in customers]),

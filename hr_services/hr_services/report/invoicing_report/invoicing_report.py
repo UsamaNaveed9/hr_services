@@ -74,10 +74,17 @@ def get_columns():
 	return columns
 
 def get_customers():
-	customers = frappe.get_all('Customer', 
-							filters={'disabled': 0, 'is_standard_invoice_customer':1}, 
-							fields=['name', 'customer_name','project_name','project_id'],
-							order_by='project_id')
+	customers = frappe.db.sql("""
+						SELECT 
+							c.name, c.customer_name, c.project_id, p.project_name, p.custom_tracker_order
+						FROM 
+							`tabCustomer` c
+						JOIN 
+							`tabProject` p ON c.project_id = p.name
+						WHERE 
+							c.disabled = 0 
+							AND c.is_standard_invoice_customer = 1
+					""", as_dict=True)
 	return customers
 
 def get_invoices_amt(customers):
@@ -207,7 +214,7 @@ def get_invoices_amt(customers):
 
 		customers.append(customer)
 
-	customers = sorted(customers, key=lambda x: x['project_id'])
+	customers = sorted(customers, key=lambda x: int(x['custom_tracker_order']) if x['custom_tracker_order'] else float('inf'))
 	
 	for cust in customers:
 		if frappe.db.exists("Payment Received No Breakdown",cust['project_id']):
