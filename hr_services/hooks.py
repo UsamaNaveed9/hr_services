@@ -139,7 +139,9 @@ doc_events = {
         "before_insert": "hr_services.custompy.employee.check_id"
     },
     "Sales Invoice": {
-        "on_submit": "hr_services.custompy.sales_invoice.new_rec"
+        "on_submit": "hr_services.custompy.sales_invoice.new_rec",
+        "before_insert": "hr_services.custompy.sales_invoice.check_outstanding",
+        "on_update": "hr_services.custompy.sales_invoice.check_outstanding"
     },
     "Purchase Invoice": {
         "before_insert": "hr_services.custompy.purchase_invoice.check_inv"

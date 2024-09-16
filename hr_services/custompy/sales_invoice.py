@@ -4,6 +4,7 @@
 import frappe
 from frappe.utils import get_url_to_form
 from frappe.utils import flt, get_first_day, get_last_day, nowdate
+from frappe import _
 
 def new_rec(doc, method):
 	if doc.docstatus == 1 and "Draft" in doc.name:
@@ -77,3 +78,17 @@ def get_customers_outstanding():
 		"route_options": {"docstatus": "1","posting_date":["Timespan","this month"],"outstanding_amount":[">",0]},
 		"route": ["sales-invoice"]
 	}
+
+#function for check the return only invoice amount
+def check_outstanding(doc, method):
+	if doc.is_return == 1 and doc.return_against:
+		sales_inv = frappe.get_doc("Sales Invoice",doc.return_against)
+		return_total = -(doc.grand_total)
+
+		if return_total > sales_inv.outstanding_amount:
+			frappe.throw(
+			_(
+				"""The outstanding amount of Sales Invoice <b>{}</b> is <b>{}</b> <br> The return invoice amount is greater than outstanding amount"""
+			).format(sales_inv.name, sales_inv.outstanding_amount, return_total),
+			title=_("Error")
+		)
