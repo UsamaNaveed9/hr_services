@@ -7,6 +7,9 @@ from frappe.model.mapper import get_mapped_doc
 
 @frappe.whitelist()
 def create_job_applicant(source_name, target_doc=None):
+	def set_missing_values(source, target):
+		target.status = "Accepted"
+
 	doc = get_mapped_doc(
 		"Job Opening",
 		source_name,
@@ -24,5 +27,6 @@ def create_job_applicant(source_name, target_doc=None):
 			}
 		},
 		target_doc,
+		set_missing_values,
 	)
 	return doc
