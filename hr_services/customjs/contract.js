@@ -45,7 +45,7 @@ frappe.ui.form.on('Contract',{
                     method: "hr_services.custompy.contract.make_employee",
                     frm: frm
                 });
-            })
+            }).addClass('btn-primary');
         }
     },
     custom_posting_date(frm){

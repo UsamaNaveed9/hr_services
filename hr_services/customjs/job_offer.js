@@ -36,7 +36,7 @@ frappe.ui.form.on('Job Offer', {
 							function () {
 								erpnext.job_offer.make_employee(frm);
 							}
-						);
+						).addClass('btn-primary');;
 				}
 			}
 			if(frm.doc.custom_nationality == "Non Saudi"){
@@ -45,7 +45,7 @@ frappe.ui.form.on('Job Offer', {
 						function () {
 							erpnext.job_offer.make_employee(frm);
 						}
-					);
+					).addClass('btn-primary');;
 					
 				}
 			}
@@ -56,7 +56,7 @@ frappe.ui.form.on('Job Offer', {
 				function () {
 					erpnext.job_offer.make_contract(frm);
 				}
-			);
+			).addClass('btn-primary');
 		}
 		if(frm.doc.custom_project && frm.doc.docstatus == 0){
 			if(frm.doc.custom_project == "PROJ-0002"){ //ACWA-NEOM project
