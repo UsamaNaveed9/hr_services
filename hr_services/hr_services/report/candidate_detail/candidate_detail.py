@@ -21,10 +21,10 @@ def execute(filters=None):
 def get_columns():
 	return [
 		{
-			"label": _("Job Opening"),
+			"label": _("Job Requisition"),
 			"fieldtype": "Link",
-			"fieldname": "job_opening",
-			"options": "Job Opening",
+			"fieldname": "job_requisition",
+			"options": "Job Requisition",
 			"width": 200,
 		},
 		{
@@ -97,30 +97,34 @@ def get_columns():
 
 def get_data(filters):
 	data = []
-	staffing_plan_details = get_staffing_plan(filters)
-	staffing_plan_list = list(set([details["name"] for details in staffing_plan_details]))
-	sp_jo_map, jo_list = get_job_opening(staffing_plan_list,filters)
-	jo_ja_map, ja_list = get_job_applicant(jo_list)
+	job_req_list = get_job_requisition(filters)
+	jr_list = list(set([details["name"] for details in job_req_list]))
+	jo_list = list(set([details["job_opening"] for details in job_req_list]))
+	jo_ja_map, ja_list = get_job_applicant(jr_list,jo_list)
 	ja_joff_map = get_job_offer(ja_list)
-
-	for sp in sp_jo_map.keys():
-		parent_row = get_parent_row(sp_jo_map, sp, jo_ja_map, ja_joff_map)
+	
+	# Sorting the list in descending order
+	sorted_jr_list = sorted(jr_list, reverse=True)
+	for jr in sorted_jr_list:
+		parent_row = get_parent_row(job_req_list, jr, jo_ja_map, ja_joff_map)
 		data += parent_row
 
 	return data
 
 
-def get_parent_row(sp_jo_map, sp, jo_ja_map, ja_joff_map):
+def get_parent_row(job_req_list, jr, jo_ja_map, ja_joff_map):
 	data = []
-	if sp in sp_jo_map.keys():
-		for jo in sp_jo_map[sp]:
-			row = {
-				"staffing_plan": sp,
-				"job_opening": jo["name"],
-			}
-			data.append(row)
-			child_row = get_child_row(jo["name"], jo_ja_map, ja_joff_map)
-			data += child_row
+	if any(item['name'] == jr for item in job_req_list):
+		#get the row
+		filtered_data = [row for row in job_req_list if row['name'] == jr]
+		row = {
+			"job_requisition": filtered_data[0]['name'],
+			"job_opening": filtered_data[0]['job_opening'],
+			"job_applicant": filtered_data[0]['designation']
+		}
+		data.append(row)
+		child_row = get_child_row(filtered_data[0]['job_opening'] or filtered_data[0]['name'], jo_ja_map, ja_joff_map)
+		data += child_row
 	return data
 
 
@@ -154,61 +158,32 @@ def get_child_row(jo, jo_ja_map, ja_joff_map):
 			data.append(row)
 	return data
 
-
-def get_staffing_plan(filters):
-
-	staffing_plan = frappe.db.sql(
-		"""
-	select
-		sp.name, sp.department, spd.designation, spd.vacancies, spd.current_count, spd.parent, sp.to_date
-	from
-		`tabStaffing Plan Detail` spd , `tabStaffing Plan` sp
-	where
-			spd.parent = sp.name
-		And
-			sp.to_date > '{0}'
-		""".format(
-			filters.on_date
-		),
-		as_dict=1,
-	)
-
-	return staffing_plan
-
-
-def get_job_opening(sp_list,filters):
+def get_job_requisition(filters):
 	if filters.project:
-		job_openings = frappe.get_all(
-			"Job Opening", filters=[["staffing_plan", "IN", sp_list],["status","=","Open"],["requested_by","=",filters.project]], fields=["name", "staffing_plan"]
+		job_requisition = frappe.get_all(
+			"Job Requisition", filters=[["status","=","Open & Approved"],["requested_by","=",filters.project]], fields=["name", "designation"]
 		)
 	else:
-		job_openings = frappe.get_all(
-			"Job Opening", filters=[["staffing_plan", "IN", sp_list],["status","=","Open"]], fields=["name", "staffing_plan"]
-		)	
-	
-	sp_jo_map = {}
-	jo_list = []
+		job_requisition = frappe.get_all(
+			"Job Requisition", filters=[["status","=","Open & Approved"]], fields=["name", "designation"]
+		)
 
-	for openings in job_openings:
-		if openings.staffing_plan not in sp_jo_map.keys():
-			sp_jo_map[openings.staffing_plan] = [openings]
+	for jr in job_requisition:
+		if frappe.db.exists("Job Opening", {"status": "Open", "job_requisition": jr.name}):	
+			jr["job_opening"] = frappe.get_value("Job Opening",{"status": "Open", "job_requisition": jr.name})
 		else:
-			sp_jo_map[openings.staffing_plan].append(openings)
+			jr["job_opening"] = ""
 
-		jo_list.append(openings.name)
+	return job_requisition
 
-	return sp_jo_map, jo_list
-
-
-def get_job_applicant(jo_list):
-
+def get_job_applicant(jr_list,jo_list):
 	jo_ja_map = {}
 	ja_list = []
 
 	applicants = frappe.get_all(
 		"Job Applicant",
-		filters=[["job_title", "IN", jo_list]],
-		fields=["name", "job_title", "applicant_name", "status","project","project_name"],
+		or_filters=[["job_title", "IN", jo_list],["custom_job_requisition", "IN", jr_list]],
+		fields=["name", "job_title","custom_job_requisition", "applicant_name", "status","project","project_name"],
 	)
 
 	for applicant in applicants:
@@ -217,8 +192,13 @@ def get_job_applicant(jo_list):
 		else:
 			jo_ja_map[applicant.job_title].append(applicant)
 
-		ja_list.append(applicant.name)
+		if applicant.custom_job_requisition not in jo_ja_map.keys():
+			jo_ja_map[applicant.custom_job_requisition] = [applicant]
+		else:
+			jo_ja_map[applicant.custom_job_requisition].append(applicant)
 
+		ja_list.append(applicant.name)
+	
 	return jo_ja_map, ja_list
 
 
