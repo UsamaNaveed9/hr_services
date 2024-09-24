@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-09-24 13:31:49.517178",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "month_name",
+  "edit_dates",
+  "year",
+  "project",
+  "project_name",
+  "get_employees",
+  "column_break_wuh7p",
+  "ms_date",
+  "me_date",
+  "no_of_employees",
+  "column_break_yqh5q",
+  "section_break_ocum7",
+  "employees",
+  "section_break_wwoim",
+  "hidden",
+  "column_break_63w5e",
+  "if_data_is_ok_you_can_click_here",
+  "send_emails",
+  "column_break_0n7ll",
+  "hidden1"
+ ],
+ "fields": [
+  {
+   "fieldname": "month_name",
+   "fieldtype": "Select",
+   "label": "Month Name",
+   "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember"
+  },
+  {
+   "default": "0",
+   "fieldname": "edit_dates",
+   "fieldtype": "Check",
+   "label": "Edit Dates"
+  },
+  {
+   "depends_on": "eval:doc.edit_dates == 1",
+   "fieldname": "year",
+   "fieldtype": "Data",
+   "label": "Year"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "project.project_name",
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "label": "Project Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_employees",
+   "fieldtype": "Button",
+   "label": "Get Employees"
+  },
+  {
+   "fieldname": "column_break_wuh7p",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ms_date",
+   "fieldtype": "Date",
+   "label": "Month Start Date",
+   "read_only_depends_on": "eval:doc.edit_dates == 0"
+  },
+  {
+   "fieldname": "me_date",
+   "fieldtype": "Date",
+   "label": "Month End Date",
+   "read_only_depends_on": "eval:doc.edit_dates == 0"
+  },
+  {
+   "fieldname": "no_of_employees",
+   "fieldtype": "Int",
+   "label": "No of Employees",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_yqh5q",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ocum7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employees",
+   "fieldtype": "Table",
+   "label": "Employees",
+   "options": "Share Payslips via Email Employees"
+  },
+  {
+   "fieldname": "section_break_wwoim",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Data",
+   "label": "Hidden",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_63w5e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_0n7ll",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hidden1",
+   "fieldtype": "Data",
+   "label": "Hidden1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "if_data_is_ok_you_can_click_here",
+   "fieldtype": "Heading",
+   "hidden": 1,
+   "label": "If Data is Ok You Can Click Here"
+  },
+  {
+   "fieldname": "send_emails",
+   "fieldtype": "Button",
+   "label": "Send Emails"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-09-24 13:43:59.836565",
+ "modified_by": "Administrator",
+ "module": "HR Services",
+ "name": "Share Payslips via Email",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Finance User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
