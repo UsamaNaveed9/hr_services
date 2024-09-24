@@ -18,6 +18,10 @@ frappe.ui.form.on('Payroll Invoices Generator', {
         // Center-align the button with class 'your-button-class'
         frm.fields_dict['if_data_is_ok_you_can_click_here'].$wrapper.css('text-align', 'center');
         frm.fields_dict['generate_invoices'].$wrapper.css('text-align', 'center');
+
+        $('[class="control-input"]').find("button").addClass('btn-primary');
+        $('[class="control-input"]').find("button").css({'height': '40px','font-weight': '500'});
+
     },
     month_name: function(frm){
         var monthName = frm.doc.month_name;
