@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Request</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}},{\"id\":\"7rOvYHFE3Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Master Dashboard\",\"col\":3}},{\"id\":\"4ExzbswYD7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"a5bezI-ugm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"So3wP1dNqH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"XMR9NFVkeH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"jKWmrk9rbV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"PB6qd8ZUi7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master\",\"col\":3}},{\"id\":\"_OjVQhkdTO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Entry\",\"col\":3}},{\"id\":\"HiIrnUHSuG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Received No Breakdown\",\"col\":4}},{\"id\":\"gDLyTXSrp3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Tools</b></span>\",\"col\":12}},{\"id\":\"-TmMgrPsBb\",\"type\":\"card\",\"data\":{\"card_name\":\"Accrued\",\"col\":3}},{\"id\":\"TTn_kQ8c0t\",\"type\":\"card\",\"data\":{\"card_name\":\"Invoice\",\"col\":3}},{\"id\":\"sBrzRBhH69\",\"type\":\"card\",\"data\":{\"card_name\":\"Costing\",\"col\":3}},{\"id\":\"4FKQ5gXnsz\",\"type\":\"card\",\"data\":{\"card_name\":\"PO Management\",\"col\":3}},{\"id\":\"-9AVSnk5jU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"WMUfNJx1hq\",\"type\":\"card\",\"data\":{\"card_name\":\"Invoices Reports\",\"col\":3}},{\"id\":\"uO321pG6mc\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll Report\",\"col\":3}},{\"id\":\"WqvkNdiN01\",\"type\":\"card\",\"data\":{\"card_name\":\"Revenue\",\"col\":4}}]",
+ "content": "[{\"id\":\"Tg_jZ659d_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Request</b></span>\",\"col\":12}},{\"id\":\"H6dONdjcQ5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Request For Payment\",\"col\":3}},{\"id\":\"7rOvYHFE3Z\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Master Dashboard\",\"col\":3}},{\"id\":\"4ExzbswYD7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"a5bezI-ugm\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"So3wP1dNqH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"XMR9NFVkeH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"jKWmrk9rbV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"PB6qd8ZUi7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee Master\",\"col\":3}},{\"id\":\"_OjVQhkdTO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payroll Entry\",\"col\":3}},{\"id\":\"mVELAhicE6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Share Payslips via Email\",\"col\":3}},{\"id\":\"HiIrnUHSuG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Received No Breakdown\",\"col\":3}},{\"id\":\"gDLyTXSrp3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Tools</b></span>\",\"col\":12}},{\"id\":\"-TmMgrPsBb\",\"type\":\"card\",\"data\":{\"card_name\":\"Accrued\",\"col\":3}},{\"id\":\"TTn_kQ8c0t\",\"type\":\"card\",\"data\":{\"card_name\":\"Invoice\",\"col\":3}},{\"id\":\"sBrzRBhH69\",\"type\":\"card\",\"data\":{\"card_name\":\"Costing\",\"col\":3}},{\"id\":\"4FKQ5gXnsz\",\"type\":\"card\",\"data\":{\"card_name\":\"PO Management\",\"col\":3}},{\"id\":\"-9AVSnk5jU\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports</b></span>\",\"col\":12}},{\"id\":\"WMUfNJx1hq\",\"type\":\"card\",\"data\":{\"card_name\":\"Invoices Reports\",\"col\":3}},{\"id\":\"uO321pG6mc\",\"type\":\"card\",\"data\":{\"card_name\":\"Payroll Report\",\"col\":3}},{\"id\":\"WqvkNdiN01\",\"type\":\"card\",\"data\":{\"card_name\":\"Revenue\",\"col\":4}}]",
  "creation": "2024-01-21 14:40:27.949807",
  "custom_blocks": [],
  "docstatus": 0,
@@ -246,7 +246,7 @@
    "type": "Link"
   }
  ],
- "modified": "2024-08-21 10:08:49.888292",
+ "modified": "2024-09-25 10:47:56.893750",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite",
@@ -268,6 +268,15 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Payment Entry",
+   "link_to": "Payment Entry",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{}",
    "label": "Payment Received No Breakdown",
    "link_to": "Payment Received No Breakdown",
    "stats_filter": "[]",
@@ -276,9 +285,8 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Payment Entry",
-   "link_to": "Payment Entry",
-   "stats_filter": "[]",
+   "label": "Share Payslips via Email",
+   "link_to": "Share Payslips via Email",
    "type": "DocType"
   },
   {
