@@ -69,6 +69,13 @@ def fill_and_attach_template(doctype, name, template):
 		elif row.salary_components == "Vacation Travel Allowance":
 			vacation_travel = row.amount
 	
+	if data.custom_contract_duration == '1':
+		duration = 'one year'
+		duration_arabic = 'عام'
+	else:
+		duration = 'two years'
+		duration_arabic = 'عامين'
+
 	data_dict = {
 		'custom_posting_date': data.custom_posting_date.strftime("%d-%m-%Y"),
 		'custom_date_in_hijri': data.custom_date_in_hijri,
@@ -87,6 +94,8 @@ def fill_and_attach_template(doctype, name, template):
 		'custom_project_name': data.custom_project_name,
 		'project_name_in_arabic': frappe.db.get_value("Project",data.custom_project,"custom_project_name_in_arabic"),
 		'custom_leave_days': data.custom_leave_days,
+		'contract_duration': duration,
+		'contract_duration_in_arabic': duration_arabic,
 	}
 
 	template_doc = frappe.get_doc("File", {"attached_to_doctype":"Word Template","attached_to_name":template,"attached_to_field":"word_template_file"})
