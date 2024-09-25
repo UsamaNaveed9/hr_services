@@ -33,7 +33,7 @@ def send_emails(employees,month_name,year):
 	emps = json.loads(employees)
 	for emp in emps:
 		receiver = emp['email']
-		message = "Please see attachment"
+		message = "Dear {0},<br><br>Please find attached your payslip for the month of {1}, {2}.<br><br>Best regards,<br>Elite Resources Center".format(emp['employee_name'],month_name,year)
 		password = None
 		salary_slip = frappe.get_doc("Salary Slip",emp['salary_slip'])
 
