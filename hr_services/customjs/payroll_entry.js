@@ -24,5 +24,18 @@ frappe.ui.form.on('Payroll Entry', {
                 }
             }
         })
+    },
+    refresh: function(frm){
+        if(frm.doc.docstatus === 1 && frm.doc.workflow_state == "Pending for HRM Approval"){
+            frm.add_custom_button(__("Update Payroll"), function() {
+                frappe.call({
+                    method: "hr_services.custompy.payroll_entry.create_delete_salary_slip",
+                    args: {
+                        payroll_name: frm.doc.name
+                    },
+                    callback: function() { }
+                });
+            }).addClass('btn-primary');
+        }
     }
 });
