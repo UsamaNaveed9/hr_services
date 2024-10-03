@@ -114,7 +114,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Jobs",
-   "link_count": 4,
+   "link_count": 5,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -158,9 +158,19 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Contract For Part Timers",
+   "link_count": 0,
+   "link_to": "Contract For Part Timers",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-09-19 10:54:34.593386",
+ "modified": "2024-10-02 16:43:42.291593",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Elite Recruitment",
