@@ -164,12 +164,12 @@ scheduler_events = {
         "0 6 22 * *": [
             "hr_services.cron_auto_email.probation_period_ended.send_email"
         ],
-    }
-	# "all": [
+    },
+	"daily": [
+		"hr_services.hr_services.doctype.contract_for_part_timers.contract_for_part_timers.update_status_for_contracts"
+	],
+    # "all": [
 	# 	"hr_services.tasks.all"
-	# ],
-	# "daily": [
-	# 	"hr_services.tasks.daily"
 	# ],
 	# "hourly": [
 	# 	"hr_services.tasks.hourly"
