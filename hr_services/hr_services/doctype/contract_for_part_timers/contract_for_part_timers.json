@@ -180,13 +180,14 @@
    "fieldname": "salutation",
    "fieldtype": "Link",
    "label": "Salutation",
-   "options": "Salutation"
+   "options": "Salutation",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2024-10-07 10:02:25.537881",
+ "modified": "2024-10-08 10:57:30.620819",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Contract For Part Timers",
