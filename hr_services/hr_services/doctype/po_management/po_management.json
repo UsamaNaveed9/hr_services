@@ -22,6 +22,7 @@
   "monthly_amount",
   "column_break_xm3z0",
   "employment_type",
+  "work_location",
   "description",
   "po_details_section",
   "po_no",
@@ -241,12 +242,19 @@
    "fieldtype": "Currency",
    "label": "Monthly Amount",
    "mandatory_depends_on": "eval:doc.project_no && doc.with_po == 0"
+  },
+  {
+   "depends_on": "eval:doc.po_type == \"Manpower\"",
+   "fieldname": "work_location",
+   "fieldtype": "Select",
+   "label": "Work Location",
+   "options": "On-site\nRemote"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-08-14 16:08:29.986040",
+ "modified": "2024-10-14 12:00:41.605565",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "PO Management",
@@ -270,7 +278,7 @@
    "write": 1
   }
  ],
- "search_fields": "remaining_units",
+ "search_fields": "remaining_units, work_location",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
