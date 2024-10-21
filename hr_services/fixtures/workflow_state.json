@@ -205,5 +205,14 @@
   "name": "Cancelled",
   "style": "",
   "workflow_state_name": "Cancelled"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2024-10-21 16:19:03.417035",
+  "name": "Slips Created",
+  "style": "Warning",
+  "workflow_state_name": "Slips Created"
  }
 ]
