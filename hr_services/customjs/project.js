@@ -43,6 +43,7 @@ function validate(frm){
 	}
 	if(!((['Employee Wise Invoices with PO from PO Mgt','Employee Wise Invoices without PO from PO Mgt']).includes(frm.doc.invoice_type))){
 		if(frm.doc.erc_fee < 600){
+			frm.scroll_to_field('erc_fee');
 			frappe.msgprint({
 				title: __("Error"),
 				indicator: "red",
@@ -50,6 +51,5 @@ function validate(frm){
 			});
 			frappe.validated = false;
 		}
-		frm.scroll_to_field('erc_fee');
 	}
 }
