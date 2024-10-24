@@ -26,10 +26,9 @@
    "label": "Description"
   }
  ],
- "in_create": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-08 15:47:12.552594",
+ "modified": "2024-10-23 12:19:33.565319",
  "modified_by": "Administrator",
  "module": "HR Services",
  "name": "Invoice Type",
@@ -37,15 +36,8 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
+   "role": "System Manager"
   }
  ],
  "sort_field": "modified",
