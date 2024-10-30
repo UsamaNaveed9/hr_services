@@ -16,7 +16,13 @@ frappe.ui.form.on('Contract For Part Timers', {
 	},
 	duration_in_months: function(frm){
 		calculate_end_date(frm);
-	}
+	},
+	rate_in_usd: function(frm){
+		frm.set_value("rate",frm.doc.rate_in_usd * frm.doc.exchange_rate);
+	},
+	exchange_rate: function(frm){
+		frm.set_value("rate",frm.doc.rate_in_usd * frm.doc.exchange_rate);
+	},
 });
 
 
